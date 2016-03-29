@@ -23,13 +23,48 @@ public class Board {
     public Board(/*int cellsWide, int cellsHigh*/) {
        // this.cellsWide = cellsWide;
        // this.cellsHigh = cellsHigh;
+        System.out.println("Antall celler bredde: " + getBoardWidth());
+        System.out.println("Antall celler høyde: " + getBoardHeight());
 
         gameBoard = new boolean[getBoardWidth()][getBoardHeight()];
-        gameBoard[2][3] = true;
-        gameBoard[3][3] = true;
-        gameBoard[4][3] = true;
+
+        gameBoard[0][0] = true;
+        gameBoard[2][0] = true;
+        gameBoard[4][0] = true;
+        gameBoard[6][0] = true;
+        gameBoard[8][0] = true;
+        gameBoard[10][0] = true;
+        gameBoard[12][0] = true;
+        gameBoard[14][0] = true;
+        gameBoard[16][0] = true;
+        gameBoard[18][0] = true;
+        gameBoard[20][0] = true;
+        gameBoard[22][0] = true;
+        gameBoard[24][0] = true;
+        gameBoard[26][0] = true;
+        gameBoard[28][0] = true;
+        gameBoard[30][0] = true;
+        gameBoard[32][0] = true;
+        gameBoard[34][0] = true;
+        gameBoard[36][0] = true;
+        gameBoard[38][0] = true;
+
+        gameBoard[0][2] = true;
+        gameBoard[0][4] = true;
+        gameBoard[0][6] = true;
+        gameBoard[0][8] = true;
+        gameBoard[0][10] = true;
+        gameBoard[0][12] = true;
+        gameBoard[0][14] = true;
+        gameBoard[0][16] = true;
+        gameBoard[0][18] = true;
+
+
+        gameBoard[3][4] = true;
+        gameBoard[4][4] = true;
+        gameBoard[5][4] = true;
+        gameBoard[5][3] = true;
         gameBoard[4][2] = true;
-        gameBoard[3][1] = true;
 
         gameBoard[30][3] = true;
         gameBoard[30][4] = true;
@@ -109,7 +144,7 @@ public class Board {
      */
     public void nextGeneration(Grid grid) {
         boolean[][] newGameBoard = new boolean[getBoardWidth()][getBoardHeight()];
-       //grid.draw();
+       grid.draw();
         for (int x = 0; x < gameBoard.length; x++) {
             for (int y = 0; y < gameBoard[0].length; y++) {
                 if (gameBoard[x][y]) {
@@ -127,7 +162,6 @@ public class Board {
      * @return
      */
     public int getBoardWidth() {
-
         return cellsWide;
     }
 

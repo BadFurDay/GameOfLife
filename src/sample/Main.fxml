@@ -15,9 +15,9 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ColorPicker?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="602.0" prefWidth="810.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="638.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
     <children>
-        <MenuBar layoutX="0.0" layoutY="0.0" prefHeight="30.0" prefWidth="810.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <MenuBar layoutX="0.0" layoutY="0.0" prefHeight="30.0" prefWidth="900.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <menus>
                 <Menu mnemonicParsing="false" text="File">
                     <items>
@@ -36,7 +36,7 @@
                 </Menu>
             </menus>
         </MenuBar>
-        <Canvas fx:id="canvas" height="414.0" layoutY="33.0" width="810.0" AnchorPane.bottomAnchor="155.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="33.0" />
+        <Canvas fx:id="canvas" height="450.0" layoutY="33.0" width="900.0" AnchorPane.bottomAnchor="155.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="33.0" />
         <Separator layoutY="450.0" prefHeight="5.0" prefWidth="810.0" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
         <Button fx:id="playPause" layoutX="31.0" layoutY="530.0" mnemonicParsing="false" onAction="#OnStartClick" onMouseClicked="#playPauseEvent" prefHeight="34.0" prefWidth="60.0" text="Play" AnchorPane.bottomAnchor="92.0" AnchorPane.leftAnchor="31.0" />
         <Button fx:id="clearButton" layoutX="31.0" layoutY="590.0" mnemonicParsing="false" onAction="#clearEvent" prefHeight="34.0" prefWidth="60.0" text="Clear" AnchorPane.bottomAnchor="32.0" AnchorPane.leftAnchor="31.0" />

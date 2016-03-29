@@ -11,13 +11,13 @@ public class Graphics {
     //Data field
     protected GraphicsContext gc;
     protected int genCounter;
-    private int cellHeight; //Height of each individual cell
-    private int cellWidth;  //Width of each individual cell
+    private double cellHeight; //Height of each individual cell
+    private double cellWidth;  //Width of each individual cell
 
     //Constructor
-    public Graphics (GraphicsContext gc, int cellWidth, int cellHeight){
-        this.cellHeight = gc.getCanvas().heightProperty().intValue()/cellHeight;
-        this.cellWidth = gc.getCanvas().widthProperty().intValue()/cellWidth;
+    public Graphics (GraphicsContext gc/*, int cellWidth, int cellHeight*/){
+       // this.cellHeight = gc.getCanvas().heightProperty().intValue()/cellHeight;
+       // this.cellWidth = gc.getCanvas().widthProperty().intValue()/cellWidth;
         this.gc = gc;
     }
 
@@ -35,14 +35,12 @@ public class Graphics {
             for (int y = 0; y < gameBoard[0].length; y++) {
                 if (gameBoard[x][y]) {
                     gc.fillRect(x * getCellWidth(), y * getCellHeight(), getCellWidth(), getCellHeight());
-                   // gc.fillText("rudi", 20, 20);
                 } else if (!gameBoard[x][y]) {
                     gc.clearRect(x * getCellWidth(), y * getCellHeight(), getCellWidth(), getCellHeight());
                 }
             }
         }
         genCounter++;
-        //System.out.println(genCounter);
     }
 
     /**
@@ -60,8 +58,8 @@ public class Graphics {
      * Returns the cellWidth.
      * @return
      */
-    public int getCellWidth() {
-        //System.out.println("Bredde: " + cellWidth);
+    public double getCellWidth() {
+        //System.out.println("Celle bredde: " + cellWidth);
         return cellWidth;
     }
 
@@ -71,8 +69,8 @@ public class Graphics {
      * Returns the cellHeight.
      * @return
      */
-    public int getCellHeight() {
-        // System.out.println("Høyde: " + cellHeight);
+    public double getCellHeight() {
+        // System.out.println("Celle høyde: " + cellHeight);
         return cellHeight;
     }
 
@@ -83,8 +81,7 @@ public class Graphics {
      * @return
      */
     public void setCellWidth(int cellsWide){
-        this.cellWidth = gc.getCanvas().widthProperty().intValue()/cellsWide;
-
+        this.cellWidth = (double)gc.getCanvas().widthProperty().intValue()/cellsWide;
         //System.out.println(gc.getCanvas().widthProperty().intValue()/cellsWide);
     }
 
@@ -96,7 +93,7 @@ public class Graphics {
      * @return
      */
     public void setCellHeight(int cellsHigh) {
-        this.cellHeight = gc.getCanvas().heightProperty().intValue()/cellsHigh;
+         this.cellHeight = (double)gc.getCanvas().heightProperty().intValue()/cellsHigh;
 
         //System.out.println(gc.getCanvas().heightProperty().intValue()/cellsHigh);
     }

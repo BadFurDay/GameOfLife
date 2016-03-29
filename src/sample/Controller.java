@@ -43,10 +43,10 @@ public class Controller implements Initializable{
     @FXML private Button clearButton;
     private GraphicsContext gc;
     private Timeline timeline;
-    private double FPS = 5; //Variabel her, eller på linje 72?
+    private double FPS = 1; //Variabel her, eller på linje 72?
     private boolean running = false;
     private List<Cell> cellList;
-    private boolean rudi = false;
+    private boolean showGrid = false;
 
     //Constructor
 
@@ -63,7 +63,7 @@ public class Controller implements Initializable{
         gc = canvas.getGraphicsContext2D();
 
         gameBoard = new Board();
-        graphics = new Graphics(gc, /*graphics.getCellWidth(), graphics.getCellHeight()*/3,4);
+        graphics = new Graphics(gc);
         grid = new Grid(gc);
         graphics.setCellHeight(gameBoard.getBoardHeight());
         graphics.setCellWidth(gameBoard.getBoardWidth());
@@ -198,11 +198,11 @@ public class Controller implements Initializable{
      * @param actionEvent
      */
     public void gridEvent(ActionEvent actionEvent) {
-        if (rudi == false) {
-            rudi = true;
+        if (showGrid == false) {
+            showGrid = true;
             grid.draw();
         }else {
-            rudi = false;
+            showGrid = false;
             grid.clearGrid();
         }
     }
