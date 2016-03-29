@@ -92,5 +92,8 @@ public class Graphics {
         //System.out.println(gc.getCanvas().heightProperty().intValue()/cellsHigh);
     }
 
+    public void resetGenCount(){
 
+        genCounter = 0;
+    }
 }
