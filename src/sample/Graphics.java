@@ -90,4 +90,9 @@ public class Graphics {
         this.cellHeight = gc.getCanvas().heightProperty().intValue()/cellsHigh;
         //System.out.println(gc.getCanvas().heightProperty().intValue()/cellsHigh);
     }
+
+    public void resetGenCount(){
+
+        genCounter = 0;
+    }
 }

@@ -148,6 +148,7 @@ public class Controller implements Initializable{
         timeline.stop();
         playPause.setText("Play");
         gc.clearRect(0, 0, canvas.widthProperty().doubleValue(), canvas.heightProperty().doubleValue());
+        graphics.resetGenCount();
     }
 
     /**
