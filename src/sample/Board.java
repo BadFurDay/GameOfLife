@@ -49,6 +49,7 @@ public class Board {
 
     /**
      * Created by Olav Smevoll on 08.03.2016.
+     * Counts cell neighbours for next generation.
      * @param x
      * @param y
      * @return counter
@@ -104,6 +105,7 @@ public class Board {
 
     /**
      * Created by RudiAndre on 04.03.2016.
+     *  Sets the new values in the array for the next generation.
      */
     public void nextGeneration(Grid grid) {
         boolean[][] newGameBoard = new boolean[getBoardWidth()][getBoardHeight()];
@@ -125,6 +127,7 @@ public class Board {
      * @return
      */
     public int getBoardWidth() {
+
         return cellsWide;
     }
 
@@ -154,6 +157,7 @@ public class Board {
      * @param y
      */
     public void setBoardHeight(int y) {
+
         cellsHigh = y;
     }
 

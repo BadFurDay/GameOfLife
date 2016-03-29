@@ -27,7 +27,7 @@ public class Graphics {
     //Methods
 
     /**
-     *
+     * Draws the board with existing cells for every loop.
      * @param gameBoard
      */
     public void draw(boolean[][] gameBoard) {
@@ -45,6 +45,10 @@ public class Graphics {
         //System.out.println(genCounter);
     }
 
+    /**
+     * Returns the genCounter as a string to show as a label.
+     * @return
+     */
     public String getGenCounter(){
         String s = Integer.toString(genCounter);
         return s;
@@ -53,6 +57,7 @@ public class Graphics {
 
     /**
      * Rudi 25.03.16
+     * Returns the cellWidth.
      * @return
      */
     public int getCellWidth() {
@@ -62,35 +67,44 @@ public class Graphics {
 
 
     /**
-     * Calculates the width of a single cell
-     *  Rudi 25.03.16
-     * @return
-     */
-    public void setCellWidth(int cellsWide){
-        this.cellWidth = gc.getCanvas().widthProperty().intValue()/cellsWide;
-        System.out.println(gc.getCanvas().widthProperty().intValue()/cellsWide);
-    }
-
-
-    /**
      * Rudi 25.03.16
+     * Returns the cellHeight.
      * @return
      */
     public int getCellHeight() {
-       // System.out.println("Høyde: " + cellHeight);
+        // System.out.println("Høyde: " + cellHeight);
         return cellHeight;
     }
 
 
     /**
-     * Calculates the height of a single cell
+     * Calculates the width of a single cell.
+     *  Rudi 25.03.16
+     * @return
+     */
+    public void setCellWidth(int cellsWide){
+        this.cellWidth = gc.getCanvas().widthProperty().intValue()/cellsWide;
+
+        //System.out.println(gc.getCanvas().widthProperty().intValue()/cellsWide);
+    }
+
+
+
+    /**
+     * Calculates the height of a single cell.
      *  Rudi 25.03.16
      * @return
      */
     public void setCellHeight(int cellsHigh) {
         this.cellHeight = gc.getCanvas().heightProperty().intValue()/cellsHigh;
+
         //System.out.println(gc.getCanvas().heightProperty().intValue()/cellsHigh);
     }
+
+    /**
+     * Resets the genCounter when the board is cleared.
+     *
+     */
 
     public void resetGenCount(){
 
