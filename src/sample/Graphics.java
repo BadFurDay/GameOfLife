@@ -35,6 +35,7 @@ public class Graphics {
             for (int y = 0; y < gameBoard[0].length; y++) {
                 if (gameBoard[x][y]) {
                     gc.fillRect(x * getCellWidth(), y * getCellHeight(), getCellWidth(), getCellHeight());
+                   // gc.fillText("rudi", 20, 20);
                 } else if (!gameBoard[x][y]) {
                     gc.clearRect(x * getCellWidth(), y * getCellHeight(), getCellWidth(), getCellHeight());
                 }
@@ -91,8 +92,5 @@ public class Graphics {
         //System.out.println(gc.getCanvas().heightProperty().intValue()/cellsHigh);
     }
 
-    public void resetGenCount(){
 
-        genCounter = 0;
-    }
 }
