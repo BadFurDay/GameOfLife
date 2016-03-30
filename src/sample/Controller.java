@@ -161,6 +161,8 @@ public class Controller implements Initializable{
      * @param event
      */
     public void speedChanged(MouseEvent event) {
+        timeline.stop();
+        
         double FPS = speedSlider.getValue();
         if (running) {
             if (FPS != 0) {
