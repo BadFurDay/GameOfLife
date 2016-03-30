@@ -43,7 +43,7 @@ public class Controller implements Initializable{
     @FXML private Button clearButton;
     private GraphicsContext gc;
     private Timeline timeline;
-    private double FPS = 1; //Variabel her, eller på linje 72?
+    private double FPS;
     private boolean running = false;
     private List<Cell> cellList;
     private boolean showGrid = false;
@@ -80,7 +80,7 @@ public class Controller implements Initializable{
         colorPicker.setValue(Color.MEDIUMAQUAMARINE);
         cellList = new ArrayList<Cell>();
         zoomSlider.setValue(5.0);
-       // FPS = 1;
+        FPS = 1;
         draw();
 
         //Time properties responsible for the animation
@@ -178,6 +178,9 @@ public class Controller implements Initializable{
                     graphics.draw(gameBoard.getGameBoard());
                     gameBoard.nextGeneration(grid);
                     genCounter.setText(gameBoard.getGenCounter());
+                    if(showGrid){
+                        grid.draw();
+                    }
                 });
                 timeline = new Timeline();
                 timeline.setCycleCount(Animation.INDEFINITE);
