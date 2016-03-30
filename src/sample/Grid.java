@@ -10,6 +10,7 @@ public class Grid extends Canvas {
 
     //datafelt
     private GraphicsContext gc;
+    private Canvas canvas;
     private double canvasHeight; //Canvas' height.
     private double canvasWidth; //Canvas' width.
     private double cellWidth;
@@ -43,7 +44,7 @@ public class Grid extends Canvas {
 
 
     public void clearGrid(){
-        gc.clearRect(0, 0, canvasWidth, canvasHeight);
+         gc.clearRect(0, 0, canvas.widthProperty().doubleValue(), canvas.heightProperty().doubleValue());
     }
 
     /**
