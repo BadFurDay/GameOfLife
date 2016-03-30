@@ -34,6 +34,7 @@ public class Graphics {
         for (int x = 0; x < gameBoard.length; x++) {
             for (int y = 0; y < gameBoard[0].length; y++) {
                 if (gameBoard[x][y]) {
+                    //gc.fillRoundRect(x * getCellWidth(), y * getCellHeight(), getCellWidth(), getCellHeight(), getCellWidth(), getCellWidth());
                     gc.fillRect(x * getCellWidth(), y * getCellHeight(), getCellWidth(), getCellHeight());
                 } else if (!gameBoard[x][y]) {
                     gc.clearRect(x * getCellWidth(), y * getCellHeight(), getCellWidth(), getCellHeight());

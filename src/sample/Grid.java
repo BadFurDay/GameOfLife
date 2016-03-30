@@ -10,8 +10,8 @@ public class Grid extends Canvas {
 
     //datafelt
     private GraphicsContext gc;
-    private int canvasHeight; //Canvas' height.
-    private int canvasWidth; //Canvas' width.
+    private double canvasHeight; //Canvas' height.
+    private double canvasWidth; //Canvas' width.
     private double cellWidth;
     private double cellHeight;
     /* public Grid() {
@@ -30,16 +30,12 @@ public class Grid extends Canvas {
 
     public void draw() {
         // vertical lines
-        gc.setStroke(Color.BLUE);
         for(double x = 0 ; x < canvasWidth ; x += cellWidth){
-            //gc.strokeLine(0, x, canvasWidth, x);
             gc.strokeLine(x, 0, x, canvasHeight);
         }
         // horizontal lines
-        gc.setStroke(Color.RED);
         for(double y = 0 ; y < canvasHeight ; y += cellHeight){
-            //gc.strokeLine(y, 0, y, canvasHeight);
-            gc.strokeLine(0, y, canvasWidth, y); //MÅ FIKSES, ANNENHVER LINJE ER SKEIV(skyldes bruk av type double, type int fikser dette).
+            gc.strokeLine(0, y, canvasWidth, y); //MÅ FIKSES, ANNENHVER LINJE ER BRED// (skyldes bruk av type double, type int fikser dette).
         }
 
 
@@ -87,7 +83,7 @@ public class Grid extends Canvas {
     /**
      *  Rudi 29.03.16
      */
-    public void setCanvasHeight(int canvasHeight) {
+    public void setCanvasHeight(double canvasHeight) {
         System.out.println("Canvas høyde: "+canvasHeight);
         this.canvasHeight = canvasHeight;
     }
@@ -103,7 +99,7 @@ public class Grid extends Canvas {
     /**
      * Rudi 29.03.16
      */
-    public void setCanvasWidth(int canvasWidth){
+    public void setCanvasWidth(double canvasWidth){
         System.out.println("Canvas bredde: "+canvasWidth);
         this.canvasWidth = canvasWidth;
     }
