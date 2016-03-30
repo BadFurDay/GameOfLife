@@ -16,6 +16,7 @@ public class Board {
     protected GraphicsContext gc;
     private int cellsWide = 40; //Number of cells in gameboards width
     private int cellsHigh = 20; //Number of cells in gameboards height
+    protected int genCounter;
     public boolean[][] gameBoard;
 
 
@@ -90,12 +91,14 @@ public class Board {
         gameBoard[39][15] = true;
         gameBoard[39][17] = true;
 
-
         gameBoard[3][4] = true;
         gameBoard[4][4] = true;
         gameBoard[5][4] = true;
         gameBoard[5][3] = true;
         gameBoard[4][2] = true;
+
+
+        /**/
 
         gameBoard[30][3] = true;
         gameBoard[30][4] = true;
@@ -175,7 +178,7 @@ public class Board {
      */
     public void nextGeneration(Grid grid) {
         boolean[][] newGameBoard = new boolean[getBoardWidth()][getBoardHeight()];
-       grid.draw();
+       //grid.draw();
         for (int x = 0; x < gameBoard.length; x++) {
             for (int y = 0; y < gameBoard[0].length; y++) {
                 if (gameBoard[x][y]) {
@@ -184,6 +187,25 @@ public class Board {
             }
         }
         gameBoard = newGameBoard;
+        genCounter++;
+    }
+
+    /**
+     * Olav
+     * Returns the genCounter as a string to show as a label.
+     * @return
+     */
+    public String getGenCounter(){
+        String s = Integer.toString(genCounter);
+        return s;
+    }
+
+    /**
+     * Olav
+     * Resets the genCounter when the board is cleared.
+     */
+    public void resetGenCount(){
+        genCounter = 0;
     }
 
 

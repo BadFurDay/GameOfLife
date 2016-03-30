@@ -67,6 +67,7 @@ public class Controller implements Initializable{
         grid = new Grid(gc);
         graphics.setCellHeight(gameBoard.getBoardHeight());
         graphics.setCellWidth(gameBoard.getBoardWidth());
+
         grid.setCanvasHeight(gc.getCanvas().heightProperty().intValue());
         grid.setCanvasWidth(gc.getCanvas().widthProperty().intValue());
         grid.setCellWidth(graphics.getCellWidth());
@@ -74,7 +75,7 @@ public class Controller implements Initializable{
 
 
         //Initial properties in the GUI
-        genCounter.setText(graphics.getGenCounter());
+        genCounter.setText(gameBoard.getGenCounter());
         graphics.gc.setFill(Color.MEDIUMAQUAMARINE);
         colorPicker.setValue(Color.MEDIUMAQUAMARINE);
         cellList = new ArrayList<Cell>();
@@ -85,7 +86,11 @@ public class Controller implements Initializable{
         //Time properties responsible for the animation
         Duration duration = Duration.millis(1000/FPS);
         KeyFrame keyframe = new KeyFrame(duration, (ActionEvent e) ->
-        {graphics.draw(gameBoard.getGameBoard()); gameBoard.nextGeneration(grid); genCounter.setText(graphics.getGenCounter()); });
+        {graphics.draw(gameBoard.getGameBoard());
+            if(showGrid){
+                grid.draw();
+            }
+            gameBoard.nextGeneration(grid); genCounter.setText(gameBoard.getGenCounter()); });
         timeline = new Timeline();
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.getKeyFrames().add(keyframe);
@@ -148,7 +153,7 @@ public class Controller implements Initializable{
         timeline.stop();
         playPause.setText("Play");
         gc.clearRect(0, 0, canvas.widthProperty().doubleValue(), canvas.heightProperty().doubleValue());
-        graphics.resetGenCount();
+        gameBoard.resetGenCount();
     }
 
     /**
@@ -164,7 +169,7 @@ public class Controller implements Initializable{
                 {
                     graphics.draw(gameBoard.getGameBoard());
                     gameBoard.nextGeneration(grid);
-                    genCounter.setText(graphics.getGenCounter());
+                    genCounter.setText(gameBoard.getGenCounter());
                 });
                 timeline = new Timeline();
                 timeline.setCycleCount(Animation.INDEFINITE);
@@ -198,12 +203,14 @@ public class Controller implements Initializable{
      * @param actionEvent
      */
     public void gridEvent(ActionEvent actionEvent) {
-        if (showGrid == false) {
+        if (!showGrid) {
             showGrid = true;
+            //graphics.draw(gameBoard.getGameBoard());
             grid.draw();
         }else {
             showGrid = false;
             grid.clearGrid();
+            graphics.draw(gameBoard.getGameBoard());
         }
     }
 

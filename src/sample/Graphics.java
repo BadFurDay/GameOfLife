@@ -10,7 +10,6 @@ public class Graphics {
 
     //Data field
     protected GraphicsContext gc;
-    protected int genCounter;
     private double cellHeight; //Height of each individual cell
     private double cellWidth;  //Width of each individual cell
 
@@ -28,30 +27,19 @@ public class Graphics {
 
     /**
      * Draws the board with existing cells for every loop.
-     * @param gameBoard
+     * @param graphicsBoard
      */
-    public void draw(boolean[][] gameBoard) {
-        System.out.println("Cellestørrelse: " + getCellHeight());
-        for (int x = 0; x < gameBoard.length; x++) {
-            for (int y = 0; y < gameBoard[0].length; y++) {
-                if (gameBoard[x][y]) {
+    public void draw(boolean[][] graphicsBoard) {
+        for (int x = 0; x < graphicsBoard.length; x++) {
+            for (int y = 0; y < graphicsBoard[0].length; y++) {
+                if (graphicsBoard[x][y]) {
                     //gc.fillRoundRect(x * getCellWidth(), y * getCellHeight(), getCellWidth(), getCellHeight(), getCellWidth(), getCellWidth());
                     gc.fillRect(x * getCellWidth(), y * getCellHeight(), getCellWidth(), getCellHeight());
-                } else if (!gameBoard[x][y]) {
+                } else if (!graphicsBoard[x][y]) {
                     gc.clearRect(x * getCellWidth(), y * getCellHeight(), getCellWidth(), getCellHeight());
                 }
             }
         }
-        genCounter++;
-    }
-
-    /**
-     * Returns the genCounter as a string to show as a label.
-     * @return
-     */
-    public String getGenCounter(){
-        String s = Integer.toString(genCounter);
-        return s;
     }
 
 
@@ -96,17 +84,6 @@ public class Graphics {
      */
     public void setCellHeight(int cellsHigh) {
          this.cellHeight = (double)gc.getCanvas().heightProperty().intValue()/cellsHigh;
-
         //System.out.println(gc.getCanvas().heightProperty().intValue()/cellsHigh);
-    }
-
-    /**
-     * Resets the genCounter when the board is cleared.
-     *
-     */
-
-    public void resetGenCount(){
-
-        genCounter = 0;
     }
 }

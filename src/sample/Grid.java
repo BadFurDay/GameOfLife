@@ -30,24 +30,16 @@ public class Grid extends Canvas {
 
     public void draw() {
         // vertical lines
-        for(double x = 0 ; x < canvasWidth ; x += cellWidth){
+        //gc.setStroke(Color.TRANSPARENT);
+        for (double x = 0; x < canvasWidth; x += cellWidth) {
             gc.strokeLine((int)x, 0, (int)x, (int)canvasHeight);
         }
 
         // horizontal lines
-        for(double y = 0 ; y < canvasHeight ; y += cellHeight){
+        for (double y = 0; y < canvasHeight; y += cellHeight) {
             gc.strokeLine(0, (int)y, (int)canvasWidth, (int)y);
         }
-
-        //Horizontal lines
-       /* for(double x = 0; x < canvasWidth; x += cellWidth) {
-            gc.strokeLine(0, x, canvasWidth, x);
-        }
-        //Vertical lines
-            for (int y = 0; y < canvasHeight; y += cellHeight) {
-                gc.strokeLine(y, 0, y, canvasHeight);
-            }*/
-        }
+    }
 
 
     public void clearGrid(){
