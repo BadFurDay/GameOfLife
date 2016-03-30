@@ -49,6 +49,27 @@ public class Board {
         gameBoard[36][0] = true;
         gameBoard[38][0] = true;
 
+        gameBoard[1][19] = true;
+        gameBoard[3][19] = true;
+        gameBoard[5][19] = true;
+        gameBoard[7][19] = true;
+        gameBoard[9][19] = true;
+        gameBoard[11][19] = true;
+        gameBoard[13][19] = true;
+        gameBoard[15][19] = true;
+        gameBoard[17][19] = true;
+        gameBoard[19][19] = true;
+        gameBoard[21][19] = true;
+        gameBoard[23][19] = true;
+        gameBoard[25][19] = true;
+        gameBoard[27][19] = true;
+        gameBoard[29][19] = true;
+        gameBoard[31][19] = true;
+        gameBoard[33][19] = true;
+        gameBoard[35][19] = true;
+        gameBoard[37][19] = true;
+        gameBoard[39][19] = true;
+
         gameBoard[0][2] = true;
         gameBoard[0][4] = true;
         gameBoard[0][6] = true;
@@ -58,6 +79,16 @@ public class Board {
         gameBoard[0][14] = true;
         gameBoard[0][16] = true;
         gameBoard[0][18] = true;
+
+        gameBoard[39][1] = true;
+        gameBoard[39][3] = true;
+        gameBoard[39][5] = true;
+        gameBoard[39][7] = true;
+        gameBoard[39][9] = true;
+        gameBoard[39][11] = true;
+        gameBoard[39][13] = true;
+        gameBoard[39][15] = true;
+        gameBoard[39][17] = true;
 
 
         gameBoard[3][4] = true;

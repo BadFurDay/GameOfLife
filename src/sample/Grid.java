@@ -30,15 +30,16 @@ public class Grid extends Canvas {
 
     public void draw() {
         // vertical lines
-      /*  gc.setStroke(Color.BLUE);
-        for(int x = 0 ; x < canvasWidth ; x += cellWidth){
+        gc.setStroke(Color.BLUE);
+        for(double x = 0 ; x < canvasWidth ; x += cellWidth){
+            //gc.strokeLine(0, x, canvasWidth, x);
             gc.strokeLine(x, 0, x, canvasHeight);
-        }*/
+        }
         // horizontal lines
         gc.setStroke(Color.RED);
         for(double y = 0 ; y < canvasHeight ; y += cellHeight){
             //gc.strokeLine(y, 0, y, canvasHeight);
-            gc.strokeLine(0, y, canvasWidth, y); //MÅ FIKSES, ANNENHVER LINJE ER SKEIV. OG CELLER ER FORSKJØVET I FORHOLD TIL GRID
+            gc.strokeLine(0, y, canvasWidth, y); //MÅ FIKSES, ANNENHVER LINJE ER SKEIV(skyldes bruk av type double, type int fikser dette).
         }
 
 
