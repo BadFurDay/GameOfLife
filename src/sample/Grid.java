@@ -31,13 +31,13 @@ public class Grid extends Canvas {
     public void draw() {
         // vertical lines
         for(double x = 0 ; x < canvasWidth ; x += cellWidth){
-            gc.strokeLine(x, 0, x, canvasHeight);
-        }
-        // horizontal lines
-        for(double y = 0 ; y < canvasHeight ; y += cellHeight){
-            gc.strokeLine(0, y, canvasWidth, y); //MÅ FIKSES, ANNENHVER LINJE ER BRED// (skyldes bruk av type double, type int fikser dette).
+            gc.strokeLine((int)x, 0, (int)x, (int)canvasHeight);
         }
 
+        // horizontal lines
+        for(double y = 0 ; y < canvasHeight ; y += cellHeight){
+            gc.strokeLine(0, (int)y, (int)canvasWidth, (int)y);
+        }
 
         //Horizontal lines
        /* for(double x = 0; x < canvasWidth; x += cellWidth) {
