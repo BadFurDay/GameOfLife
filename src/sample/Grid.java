@@ -8,28 +8,27 @@ import javafx.scene.paint.Color;
  */
 public class Grid extends Canvas {
 
-    //datafelt
-    //testing
+    //Data field
     private GraphicsContext gc;
     private Canvas canvas;
     private double canvasHeight; //Canvas' height.
     private double canvasWidth; //Canvas' width.
     private double cellWidth;
     private double cellHeight;
-    /* public Grid() {
-         // Redraw canvas when size changes.
-         widthProperty().addListener(evt -> draw());
-         heightProperty().addListener(evt -> draw());
-     }
- */
 
     //Constructor
     public Grid(GraphicsContext gc) {
         this.gc = gc;
+        /*// Redraw canvas when size changes.
+        widthProperty().addListener(evt -> draw());
+        heightProperty().addListener(evt -> draw());*/
     }
 
     //Methods
 
+    /**
+     * Draws the grid lines on the canvas area
+     */
     public void draw() {
         // vertical lines
         //gc.setStroke(Color.TRANSPARENT);
@@ -44,11 +43,15 @@ public class Grid extends Canvas {
     }
 
 
+    /**
+     * Clears the grid lines on the canvas area
+     */
     public void clearGrid(){
-         gc.clearRect(0, 0, canvas.widthProperty().doubleValue(), canvas.heightProperty().doubleValue());
+         gc.clearRect(0, 0, canvasWidth, canvasHeight);
     }
 
     /**
+     * Gets the canvas' height
      *  Rudi 29.03.16
      * @return
      */
@@ -61,6 +64,11 @@ public class Grid extends Canvas {
         return cellWidth;
     }*/
 
+
+    /**
+     * Sets the cell width
+     * @param cellWidth
+     */
     public void setCellWidth(double cellWidth) {
         this.cellWidth = cellWidth;
     }
@@ -70,12 +78,18 @@ public class Grid extends Canvas {
         return cellHeight;
     }*/
 
+    /**
+     * Sets the cell's height
+     * @param cellHeight
+     */
     public void setCellHeight(double cellHeight) {
         this.cellHeight = cellHeight;
     }
 
     /**
+     * Sets the canvas' height
      *  Rudi 29.03.16
+     *  @param canvasHeight
      */
     public void setCanvasHeight(double canvasHeight) {
         System.out.println("Canvas høyde: "+canvasHeight);
@@ -83,15 +97,18 @@ public class Grid extends Canvas {
     }
 
     /**
+     *  Gets the canvas' width
      *  Rudi 29.03.16
-     * @return
+     *  @return
      */
     public int getCanvasWidth() {
         return gc.getCanvas().widthProperty().intValue();
     }
 
     /**
+     * Sets the canvas' width
      * Rudi 29.03.16
+     * @param canvasWidth
      */
     public void setCanvasWidth(double canvasWidth){
         System.out.println("Canvas bredde: "+canvasWidth);

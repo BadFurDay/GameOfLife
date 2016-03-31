@@ -11,8 +11,7 @@ import javafx.scene.canvas.GraphicsContext;
 
 public class Board {
 
-    /*DATAFELT*/
-    //@FXML Canvas canvas;
+    //Datafield
     protected GraphicsContext gc;
     private int cellsWide = 40; //Number of cells in gameboards width
     private int cellsHigh = 20; //Number of cells in gameboards height
@@ -129,42 +128,42 @@ public class Board {
         int bly = gameBoard[0].length - 1;
 
 
-        // Tester celle nordvest
+        //Check cell neighbor North-West
         if (x > 0 && y > 0 && gameBoard[x - 1][y - 1]) {
             counter++;
         }
 
-        //Tester celle nord
+        //Check cell neighbor North
         if (x > 0 && gameBoard[x - 1][y]) {
             counter++;
         }
 
-        // Tester celle nordøst
+        //Check cell neighbor North-East
         if (x > 0 && y < bly && gameBoard[x - 1][y + 1]) {
             counter++;
         }
 
-        //Tester celle vest
+        //Check cell neighbor West
         if (y > 0 && gameBoard[x][y - 1]) {
             counter++;
         }
 
-        //Tester celle øst
+        //Check cell neighbor East
         if (y < bly && gameBoard[x][y + 1]) {
             counter++;
         }
 
-        //Tester celle sørvest
+        //Check cell neighbor South-West
         if (x < blx && y > 0 && gameBoard[x + 1][y - 1]) {
             counter++;
         }
 
-        //Tester celle sør
+        //Check cell neighbor South
         if (x < blx && gameBoard[x + 1][y]) {
             counter++;
         }
 
-        //Tester celle sørøst
+        //Check cell neighbor South-East
         if (x < blx && y < bly && gameBoard[x + 1][y + 1]) {
             counter++;
         }
@@ -210,7 +209,7 @@ public class Board {
 
 
     /**
-     * Gameboards width in number of cells
+     * Gameboard's width in number of cells
      * Rudi 24.03.16
      * @return
      */
@@ -241,6 +240,7 @@ public class Board {
 
     /**
      * Rudi 24.03.16
+     * Sets Gameboard's height
      * @param y
      */
     public void setBoardHeight(int y) {
@@ -268,6 +268,7 @@ public class Board {
 
 
     /**
+     * Gets the GameBoard
      * Created by RudiAndre on 01.03.2016.
      * @return
      */
@@ -277,6 +278,7 @@ public class Board {
 
 
     /**
+     * Sets the GameBoard
      * Created by RudiAndre on 01.03.2016.
      * @param gameBoard
      */

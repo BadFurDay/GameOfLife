@@ -78,10 +78,9 @@ public class Controller implements Initializable{
         genCounter.setText(gameBoard.getGenCounter());
         graphics.gc.setFill(Color.MEDIUMAQUAMARINE);
         colorPicker.setValue(Color.MEDIUMAQUAMARINE);
-        cellList = new ArrayList<Cell>();
-        zoomSlider.setValue(5.0);
-        FPS = 1;
-        draw();
+        zoomSlider.setValue(15.0);
+        speedSlider.setValue(15.0);
+        FPS = 15;
 
         //Time properties responsible for the animation
         Duration duration = Duration.millis(1000/FPS);
@@ -98,7 +97,7 @@ public class Controller implements Initializable{
 
 
     /**
-     *
+     * TEMPORARY FIX LATER
      */
     public void draw(){
         gc.clearRect(0, 0, canvas.widthProperty().doubleValue(), canvas.heightProperty().doubleValue());
@@ -108,7 +107,7 @@ public class Controller implements Initializable{
     }
 
     /**
-     *
+     * User selects a single to input into the canvas
      * @param event
      */
     public void canvasMouseDragged(MouseEvent event){
@@ -120,7 +119,7 @@ public class Controller implements Initializable{
     }
 
     /**
-     *
+     * Play/Pause button for the animation
      * @param actionEvent
      */
     @FXML
@@ -135,7 +134,7 @@ public class Controller implements Initializable{
     }
 
     /**
-     *
+     *Changes the text on the play button pause and vice versa
      */
     public void playPauseEvent(){
         if(running){
@@ -146,7 +145,7 @@ public class Controller implements Initializable{
     }
 
     /**
-     *
+     * Clear button to clear the cells in the canvas area
      * @param actionEvent
      */
     public void clearEvent(ActionEvent actionEvent){
@@ -163,13 +162,14 @@ public class Controller implements Initializable{
     }
 
     /**
-     *
+     * Speed slider manipulates the speed of animation
      * @param event
      */
     public void speedChanged(MouseEvent event) {
         timeline.stop();
         
         double FPS = speedSlider.getValue();
+
         if (running) {
             if (FPS != 0) {
                 Duration duration = Duration.millis(1000 / FPS);
@@ -186,23 +186,20 @@ public class Controller implements Initializable{
                 timeline.setCycleCount(Animation.INDEFINITE);
                 timeline.getKeyFrames().add(keyframe);
                 timeline.play();
-            } else {
-                timeline.pause();
             }
         }
     }
 
     /**
-     *
+     * Zoom slider to zoom the animation in and out
      * @param event
      */
     public void zoomChanged(MouseEvent event) {
-        zoomSlider.getValue();
-        draw();
+
     }
 
     /**
-     *
+     * Color picker changes the colors of the cell
      * @param actionEvent
      */
     public void colorChanged(ActionEvent actionEvent){
@@ -210,7 +207,7 @@ public class Controller implements Initializable{
     }
 
     /**
-     *
+     * Grid toggle to make the grid visible or invisible
      * @param actionEvent
      */
     public void gridEvent(ActionEvent actionEvent) {
@@ -224,5 +221,4 @@ public class Controller implements Initializable{
             graphics.draw(gameBoard.getGameBoard());
         }
     }
-
 }
