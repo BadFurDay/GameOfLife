@@ -9,6 +9,7 @@ import javafx.scene.paint.Color;
 public class Grid extends Canvas {
 
     //datafelt
+    //testing
     private GraphicsContext gc;
     private Canvas canvas;
     private double canvasHeight; //Canvas' height.
