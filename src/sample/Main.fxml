@@ -15,15 +15,13 @@
                         <MenuItem fx:id="fileReader" mnemonicParsing="false" onAction="#openFiles" text="Open File..." />
                         <MenuItem mnemonicParsing="false" text="Close" />
                     </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Edit">
                     <items>
-                        <MenuItem mnemonicParsing="false" text="Delete" />
+                        <MenuItem fx:id="close" onAction="#closeWindow" mnemonicParsing="false" text="Close" />
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Help">
                     <items>
-                        <MenuItem mnemonicParsing="false" text="About" />
+                        <MenuItem fx:id="help" onAction="#helpEvent" mnemonicParsing="false" text="Game rules" />
                     </items>
                 </Menu>
             </menus>
