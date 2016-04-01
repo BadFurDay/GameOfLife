@@ -11,6 +11,8 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+
+import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +43,7 @@ public class Controller implements Initializable{
     @FXML private Toggle gridToggle;
     @FXML private Label genCounter;
     @FXML private Button clearButton;
+    @FXML private MenuItem fileReader;
     private GraphicsContext gc;
     private Timeline timeline;
     private double FPS;
@@ -55,6 +58,7 @@ public class Controller implements Initializable{
     Grid grid;
     Board gameBoard;
     Graphics graphics;
+    FileReader reader;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -220,5 +224,17 @@ public class Controller implements Initializable{
             grid.clearGrid();
             graphics.draw(gameBoard.getGameBoard());
         }
+    }
+
+    /**
+     * Rudi
+     * @param actionEvent
+     */
+    public void openFiles(ActionEvent actionEvent) {
+        reader.readGameBoardFromDisk();
+    }
+
+    public void setStage(){
+
     }
 }
