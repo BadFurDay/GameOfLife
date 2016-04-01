@@ -116,17 +116,18 @@ public class Board {
 
 
     /**
-     * Created by Olav Smevoll on 08.03.2016.
      * Counts cell neighbours for next generation.
+     *
      * @param x
      * @param y
      * @return counter
+     * @author Olav Smevoll on 08.03.2016
      */
+
     protected int countNeighbours(int x, int y) {
         int counter = 0;
         int blx = gameBoard.length - 1;
         int bly = gameBoard[0].length - 1;
-
 
         //Check cell neighbor North-West
         if (x > 0 && y > 0 && gameBoard[x - 1][y - 1]) {
@@ -172,12 +173,13 @@ public class Board {
 
 
     /**
-     * Created by RudiAndre on 04.03.2016.
      *  Sets the new values in the array for the next generation.
+     *
+     *  @author Rudi Andre on 04.03.2016
      */
     public void nextGeneration(Grid grid) {
         boolean[][] newGameBoard = new boolean[getBoardWidth()][getBoardHeight()];
-       //grid.draw();
+
         for (int x = 0; x < gameBoard.length; x++) {
             for (int y = 0; y < gameBoard[0].length; y++) {
                 if (gameBoard[x][y]) {
@@ -190,9 +192,10 @@ public class Board {
     }
 
     /**
-     * Olav
      * Returns the genCounter as a string to show as a label.
-     * @return
+     *
+     * @author Olav
+     * @return s
      */
     public String getGenCounter(){
         String s = Integer.toString(genCounter);
@@ -200,9 +203,11 @@ public class Board {
     }
 
     /**
-     * Olav
      * Resets the genCounter when the board is cleared.
+     *
+     * @author Olav
      */
+
     public void resetGenCount(){
         genCounter = 0;
     }
@@ -210,9 +215,11 @@ public class Board {
 
     /**
      * Gameboard's width in number of cells
-     * Rudi 24.03.16
+     *
+     * @author Rudi 24.03.16
      * @return
      */
+
     public int getBoardWidth() {
         return cellsWide;
     }
@@ -229,11 +236,12 @@ public class Board {
 
     /**
      * Gameboards height in number of cells
-     * Rudi 24.03.16
+     *
+     * @author Rudi 24.03.16
      * @return
      */
+
     public int getBoardHeight() {
-       // System.out.println(cellshigh);
         return cellsHigh;
     }
 
@@ -243,8 +251,8 @@ public class Board {
      * Sets Gameboard's height
      * @param y
      */
-    public void setBoardHeight(int y) {
 
+    public void setBoardHeight(int y) {
         cellsHigh = y;
     }
 
@@ -269,9 +277,10 @@ public class Board {
 
     /**
      * Gets the GameBoard
-     * Created by RudiAndre on 01.03.2016.
-     * @return
+     * @author RudiAndre on 01.03.2016.
+     * @return gameBoard
      */
+
     public boolean[][] getGameBoard() {
         return gameBoard;
     }
@@ -279,29 +288,35 @@ public class Board {
 
     /**
      * Sets the GameBoard
-     * Created by RudiAndre on 01.03.2016.
+     *
+     * @author RudiAndre on 01.03.2016.
      * @param gameBoard
      */
+
     public void setGameBoard(boolean[][] gameBoard) {
         this.gameBoard = gameBoard;
     }
 
 
     /**
-     * @return
+     *
+     *
+     * @author
+     * @return toString
      */
+
     @Override
     public String toString() {
         StringBuilder str = new StringBuilder();
-               for (int x = 0; x < gameBoard.length; x++) {
-            for (int y = 0; y < gameBoard.length; y++) {
-                if (gameBoard[x][y]) {
-                    str.append("1");
-                } else {
-                    str.append("0");
+            for (int x = 0; x < gameBoard.length; x++) {
+                for (int y = 0; y < gameBoard.length; y++) {
+                    if (gameBoard[x][y]) {
+                        str.append("1");
+                    } else {
+                        str.append("0");
+                    }
                 }
             }
-        }
         return str.toString();
     }
 }

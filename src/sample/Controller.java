@@ -7,18 +7,23 @@ import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.scene.layout.VBoxBuilder;
+import javafx.scene.text.Text;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.scene.paint.Color;
-
-
+import java.util.ArrayList;
 
 public class Controller implements Initializable{
 
@@ -41,15 +46,13 @@ public class Controller implements Initializable{
     @FXML private Toggle gridToggle;
     @FXML private Label genCounter;
     @FXML private Button clearButton;
+    @FXML private MenuItem help;
     private GraphicsContext gc;
     private Timeline timeline;
     private double FPS;
     private boolean running = false;
     private List<Cell> cellList;
     private boolean showGrid = false;
-
-    //Constructor
-
 
     //Objects
     Grid grid;
@@ -61,18 +64,16 @@ public class Controller implements Initializable{
 
         //Objects
         gc = canvas.getGraphicsContext2D();
-
         gameBoard = new Board();
         graphics = new Graphics(gc);
         grid = new Grid(gc);
+
         graphics.setCellHeight(gameBoard.getBoardHeight());
         graphics.setCellWidth(gameBoard.getBoardWidth());
-
         grid.setCanvasHeight(gc.getCanvas().heightProperty().intValue());
         grid.setCanvasWidth(gc.getCanvas().widthProperty().intValue());
         grid.setCellWidth(graphics.getCellWidth());
         grid.setCellHeight(graphics.getCellHeight());
-
 
         //Initial properties in the GUI
         genCounter.setText(gameBoard.getGenCounter());
@@ -99,6 +100,7 @@ public class Controller implements Initializable{
     /**
      * TEMPORARY FIX LATER
      */
+
     public void draw(){
         gc.clearRect(0, 0, canvas.widthProperty().doubleValue(), canvas.heightProperty().doubleValue());
         for ( Cell c : cellList ) {
@@ -108,8 +110,10 @@ public class Controller implements Initializable{
 
     /**
      * User selects a single to input into the canvas
+     *
      * @param event
      */
+
     public void canvasMouseDragged(MouseEvent event){
         Cell c = new Cell();
         c.x = event.getX();
@@ -120,8 +124,10 @@ public class Controller implements Initializable{
 
     /**
      * Play/Pause button for the animation
+     *
      * @param actionEvent
      */
+
     @FXML
     public void OnStartClick(ActionEvent actionEvent) {
         if(timeline.getStatus() == Status.RUNNING) {
@@ -136,6 +142,7 @@ public class Controller implements Initializable{
     /**
      *Changes the text on the play button pause and vice versa
      */
+
     public void playPauseEvent(){
         if(running){
             playPause.setText("Pause");
@@ -163,8 +170,11 @@ public class Controller implements Initializable{
 
     /**
      * Speed slider manipulates the speed of animation
+     *
+     * @author Ginelle
      * @param event
      */
+
     public void speedChanged(MouseEvent event) {
         timeline.stop();
         
@@ -192,24 +202,32 @@ public class Controller implements Initializable{
 
     /**
      * Zoom slider to zoom the animation in and out
+     *
      * @param event
      */
+
     public void zoomChanged(MouseEvent event) {
 
     }
 
     /**
      * Color picker changes the colors of the cell
+     *
+     * @author Ginelle
      * @param actionEvent
      */
+
     public void colorChanged(ActionEvent actionEvent){
         graphics.gc.setFill(colorPicker.getValue());
     }
 
     /**
      * Grid toggle to make the grid visible or invisible
+     *
+     * @author Rudi
      * @param actionEvent
      */
+
     public void gridEvent(ActionEvent actionEvent) {
         if (!showGrid) {
             showGrid = true;
@@ -220,5 +238,46 @@ public class Controller implements Initializable{
             grid.clearGrid();
             graphics.draw(gameBoard.getGameBoard());
         }
+    }
+
+    /**
+     * Rules of Game of Life9 located in the menu under help
+     *
+     * @author Ginelle 01.04.16
+     * @param actionEvent
+     */
+
+    public void helpEvent (ActionEvent actionEvent){
+        Stage helpDialog= new Stage();
+        helpDialog.initModality(Modality.WINDOW_MODAL);
+        helpDialog.setTitle("Rules in Game of Life");
+
+        Scene helpScene = new Scene(VBoxBuilder.create()
+                .children(new Text ("Game of life \n \n" +
+                        "The rules of the game are simple, and describe the evolution of the grid.\n \n" +
+                        "The two-dimensiononal grid of square cells, each of which is in one of two possible states, live or dead. \n" +
+                        "Every cell interacts with its eight neighbours, which are the cells that are directly horizontally, vertically \n"+
+                        "or diagonally adjacent. At each step in time, the following transitions occur:\n \n " +
+                        "\t 1. Any live cell with fewer than two live neighbours dies because it is underpopulated.\n" +
+                        "\t 2. Any live cell with more than three live neighbours dies because it is overpopulated.\n" +
+                        "\t 3. Any live cell with two or three live neighbours lives, unchanged, to the next generation.\n" +
+                        "\t 4. Any dead cell with exactly three live neighbours will come to life."))
+                .alignment(Pos.CENTER)
+                .padding(new Insets(40))
+                .build());
+
+        helpDialog.setScene(helpScene);
+        helpDialog.show();
+    }
+
+    /**
+     * Close menu item located in Menu to close whole window
+     *
+     * @author Ginelle 01.04.16
+     * @param actionEvent
+     */
+
+    public void closeWindow (ActionEvent actionEvent){
+        System.exit(0);
     }
 }
