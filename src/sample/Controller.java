@@ -14,8 +14,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
-
-import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -25,7 +24,6 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.scene.paint.Color;
-import java.util.ArrayList;
 
 public class Controller implements Initializable{
 
@@ -49,7 +47,6 @@ public class Controller implements Initializable{
     @FXML private Label genCounter;
     @FXML private Button clearButton;
     @FXML private MenuItem help;
-   // @FXML private MenuItem2 fileReader;
     private GraphicsContext gc;
     private Timeline timeline;
     private double FPS;
@@ -71,6 +68,7 @@ public class Controller implements Initializable{
         gameBoard = new Board();
         graphics = new Graphics(gc);
         grid = new Grid(gc);
+        reader = new FileReader();
 
         graphics.setCellHeight(gameBoard.getBoardHeight());
         graphics.setCellWidth(gameBoard.getBoardWidth());
@@ -275,21 +273,25 @@ public class Controller implements Initializable{
     }
 
     /**
+     * "Open File..." menu item set to open FileChooser window
      * @author Rudi 01.04.16
      * @param actionEvent
      */
 
     public void openFiles(ActionEvent actionEvent) {
-        reader.readGameBoardFromDisk();
+        try {
+            reader.readGameBoardFromDisk();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void setStage(){
 
     }
-}
 
     /**
-     * Close menu item located in Menu to close whole window
+     * "Close" menu item located in Menu to close whole window
      *
      * @author Ginelle 01.04.16
      * @param actionEvent

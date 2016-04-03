@@ -1,6 +1,7 @@
 package sample;
 
 import javafx.application.Application;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -14,12 +15,12 @@ public class Main extends Application {
     }
 
     @Override
+    @FXML
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
-        primaryStage.setTitle("Game of Life");
-        primaryStage.setScene(new Scene(root));
+            Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
+            primaryStage.setTitle("Game of Life");
+            primaryStage.setScene(new Scene(root));
 
-        primaryStage.show();
-        Controller.
+            primaryStage.show();
     }
 }
