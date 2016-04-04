@@ -35,16 +35,37 @@ public class FileHandler {
         fileChooser.getExtensionFilters().add(
                 new FileChooser.ExtensionFilter("Game of Life Files ", "*"));
         file = fileChooser.showOpenDialog(null);
-        readGameBoardFromDisk(file);
+        readGameBoardFromFile(file);
     }
 
-    public void readGameBoardFromDisk(File file) throws IOException {
+    public void readGameBoardFromFile(File file) throws IOException {
         FileReader fr = new FileReader(file);
         BufferedReader br = new BufferedReader(fr);
 
         String line;
        while((line = br.readLine()) != null){
-           System.out.println(line);
+           System.out.println(br.readLine());
         }
     }
+
+
+
+
+
+
+    /**
+     * Reading file from web
+     * @param url
+     * @throws IOException
+     * @throws PatternFormatException
+     */
+
+
+   /* public void readGameBoardFromURL(String url) throws IOException,
+            PatternFormatException {
+            URL destination = new URL(url);
+            URLConnection conn = destination.openConnection();
+            readGameBoard(new InputStreamReader(conn.getInputStream()));
+    }*/
+
 }
