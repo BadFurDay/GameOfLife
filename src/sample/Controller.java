@@ -58,7 +58,7 @@ public class Controller implements Initializable{
     Grid grid;
     Board gameBoard;
     Graphics graphics;
-    FileReader reader;
+    FileHandler reader;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -68,7 +68,7 @@ public class Controller implements Initializable{
         gameBoard = new Board();
         graphics = new Graphics(gc);
         grid = new Grid(gc);
-        reader = new FileReader();
+        reader = new FileHandler();
 
         graphics.setCellHeight(gameBoard.getBoardHeight());
         graphics.setCellWidth(gameBoard.getBoardWidth());
@@ -83,7 +83,7 @@ public class Controller implements Initializable{
         colorPicker.setValue(Color.MEDIUMAQUAMARINE);
         zoomSlider.setValue(15.0);
         speedSlider.setValue(15.0);
-        FPS = 15;
+        FPS = 1;
 
         //Time properties responsible for the animation
         Duration duration = Duration.millis(1000/FPS);

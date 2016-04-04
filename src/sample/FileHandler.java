@@ -12,12 +12,12 @@ import java.net.URLConnection;
 /**
  * Created by RudiAndre on 30.03.2016.
  */
-public class FileReader {
+public class FileHandler {
 
 
 
     //Constructor
-    public FileReader(){
+    public FileHandler(){
     }
 
 
