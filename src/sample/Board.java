@@ -28,7 +28,53 @@ public class Board {
 
         gameBoard = new boolean[getBoardWidth()][getBoardHeight()];
 
-        gameBoard[0][0] = true;
+
+        gameBoard[25][1] = true;
+
+        gameBoard[23][2] = true;
+        gameBoard[25][2] = true;
+
+        gameBoard[13][3] = true;
+        gameBoard[14][3] = true;
+        gameBoard[21][3] = true;
+        gameBoard[22][3] = true;
+        gameBoard[35][3] = true;
+        gameBoard[36][3] = true;
+
+        gameBoard[12][4] = true;
+        gameBoard[16][4] = true;
+        gameBoard[21][4] = true;
+        gameBoard[22][4] = true;
+        gameBoard[35][4] = true;
+        gameBoard[36][4] = true;
+
+        gameBoard[1][5] = true;
+        gameBoard[2][5] = true;
+        gameBoard[11][5] = true;
+        gameBoard[17][5] = true;
+        gameBoard[21][5] = true;
+        gameBoard[22][5] = true;
+
+        gameBoard[1][6] = true;
+        gameBoard[2][6] = true;
+        gameBoard[11][6] = true;
+        gameBoard[15][6] = true;
+        gameBoard[17][6] = true;
+        gameBoard[18][6] = true;
+        gameBoard[23][6] = true;
+        gameBoard[25][6] = true;
+
+        gameBoard[11][7] = true;
+        gameBoard[17][7] = true;
+        gameBoard[25][7] = true;
+
+        gameBoard[12][8] = true;
+        gameBoard[16][8] = true;
+
+        gameBoard[13][9] = true;
+        gameBoard[14][9] = true;
+
+        /*gameBoard[0][0] = true;
         gameBoard[2][0] = true;
         gameBoard[4][0] = true;
         gameBoard[6][0] = true;
@@ -97,8 +143,6 @@ public class Board {
         gameBoard[4][2] = true;
 
 
-        /**/
-
         gameBoard[30][3] = true;
         gameBoard[30][4] = true;
         gameBoard[30][5] = true;
@@ -110,7 +154,7 @@ public class Board {
         gameBoard[27][6] = true;
         gameBoard[31][6] = true;
         gameBoard[32][6] = true;
-        gameBoard[33][6] = true;
+        gameBoard[33][6] = true;*/
 
     }
 

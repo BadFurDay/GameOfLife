@@ -29,7 +29,7 @@ public class FileHandler {
      * @author Rudi
      * @throws IOException
      */
-    public void readGameBoardFromDisk() throws IOException {
+    public void chooseFile() throws IOException {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open file");
         fileChooser.getExtensionFilters().add(
@@ -44,28 +44,7 @@ public class FileHandler {
 
         String line;
        while((line = br.readLine()) != null){
-           System.out.println(br.readLine());
+           System.out.println(line);
         }
     }
-
-
-
-
-
-
-    /**
-     * Reading file from web
-     * @param url
-     * @throws IOException
-     * @throws PatternFormatException
-     */
-
-
-   /* public void readGameBoardFromURL(String url) throws IOException,
-            PatternFormatException {
-            URL destination = new URL(url);
-            URLConnection conn = destination.openConnection();
-            readGameBoard(new InputStreamReader(conn.getInputStream()));
-    }*/
-
 }

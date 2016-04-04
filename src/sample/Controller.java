@@ -83,7 +83,7 @@ public class Controller implements Initializable{
         colorPicker.setValue(Color.MEDIUMAQUAMARINE);
         zoomSlider.setValue(15.0);
         speedSlider.setValue(15.0);
-        FPS = 15;
+        FPS = 10;
 
         //Time properties responsible for the animation
         Duration duration = Duration.millis(1000/FPS);
@@ -280,7 +280,7 @@ public class Controller implements Initializable{
 
     public void openFiles(ActionEvent actionEvent) {
         try {
-            reader.readGameBoardFromDisk();
+            reader.chooseFile();
         } catch (IOException e) {
             e.printStackTrace();
         }
