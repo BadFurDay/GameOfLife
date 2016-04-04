@@ -118,8 +118,8 @@ public class Board {
     /**
      * Counts cell neighbours for next generation.
      *
-     * @param x
-     * @param y
+     * @param x the arrays x position
+     * @param y the arrays y position
      * @return counter
      * @author Olav Smevoll on 08.03.2016
      */

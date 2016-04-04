@@ -83,7 +83,7 @@ public class Controller implements Initializable{
         colorPicker.setValue(Color.MEDIUMAQUAMARINE);
         zoomSlider.setValue(15.0);
         speedSlider.setValue(15.0);
-        FPS = 1;
+        FPS = 15;
 
         //Time properties responsible for the animation
         Duration duration = Duration.millis(1000/FPS);

@@ -3,9 +3,7 @@ package sample;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
 
@@ -14,6 +12,9 @@ import java.net.URLConnection;
  */
 public class FileHandler {
 
+
+
+    File file;
 
 
     //Constructor
@@ -32,9 +33,24 @@ public class FileHandler {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open file");
         fileChooser.getExtensionFilters().add(
-                new FileChooser.ExtensionFilter("Game of Life Files ", "*.rle"));
-        fileChooser.showOpenDialog(null);
+                new FileChooser.ExtensionFilter("Game of Life Files ", "*"));
+        file = fileChooser.showOpenDialog(null);
+        readGameBoardFromDisk(file);
     }
+
+    public void readGameBoardFromDisk(File file) throws IOException {
+        FileReader fr = new FileReader(file);
+        BufferedReader br = new BufferedReader(fr);
+
+        String line;
+       while((line = br.readLine()) != null){
+           System.out.println(br.readLine());
+        }
+    }
+
+
+
+
 
 
     /**
