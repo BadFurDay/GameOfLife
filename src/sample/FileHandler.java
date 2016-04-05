@@ -6,6 +6,7 @@ import javafx.stage.Stage;
 import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ArrayList;
 
 /**
  * Created by RudiAndre on 30.03.2016.
@@ -33,7 +34,7 @@ public class FileHandler {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open file");
         fileChooser.getExtensionFilters().add(
-                new FileChooser.ExtensionFilter("Game of Life Files ", "*"));
+                new FileChooser.ExtensionFilter("Game of Life Files ", "*.rle"));
         file = fileChooser.showOpenDialog(null);
         readGameBoardFromFile(file);
     }
@@ -43,13 +44,27 @@ public class FileHandler {
         BufferedReader br = new BufferedReader(fr);
 
         String line;
+        String rleCode = "";
+
        while((line = br.readLine()) != null){
-           System.out.println(br.readLine());
+           if((line.matches("[b,o,$, !, 1-9]*"))){
+                rleCode = rleCode.concat(line + "\n");
+           }
         }
+
+        String[] rleSplit = rleCode.split("\\$");
+
+        ArrayList splittedRle = new ArrayList();
+
+
+        for(int i = 0; i < rleSplit.length; i++){
+            splittedRle.add(rleSplit[i]);
+        }
+
+        System.out.println(splittedRle);
+
+
     }
-
-
-
 
 
 
