@@ -15,8 +15,10 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.ResourceBundle;
 import javafx.scene.layout.VBoxBuilder;
 import javafx.scene.text.Text;
@@ -117,7 +119,11 @@ public class Controller implements Initializable{
      *
      * @param event
      */
+    public void selectCell(MouseEvent event){
 
+    }
+
+    //fix later
     public void canvasMouseDragged(MouseEvent event){
         Cell c = new Cell();
         c.x = event.getX();
@@ -294,6 +300,22 @@ public class Controller implements Initializable{
             reader.chooseFile();
         } catch (IOException e) {
             e.printStackTrace();
+            System.err.println("Error opening file!");
+        } catch (NoSuchElementException ne){
+            System.err.println("File format does not match!");
+        } catch (IllegalStateException ie) {
+            System.err.println("Error reading from file!");
+        }
+    }
+
+    public void webFile(ActionEvent actionEvent){
+        try {
+            reader.chooseFile(); //delete later, for compiling purpose only
+            //reader.readGameBoardFromURL();
+        } catch (MalformedURLException me){
+            System.err.println("Invalid web address");
+        } catch (IOException ie){
+            System.err.println("Problem opening URL connetion");
         }
     }
 

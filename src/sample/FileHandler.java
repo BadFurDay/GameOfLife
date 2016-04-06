@@ -22,6 +22,15 @@ public class FileHandler {
     public FileHandler(){
     }
 
+    /**
+     * Reading game board
+     * @author Ginelle
+     * @param r
+     * @throws IOException
+     */
+    public void readGameBoard(Reader r) throws IOException{
+
+    }
 
     //Stage testStage = new Stage();
 
@@ -75,17 +84,17 @@ public class FileHandler {
 
     /**
      * Reading file from web
+     * @author Ginelle
      * @param url
      * @throws IOException
      * @throws PatternFormatException
      */
 
-
-   /* public void readGameBoardFromURL(String url) throws IOException,
+   public void readGameBoardFromURL(String url) throws IOException,
             PatternFormatException {
             URL destination = new URL(url);
             URLConnection conn = destination.openConnection();
             readGameBoard(new InputStreamReader(conn.getInputStream()));
-    }*/
+    }
 
 }

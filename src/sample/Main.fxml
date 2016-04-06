@@ -12,6 +12,7 @@
                 <Menu mnemonicParsing="false" text="File">
                     <items>
                         <MenuItem fx:id="fileReader" mnemonicParsing="false" onAction="#openFiles" text="Open File..." />
+                        <MenuItem fx:id="webReader"  mnemonicParsing="false" onAction="#webFile" text="Read web file..." />
                         <MenuItem fx:id="close" mnemonicParsing="false" onAction="#closeWindow" text="Close" />
                     </items>
                 </Menu>
@@ -24,7 +25,7 @@
         </MenuBar>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #C0C0C0;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.5">
          <children>
-              <Canvas fx:id="canvas" height="450.0" width="901.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+              <Canvas fx:id="canvas" height="450.0" onMouseClicked="#selectCell" width="901.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
          </children>
       </AnchorPane>
         <Separator layoutY="490.0" prefHeight="0.0" prefWidth="900.0" AnchorPane.bottomAnchor="156.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
