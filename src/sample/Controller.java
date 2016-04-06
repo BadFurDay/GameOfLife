@@ -42,7 +42,7 @@ public class Controller implements Initializable{
     //Datafield
     @FXML Canvas canvas;
     @FXML private ColorPicker colorPicker;
-  //  @FXML private ColorPicker backgroundColor;
+    @FXML private ColorPicker backgroundColor;
     @FXML private Slider zoomSlider;
     @FXML private Slider speedSlider;
     @FXML private Button playPause;
@@ -50,6 +50,7 @@ public class Controller implements Initializable{
     @FXML private Label genCounter;
     @FXML private Button clearButton;
     @FXML private MenuItem help;
+
     private GraphicsContext gc;
     private Timeline timeline;
     private double FPS;
@@ -63,6 +64,7 @@ public class Controller implements Initializable{
     Graphics graphics;
     FileHandler reader;
 
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -72,6 +74,7 @@ public class Controller implements Initializable{
         graphics = new Graphics(gc);
         grid = new Grid(gc);
         reader = new FileHandler();
+
 
         graphics.setCellHeight(gameBoard.getBoardHeight());
         graphics.setCellWidth(gameBoard.getBoardWidth());
@@ -84,9 +87,9 @@ public class Controller implements Initializable{
         genCounter.setText(gameBoard.getGenCounter());
         graphics.gc.setFill(Color.MEDIUMAQUAMARINE);
         colorPicker.setValue(Color.MEDIUMAQUAMARINE);
-        //backgroundColor.setValue(Color.SILVER);
-        zoomSlider.setValue(15.0);
-        speedSlider.setValue(15.0);
+        backgroundColor.setValue(Color.SILVER);
+        zoomSlider.setValue(10.0);
+        speedSlider.setValue(10.0);
         FPS = 10;
 
         //Time properties responsible for the animation
@@ -221,7 +224,7 @@ public class Controller implements Initializable{
     }
 
     /**
-     * Color picker changes the colors of the cell
+     * Color picker changes the colors of the cells
      *
      * @author Ginelle
      * @param actionEvent
@@ -236,9 +239,15 @@ public class Controller implements Initializable{
      * @author Rudi
      * @param actionEvent
      */
-   /* public void backgroundChanged(ActionEvent actionEvent){
-        graphics.gc.setFill(backgroundColor.getValue());
-    }*/
+    public void backgroundChanged(ActionEvent actionEvent){
+        //MÅ FIKSES
+        double canvasWidth = canvas.getWidth();
+        double canvasHeight = canvas.getHeight();
+
+        gc.setFill(backgroundColor.getValue());
+        gc.fillRect(0, 0, canvasWidth, canvasHeight);
+
+    }
 
     /**
      * Grid toggle to make the grid visible or invisible
@@ -315,7 +324,7 @@ public class Controller implements Initializable{
         } catch (MalformedURLException me){
             System.err.println("Invalid web address");
         } catch (IOException ie){
-            System.err.println("Problem opening URL connetion");
+            System.err.println("Problem opening URL connection");
         }
     }
 

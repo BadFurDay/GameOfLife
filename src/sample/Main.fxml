@@ -41,7 +41,7 @@
         <Label fx:id="genCounter" layoutX="730.0" layoutY="513.0" prefHeight="27.0" prefWidth="47.0" AnchorPane.bottomAnchor="98.0" AnchorPane.leftAnchor="730.0" />
         <Label layoutX="597.0" layoutY="577.0" text="Background Color:" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="597.0" />
         <ColorPicker fx:id="colorPicker" layoutX="449.0" layoutY="572.0" onAction="#colorChanged" prefHeight="34.0" prefWidth="100.0" AnchorPane.bottomAnchor="32.0" AnchorPane.leftAnchor="449.0" />
-        <ColorPicker fx:id="BackgroundColor" layoutX="729.0" layoutY="571.0" prefHeight="34.0" prefWidth="100.0" AnchorPane.bottomAnchor="33.0" AnchorPane.leftAnchor="729.0" />
+        <ColorPicker fx:id="backgroundColor" layoutX="729.0" layoutY="571.0" onAction="#backgroundChanged" prefHeight="34.0" prefWidth="100.0" AnchorPane.bottomAnchor="33.0" AnchorPane.leftAnchor="729.0" />
 
     </children>
 </AnchorPane>
