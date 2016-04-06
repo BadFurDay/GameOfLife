@@ -40,6 +40,7 @@ public class Controller implements Initializable{
     //Datafield
     @FXML Canvas canvas;
     @FXML private ColorPicker colorPicker;
+  //  @FXML private ColorPicker backgroundColor;
     @FXML private Slider zoomSlider;
     @FXML private Slider speedSlider;
     @FXML private Button playPause;
@@ -81,6 +82,7 @@ public class Controller implements Initializable{
         genCounter.setText(gameBoard.getGenCounter());
         graphics.gc.setFill(Color.MEDIUMAQUAMARINE);
         colorPicker.setValue(Color.MEDIUMAQUAMARINE);
+        //backgroundColor.setValue(Color.SILVER);
         zoomSlider.setValue(15.0);
         speedSlider.setValue(15.0);
         FPS = 10;
@@ -222,6 +224,15 @@ public class Controller implements Initializable{
     public void colorChanged(ActionEvent actionEvent){
         graphics.gc.setFill(colorPicker.getValue());
     }
+
+    /**
+     * Change background color of the game.
+     * @author Rudi
+     * @param actionEvent
+     */
+   /* public void backgroundChanged(ActionEvent actionEvent){
+        graphics.gc.setFill(backgroundColor.getValue());
+    }*/
 
     /**
      * Grid toggle to make the grid visible or invisible

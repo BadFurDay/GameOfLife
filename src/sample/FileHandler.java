@@ -39,6 +39,13 @@ public class FileHandler {
         readGameBoardFromFile(file);
     }
 
+
+    /**
+     *
+     * @author Olav
+     * @param file
+     * @throws IOException
+     */
     public void readGameBoardFromFile(File file) throws IOException {
         FileReader fr = new FileReader(file);
         BufferedReader br = new BufferedReader(fr);
@@ -47,7 +54,7 @@ public class FileHandler {
         String rleCode = "";
 
        while((line = br.readLine()) != null){
-           if((line.matches("[b,o,$, !, 1-9]*"))){
+           if((line.matches("[b,o,$, !, 0-9]*"))){
                 rleCode = rleCode.concat(line + "\n");
            }
         }
@@ -62,8 +69,6 @@ public class FileHandler {
         }
 
         System.out.println(splittedRle);
-
-
     }
 
 
