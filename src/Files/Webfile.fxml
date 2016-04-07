@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="122.0" prefWidth="362.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Files.WebFileController">
+   <children>
+      <GridPane layoutX="-2.0" layoutY="4.0" prefHeight="122.0" prefWidth="231.0">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="291.0" minWidth="10.0" prefWidth="32.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="291.0" minWidth="10.0" prefWidth="206.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints maxHeight="18.0" minHeight="10.0" prefHeight="11.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="37.0" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="61.0" minHeight="10.0" prefHeight="41.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="32.0" minHeight="10.0" prefHeight="32.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label text="Paste URL to read file:" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="file" editable="false" onAction="#fieldEvent" prefHeight="11.0" prefWidth="256.0" promptText="Insert URL here..." GridPane.columnIndex="1" GridPane.rowIndex="2" />
+         </children>
+      </GridPane>
+      <Button fx:id="clear" layoutX="294.0" layoutY="61.0" mnemonicParsing="false" onAction="#clearEvent" text="Clear" />
+      <Button fx:id="submit" layoutX="236.0" layoutY="61.0" mnemonicParsing="false" onAction="#submitEvent" text="Submit" />
+   </children>
+</AnchorPane>
