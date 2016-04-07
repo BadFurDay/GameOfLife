@@ -6,23 +6,20 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.ResourceBundle;
-import javafx.scene.layout.VBoxBuilder;
-import javafx.scene.text.Text;
-import javafx.stage.Modality;
+
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.scene.paint.Color;
@@ -50,19 +47,23 @@ public class Controller implements Initializable{
     @FXML private Label genCounter;
     @FXML private Button clearButton;
     @FXML private MenuItem help;
-
     private GraphicsContext gc;
     private Timeline timeline;
-    private double FPS;
     private boolean running = false;
-    private List<Cell> cellList;
     private boolean showGrid = false;
+    private List<Cell> cellList;
+    private double FPS; //frames per second
+
 
     //Objects
     Grid grid;
     Board gameBoard;
     Graphics graphics;
     FileHandler reader;
+    PatternFormatException pfe;
+    Stage helpWindow;
+    Stage readWeb;
+
 
 
     @Override
@@ -74,8 +75,11 @@ public class Controller implements Initializable{
         graphics = new Graphics(gc);
         grid = new Grid(gc);
         reader = new FileHandler();
+        pfe = new PatternFormatException();
+        helpWindow = new Stage();
+        readWeb = new Stage();
 
-
+        //Grid properties
         graphics.setCellHeight(gameBoard.getBoardHeight());
         graphics.setCellWidth(gameBoard.getBoardWidth());
         grid.setCanvasHeight(gc.getCanvas().heightProperty().intValue());
@@ -94,12 +98,14 @@ public class Controller implements Initializable{
 
         //Time properties responsible for the animation
         Duration duration = Duration.millis(1000/FPS);
-        KeyFrame keyframe = new KeyFrame(duration, (ActionEvent e) ->
-        {graphics.draw(gameBoard.getGameBoard());
-            if(showGrid){
-                grid.draw();
-            }
-            gameBoard.nextGeneration(grid); genCounter.setText(gameBoard.getGenCounter()); });
+        KeyFrame keyframe = new KeyFrame(duration, (ActionEvent e) -> {
+            graphics.draw(gameBoard.getGameBoard());
+                if(showGrid){
+                    grid.draw();
+                }
+            gameBoard.nextGeneration(grid);
+            genCounter.setText(gameBoard.getGenCounter());
+        });
         timeline = new Timeline();
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.getKeyFrames().add(keyframe);
@@ -123,7 +129,8 @@ public class Controller implements Initializable{
      * @param event
      */
     public void selectCell(MouseEvent event){
-
+        //gameboard
+        //c.x og x.y
     }
 
     //fix later
@@ -137,7 +144,7 @@ public class Controller implements Initializable{
 
     /**
      * Play/Pause button for the animation
-     *
+     * @author Rudi
      * @param actionEvent
      */
 
@@ -166,6 +173,7 @@ public class Controller implements Initializable{
 
     /**
      * Clear button to clear the cells in the canvas area
+     * @author Ginelle
      * @param actionEvent
      */
     public void clearEvent(ActionEvent actionEvent){
@@ -173,8 +181,8 @@ public class Controller implements Initializable{
         playPause.setText("Play");
         gc.clearRect(0, 0, canvas.widthProperty().doubleValue(), canvas.heightProperty().doubleValue());
         gameBoard.resetGenCount();
-        
-         if (showGrid) {
+
+        if (showGrid) {
             grid.draw();
         } else {
             grid.clearGrid();
@@ -190,20 +198,19 @@ public class Controller implements Initializable{
 
     public void speedChanged(MouseEvent event) {
         timeline.stop();
-        
+
         double FPS = speedSlider.getValue();
 
         if (running) {
             if (FPS != 0) {
                 Duration duration = Duration.millis(1000 / FPS);
-                KeyFrame keyframe = new KeyFrame(duration, (ActionEvent e) ->
-                {
+                KeyFrame keyframe = new KeyFrame(duration, (ActionEvent e) -> {
                     graphics.draw(gameBoard.getGameBoard());
                     gameBoard.nextGeneration(grid);
                     genCounter.setText(gameBoard.getGenCounter());
-                    if(showGrid){
-                        grid.draw();
-                    }
+                        if(showGrid){
+                            grid.draw();
+                        }
                 });
                 timeline = new Timeline();
                 timeline.setCycleCount(Animation.INDEFINITE);
@@ -275,27 +282,11 @@ public class Controller implements Initializable{
      * @param actionEvent
      */
 
-    public void helpEvent (ActionEvent actionEvent){
-        Stage helpDialog= new Stage();
-        helpDialog.initModality(Modality.WINDOW_MODAL);
-        helpDialog.setTitle("Rules in Game of Life");
-
-        Scene helpScene = new Scene(VBoxBuilder.create()
-                .children(new Text ("Game of life \n \n" +
-                        "The rules of the game are simple, and describe the evolution of the grid.\n \n" +
-                        "The two-dimensiononal grid of square cells, each of which is in one of two possible states, live or dead. \n" +
-                        "Every cell interacts with its eight neighbours, which are the cells that are directly horizontally, vertically \n"+
-                        "or diagonally adjacent. At each step in time, the following transitions occur:\n \n " +
-                        "\t 1. Any live cell with fewer than two live neighbours dies because it is underpopulated.\n" +
-                        "\t 2. Any live cell with more than three live neighbours dies because it is overpopulated.\n" +
-                        "\t 3. Any live cell with two or three live neighbours lives, unchanged, to the next generation.\n" +
-                        "\t 4. Any dead cell with exactly three live neighbours will come to life."))
-                .alignment(Pos.CENTER)
-                .padding(new Insets(40))
-                .build());
-
-        helpDialog.setScene(helpScene);
-        helpDialog.show();
+    public void helpEvent (ActionEvent actionEvent) throws IOException {
+        Parent helpRoot = FXMLLoader.load(getClass().getClassLoader().getResource("Rules/Guide.fxml"));
+        helpWindow.setTitle("Guidelines");
+        helpWindow.setScene(new Scene(helpRoot));
+        helpWindow.show();
     }
 
     /**
@@ -315,17 +306,24 @@ public class Controller implements Initializable{
         } catch (IllegalStateException ie) {
             System.err.println("Error reading from file!");
         }
+
+        //pfe.openFiles();
     }
 
-    public void webFile(ActionEvent actionEvent){
-        try {
+    public void webFile(ActionEvent actionEvent) throws IOException {
+        Parent webRoot = FXMLLoader.load(getClass().getClassLoader().getResource("Files/Webfile.fxml"));
+        readWeb.setTitle("Read web file");
+        readWeb.setScene(new Scene(webRoot));
+        readWeb.show();
+
+       /* try {
             reader.chooseFile(); //delete later, for compiling purpose only
             //reader.readGameBoardFromURL();
         } catch (MalformedURLException me){
             System.err.println("Invalid web address");
         } catch (IOException ie){
             System.err.println("Problem opening URL connection");
-        }
+        }*/
     }
 
     public void setStage(){
