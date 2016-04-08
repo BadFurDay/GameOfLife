@@ -13,8 +13,7 @@ import java.util.ArrayList;
  */
 public class FileHandler {
 
-
-
+    //Data field
     File file;
 
 

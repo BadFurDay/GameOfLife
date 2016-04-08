@@ -3,6 +3,9 @@ package sample;
 import javafx.scene.control.Alert;
 
 /**
+ * Compilation of Error Dialogs that will appear after identifying
+ * exceptions when choosing files from disc and web.
+ *
  * Created by Ginelle on 4/8/2016.
  */
 
@@ -10,7 +13,6 @@ public class ErrorWindows {
 
     /**
      * Error dialog to notify user that the chosen file is not found.
-     * Dialog box will occur after identifying exceptions.
      *
      * @author Ginelle
      */
@@ -25,7 +27,6 @@ public class ErrorWindows {
 
     /**
      * Error dialog to notify user that a problem occured opening the file.
-     * Dialog box will occur after identifying exceptions.
      *
      * @author Ginelle
      */
@@ -40,7 +41,6 @@ public class ErrorWindows {
 
     /**
      * Error dialog to notify user that the file chosen is not a RLE format.
-     * Dialog box will occur after identifying exceptions.
      *
      * @author Ginelle
      */
@@ -55,7 +55,6 @@ public class ErrorWindows {
     /**
      * Error dialog to notify user that a problem occurred
      * from reading the file.
-     * Dialog box will occur after identifying exceptions.
      *
      * @author Ginelle
      */
@@ -70,7 +69,6 @@ public class ErrorWindows {
 
     /**
      * Error dialog to notify the user that URL submitted is invalid.
-     * Dialog box will occur after identifying exceptions.
      *
      * @author Ginelle
      */
@@ -86,7 +84,6 @@ public class ErrorWindows {
     /**
      * Error dialog to notify the user that a problem occurred
      * from reading the web address.
-     * Dialog box will occur after identifying exceptions.
      *
      * @author Ginelle
      */
