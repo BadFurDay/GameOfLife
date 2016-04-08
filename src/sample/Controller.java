@@ -14,7 +14,10 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -63,6 +66,7 @@ public class Controller implements Initializable{
     PatternFormatException pfe;
     Stage helpWindow;
     Stage readWeb;
+    ErrorWindows error;
 
 
 
@@ -78,6 +82,7 @@ public class Controller implements Initializable{
         pfe = new PatternFormatException();
         helpWindow = new Stage();
         readWeb = new Stage();
+        error = new ErrorWindows();
 
         //Grid properties
         graphics.setCellHeight(gameBoard.getBoardHeight());
@@ -298,32 +303,39 @@ public class Controller implements Initializable{
     public void openFiles(ActionEvent actionEvent) {
         try {
             reader.chooseFile();
+        } catch (FileNotFoundException fe){
+            System.err.println("File not found!");
+            error.fileNotFound();
         } catch (IOException e) {
             e.printStackTrace();
             System.err.println("Error opening file!");
+            error.errorOpeningfile();
         } catch (NoSuchElementException ne){
             System.err.println("File format does not match!");
+            error.incorrectMatch();
         } catch (IllegalStateException ie) {
             System.err.println("Error reading from file!");
+            error.errorReading();
         }
-
         //pfe.openFiles();
     }
 
     public void webFile(ActionEvent actionEvent) throws IOException {
-        Parent webRoot = FXMLLoader.load(getClass().getClassLoader().getResource("Files/Webfile.fxml"));
-        readWeb.setTitle("Read web file");
-        readWeb.setScene(new Scene(webRoot));
-        readWeb.show();
-
-       /* try {
-            reader.chooseFile(); //delete later, for compiling purpose only
+       try {
+           Parent webRoot = FXMLLoader.load(getClass().getClassLoader().getResource("Files/Webfile.fxml"));
+           readWeb.setTitle("Read web file");
+           readWeb.setScene(new Scene(webRoot));
+           readWeb.show();
             //reader.readGameBoardFromURL();
+        /*} catch (IOException e){
+           throw new RuntimeException(e);*/
         } catch (MalformedURLException me){
-            System.err.println("Invalid web address");
-        } catch (IOException ie){
-            System.err.println("Problem opening URL connection");
-        }*/
+            System.err.println("Invalid web address!");
+            error.invalidURL();
+        } catch (IOException ie) {
+           System.err.println("Problem opening URL connection");
+           error.errorConnection();
+       }
     }
 
     public void setStage(){

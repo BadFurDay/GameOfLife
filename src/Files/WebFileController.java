@@ -12,10 +12,13 @@ import java.util.ResourceBundle;
 /**
  * Created by Ginelle on 4/5/2016.
  */
+
 public class WebFileController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+
 
     }
 
@@ -31,17 +34,22 @@ public class WebFileController implements Initializable {
 
     @FXML
     public void submitEvent(ActionEvent actionEvent){
-        if(field.getText() != null && !field.getText().isEmpty()) {
-            label.setText("Reading file from web..");
-        } else {
-            label.setText("No URL was inserted!");
-        }
+
     }
 
 
     @FXML
     public void clearEvent(ActionEvent actionEvent){
         field.clear();
+    }
+
+    @FXML
+    public void label (ActionEvent actionEvent){
+        if(field.getText() != null && !field.getText().isEmpty()) {
+            label.setText("Reading file from web..");
+        } else {
+            label.setText("No URL was inserted!");
+        }
     }
 
 }
