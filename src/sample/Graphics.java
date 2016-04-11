@@ -1,3 +1,10 @@
+/**
+ * Graphics Class contains the properties of the cell
+ * and their sizes.
+ *
+ * @author Rudi André Dahle
+ */
+
 package sample;
 
 import javafx.scene.canvas.GraphicsContext;
@@ -20,11 +27,6 @@ public class Graphics {
         this.gc = gc;
     }
 
-    //Objects
-
-
-    //Methods
-
     /**
      * Draws the board with existing cells for every loop.
      * @param graphicsBoard
@@ -44,9 +46,10 @@ public class Graphics {
 
 
     /**
-     * Rudi 25.03.16
      * Returns the cellWidth.
-     * @return
+     *
+     * @author Rudi André Dahle on 25.03.16
+     * @return cellWidth
      */
     public double getCellWidth() {
         //System.out.println("Celle bredde: " + cellWidth);
@@ -55,9 +58,10 @@ public class Graphics {
 
 
     /**
-     * Rudi 25.03.16
      * Returns the cellHeight.
-     * @return
+     *
+     * @author Rudi André Dahle on 25.03.16
+     * @return cellHeight
      */
     public double getCellHeight() {
         // System.out.println("Celle høyde: " + cellHeight);
@@ -67,8 +71,9 @@ public class Graphics {
 
     /**
      * Calculates the width of a single cell.
-     *  Rudi 25.03.16
-     * @return
+     *
+     * @author Rudi André Dahle 5.03.16
+     * @return cellWidth
      */
     public void setCellWidth(int cellsWide){
         this.cellWidth = (double)gc.getCanvas().widthProperty().intValue()/cellsWide;
@@ -79,8 +84,9 @@ public class Graphics {
 
     /**
      * Calculates the height of a single cell.
-     *  Rudi 25.03.16
-     * @return
+     *
+     * @author Rudi André Dahle
+     * @return cellHeight
      */
     public void setCellHeight(int cellsHigh) {
          this.cellHeight = (double)gc.getCanvas().heightProperty().intValue()/cellsHigh;

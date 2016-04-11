@@ -1,13 +1,15 @@
+/**
+ * Compilation of Error Windows that will appear when
+ * the program catches an exception when choosing files
+ * from disc and web.
+ *
+ * @author Ginelle
+ */
+
 package sample;
 
 import javafx.scene.control.Alert;
 
-/**
- * Compilation of Error Dialogs that will appear after identifying
- * exceptions when choosing files from disc and web.
- *
- * Created by Ginelle on 4/8/2016.
- */
 
 public class ErrorWindows {
 
@@ -26,7 +28,8 @@ public class ErrorWindows {
 
 
     /**
-     * Error dialog to notify user that a problem occured opening the file.
+     * Error dialog to notify user that a problem occurred
+     * opening the file.
      *
      * @author Ginelle
      */
@@ -40,7 +43,8 @@ public class ErrorWindows {
 
 
     /**
-     * Error dialog to notify user that the file chosen is not a RLE format.
+     * Error dialog to notify user that the file chosen
+     * is not a RLE format.
      *
      * @author Ginelle
      */
@@ -68,7 +72,8 @@ public class ErrorWindows {
 
 
     /**
-     * Error dialog to notify the user that URL submitted is invalid.
+     * Error dialog to notify the user that URL submitted
+     * is invalid.
      *
      * @author Ginelle
      */

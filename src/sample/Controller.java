@@ -1,3 +1,13 @@
+/**
+ * Main controller is located at the bottom of the game window.
+ * It contains all the buttons and sliders that the user will
+ * use to manipulate the game.
+ *
+ * @author Ginelle Ignacio
+ * @author Rudi André Dahle
+ * @author Olav Smevoll
+ */
+
 package sample;
 
 import javafx.animation.Animation;
@@ -27,6 +37,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.scene.paint.Color;
 
+
 public class Controller implements Initializable{
 
     //REMOVE LATER?
@@ -39,17 +50,14 @@ public class Controller implements Initializable{
 
     }
 
-    //Datafield
+    //Data field
     @FXML Canvas canvas;
     @FXML private ColorPicker colorPicker;
     @FXML private ColorPicker backgroundColor;
     @FXML private Slider zoomSlider;
     @FXML private Slider speedSlider;
     @FXML private Button playPause;
-    @FXML private Toggle gridToggle;
     @FXML private Label genCounter;
-    @FXML private Button clearButton;
-    @FXML private MenuItem help;
     private GraphicsContext gc;
     private Timeline timeline;
     private boolean running = false;
@@ -67,7 +75,6 @@ public class Controller implements Initializable{
     Stage helpWindow;
     Stage readWeb;
     ErrorWindows error;
-
 
 
     @Override
@@ -94,11 +101,14 @@ public class Controller implements Initializable{
 
         //Initial properties in the GUI
         genCounter.setText(gameBoard.getGenCounter());
-        graphics.gc.setFill(Color.MEDIUMAQUAMARINE);
-        colorPicker.setValue(Color.MEDIUMAQUAMARINE);
+        graphics.gc.setFill(Color.rgb(26,0,104));
+        colorPicker.setValue(Color.rgb(26,0,104));
         backgroundColor.setValue(Color.SILVER);
         zoomSlider.setValue(10.0);
+        zoomSlider.setShowTickMarks(true);
         speedSlider.setValue(10.0);
+        speedSlider.setShowTickMarks(true);
+        speedSlider.setShowTickMarks(true);
         FPS = 10;
 
         //Time properties responsible for the animation
@@ -116,11 +126,7 @@ public class Controller implements Initializable{
         timeline.getKeyFrames().add(keyframe);
     }
 
-
-    /**
-     * TEMPORARY FIX LATER
-     */
-
+    //fix later
     public void draw(){
         gc.clearRect(0, 0, canvas.widthProperty().doubleValue(), canvas.heightProperty().doubleValue());
         for ( Cell c : cellList ) {
@@ -129,9 +135,11 @@ public class Controller implements Initializable{
     }
 
     /**
-     * User selects a single to input into the canvas
+     * Method called when user selects a single cell
+     * to input in the canvas area
      *
-     * @param event
+     * @param event Represents a mouse event used when
+     *              the user interacts with the GUI.
      */
     public void selectCell(MouseEvent event){
         //gameboard
@@ -148,11 +156,13 @@ public class Controller implements Initializable{
     }
 
     /**
-     * Play/Pause button for the animation
-     * @author Rudi
-     * @param actionEvent
+     * Method called when user plays or pauses the button
+     * for the animation
+     *
+     * @author Rudi André Dahle
+     * @param actionEvent represents an Action Event used to
+     *                    when a button has been fired.
      */
-
     @FXML
     public void OnStartClick(ActionEvent actionEvent) {
         if(timeline.getStatus() == Status.RUNNING) {
@@ -164,10 +174,10 @@ public class Controller implements Initializable{
         }
     }
 
+
     /**
      *Changes the text on the play button pause and vice versa
      */
-
     public void playPauseEvent(){
         if(running){
             playPause.setText("Pause");
@@ -176,10 +186,12 @@ public class Controller implements Initializable{
         }
     }
 
+
     /**
      * Clear button to clear the cells in the canvas area
      * @author Ginelle
-     * @param actionEvent
+     * @param actionEvent represents an Action Event used to
+     *                    when a button has been fired.
      */
     public void clearEvent(ActionEvent actionEvent){
         timeline.stop();
@@ -198,9 +210,9 @@ public class Controller implements Initializable{
      * Speed slider manipulates the speed of animation
      *
      * @author Ginelle
-     * @param event
+     * @param event Represents a mouse event used when
+     *              the user interacts with the slider.
      */
-
     public void speedChanged(MouseEvent event) {
         timeline.stop();
 
@@ -228,7 +240,8 @@ public class Controller implements Initializable{
     /**
      * Zoom slider to zoom the animation in and out
      *
-     * @param event
+     * @param event Represents a mouse event used when
+     *              the user interacts with the slider
      */
 
     public void zoomChanged(MouseEvent event) {
@@ -239,17 +252,19 @@ public class Controller implements Initializable{
      * Color picker changes the colors of the cells
      *
      * @author Ginelle
-     * @param actionEvent
+     * @param actionEvent represents an Action Event used to
+     *                    when a button has been fired.
      */
-
     public void colorChanged(ActionEvent actionEvent){
         graphics.gc.setFill(colorPicker.getValue());
     }
 
+
     /**
      * Change background color of the game.
      * @author Rudi
-     * @param actionEvent
+     * @param actionEvent represents an Action Event used to
+     *                    when a button has been fired.
      */
     public void backgroundChanged(ActionEvent actionEvent){
         //MÅ FIKSES
@@ -261,11 +276,13 @@ public class Controller implements Initializable{
 
     }
 
+
     /**
      * Grid toggle to make the grid visible or invisible
      *
      * @author Rudi
-     * @param actionEvent
+     * @param actionEvent represents an Action Event used to
+     *                    when a button has been fired.
      */
 
     public void gridEvent(ActionEvent actionEvent) {
@@ -281,13 +298,14 @@ public class Controller implements Initializable{
     }
 
     /**
-     * Rules of Game of Life9 located in the menu under help
+     * Rules of Game of Life located in the menu under help
      *
      * @author Ginelle 01.04.16
-     * @param actionEvent
+     * @param ae represents an Action Event used to
+     *           when a menu item has been clicked
      */
 
-    public void helpEvent (ActionEvent actionEvent) throws IOException {
+    public void helpEvent (ActionEvent ae) throws IOException {
         Parent helpRoot = FXMLLoader.load(getClass().getClassLoader().getResource("Rules/Guide.fxml"));
         helpWindow.setTitle("Guidelines");
         helpWindow.setScene(new Scene(helpRoot));
@@ -296,11 +314,13 @@ public class Controller implements Initializable{
 
     /**
      * "Open File..." menu item set to open FileChooser window
+     *
      * @author Rudi 01.04.16
-     * @param actionEvent
+     * @param ae represents an Action Event used to
+     *           when a menu item has been clicked
      */
 
-    public void openFiles(ActionEvent actionEvent) {
+    public void openFiles(ActionEvent ae)throws IOException {
         try {
             reader.chooseFile();
         } catch (FileNotFoundException fe){
@@ -320,7 +340,19 @@ public class Controller implements Initializable{
         //pfe.openFiles();
     }
 
-    public void webFile(ActionEvent actionEvent) throws IOException {
+
+    /**
+     * Method called when the user selects "Read Web File.."
+     * on the menu list under "File". This method will read
+     * an RLE file of an web address.
+     *
+     * @author Ginelle Ignacio
+     * @param ae represents an Action Event used to
+     *           when a menu item has been clicked
+     * @throws IOException
+     */
+
+    public void webFile(ActionEvent ae) throws IOException {
        try {
            Parent webRoot = FXMLLoader.load(getClass().getClassLoader().getResource("Files/Webfile.fxml"));
            readWeb.setTitle("Read web file");
@@ -343,13 +375,15 @@ public class Controller implements Initializable{
     }
 
     /**
-     * "Close" menu item located in Menu to close whole window
+     * Method called when the user clicks on the "Close"
+     * item located in Menu under File to close whole window
      *
-     * @author Ginelle 01.04.16
-     * @param actionEvent
+     * @author Ginelle Ignacio
+     * @param ae represents an Action Event used to
+     *           when a menu item has been clicked
      */
 
-    public void closeWindow (ActionEvent actionEvent){
+    public void closeWindow (ActionEvent ae){
         System.exit(0);
     }
 }

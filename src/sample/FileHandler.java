@@ -1,16 +1,22 @@
+/**
+ * File Handler  class is responsible for the input and
+ * output of files to read patterns in RLE format via disc
+ * and web.
+ *
+ * @author Rudi André Dahle
+ * @author Ginelle Ignacio
+ * @author Olav Smevoll
+ */
+
 package sample;
 
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
-
 import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
 
-/**
- * Created by RudiAndre on 30.03.2016.
- */
+
 public class FileHandler {
 
     //Data field
@@ -24,7 +30,7 @@ public class FileHandler {
     /**
      * Reading game board
      * @author Ginelle
-     * @param r
+     * @param r Returns the game board
      * @throws IOException
      */
     public void readGameBoard(Reader r) throws IOException{
@@ -35,7 +41,8 @@ public class FileHandler {
 
     /**
      * Reading file from disk
-     * @author Rudi
+     *
+     * @author Rudi André Dahle
      * @throws IOException
      */
     public void chooseFile() throws IOException {
@@ -50,8 +57,8 @@ public class FileHandler {
 
     /**
      *
-     * @author Olav
-     * @param file
+     * @author Olav Smevoll
+     * @param file Returns the file
      * @throws IOException
      */
     public void readGameBoardFromFile(File file) throws IOException {
@@ -83,8 +90,9 @@ public class FileHandler {
 
     /**
      * Reading file from web
-     * @author Ginelle
-     * @param url
+     *
+     * @author Ginelle Ignacio
+     * @param url Returns the web address
      * @throws IOException
      * @throws PatternFormatException
      */

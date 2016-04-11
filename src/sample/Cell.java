@@ -1,12 +1,17 @@
+/**
+ *
+ *
+ *  @author Rudi André Dahle
+ */
 package sample;
 
-/**
- * Created by RudiAndre on 22.03.2016.
- */
 public class Cell {
+
+    //Data field
     private boolean state = false;
     private boolean newState;
 
+    //Constructor
     public Cell() {
 
     }

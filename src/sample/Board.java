@@ -1,13 +1,15 @@
+/**
+ * Board class contains the rules of the game that the cells
+ * will follow in order to generate.
+ *
+ * @author Rudi André Dahle
+ * @author Olav Smevoll
+ */
+
 package sample;
 
-import javafx.fxml.FXML;
-import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 
-
-/**
- * Created by RudiAndre on 08.02.2016.
- */
 
 public class Board {
 
@@ -164,7 +166,8 @@ public class Board {
      *
      * @param x the arrays x position
      * @param y the arrays y position
-     * @return counter
+     * @return counter Returns the value of counter after
+     *         checking the rules
      * @author Olav Smevoll on 08.03.2016
      */
 
@@ -219,7 +222,7 @@ public class Board {
     /**
      *  Sets the new values in the array for the next generation.
      *
-     *  @author Rudi Andre on 04.03.2016
+     *  @author Rudi André Dahle on 04.03.2016
      */
     public void nextGeneration(Grid grid) {
         boolean[][] newGameBoard = new boolean[getBoardWidth()][getBoardHeight()];
@@ -236,10 +239,11 @@ public class Board {
     }
 
     /**
-     * Returns the genCounter as a string to show as a label.
+     * Returns the generation counter as a string value
+     * to show as label.
      *
-     * @author Olav
-     * @return s
+     * @author Olav Smevoll
+     * @return s Value of generation counter in to strings
      */
     public String getGenCounter(){
         String s = Integer.toString(genCounter);
@@ -247,9 +251,10 @@ public class Board {
     }
 
     /**
-     * Resets the genCounter when the board is cleared.
+     * Resets the generation counter to zero when
+     * the clear button is fired
      *
-     * @author Olav
+     * @author Olav Smevoll
      */
 
     public void resetGenCount(){
@@ -260,8 +265,8 @@ public class Board {
     /**
      * Gameboard's width in number of cells
      *
-     * @author Rudi 24.03.16
-     * @return
+     * @author Rudi André Dahle 24.03.16
+     * @return cellsWide Returns the cell's width
      */
 
     public int getBoardWidth() {
@@ -270,30 +275,21 @@ public class Board {
 
 
     /**
-     *
-     * @param x
-     */
-   /* public void setBoardWidth(int x) {
-        cellsWide = x;
-    }*/
-
-
-    /**
      * Gameboards height in number of cells
      *
-     * @author Rudi 24.03.16
-     * @return
+     * @author Rudi André Dahle 24.03.16
+     * @return cellsHigh Returns the cell's height
      */
-
     public int getBoardHeight() {
         return cellsHigh;
     }
 
 
     /**
-     * Rudi 24.03.16
      * Sets Gameboard's height
-     * @param y
+     *
+     * @author Rudi André Dahle on 24.03.16
+     * @param y Integer value of the board's height
      */
 
     public void setBoardHeight(int y) {
@@ -321,10 +317,10 @@ public class Board {
 
     /**
      * Gets the GameBoard
+     *
      * @author RudiAndre on 01.03.2016.
      * @return gameBoard
      */
-
     public boolean[][] getGameBoard() {
         return gameBoard;
     }
@@ -333,10 +329,9 @@ public class Board {
     /**
      * Sets the GameBoard
      *
-     * @author RudiAndre on 01.03.2016.
+     * @author Rudi André Dahle on 01.03.2016.
      * @param gameBoard
      */
-
     public void setGameBoard(boolean[][] gameBoard) {
         this.gameBoard = gameBoard;
     }
@@ -348,7 +343,6 @@ public class Board {
      * @author
      * @return toString
      */
-
     @Override
     public String toString() {
         StringBuilder str = new StringBuilder();
