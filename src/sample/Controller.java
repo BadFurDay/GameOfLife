@@ -29,7 +29,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.ResourceBundle;
 
@@ -37,21 +36,13 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.scene.paint.Color;
 
+import javax.xml.bind.SchemaOutputResolver;
+
 
 public class Controller implements Initializable{
 
-    //REMOVE LATER?
-    private static class Cell{
-        public double x, y;
-        public void draw(GraphicsContext gc, Color drawColor, double size) {
-            gc.setFill(drawColor);
-            gc.fillRect(x, y, size, size);
-        }
-
-    }
-
     //Data field
-    @FXML Canvas canvas;
+    @FXML private Canvas canvas;
     @FXML private ColorPicker colorPicker;
     @FXML private ColorPicker backgroundColor;
     @FXML private Slider zoomSlider;
@@ -62,7 +53,6 @@ public class Controller implements Initializable{
     private Timeline timeline;
     private boolean running = false;
     private boolean showGrid = false;
-    private List<Cell> cellList;
     private double FPS; //frames per second
 
 
@@ -74,7 +64,7 @@ public class Controller implements Initializable{
     PatternFormatException pfe;
     Stage helpWindow;
     Stage readWeb;
-    ErrorWindows error;
+    Alerts error;
 
 
     @Override
@@ -89,7 +79,7 @@ public class Controller implements Initializable{
         pfe = new PatternFormatException();
         helpWindow = new Stage();
         readWeb = new Stage();
-        error = new ErrorWindows();
+        error = new Alerts();
 
         //Grid properties
         graphics.setCellHeight(gameBoard.getBoardHeight());
@@ -126,14 +116,6 @@ public class Controller implements Initializable{
         timeline.getKeyFrames().add(keyframe);
     }
 
-    //fix later
-    public void draw(){
-        gc.clearRect(0, 0, canvas.widthProperty().doubleValue(), canvas.heightProperty().doubleValue());
-        for ( Cell c : cellList ) {
-            c.draw(gc, colorPicker.getValue(), zoomSlider.getValue());
-        }
-    }
-
     /**
      * Method called when user selects a single cell
      * to input in the canvas area
@@ -144,15 +126,6 @@ public class Controller implements Initializable{
     public void selectCell(MouseEvent event){
         //gameboard
         //c.x og x.y
-    }
-
-    //fix later
-    public void canvasMouseDragged(MouseEvent event){
-        Cell c = new Cell();
-        c.x = event.getX();
-        c.y = event.getY();
-        cellList.add(c);
-        draw();
     }
 
     /**
@@ -196,7 +169,7 @@ public class Controller implements Initializable{
     public void clearEvent(ActionEvent actionEvent){
         timeline.stop();
         playPause.setText("Play");
-        gc.clearRect(0, 0, canvas.widthProperty().doubleValue(), canvas.heightProperty().doubleValue());
+        //gc.clearRect(0, 0, canvas.widthProperty().doubleValue(), canvas.heightProperty().doubleValue());
         gameBoard.resetGenCount();
         gameBoard.clearBoard();
 
@@ -239,7 +212,8 @@ public class Controller implements Initializable{
     }
 
     /**
-     * Zoom slider to zoom the animation in and out
+     * Method called when the user drags the zoom slider to
+     * zoom in or zoom out
      *
      * @param event Represents a mouse event used when
      *              the user interacts with the slider
@@ -316,7 +290,8 @@ public class Controller implements Initializable{
     /**
      * "Open File..." menu item set to open FileChooser window
      *
-     * @author Rudi 01.04.16
+     * @author Rudi Andre Dahle 01.04.16
+     * @author Ginelle Ignacio
      * @param ae represents an Action Event used to
      *           when a menu item has been clicked
      */
@@ -325,18 +300,21 @@ public class Controller implements Initializable{
         try {
             reader.chooseFile();
         } catch (FileNotFoundException fe){
-            System.err.println("File not found!");
+            System.err.println("File not found! " + fe);
             error.fileNotFound();
         } catch (IOException e) {
             e.printStackTrace();
-            System.err.println("Error opening file!");
+            System.err.println("Error opening file! " + e);
             error.errorOpeningfile();
         } catch (NoSuchElementException ne){
-            System.err.println("File format does not match!");
+            System.err.println("File format does not match! " + ne);
             error.incorrectMatch();
         } catch (IllegalStateException ie) {
-            System.err.println("Error reading from file!");
+            System.err.println("Error reading from file! " + ie);
             error.errorReading();
+        } catch(ArrayIndexOutOfBoundsException arraye){
+            System.err.println("Element at an index is outside the array bounds" + arraye);
+            error.arrayException();
         }
         //pfe.openFiles();
     }
@@ -355,7 +333,7 @@ public class Controller implements Initializable{
 
     public void webFile(ActionEvent ae) throws IOException {
        try {
-           Parent webRoot = FXMLLoader.load(getClass().getClassLoader().getResource("Files/Webfile.fxml"));
+           Parent webRoot = FXMLLoader.load(getClass().getClassLoader().getResource("WebFile/Webfile.fxml"));
            readWeb.setTitle("Read web file");
            readWeb.setScene(new Scene(webRoot));
            readWeb.show();
@@ -363,10 +341,10 @@ public class Controller implements Initializable{
         /*} catch (IOException e){
            throw new RuntimeException(e);*/
         } catch (MalformedURLException me){
-            System.err.println("Invalid web address!");
+            System.err.println("Invalid web address! " + me);
             error.invalidURL();
         } catch (IOException ie) {
-           System.err.println("Problem opening URL connection");
+           System.err.println("Problem opening URL connection " + ie);
            error.errorConnection();
        }
     }

@@ -11,7 +11,7 @@ package sample;
 import javafx.scene.control.Alert;
 
 
-public class ErrorWindows {
+public class Alerts {
 
     /**
      * Error dialog to notify user that the chosen file is not found.
@@ -103,6 +103,23 @@ public class ErrorWindows {
         ec.setHeaderText("Problem opening URL connection!");
         ec.setContentText("There was an error connecting to the web address you entered.\t");
         ec.show();
+    }
+
+
+    /**
+     * Error dialog to notify the user that an Array Index Out of Bounds
+     * Exception has occurred while reading the file.
+     *
+     * @author Ginelle Ignacio
+     */
+    public void arrayException(){
+        Alert arrayE = new Alert(Alert.AlertType.ERROR);
+        arrayE.setTitle("Error");
+        arrayE.setHeaderText("An array exception has been found!");
+        arrayE.setContentText("The program is trying to access an element at an index that" +
+                " is outside of the array bounds causing the program to crash. " +
+                "You may want to choose another file. \t");
+        arrayE.show();
     }
 
 }

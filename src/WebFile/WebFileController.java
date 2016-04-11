@@ -1,11 +1,11 @@
 /**
  * Web Controller is responsible for the controllers in
- * the "Read Web File" under Menu.
+ * the Web File FXML. This is the "Read Web File" under Menu.
  *
  * @author Ginelle Ignacio
  */
 
-package Files;
+package WebFile;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,19 +20,20 @@ import java.util.ResourceBundle;
 
 public class WebFileController implements Initializable {
 
+
+
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-
-
     }
 
-    //Data field
-    @FXML private TextField field;
-    @FXML private Button submit;
-    @FXML private Button clear;
-    @FXML private Label label;
 
+    //Data field
+    @FXML protected TextField field;
+    protected Button submit;
+    @FXML protected Button clear;
+    @FXML protected Label label;
 
     /**
      *
@@ -40,7 +41,7 @@ public class WebFileController implements Initializable {
      *                    when a button has been fired.
      */
     public void fieldEvent(ActionEvent actionEvent){
-
+        field.getText();
     }
 
     /**
@@ -49,9 +50,12 @@ public class WebFileController implements Initializable {
      * @param actionEvent represents an Action Event used to
      *                    when a button has been fired.
      */
-    @FXML
-    public void submitEvent(ActionEvent actionEvent){
-
+    public void submitEvent (ActionEvent actionEvent){
+        if (field.getText() != null && !field.getText().isEmpty()) {
+            label.setText("Reading file from web..");
+        } else {
+            label.setText("Text field is empty! No URL was inserted.");
+        }
     }
 
 
@@ -62,9 +66,11 @@ public class WebFileController implements Initializable {
      * @param actionEvent represents an Action Event used to
      *                    when a button has been fired.
      */
-    @FXML
     public void clearEvent(ActionEvent actionEvent){
+    if(clear.isPressed()) {
         field.clear();
+        label.setText(null);
+        }
     }
 
     /**
@@ -76,13 +82,8 @@ public class WebFileController implements Initializable {
      * @param actionEvent represents an Action Event used to
      *                    when a button has been fired.
      */
-    @FXML
     public void label (ActionEvent actionEvent){
-        if(field.getText() != null && !field.getText().isEmpty()) {
-            label.setText("Reading file from web..");
-        } else {
-            label.setText("Text field is empty! No URL was inserted.");
-        }
+
     }
 
 }

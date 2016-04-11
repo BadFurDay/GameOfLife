@@ -53,7 +53,7 @@ public class FileHandler {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open file");
         fileChooser.getExtensionFilters().add(
-                new FileChooser.ExtensionFilter("Game of Life Files ", "*.rle"));
+                new FileChooser.ExtensionFilter("Game of Life WebFile ", "*.rle"));
         file = fileChooser.showOpenDialog(null);
         readGameBoardFromFile(file);
     }
