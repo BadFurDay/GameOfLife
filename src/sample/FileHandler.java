@@ -10,6 +10,7 @@
 
 package sample;
 
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import javafx.stage.FileChooser;
 import java.io.*;
 import java.net.URL;
@@ -22,11 +23,12 @@ public class FileHandler {
 
     //Data field
     File file;
-    Board board = new Board();
 
+    Board gameBoard;
 
     //Constructor
-    public FileHandler(){
+    public FileHandler(Board gameboard){
+        this.gameBoard = gameboard;
     }
 
     /**
@@ -131,7 +133,7 @@ public class FileHandler {
     public void rleToArray(String rle){
 
 
-        board.clearBoard();
+        gameBoard.clearBoard();
         int yCounter = 0;
         int xCounter = 0;
 
@@ -142,11 +144,11 @@ public class FileHandler {
                 xCounter = 0;
             }
             if(rle.charAt(i) == 'b'){
-                board.gameBoard[xCounter][yCounter] = false;
+                gameBoard.gameBoard[xCounter][yCounter] = false;
                 xCounter++;
             }
             if(rle.charAt(i) == 'o'){
-                board.gameBoard[xCounter][yCounter] = true;
+                gameBoard.gameBoard[xCounter][yCounter] = true;
                 xCounter++;
             }
         }

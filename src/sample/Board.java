@@ -27,7 +27,7 @@ public class Board {
        // this.cellsHigh = cellsHigh;
         System.out.println("Antall celler bredde: " + getBoardWidth());
         System.out.println("Antall celler høyde: " + getBoardHeight());
-
+        System.out.println("nb");
         gameBoard = new boolean[getBoardWidth()][getBoardHeight()];
 
 
@@ -342,6 +342,7 @@ public class Board {
      * @author Olav
      */
     public void clearBoard(){
+        System.out.println("KJØRT");
 
         for (int x = 0; x < gameBoard.length; x++) {
             for (int y = 0; y < gameBoard[0].length; y++) {

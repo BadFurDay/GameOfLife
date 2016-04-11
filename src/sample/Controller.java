@@ -85,7 +85,7 @@ public class Controller implements Initializable{
         gameBoard = new Board();
         graphics = new Graphics(gc);
         grid = new Grid(gc);
-        reader = new FileHandler();
+        reader = new FileHandler(gameBoard);
         pfe = new PatternFormatException();
         helpWindow = new Stage();
         readWeb = new Stage();
