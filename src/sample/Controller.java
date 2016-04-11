@@ -165,7 +165,7 @@ public class Controller implements Initializable{
      */
     @FXML
     public void OnStartClick(ActionEvent actionEvent) {
-        if(timeline.getStatus() == Status.RUNNING) {
+       if(timeline.getStatus() == Status.RUNNING) {
             timeline.pause();
             running = false;
         } else {
