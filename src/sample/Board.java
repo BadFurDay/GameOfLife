@@ -336,6 +336,20 @@ public class Board {
         this.gameBoard = gameBoard;
     }
 
+    /**
+     * Clears the board when new board is loaded from rle file
+     *
+     * @author Olav
+     */
+    public void clearBoard(){
+
+        for (int x = 0; x < gameBoard.length; x++) {
+            for (int y = 0; y < gameBoard[0].length; y++) {
+                gameBoard[x][y] = false;
+            }
+        }
+    }
+
 
     /**
      *

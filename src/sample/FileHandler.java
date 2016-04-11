@@ -14,6 +14,7 @@ import javafx.stage.FileChooser;
 import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 
 
@@ -21,6 +22,7 @@ public class FileHandler {
 
     //Data field
     File file;
+    Board board = new Board();
 
 
     //Constructor
@@ -74,16 +76,82 @@ public class FileHandler {
            }
         }
 
-        String[] rleSplit = rleCode.split("\\$");
 
-        ArrayList splittedRle = new ArrayList();
+        String subString = "";
+        int j = 0;
+        String numberS = "";
+        int number = 0;
+        String finalRle = "";
 
+            while(j < rleCode.length()){
 
-        for(int i = 0; i < rleSplit.length; i++){
-            splittedRle.add(rleSplit[i]);
+                subString = subString.concat("" + rleCode.charAt(j));
+
+                if(subString.matches("[0-9]+")){
+                    numberS += subString;
+                    number = Integer.parseInt(numberS);
+                }
+
+                if(rleCode.charAt(j) == 'o'){
+                    if(number != 0){
+                        for(int i = 0; i < number; i++){
+                            finalRle += "o";
+                        }
+                    }else{
+                        finalRle += "o";
+                    }
+
+                    subString = "";
+                    numberS = "";
+                    number = 0;
+                }
+                if(rleCode.charAt(j) == 'b'){
+                    if(number != 0){
+                        for(int i = 0; i < number; i++) {
+                            finalRle += "b";
+                        }
+                    }else{
+                        finalRle += "b";
+                    }
+                    subString = "";
+                    numberS = "";
+                    number = 0;
+                }
+                if(rleCode.charAt(j) == '$'){
+                    finalRle += "$";
+                    subString = "";
+                    numberS = "";
+
+                }
+                j++;
         }
+        rleToArray(finalRle);
+    }
 
-        System.out.println(splittedRle);
+    public void rleToArray(String rle){
+
+
+        board.clearBoard();
+        int yCounter = 0;
+        int xCounter = 0;
+
+
+        for(int i = 0; i < rle.length(); i++){
+            if (rle.charAt(i) == '$'){
+                yCounter++;
+                xCounter = 0;
+            }
+            if(rle.charAt(i) == 'b'){
+                board.gameBoard[xCounter][yCounter] = false;
+                xCounter++;
+            }
+            if(rle.charAt(i) == 'o'){
+                board.gameBoard[xCounter][yCounter] = true;
+                xCounter++;
+            }
+        }
+        System.out.println("done");
+
     }
 
 

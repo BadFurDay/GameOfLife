@@ -198,6 +198,7 @@ public class Controller implements Initializable{
         playPause.setText("Play");
         gc.clearRect(0, 0, canvas.widthProperty().doubleValue(), canvas.heightProperty().doubleValue());
         gameBoard.resetGenCount();
+        gameBoard.clearBoard();
 
         if (showGrid) {
             grid.draw();
