@@ -335,6 +335,7 @@ public class Controller implements Initializable{
         readWeb.setTitle("Read web file");
         readWeb.setScene(new Scene(webRoot));
         readWeb.show();
+        //web
     }
 
     /**

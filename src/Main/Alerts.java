@@ -122,6 +122,9 @@ public class Alerts {
         arrayE.show();
     }
 
+    /**
+     * @author Ginelle Ignacio
+     */
     public void nullException(){
         Alert nullPointer = new Alert(Alert.AlertType.ERROR);
         nullPointer.setTitle("Error");

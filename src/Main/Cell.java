@@ -1,5 +1,5 @@
 /**
- *
+ * Cell class
  *
  *  @author Rudi André Dahle
  */

@@ -123,7 +123,7 @@ public class Grid extends Canvas {
     }
 
 
-    @Override
+    /*@Override
     public boolean isResizable() {
         return true;
     }
@@ -134,5 +134,5 @@ public class Grid extends Canvas {
     @Override
     public double prefHeight(double width) {
         return getHeight();
-    }
+    }*/
 }

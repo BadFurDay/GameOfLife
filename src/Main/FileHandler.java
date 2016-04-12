@@ -44,7 +44,6 @@ public class FileHandler {
 
     }
 
-    //Stage testStage = new Stage();
 
     /**
      * Reading file from disk

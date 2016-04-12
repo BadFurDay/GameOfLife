@@ -94,7 +94,9 @@ public class WebFileController implements Initializable {
             /**String url = field.getText();
             URL destination = new URL(url);
             InputStream is = destination.openStream();
-            BufferedReader br = new BufferedReader(new InputStreamReader(is));*/
+            BufferedReader br = new BufferedReader(new InputStreamReader(is));
+
+             check*/
 
 
            /* String line;
