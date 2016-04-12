@@ -17,6 +17,8 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 public class FileHandler {
@@ -52,6 +54,7 @@ public class FileHandler {
     public void chooseFile() throws IOException {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open file");
+        fileChooser.setInitialDirectory(new File(System.getProperty("user.dir")));
         fileChooser.getExtensionFilters().add(
                 new FileChooser.ExtensionFilter("Game of Life WebFile ", "*.rle"));
         file = fileChooser.showOpenDialog(null);
@@ -73,7 +76,7 @@ public class FileHandler {
         String rleCode = "";
 
        while((line = br.readLine()) != null){
-           if((line.matches("[b,o,$, !, 0-9]*"))){
+           if((line.matches("[b, o, $, !, 0-9]*"))){
                 rleCode = rleCode.concat(line + "\n");
            }
         }
@@ -85,13 +88,27 @@ public class FileHandler {
         int number = 0;
         String finalRle = "";
 
-            while(j < rleCode.length()){
+        Pattern pattern = Pattern.compile("\\d+|[ob]|\\$");
+        Matcher matcher = pattern.matcher(rleCode);
+        while(matcher.find()){
+            int num = 1;
+            if(matcher.group().matches("\\d+")){
+                num = Integer.parseInt(matcher.group());
+                System.out.print(num);
+                matcher.find();
+            }
+            System.out.println(matcher.group());
+        }
+
+        /*
+           while(j < rleCode.length()){
 
                 subString = subString.concat("" + rleCode.charAt(j));
 
-                if(subString.matches("[0-9]+")){
+                if(subString.matches("\\d+")){
                     numberS += subString;
                     number = Integer.parseInt(numberS);
+                    System.out.println(number);
                 }
 
                 if(rleCode.charAt(j) == 'o'){
@@ -127,7 +144,9 @@ public class FileHandler {
                 }
                 j++;
         }
+        System.out.println(finalRle);
         rleToArray(finalRle);
+*/
     }
 
     public void rleToArray(String rle){

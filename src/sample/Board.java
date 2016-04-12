@@ -15,8 +15,8 @@ public class Board {
 
     //Datafield
     protected GraphicsContext gc;
-    private int cellsWide = 70; //Number of cells in gameboards width
-    private int cellsHigh = 35; //Number of cells in gameboards height
+    private int cellsWide = 40; //Number of cells in gameboards width
+    private int cellsHigh = 20; //Number of cells in gameboards height
     protected int genCounter;
     public boolean[][] gameBoard;
 
@@ -30,7 +30,7 @@ public class Board {
         System.out.println("nb");
         gameBoard = new boolean[getBoardWidth()][getBoardHeight()];
 
-
+/*
         gameBoard[25][1] = true;
 
         gameBoard[23][2] = true;
@@ -75,7 +75,7 @@ public class Board {
 
         gameBoard[13][9] = true;
         gameBoard[14][9] = true;
-
+*/
         /*gameBoard[0][0] = true;
         gameBoard[2][0] = true;
         gameBoard[4][0] = true;
