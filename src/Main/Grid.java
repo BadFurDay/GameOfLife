@@ -6,11 +6,10 @@
  * @author Ginelle Ignacio
  */
 
-package sample;
+package Main;
 
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.paint.Color;
 
 
 public class Grid extends Canvas {
@@ -124,7 +123,7 @@ public class Grid extends Canvas {
     }
 
 
-    @Override
+    /*@Override
     public boolean isResizable() {
         return true;
     }
@@ -135,5 +134,5 @@ public class Grid extends Canvas {
     @Override
     public double prefHeight(double width) {
         return getHeight();
-    }
+    }*/
 }

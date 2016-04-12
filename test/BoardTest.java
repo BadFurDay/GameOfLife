@@ -1,7 +1,3 @@
-import org.junit.Before;
-import org.junit.Test;
-import sample.Board;
-
 /**
  * Created by RudiAndre on 15.03.2016.
  */

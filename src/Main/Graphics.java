@@ -1,11 +1,12 @@
 /**
  * Graphics Class contains the properties of the cell
- * and their sizes.
+ * and their sizes. This class is called when the game
+ * starts.
  *
  * @author Rudi André Dahle
  */
 
-package sample;
+package Main;
 
 import javafx.scene.canvas.GraphicsContext;
 

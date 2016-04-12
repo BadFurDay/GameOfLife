@@ -8,7 +8,7 @@
  * @author Olav Smevoll
  */
 
-package sample;
+package Main;
 
 import javafx.animation.Animation;
 import javafx.animation.Animation.Status;
@@ -35,8 +35,6 @@ import java.util.ResourceBundle;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.scene.paint.Color;
-
-import javax.xml.bind.SchemaOutputResolver;
 
 
 public class Controller implements Initializable{
@@ -256,7 +254,7 @@ public class Controller implements Initializable{
      * Grid toggle to make the grid visible or invisible
      *
      * @author Rudi
-     * @param actionEvent represents an Action Event used to
+     * @param actionEvent represents an Action Event used
      *                    when a button has been fired.
      */
 
@@ -273,10 +271,12 @@ public class Controller implements Initializable{
     }
 
     /**
-     * Rules of Game of Life located in the menu under help
+     * Method called when user select on "Guidelines" on Menu.
+     * Method contains information about the rules of the game,
+     * and details about the controllers.
      *
      * @author Ginelle 01.04.16
-     * @param ae represents an Action Event used to
+     * @param ae represents an Action Event used
      *           when a menu item has been clicked
      */
 
@@ -292,7 +292,7 @@ public class Controller implements Initializable{
      *
      * @author Rudi Andre Dahle 01.04.16
      * @author Ginelle Ignacio
-     * @param ae represents an Action Event used to
+     * @param ae represents an Action Event used
      *           when a menu item has been clicked
      */
 
@@ -316,14 +316,13 @@ public class Controller implements Initializable{
             System.err.println("Element at an index is outside the array bounds" + arraye);
             error.arrayException();
         }
-        //pfe.openFiles();
     }
 
 
     /**
      * Method called when the user selects "Read Web File.."
      * on the menu list under "File". This method will read
-     * an RLE file of an web address.
+     * a web address and convert it to a pattern.
      *
      * @author Ginelle Ignacio
      * @param ae represents an Action Event used to
@@ -332,25 +331,11 @@ public class Controller implements Initializable{
      */
 
     public void webFile(ActionEvent ae) throws IOException {
-       try {
-           Parent webRoot = FXMLLoader.load(getClass().getClassLoader().getResource("WebFile/Webfile.fxml"));
-           readWeb.setTitle("Read web file");
-           readWeb.setScene(new Scene(webRoot));
-           readWeb.show();
-            //reader.readGameBoardFromURL();
-        /*} catch (IOException e){
-           throw new RuntimeException(e);*/
-        } catch (MalformedURLException me){
-            System.err.println("Invalid web address! " + me);
-            error.invalidURL();
-        } catch (IOException ie) {
-           System.err.println("Problem opening URL connection " + ie);
-           error.errorConnection();
-       }
-    }
-
-    public void setStage(){
-
+        Parent webRoot = FXMLLoader.load(getClass().getClassLoader().getResource("WebFile/Webfile.fxml"));
+        readWeb.setTitle("Read web file");
+        readWeb.setScene(new Scene(webRoot));
+        readWeb.show();
+        //web
     }
 
     /**

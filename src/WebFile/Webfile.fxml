@@ -5,7 +5,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="122.0" prefWidth="362.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="WebFile.WebFileController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="137.0" prefWidth="362.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="WebFile.WebFileController">
    <children>
       <GridPane layoutX="-2.0" layoutY="4.0" prefHeight="122.0" prefWidth="231.0">
         <columnConstraints>
@@ -20,7 +20,8 @@
         </rowConstraints>
          <children>
             <Label text="Paste URL to read file:" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="file" editable="true" onAction="#fieldEvent" prefHeight="11.0" prefWidth="256.0" promptText="Insert URL here..." GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="field" editable="true" onAction="#fieldEvent" prefHeight="11.0" prefWidth="256.0" promptText="Insert URL here..." GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label fx:id="label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
       </GridPane>
       <Button fx:id="clear" layoutX="294.0" layoutY="61.0" mnemonicParsing="false" onAction="#clearEvent" text="Clear" />

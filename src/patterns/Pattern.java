@@ -1,4 +1,4 @@
-package patterns;
+package Patterns;
 
 /**
  * Created by RudiAndre on 30.03.2016.

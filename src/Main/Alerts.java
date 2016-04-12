@@ -6,7 +6,7 @@
  * @author Ginelle Ignacio
  */
 
-package sample;
+package Main;
 
 import javafx.scene.control.Alert;
 
@@ -120,6 +120,18 @@ public class Alerts {
                 " is outside of the array bounds causing the program to crash. " +
                 "You may want to choose another file. \t");
         arrayE.show();
+    }
+
+    /**
+     * @author Ginelle Ignacio
+     */
+    public void nullException(){
+        Alert nullPointer = new Alert(Alert.AlertType.ERROR);
+        nullPointer.setTitle("Error");
+        nullPointer.setHeaderText("A null pointer exception has been found!");
+        nullPointer.setContentText("The program is accessing a null element causing the " +
+                "program to crash. You may want to choose another URL. \t");
+        nullPointer.show();
     }
 
 }
