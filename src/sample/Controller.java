@@ -99,7 +99,7 @@ public class Controller implements Initializable{
         speedSlider.setValue(10.0);
         speedSlider.setShowTickMarks(true);
         speedSlider.setShowTickMarks(true);
-        FPS = 1;
+        FPS = 10;
 
         //Time properties responsible for the animation
         Duration duration = Duration.millis(1000/FPS);

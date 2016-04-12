@@ -81,86 +81,37 @@ public class FileHandler {
            }
         }
 
-
-        String subString = "";
-        int j = 0;
-        String numberS = "";
-        int number = 0;
         String finalRle = "";
 
         Pattern pattern = Pattern.compile("\\d+|[ob]|\\$");
         Matcher matcher = pattern.matcher(rleCode);
-        while(matcher.find()){
+        while(matcher.find()) {
             int num = 1;
-            if(matcher.group().matches("\\d+")){
+            if (matcher.group().matches("\\d+")) {
                 num = Integer.parseInt(matcher.group());
-                System.out.print(num);
                 matcher.find();
             }
-            System.out.println(matcher.group());
+            for (int i = 0; i < num; i++) {
+                finalRle += matcher.group();
+            }
         }
-
-        /*
-           while(j < rleCode.length()){
-
-                subString = subString.concat("" + rleCode.charAt(j));
-
-                if(subString.matches("\\d+")){
-                    numberS += subString;
-                    number = Integer.parseInt(numberS);
-                    System.out.println(number);
-                }
-
-                if(rleCode.charAt(j) == 'o'){
-                    if(number != 0){
-                        for(int i = 0; i < number; i++){
-                            finalRle += "o";
-                        }
-                    }else{
-                        finalRle += "o";
-                    }
-
-                    subString = "";
-                    numberS = "";
-                    number = 0;
-                }
-                if(rleCode.charAt(j) == 'b'){
-                    if(number != 0){
-                        for(int i = 0; i < number; i++) {
-                            finalRle += "b";
-                        }
-                    }else{
-                        finalRle += "b";
-                    }
-                    subString = "";
-                    numberS = "";
-                    number = 0;
-                }
-                if(rleCode.charAt(j) == '$'){
-                    finalRle += "$";
-                    subString = "";
-                    numberS = "";
-
-                }
-                j++;
-        }
-        System.out.println(finalRle);
         rleToArray(finalRle);
-*/
     }
 
+    /**
+     *
+     * @param rle
+     */
     public void rleToArray(String rle){
 
-
         gameBoard.clearBoard();
-        int yCounter = 0;
-        int xCounter = 0;
-
+        int yCounter = 1;
+        int xCounter = 1;
 
         for(int i = 0; i < rle.length(); i++){
             if (rle.charAt(i) == '$'){
                 yCounter++;
-                xCounter = 0;
+                xCounter = 1;
             }
             if(rle.charAt(i) == 'b'){
                 gameBoard.gameBoard[xCounter][yCounter] = false;

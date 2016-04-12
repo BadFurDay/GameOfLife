@@ -15,8 +15,8 @@ public class Board {
 
     //Datafield
     protected GraphicsContext gc;
-    private int cellsWide = 40; //Number of cells in gameboards width
-    private int cellsHigh = 20; //Number of cells in gameboards height
+    private int cellsWide = 100; //Number of cells in gameboards width
+    private int cellsHigh = cellsWide/2; //Number of cells in gameboards height
     protected int genCounter;
     public boolean[][] gameBoard;
 
