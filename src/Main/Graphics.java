@@ -5,7 +5,7 @@
  * @author Rudi André Dahle
  */
 
-package sample;
+package Main;
 
 import javafx.scene.canvas.GraphicsContext;
 

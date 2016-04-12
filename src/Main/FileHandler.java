@@ -8,7 +8,7 @@
  * @author Olav Smevoll
  */
 
-package sample;
+package Main;
 
 import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import javafx.stage.FileChooser;
@@ -26,6 +26,7 @@ public class FileHandler {
     //Data field
     File file;
 
+    //Object
     Board gameBoard;
 
     //Constructor
@@ -75,7 +76,7 @@ public class FileHandler {
         String line;
         String rleCode = "";
 
-       while((line = br.readLine()) != null){
+        while((line = br.readLine()) != null){
            if((line.matches("[b, o, $, !, 0-9]*"))){
                 rleCode = rleCode.concat(line + "\n");
            }
@@ -124,7 +125,7 @@ public class FileHandler {
                 xCounter++;
             }
         }
-        System.out.println("done");
+        System.out.println("Pattern from disk");
 
     }
 
