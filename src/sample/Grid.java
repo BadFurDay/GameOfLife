@@ -6,7 +6,7 @@
  * @author Ginelle Ignacio
  */
 
-package Main;
+package sample;
 
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;

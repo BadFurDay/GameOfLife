@@ -1,5 +1,5 @@
 /**
- * Main class is responsible for all of the class.
+ * sample class is responsible for all of the class.
  * The stage of the FXML, Controller and other classes
  * will be called once the program is running.
  *
@@ -7,7 +7,7 @@
  * @author Ginelle Ignacio
  * @author Olav Smevoll
  */
-package Main;
+package sample;
 
 import javafx.application.Application;
 import javafx.fxml.FXML;

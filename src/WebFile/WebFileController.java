@@ -7,32 +7,22 @@
 
 package WebFile;
 
-import Main.PatternFormatException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-import Main.FileHandler;
-import Main.Board;
-import Main.Alerts;
+import sample.FileHandler;
+import sample.Board;
+import sample.Alerts;
 
-import javax.xml.bind.SchemaOutputResolver;
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
-import java.nio.channels.Channels;
-import java.nio.channels.ReadableByteChannel;
 import java.util.ResourceBundle;
-import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 
 public class WebFileController implements Initializable {

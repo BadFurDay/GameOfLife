@@ -1,5 +1,5 @@
 /**
- * Main controller is located at the bottom of the game window.
+ * sample controller is located at the bottom of the game window.
  * It contains all the buttons and sliders that the user will
  * use to manipulate the game.
  *
@@ -8,7 +8,7 @@
  * @author Olav Smevoll
  */
 
-package Main;
+package sample;
 
 import javafx.animation.Animation;
 import javafx.animation.Animation.Status;
@@ -27,7 +27,6 @@ import javafx.scene.input.MouseEvent;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.NoSuchElementException;
 import java.util.ResourceBundle;

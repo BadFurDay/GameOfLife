@@ -8,15 +8,12 @@
  * @author Olav Smevoll
  */
 
-package Main;
+package sample;
 
-import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import javafx.stage.FileChooser;
 import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
-import java.text.NumberFormat;
-import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 

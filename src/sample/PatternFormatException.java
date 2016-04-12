@@ -6,7 +6,7 @@
  * @author
  */
 
-package Main;
+package sample;
 
 
 public class PatternFormatException extends Exception {

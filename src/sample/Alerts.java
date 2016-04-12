@@ -6,7 +6,7 @@
  * @author Ginelle Ignacio
  */
 
-package Main;
+package sample;
 
 import javafx.scene.control.Alert;
 
