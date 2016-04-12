@@ -6,7 +6,7 @@
  * @author Olav Smevoll
  */
 
-package sample;
+package Main;
 
 import javafx.scene.canvas.GraphicsContext;
 

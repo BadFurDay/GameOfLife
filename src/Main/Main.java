@@ -7,7 +7,7 @@
  * @author Ginelle Ignacio
  * @author Olav Smevoll
  */
-package sample;
+package Main;
 
 import javafx.application.Application;
 import javafx.fxml.FXML;

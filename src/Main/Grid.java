@@ -6,11 +6,10 @@
  * @author Ginelle Ignacio
  */
 
-package sample;
+package Main;
 
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.paint.Color;
 
 
 public class Grid extends Canvas {

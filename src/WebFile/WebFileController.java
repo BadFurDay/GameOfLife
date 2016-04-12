@@ -88,7 +88,7 @@ public class WebFileController implements Initializable {
             BufferedReader br = new BufferedReader(new InputStreamReader(conn
                     .getInputStream()));
 
-            /*String url = field.getText();
+            /**String url = field.getText();
             URL destination = new URL(url);
             InputStream is = destination.openStream();
             BufferedReader br = new BufferedReader(new InputStreamReader(is));*/

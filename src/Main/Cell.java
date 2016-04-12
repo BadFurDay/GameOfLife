@@ -3,7 +3,7 @@
  *
  *  @author Rudi André Dahle
  */
-package sample;
+package Main;
 
 public class Cell {
 
