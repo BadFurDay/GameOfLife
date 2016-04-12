@@ -22,6 +22,7 @@ import Main.FileHandler;
 import Main.Board;
 import Main.Alerts;
 
+import javax.xml.bind.SchemaOutputResolver;
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -82,11 +83,13 @@ public class WebFileController implements Initializable {
         }
 
         try {
-            String url = field.getText();
+            URL url = new URL(field.getText());
+            System.out.println(url.openStream());
+            /*String url = field.getText();
             URL destination = new URL(url);
             URLConnection conn = destination.openConnection();
             BufferedReader br = new BufferedReader(new InputStreamReader(conn
-                    .getInputStream()));
+                    .getInputStream()));*/
 
             /**String url = field.getText();
             URL destination = new URL(url);
@@ -94,7 +97,7 @@ public class WebFileController implements Initializable {
             BufferedReader br = new BufferedReader(new InputStreamReader(is));*/
 
 
-            String line;
+           /* String line;
             String rleCode = "";
 
             while((line = br.readLine()) != null){
@@ -117,9 +120,9 @@ public class WebFileController implements Initializable {
                 for(int i = 0; i < num; i++){
                     finalRle += matcher.group();
                 }
-
             }
-            rleToArray(finalRle);
+            rleToArray(finalRle);*/
+
         } catch (MalformedURLException me){
             error.invalidURL();
         } catch (IOException ie) {
