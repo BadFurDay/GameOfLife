@@ -85,9 +85,9 @@ public class FileHandler {
 
         Pattern pattern = Pattern.compile("\\d+|[ob]|\\$");
         Matcher matcher = pattern.matcher(rleCode);
-        while(matcher.find()) {
+        while(matcher.find()){
             int num = 1;
-            if (matcher.group().matches("\\d+")) {
+            if(matcher.group().matches("\\d+")){
                 num = Integer.parseInt(matcher.group());
                 matcher.find();
             }
@@ -96,6 +96,7 @@ public class FileHandler {
             }
         }
         rleToArray(finalRle);
+
     }
 
     /**

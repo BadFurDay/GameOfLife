@@ -339,7 +339,7 @@ public class Board {
     /**
      * Clears the board when new board is loaded from rle file
      *
-     * @author Olav Smevoll
+     * @author Olav
      */
     public void clearBoard(){
         System.out.println("KJØRT");
