@@ -83,13 +83,13 @@ public class WebFileController implements Initializable {
         }
 
         try {
-            URL url = new URL(field.getText());
-            System.out.println(url.openStream());
-            /*String url = field.getText();
+            /*URL url = new URL(field.getText());
+            System.out.println(url.openStream());*/
+            String url = field.getText();
             URL destination = new URL(url);
             URLConnection conn = destination.openConnection();
             BufferedReader br = new BufferedReader(new InputStreamReader(conn
-                    .getInputStream()));*/
+                    .getInputStream()));
 
             /**String url = field.getText();
             URL destination = new URL(url);
