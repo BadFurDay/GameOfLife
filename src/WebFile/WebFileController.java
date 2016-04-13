@@ -88,8 +88,9 @@ public class WebFileController implements Initializable {
 
              check*/
 
-
-           /* String line;
+            //same method from readGameBoardFromDisk 
+            //Located on Package: sample, Class: FileHandler
+            String line;
             String rleCode = "";
 
             while((line = br.readLine()) != null){
@@ -113,7 +114,7 @@ public class WebFileController implements Initializable {
                     finalRle += matcher.group();
                 }
             }
-            rleToArray(finalRle);*/
+            rleToArray(finalRle);
 
         } catch (MalformedURLException me){
             error.invalidURL();
@@ -145,7 +146,7 @@ public class WebFileController implements Initializable {
                 xCounter++;
             }
         }
-        System.out.println("Web pattern");
+        System.out.println("Pattern from web");
     }
 
 
