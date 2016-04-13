@@ -41,11 +41,12 @@ public class Controller implements Initializable{
     //Data field
     @FXML private Canvas canvas;
     @FXML private ColorPicker colorPicker;
-    @FXML private ColorPicker backgroundColor;
-    @FXML private Slider zoomSlider;
+    //@FXML private ColorPicker backgroundColor;
+   // @FXML private Slider zoomSlider;
     @FXML private Slider speedSlider;
     @FXML private Button playPause;
     @FXML private Label genCounter;
+    @FXML private Label fpsCount;
     private GraphicsContext gc;
     private Timeline timeline;
     private boolean running = false;
@@ -78,6 +79,7 @@ public class Controller implements Initializable{
         readWeb = new Stage();
         error = new Alerts();
 
+
         //Grid properties
         graphics.setCellHeight(gameBoard.getBoardHeight());
         graphics.setCellWidth(gameBoard.getBoardWidth());
@@ -87,16 +89,17 @@ public class Controller implements Initializable{
         grid.setCellHeight(graphics.getCellHeight());
 
         //Initial properties in the GUI
-        genCounter.setText(gameBoard.getGenCounter());
+        genCounter.setText(gameBoard.getGenCounter());  //DUPLIKAT??
         graphics.gc.setFill(Color.rgb(26,0,104));
         colorPicker.setValue(Color.rgb(26,0,104));
-        backgroundColor.setValue(Color.SILVER);
-        zoomSlider.setValue(10.0);
-        zoomSlider.setShowTickMarks(true);
-        speedSlider.setValue(10.0);
+      //  backgroundColor.setValue(Color.SILVER);
+        //zoomSlider.setValue(10.0);
+        //zoomSlider.setShowTickMarks(true);
+        speedSlider.setValue(50.0);
         speedSlider.setShowTickMarks(true);
-        speedSlider.setShowTickMarks(true);
-        FPS = 10;
+        //speedSlider.setShowTickLabels(true);
+        FPS = speedSlider.getValue();
+        fpsCount.setText(Integer.toString((int)FPS));
 
         //Time properties responsible for the animation
         Duration duration = Duration.millis(1000/FPS);
@@ -106,12 +109,13 @@ public class Controller implements Initializable{
                     grid.draw();
                 }
             gameBoard.nextGeneration(grid);
-            genCounter.setText(gameBoard.getGenCounter());
+            genCounter.setText(gameBoard.getGenCounter());  //DUPLIKAT??
         });
         timeline = new Timeline();
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.getKeyFrames().add(keyframe);
     }
+
 
     /**
      * Method called when user selects a single cell
@@ -166,7 +170,6 @@ public class Controller implements Initializable{
     public void clearEvent(ActionEvent actionEvent){
         timeline.stop();
         playPause.setText("Play");
-        //gc.clearRect(0, 0, canvas.widthProperty().doubleValue(), canvas.heightProperty().doubleValue());
         gameBoard.resetGenCount();
         gameBoard.clearBoard();
 
@@ -187,7 +190,8 @@ public class Controller implements Initializable{
     public void speedChanged(MouseEvent event) {
         timeline.stop();
 
-        double FPS = speedSlider.getValue();
+        this.FPS = speedSlider.getValue();
+        fpsCount.setText(Integer.toString((int)FPS));
 
         if (running) {
             if (FPS != 0) {
@@ -215,10 +219,9 @@ public class Controller implements Initializable{
      * @param event Represents a mouse event used when
      *              the user interacts with the slider
      */
+  /*  public void zoomChanged(MouseEvent event) {
 
-    public void zoomChanged(MouseEvent event) {
-
-    }
+    }*/
 
     /**
      * Color picker changes the colors of the cells
@@ -238,7 +241,7 @@ public class Controller implements Initializable{
      * @param actionEvent represents an Action Event used to
      *                    when a button has been fired.
      */
-    public void backgroundChanged(ActionEvent actionEvent){
+    /*public void backgroundChanged(ActionEvent actionEvent){
         //MÅ FIKSES
         double canvasWidth = canvas.getWidth();
         double canvasHeight = canvas.getHeight();
@@ -246,7 +249,7 @@ public class Controller implements Initializable{
         gc.setFill(backgroundColor.getValue());
         gc.fillRect(0, 0, canvasWidth, canvasHeight);
 
-    }
+    }*/
 
 
     /**
@@ -274,7 +277,7 @@ public class Controller implements Initializable{
      * Method contains information about the rules of the game,
      * and details about the controllers.
      *
-     * @author Ginelle 01.04.16
+     * @author Ginelle
      * @param ae represents an Action Event used
      *           when a menu item has been clicked
      */
@@ -289,7 +292,7 @@ public class Controller implements Initializable{
     /**
      * "Open File..." menu item set to open FileChooser window
      *
-     * @author Rudi Andre Dahle 01.04.16
+     * @author Rudi Andre Dahle
      * @author Ginelle Ignacio
      * @param ae represents an Action Event used
      *           when a menu item has been clicked

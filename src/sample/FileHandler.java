@@ -52,10 +52,13 @@ public class FileHandler {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open file");
         fileChooser.setInitialDirectory(new File(System.getProperty("user.dir")));
+        System.out.println(System.getProperty("user.name"));
         fileChooser.getExtensionFilters().add(
                 new FileChooser.ExtensionFilter("Game of Life WebFile ", "*.rle"));
         file = fileChooser.showOpenDialog(null);
-        readGameBoardFromFile(file);
+        if(file != null) {
+            readGameBoardFromFile(file);
+        }
     }
 
 
@@ -120,8 +123,6 @@ public class FileHandler {
                 xCounter++;
             }
         }
-        System.out.println("Pattern from disk");
-
     }
 
 
