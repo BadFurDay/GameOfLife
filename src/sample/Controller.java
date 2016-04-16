@@ -15,6 +15,8 @@ import javafx.animation.Animation.Status;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -24,6 +26,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+import javafx.event.EventHandler;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -36,7 +39,7 @@ import javafx.util.Duration;
 import javafx.scene.paint.Color;
 
 
-public class Controller implements Initializable{
+public class Controller implements Initializable {
 
     //Data field
     @FXML private Canvas canvas;
@@ -125,9 +128,10 @@ public class Controller implements Initializable{
      *              the user interacts with the GUI.
      */
     public void selectCell(MouseEvent event){
-        //gameboard
-        //c.x og x.y
+        System.out.println("X: " + (int)Math.floor(event.getX()/graphics.getCellWidth()));
+        System.out.println("Y: " + (int)Math.floor(event.getY()/graphics.getCellHeight())+"\n");
     }
+
 
     /**
      * Method called when user plays or pauses the button
@@ -348,7 +352,6 @@ public class Controller implements Initializable{
      * @param ae represents an Action Event used to
      *           when a menu item has been clicked
      */
-
     public void closeWindow (ActionEvent ae){
         System.exit(0);
     }

@@ -53,7 +53,7 @@ public class Graphics {
      * @return cellWidth
      */
     public double getCellWidth() {
-        //System.out.println("Celle bredde: " + cellWidth);
+
         return cellWidth;
     }
 
@@ -65,7 +65,7 @@ public class Graphics {
      * @return cellHeight
      */
     public double getCellHeight() {
-        // System.out.println("Celle høyde: " + cellHeight);
+
         return cellHeight;
     }
 
@@ -78,7 +78,7 @@ public class Graphics {
      */
     public void setCellWidth(int cellsWide){
         this.cellWidth = (double)gc.getCanvas().widthProperty().intValue()/cellsWide;
-        System.out.println("Cellebredden er: " + getCellWidth());
+        System.out.println("Cellebredden er: " + cellWidth);
     }
 
 
@@ -91,6 +91,6 @@ public class Graphics {
      */
     public void setCellHeight(int cellsHigh) {
          this.cellHeight = (double)gc.getCanvas().heightProperty().intValue()/cellsHigh;
-        System.out.println("Cellehøyden er: " + getCellHeight());
+        System.out.println("Cellehøyden er: " + cellHeight);
     }
 }

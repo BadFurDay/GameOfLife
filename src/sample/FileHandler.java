@@ -25,6 +25,7 @@ public class FileHandler {
 
     //Object
     Board gameBoard;
+    Graphics graphics;
 
     //Constructor
     public FileHandler(Board gameboard){
@@ -96,7 +97,6 @@ public class FileHandler {
             }
         }
         rleToArray(finalRle);
-
     }
 
     /**
@@ -123,6 +123,7 @@ public class FileHandler {
                 xCounter++;
             }
         }
+       // graphics.draw(gameBoard.getGameBoard());
     }
 
 
