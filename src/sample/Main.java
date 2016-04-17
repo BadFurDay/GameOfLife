@@ -21,11 +21,15 @@ public class Main extends Application {
     @Override
     @FXML
     public void start(Stage primaryStage) throws Exception {
-            Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
-            primaryStage.setTitle("Game of Life");
-            primaryStage.setScene(new Scene(root));
 
-            primaryStage.show();
+            try {
+                Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
+                primaryStage.setTitle("Game of Life");
+                primaryStage.setScene(new Scene(root));
+                primaryStage.show();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
     }
 
     public static void main(String[] args) {

@@ -45,12 +45,13 @@ public class Controller implements Initializable {
     @FXML private Canvas canvas;
     @FXML private Canvas canvasGrid;
     @FXML private ColorPicker colorPicker;
-    //@FXML private ColorPicker backgroundColor;
-   // @FXML private Slider zoomSlider;
+    @FXML private ColorPicker backgroundColor;
+    @FXML private Slider zoomSlider;
     @FXML private Slider speedSlider;
     @FXML private Button playPause;
     @FXML private Label genCounter;
     @FXML private Label fpsCount;
+    @FXML private ToggleButton gridToggle;
     private GraphicsContext gc;
     private GraphicsContext gcGrid;
     private Timeline timeline;
@@ -99,19 +100,18 @@ public class Controller implements Initializable {
         grid.setCanvasWidth(gcGrid.getCanvas().widthProperty().intValue());
         grid.setCellWidth(graphics.getCellWidth());
         grid.setCellHeight(graphics.getCellHeight());
+        //grid.draw();
+
 
         //Initial properties in the GUI
         genCounter.setText(gameBoard.getGenCounter());  //DUPLIKAT??
         graphics.gc.setFill(Color.rgb(26,0,104));
         colorPicker.setValue(Color.rgb(26,0,104));
-        //backgroundColor.setValue(Color.SILVER);
-        //zoomSlider.setValue(10.0);
-        //zoomSlider.setShowTickMarks(true);
         speedSlider.setValue(50.0);
         speedSlider.setShowTickMarks(true);
-        //speedSlider.setShowTickLabels(true);
         FPS = speedSlider.getValue();
         fpsCount.setText(Integer.toString((int)FPS));
+        //gridToggle.setSelected(true);
 
         //Time properties responsible for the animation
         Duration duration = Duration.millis(1000/FPS);
@@ -131,7 +131,7 @@ public class Controller implements Initializable {
 
     /**
      * Method called when user selects a single cell
-     * to input in the canvas area
+     * to input into the canvas area
      *
      * @author Rudi
      * @param event Represents a mouse event used when
@@ -143,12 +143,17 @@ public class Controller implements Initializable {
         graphics.setYCell(yCoord);
         graphics.setXCell(xCoord);
         graphics.drawCell(gameBoard.getGameBoard());
+
+
     }
 
     /**
+     * Method called when user drags cells to input into
+     * the canvas area
      *
      * @author Rudi
-     * @param event
+     * @param event Represents a mouse event used when
+     *              the user interacts with the GUI.
      */
     public void dragCell(MouseEvent event){
         xCoord = event.getX();
@@ -179,10 +184,8 @@ public class Controller implements Initializable {
     }
 
 
-    /**
-     *
-     *Changes the text on the play button pause and vice versa
-     */
+
+    //Changes the text on the play button pause and vice versa
     public void playPauseEvent(){
         if(running){
             playPause.setText("Pause");
@@ -194,7 +197,8 @@ public class Controller implements Initializable {
 
     /**
      * Clear button to clear the cells in the canvas area
-     * @author Ginelle
+     *
+     * @author Ginelle Ignacio
      * @param actionEvent represents an Action Event used to
      *                    when a button has been fired.
      */
@@ -214,7 +218,7 @@ public class Controller implements Initializable {
     /**
      * Speed slider manipulates the speed of animation
      *
-     * @author Ginelle
+     * @author Ginelle Ignacio
      * @param event Represents a mouse event used when
      *              the user interacts with the slider.
      */
@@ -250,14 +254,22 @@ public class Controller implements Initializable {
      * @param event Represents a mouse event used when
      *              the user interacts with the slider
      */
-  /*  public void zoomChanged(MouseEvent event) {
+    public void zoomChanged(MouseEvent event) {
+        int zoom = (int)zoomSlider.getValue();
 
-    }*/
+        graphics.setCellHeight(zoom);
+        graphics.setCellWidth(zoom/2);
+        graphics.setCellHeight(gameBoard.getBoardHeight());
+        grid.setCanvasHeight(gc.getCanvas().heightProperty().intValue());
+        grid.setCanvasWidth(gc.getCanvas().widthProperty().intValue());
+        grid.setCellHeight(graphics.getCellHeight());
+        grid.setCellWidth(graphics.getCellWidth()/2);
+    }
 
     /**
      * Color picker changes the colors of the cells
      *
-     * @author Ginelle
+     * @author Ginelle Ignacio
      * @param actionEvent represents an Action Event used to
      *                    when a button has been fired.
      */
@@ -272,32 +284,36 @@ public class Controller implements Initializable {
      * @param actionEvent represents an Action Event used to
      *                    when a button has been fired.
      */
-    /*public void backgroundChanged(ActionEvent actionEvent){
+    public void backgroundChanged(ActionEvent actionEvent){
         //MÅ FIKSES
         double canvasWidth = canvas.getWidth();
         double canvasHeight = canvas.getHeight();
 
-        gc.setFill(backgroundColor.getValue());
-        gc.fillRect(0, 0, canvasWidth, canvasHeight);
+        gcGrid.setFill(backgroundColor.getValue());
+        gcGrid.fillRect(0, 0, canvasWidth, canvasHeight);
 
-    }*/
+    }
 
 
     /**
      * Grid toggle to make the grid visible or invisible
      *
      * @author Rudi
-     * @param actionEvent represents an Action Event used
+     * @param actionEvent Represents an Action Event used
      *                    when a button has been fired.
      */
 
     public void gridEvent(ActionEvent actionEvent) {
         if (!showGrid) {
             showGrid = true;
+            gridToggle.setSelected(true);
             grid.draw();
+
         }else {
             showGrid = false;
             grid.clearGrid();
+            gridToggle.setSelected(false);
+
            // graphics.draw(gameBoard.getGameBoard());
         }
     }
@@ -321,6 +337,7 @@ public class Controller implements Initializable {
 
     /**
      * "Open File..." menu item set to open FileChooser window
+     * Method also includes exceptions.
      *
      * @author Rudi Andre Dahle
      * @author Ginelle Ignacio
@@ -345,7 +362,7 @@ public class Controller implements Initializable {
             System.err.println("Error reading from file! " + ie);
             error.errorReading();
         } catch(ArrayIndexOutOfBoundsException arraye){
-            System.err.println("Element at an index is outside the array bounds" + arraye);
+            System.err.println("Element at an index is outside the array bounds " + arraye);
             error.arrayException();
         }
     }
@@ -367,7 +384,6 @@ public class Controller implements Initializable {
         readWeb.setTitle("Read web file");
         readWeb.setScene(new Scene(webRoot));
         readWeb.show();
-        //web
     }
 
     /**

@@ -61,6 +61,10 @@ public class Graphics {
         draw(graphicsBoard);
     }
 
+    /*public void clearCell(){
+        graphicsBoard[getXCell()][getYCell()] = false;
+    }*/
+
     /**
      *
      * @author Rudi

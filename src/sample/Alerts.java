@@ -123,6 +123,9 @@ public class Alerts {
     }
 
     /**
+     * Error dialog to notify the user that a Null Pointer Exception
+     * has occurred.
+     *
      * @author Ginelle Ignacio
      */
     public void nullException(){
