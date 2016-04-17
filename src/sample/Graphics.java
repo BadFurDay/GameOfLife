@@ -20,6 +20,8 @@ public class Graphics {
     protected GraphicsContext gc;
     private double cellHeight; //Height of each individual cell
     private double cellWidth;  //Width of each individual cell
+    private int xCell; // X-index of cell
+    private int yCell; // Y-index of cell
 
     //Constructor
     public Graphics (GraphicsContext gc/*, int cellWidth, int cellHeight*/){
@@ -33,8 +35,8 @@ public class Graphics {
      * @param graphicsBoard
      */
     public void draw(boolean[][] graphicsBoard) {
-        for (int x = 0; x < graphicsBoard.length; x++) {
-            for (int y = 0; y < graphicsBoard[0].length; y++) {
+        for(int x = 0; x < graphicsBoard.length; x++) {
+            for(int y = 0; y < graphicsBoard[0].length; y++) {
                 if (graphicsBoard[x][y]) {
                    // gc.fillRoundRect(x * getCellWidth(), y * getCellHeight(), (getCellWidth()*0.8), (getCellHeight()*0.8), 100, 100);
                     gc.fillRect(x * getCellWidth(), y * getCellHeight(), getCellWidth(), getCellHeight());
@@ -45,15 +47,63 @@ public class Graphics {
         }
     }
 
+    /**
+     *
+     * @author Rudi
+     * @param graphicsBoard
+     */
+    public void drawCell(boolean[][] graphicsBoard) {
+        if (!graphicsBoard[getXCell()][getYCell()]) {
+            graphicsBoard[getXCell()][getYCell()] = true;
+        } else {
+            graphicsBoard[getXCell()][getYCell()] = false;
+        }
+        draw(graphicsBoard);
+    }
+
+    /**
+     *
+     * @author Rudi
+     * @param xCoord
+     */
+    public void setXCell(double xCoord){
+        xCell = (int)Math.floor(xCoord/getCellWidth());
+    }
+
+    /**
+     *
+     * @author Rudi
+     * @param yCoord
+     */
+    public void setYCell(double yCoord){
+        yCell = (int)Math.floor(yCoord/getCellHeight());
+    }
+
+    /**
+     *
+     * @author Rudi
+     * @return
+     */
+    public int getXCell(){
+        return xCell;
+    }
+
+    /**
+     *
+     * @author Rudi
+     * @return
+     */
+    public int getYCell(){
+        return yCell;
+    }
 
     /**
      * Returns the cellWidth.
      *
-     * @author Rudi André Dahle on 25.03.16
+     * @author Rudi
      * @return cellWidth
      */
     public double getCellWidth() {
-
         return cellWidth;
     }
 
@@ -61,11 +111,10 @@ public class Graphics {
     /**
      * Returns the cellHeight.
      *
-     * @author Rudi André Dahle on 25.03.16
+     * @author Rudi
      * @return cellHeight
      */
     public double getCellHeight() {
-
         return cellHeight;
     }
 
@@ -73,7 +122,7 @@ public class Graphics {
     /**
      * Calculates the width of a single cell.
      *
-     * @author Rudi André Dahle 5.03.16
+     * @author Rudi
      * @return cellWidth
      */
     public void setCellWidth(int cellsWide){
@@ -86,7 +135,7 @@ public class Graphics {
     /**
      * Calculates the height of a single cell.
      *
-     * @author Rudi André Dahle
+     * @author Rudi
      * @return cellHeight
      */
     public void setCellHeight(int cellsHigh) {

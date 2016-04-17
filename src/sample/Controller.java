@@ -43,6 +43,7 @@ public class Controller implements Initializable {
 
     //Data field
     @FXML private Canvas canvas;
+    @FXML private Canvas canvasGrid;
     @FXML private ColorPicker colorPicker;
     //@FXML private ColorPicker backgroundColor;
    // @FXML private Slider zoomSlider;
@@ -51,10 +52,13 @@ public class Controller implements Initializable {
     @FXML private Label genCounter;
     @FXML private Label fpsCount;
     private GraphicsContext gc;
+    private GraphicsContext gcGrid;
     private Timeline timeline;
     private boolean running = false;
     private boolean showGrid = false;
     private double FPS; //frames per second
+    private double xCoord;
+    private double yCoord;
 
 
     //Objects
@@ -66,12 +70,14 @@ public class Controller implements Initializable {
     Stage helpWindow;
     Stage readWeb;
     Alerts error;
+    Cell cell;
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
         //Objects
+        gcGrid = canvasGrid.getGraphicsContext2D();
         gc = canvas.getGraphicsContext2D();
         gameBoard = new Board();
         graphics = new Graphics(gc);
@@ -81,13 +87,16 @@ public class Controller implements Initializable {
         helpWindow = new Stage();
         readWeb = new Stage();
         error = new Alerts();
+        cell = new Cell();
 
 
         //Grid properties
         graphics.setCellHeight(gameBoard.getBoardHeight());
         graphics.setCellWidth(gameBoard.getBoardWidth());
-        grid.setCanvasHeight(gc.getCanvas().heightProperty().intValue());
-        grid.setCanvasWidth(gc.getCanvas().widthProperty().intValue());
+        graphics.setXCell(xCoord);
+        graphics.setYCell(yCoord);
+        grid.setCanvasHeight(gcGrid.getCanvas().heightProperty().intValue());
+        grid.setCanvasWidth(gcGrid.getCanvas().widthProperty().intValue());
         grid.setCellWidth(graphics.getCellWidth());
         grid.setCellHeight(graphics.getCellHeight());
 
@@ -95,7 +104,7 @@ public class Controller implements Initializable {
         genCounter.setText(gameBoard.getGenCounter());  //DUPLIKAT??
         graphics.gc.setFill(Color.rgb(26,0,104));
         colorPicker.setValue(Color.rgb(26,0,104));
-      //  backgroundColor.setValue(Color.SILVER);
+        //backgroundColor.setValue(Color.SILVER);
         //zoomSlider.setValue(10.0);
         //zoomSlider.setShowTickMarks(true);
         speedSlider.setValue(50.0);
@@ -124,12 +133,29 @@ public class Controller implements Initializable {
      * Method called when user selects a single cell
      * to input in the canvas area
      *
+     * @author Rudi
      * @param event Represents a mouse event used when
      *              the user interacts with the GUI.
      */
     public void selectCell(MouseEvent event){
-        System.out.println("X: " + (int)Math.floor(event.getX()/graphics.getCellWidth()));
-        System.out.println("Y: " + (int)Math.floor(event.getY()/graphics.getCellHeight())+"\n");
+        xCoord = event.getX();
+        yCoord = event.getY();
+        graphics.setYCell(yCoord);
+        graphics.setXCell(xCoord);
+        graphics.drawCell(gameBoard.getGameBoard());
+    }
+
+    /**
+     *
+     * @author Rudi
+     * @param event
+     */
+    public void dragCell(MouseEvent event){
+        xCoord = event.getX();
+        yCoord = event.getY();
+        graphics.setYCell(yCoord);
+        graphics.setXCell(xCoord);
+        graphics.drawCell(gameBoard.getGameBoard());
     }
 
 
@@ -154,6 +180,7 @@ public class Controller implements Initializable {
 
 
     /**
+     *
      *Changes the text on the play button pause and vice versa
      */
     public void playPauseEvent(){
@@ -267,12 +294,11 @@ public class Controller implements Initializable {
     public void gridEvent(ActionEvent actionEvent) {
         if (!showGrid) {
             showGrid = true;
-            //graphics.draw(gameBoard.getGameBoard());
             grid.draw();
         }else {
             showGrid = false;
             grid.clearGrid();
-            graphics.draw(gameBoard.getGameBoard());
+           // graphics.draw(gameBoard.getGameBoard());
         }
     }
 

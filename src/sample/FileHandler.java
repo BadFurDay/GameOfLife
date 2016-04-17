@@ -101,10 +101,10 @@ public class FileHandler {
 
     /**
      *
+     * @author Olav
      * @param rle
      */
     public void rleToArray(String rle){
-
         gameBoard.clearBoard();
         int yCounter = 1;
         int xCounter = 1;

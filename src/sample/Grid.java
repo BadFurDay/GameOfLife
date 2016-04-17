@@ -15,15 +15,15 @@ import javafx.scene.canvas.GraphicsContext;
 public class Grid extends Canvas {
 
     //Data field
-    private GraphicsContext gc;
+    private GraphicsContext gcGrid;
     private double canvasHeight;
     private double canvasWidth;
     private double cellWidth;
     private double cellHeight;
 
     //Constructor
-    public Grid(GraphicsContext gc) {
-        this.gc = gc;
+    public Grid(GraphicsContext gcGrid) {
+        this.gcGrid = gcGrid;
         /*// Redraw canvas when size changes.
         widthProperty().addListener(evt -> draw());
         heightProperty().addListener(evt -> draw());*/
@@ -38,12 +38,12 @@ public class Grid extends Canvas {
     public void draw() {
         // vertical lines
         for (double x = 0; x < canvasWidth; x += cellWidth) {
-            gc.strokeLine((int)x, 0, (int)x, (int)canvasHeight);
+            gcGrid.strokeLine((int)x, 0, (int)x, (int)canvasHeight);
         }
 
         // horizontal lines
         for (double y = 0; y < canvasHeight; y += cellHeight) {
-            gc.strokeLine(0, (int)y, (int)canvasWidth, (int)y);
+            gcGrid.strokeLine(0, (int)y, (int)canvasWidth, (int)y);
         }
     }
 
@@ -54,7 +54,7 @@ public class Grid extends Canvas {
      * @author Ginelle
      */
     public void clearGrid(){
-         gc.clearRect(0, 0, canvasWidth, canvasHeight);
+         gcGrid.clearRect(0, 0, canvasWidth, canvasHeight);
     }
 
 
@@ -65,7 +65,7 @@ public class Grid extends Canvas {
      * @return
      */
     public int getCanvasHeight() {
-        return gc.getCanvas().heightProperty().intValue();
+        return gcGrid.getCanvas().heightProperty().intValue();
     }
 
 
@@ -108,7 +108,7 @@ public class Grid extends Canvas {
      *  @return canvasWidth
      */
     public int getCanvasWidth() {
-        return gc.getCanvas().widthProperty().intValue();
+        return gcGrid.getCanvas().widthProperty().intValue();
     }
 
     /**
