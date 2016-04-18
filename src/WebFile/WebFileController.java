@@ -29,8 +29,6 @@ import java.util.regex.Pattern;
 
 public class WebFileController implements Initializable {
 
-
-
     //Data field
     @FXML protected TextField field;
     @FXML protected Button submit;
@@ -58,10 +56,9 @@ public class WebFileController implements Initializable {
 
 
     /**
-     * Method called when user submits a URL to read.
-     * Label will change and show a message of the
-     * current situation of the file.
-     * Method also includes exceptions.
+     * Method called to read a URL file submitted by the user.
+     * Label will change and show a message of the current
+     * situation of the file. Method also includes exceptions.
      *
      * @author Olav Smevoll
      * @author Ginelle Ignacio
