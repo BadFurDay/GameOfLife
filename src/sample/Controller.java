@@ -68,7 +68,7 @@ public class Controller implements Initializable {
 
     //Objects
     Grid grid;
-    Board gameBoard;
+    Board gameBoard = Board.getBoard();
     Graphics graphics;
     FileHandler reader;
     PatternFormatException pfe;
@@ -85,10 +85,9 @@ public class Controller implements Initializable {
         gc = canvas.getGraphicsContext2D();
         gcGrid = canvasGrid.getGraphicsContext2D();
         gcBG = canvasBG.getGraphicsContext2D();
-        gameBoard = new Board();
         graphics = new Graphics(gc);
         grid = new Grid(gcGrid);
-        reader = new FileHandler(gameBoard);
+        reader = new FileHandler();
         pfe = new PatternFormatException();
         helpWindow = new Stage();
         readWeb = new Stage();
@@ -114,7 +113,7 @@ public class Controller implements Initializable {
         colorPicker.setValue(Color.rgb(26,0,104));
         speedSlider.setValue(50.0);
         speedSlider.setShowTickMarks(true);
-        zoomSlider.setShowTickMarks(true);
+       // zoomSlider.setShowTickMarks(true);
         FPS = speedSlider.getValue();
         fpsCount.setText(Integer.toString((int)FPS));
         //zoomCount.setText(Integer.toString((int)zoomSlider.getValue));

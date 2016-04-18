@@ -14,19 +14,28 @@ import javafx.scene.input.MouseEvent;
 
 public class Board {
 
+    private static Board board;
+
     //Datafield
     //protected GraphicsContext gc;
-    private int cellsWide = 50; //Number of cells in gameboards width
+    private int cellsWide = 100; //Number of cells in gameboards width
     private int cellsHigh = cellsWide/2; //Number of cells in gameboards height
     protected int genCounter;
     public boolean[][] gameBoard;
 
 
     //Constructor
-    public Board() {
+    private Board() {
         System.out.println("Antall celler bredde: " + getBoardWidth());
         System.out.println("Antall celler høyde: " + getBoardHeight());
         gameBoard = new boolean[getBoardWidth()][getBoardHeight()];
+    }
+
+    public static Board getBoard(){
+        if(board == null){
+            board = new Board();
+        }
+        return board;
     }
 
 
