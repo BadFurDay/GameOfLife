@@ -136,7 +136,7 @@ public class Controller implements Initializable {
      * Method called when user selects a single cell
      * to input into the canvas area
      *
-     * @author Rudi
+     * @author Rudi André Dahle
      * @param event Represents a mouse event used when
      *              the user interacts with the GUI.
      */
@@ -154,7 +154,7 @@ public class Controller implements Initializable {
      * Method called when user drags cells to input into
      * the canvas area
      *
-     * @author Rudi
+     * @author Rudi André Dahle
      * @param event Represents a mouse event used when
      *              the user interacts with the GUI.
      */
