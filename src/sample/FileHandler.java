@@ -60,6 +60,8 @@ public class FileHandler {
         if(file != null) {
             readGameBoardFromFile(file);
         }
+
+
     }
 
 
@@ -125,23 +127,4 @@ public class FileHandler {
         }
        // graphics.draw(gameBoard.getGameBoard());
     }
-
-
-
-    /**
-     * Reading file from web
-     *
-     * @author Ginelle Ignacio
-     * @param url Returns the web address
-     * @throws IOException
-     * @throws PatternFormatException
-     */
-
-   public void readGameBoardFromURL(String url) throws IOException,
-            PatternFormatException {
-            URL destination = new URL(url);
-            URLConnection conn = destination.openConnection();
-            readGameBoard(new InputStreamReader(conn.getInputStream()));
-    }
-
 }

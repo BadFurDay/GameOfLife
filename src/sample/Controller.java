@@ -52,6 +52,7 @@ public class Controller implements Initializable {
     @FXML private Button playPause;
     @FXML private Label genCounter;
     @FXML private Label fpsCount;
+    @FXML private Label zoomCount;
     @FXML private ToggleButton gridToggle;
     private GraphicsContext gc;
     private GraphicsContext gcGrid;
@@ -113,8 +114,10 @@ public class Controller implements Initializable {
         colorPicker.setValue(Color.rgb(26,0,104));
         speedSlider.setValue(50.0);
         speedSlider.setShowTickMarks(true);
+        zoomSlider.setShowTickMarks(true);
         FPS = speedSlider.getValue();
         fpsCount.setText(Integer.toString((int)FPS));
+        //zoomCount.setText(Integer.toString((int)zoomSlider.getValue));
         //gridToggle.setSelected(true);
 
         //Time properties responsible for the animation
@@ -137,7 +140,7 @@ public class Controller implements Initializable {
      * Method called when user selects a single cell
      * to input into the canvas area
      *
-     * @author Rudi
+     * @author Rudi André Dahle
      * @param event Represents a mouse event used when
      *              the user interacts with the GUI.
      */
@@ -154,7 +157,7 @@ public class Controller implements Initializable {
      * Method called when user drags cells to input into
      * the canvas area
      *
-     * @author Rudi
+     * @author Rudi André Dahle
      * @param event Represents a mouse event used when
      *              the user interacts with the GUI.
      */
@@ -277,7 +280,8 @@ public class Controller implements Initializable {
      *                    when a button has been fired.
      */
     public void colorChanged(ActionEvent actionEvent){
-        graphics.gc.setFill(colorPicker.getValue());
+            graphics.gc.setFill(colorPicker.getValue());
+
     }
 
 
@@ -288,7 +292,6 @@ public class Controller implements Initializable {
      *                    when a button has been fired.
      */
     public void backgroundChanged(ActionEvent actionEvent){
-        //MÅ FIKSES
         double canvasWidth = canvas.getWidth();
         double canvasHeight = canvas.getHeight();
 
@@ -330,10 +333,14 @@ public class Controller implements Initializable {
      *           when a menu item has been clicked
      */
     public void helpEvent (ActionEvent ae) throws IOException {
+        try{
         Parent helpRoot = FXMLLoader.load(getClass().getClassLoader().getResource("Rules/Guide.fxml"));
         helpWindow.setTitle("Guidelines");
         helpWindow.setScene(new Scene(helpRoot));
         helpWindow.show();
+        } catch (IOException io){
+            io.printStackTrace();
+        }
     }
 
     /**
@@ -380,10 +387,14 @@ public class Controller implements Initializable {
      */
 
     public void webFile(ActionEvent ae) throws IOException {
+        try {
         Parent webRoot = FXMLLoader.load(getClass().getClassLoader().getResource("WebFile/Webfile.fxml"));
         readWeb.setTitle("Read web file");
         readWeb.setScene(new Scene(webRoot));
         readWeb.show();
+        } catch (IOException io){
+            io.printStackTrace();
+        }
     }
 
     /**
