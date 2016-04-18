@@ -15,7 +15,7 @@ import javafx.scene.input.MouseEvent;
 public class Board {
 
     //Datafield
-    protected GraphicsContext gc;
+    //protected GraphicsContext gc;
     private int cellsWide = 50; //Number of cells in gameboards width
     private int cellsHigh = cellsWide/2; //Number of cells in gameboards height
     protected int genCounter;

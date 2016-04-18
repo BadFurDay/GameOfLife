@@ -25,8 +25,10 @@
         </MenuBar>
         <AnchorPane prefHeight="640.0" prefWidth="1280.0" style="-fx-background-color: #dcdcdc;" AnchorPane.bottomAnchor="153.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="31.0">
             <children>
-                <Canvas fx:id="canvasGrid" height="640.0" layoutX="1.0" width="1280.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                <Canvas fx:id="canvas" height="640.0" layoutX="1.0" onMouseClicked="#selectCell" onMouseDragged="#dragCell" width="1280.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                <Canvas fx:id="canvasBG" height="640.0" layoutX="1.0" width="1280.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                <Canvas fx:id="canvas" height="640.0" layoutX="1.0" width="1280.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                <Canvas fx:id="canvasGrid" height="640.0" layoutX="1.0" onMouseClicked="#selectCell" onMouseDragged="#dragCell" width="1280.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+
             </children>
         </AnchorPane>
         <Button fx:id="playPause" layoutX="31.0" layoutY="530.0" mnemonicParsing="false" onAction="#OnStartClick" onMouseClicked="#playPauseEvent" prefHeight="34.0" prefWidth="60.0" text="Play" AnchorPane.bottomAnchor="92.0" AnchorPane.leftAnchor="31.0" />

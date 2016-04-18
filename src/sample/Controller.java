@@ -44,6 +44,7 @@ public class Controller implements Initializable {
     //Data field
     @FXML private Canvas canvas;
     @FXML private Canvas canvasGrid;
+    @FXML private Canvas canvasBG;
     @FXML private ColorPicker colorPicker;
     @FXML private ColorPicker backgroundColor;
     @FXML private Slider zoomSlider;
@@ -54,6 +55,8 @@ public class Controller implements Initializable {
     @FXML private ToggleButton gridToggle;
     private GraphicsContext gc;
     private GraphicsContext gcGrid;
+    private GraphicsContext gcBG;
+
     private Timeline timeline;
     private boolean running = false;
     private boolean showGrid = false;
@@ -78,11 +81,12 @@ public class Controller implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         //Objects
-        gcGrid = canvasGrid.getGraphicsContext2D();
         gc = canvas.getGraphicsContext2D();
+        gcGrid = canvasGrid.getGraphicsContext2D();
+        gcBG = canvasBG.getGraphicsContext2D();
         gameBoard = new Board();
         graphics = new Graphics(gc);
-        grid = new Grid(gc);
+        grid = new Grid(gcGrid);
         reader = new FileHandler(gameBoard);
         pfe = new PatternFormatException();
         helpWindow = new Stage();
@@ -143,8 +147,7 @@ public class Controller implements Initializable {
         graphics.setYCell(yCoord);
         graphics.setXCell(xCoord);
         graphics.drawCell(gameBoard.getGameBoard());
-
-
+        System.out.println(event.getSource());
     }
 
     /**
@@ -260,8 +263,8 @@ public class Controller implements Initializable {
         graphics.setCellHeight(zoom);
         graphics.setCellWidth(zoom/2);
         graphics.setCellHeight(gameBoard.getBoardHeight());
-        grid.setCanvasHeight(gc.getCanvas().heightProperty().intValue());
-        grid.setCanvasWidth(gc.getCanvas().widthProperty().intValue());
+        grid.setCanvasHeight(gcGrid.getCanvas().heightProperty().intValue());
+        grid.setCanvasWidth(gcGrid.getCanvas().widthProperty().intValue());
         grid.setCellHeight(graphics.getCellHeight());
         grid.setCellWidth(graphics.getCellWidth()/2);
     }
@@ -289,8 +292,8 @@ public class Controller implements Initializable {
         double canvasWidth = canvas.getWidth();
         double canvasHeight = canvas.getHeight();
 
-        gcGrid.setFill(backgroundColor.getValue());
-        gcGrid.fillRect(0, 0, canvasWidth, canvasHeight);
+        gcBG.setFill(backgroundColor.getValue());
+        gcBG.fillRect(0, 0, canvasWidth, canvasHeight);
 
     }
 
@@ -302,7 +305,6 @@ public class Controller implements Initializable {
      * @param actionEvent Represents an Action Event used
      *                    when a button has been fired.
      */
-
     public void gridEvent(ActionEvent actionEvent) {
         if (!showGrid) {
             showGrid = true;
@@ -327,7 +329,6 @@ public class Controller implements Initializable {
      * @param ae represents an Action Event used
      *           when a menu item has been clicked
      */
-
     public void helpEvent (ActionEvent ae) throws IOException {
         Parent helpRoot = FXMLLoader.load(getClass().getClassLoader().getResource("Rules/Guide.fxml"));
         helpWindow.setTitle("Guidelines");
@@ -344,7 +345,6 @@ public class Controller implements Initializable {
      * @param ae represents an Action Event used
      *           when a menu item has been clicked
      */
-
     public void openFiles(ActionEvent ae)throws IOException {
         try {
             reader.chooseFile();
