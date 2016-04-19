@@ -41,7 +41,6 @@ public class FileHandler {
      * @author Ginelle
      */
     public void readGameBoard(Reader r) throws IOException {
-
     }
 
 
@@ -54,11 +53,13 @@ public class FileHandler {
     public void chooseFile() throws IOException {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open file");
-        fileChooser.setInitialDirectory(new File(System.getProperty("user.dir")));
+        fileChooser.setInitialDirectory(new File(System.getProperty("user.dir")+"/rle"));
         fileChooser.getExtensionFilters().add(
                 new FileChooser.ExtensionFilter("Game of Life WebFile ", "*.rle"));
         file = fileChooser.showOpenDialog(null);
-        readGameBoardFromFile(file);
+        if (file != null) {
+            readGameBoardFromFile(file);
+        }
     }
 
 

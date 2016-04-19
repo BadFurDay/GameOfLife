@@ -38,8 +38,8 @@ public class Graphics {
         for(int x = 0; x < graphicsBoard.length; x++) {
             for(int y = 0; y < graphicsBoard[0].length; y++) {
                 if (graphicsBoard[x][y]) {
-                   // gc.fillRoundRect(x * getCellWidth(), y * getCellHeight(), (getCellWidth()*0.8), (getCellHeight()*0.8), 100, 100);
-                    gc.fillRect(x * getCellWidth(), y * getCellHeight(), getCellWidth(), getCellHeight());
+                    gc.fillRoundRect(x * getCellWidth(), y * getCellHeight(), (getCellWidth()*0.8), (getCellHeight()*0.8), 100, 100);
+                   // gc.fillRect(x * getCellWidth(), y * getCellHeight(), getCellWidth()*0.8, getCellHeight()*0.8);
                 } else if (!graphicsBoard[x][y]) {
                     gc.clearRect(x * getCellWidth(), y * getCellHeight(), getCellWidth(), getCellHeight());
                 }
