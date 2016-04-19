@@ -204,9 +204,9 @@ public class Board {
      * @author Rudi André Dahle on 01.03.2016.
      * @param gameBoard
      */
-   /* public void setGameBoard(boolean[][] gameBoard) {
+    public void setGameBoard(boolean[][] gameBoard) {
         this.gameBoard = gameBoard;
-    }*/
+    }
 
     /**
      * Clears the board when new board is loaded from rle file

@@ -88,8 +88,6 @@ public class FileHandler {
      * @param rle
      * @author Olav Smevoll
      */
-
-
     public void fromRleToSimplified(String rle) {
         String finalRle = "";
 
@@ -106,14 +104,12 @@ public class FileHandler {
             }
         }
         rleToArray(finalRle);
-
     }
 
     /**
      * @param rle
      */
     public void rleToArray(String rle) {
-
         gameBoard.clearBoard();
         int yCounter = 5;
         int xCounter = 5;
@@ -132,6 +128,7 @@ public class FileHandler {
                 xCounter++;
             }
         }
+
     }
 }
 

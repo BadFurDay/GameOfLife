@@ -10,17 +10,17 @@ import javafx.scene.input.MouseEvent;
 public class Cell {
 
     //Data field
-    private double xCoord;
-    private double yCoord;
+    /*private double xCoord;
+    private double yCoord;*/
 
     //Constructor
-    public Cell(){
+    /*public Cell(){
 
     }
 
     public double getxCoord(){
         return xCoord;
-    }
+    }*/
 
 
 
