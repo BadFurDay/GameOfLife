@@ -125,7 +125,7 @@ public class Controller implements Initializable {
                /* if(showGrid){
                     grid.draw();
                 }*/
-            gameBoard.nextGeneration(grid);
+            gameBoard.nextGeneration(/*grid*/);
             genCounter.setText(gameBoard.getGenCounter());  //DUPLIKAT??
         });
         timeline = new Timeline();
@@ -143,12 +143,19 @@ public class Controller implements Initializable {
      *              the user interacts with the GUI.
      */
     public void selectCell(MouseEvent event){
-        xCoord = event.getX();
-        yCoord = event.getY();
-        graphics.setYCell(yCoord);
-        graphics.setXCell(xCoord);
-        graphics.drawCell(gameBoard.getGameBoard());
-        System.out.println(event.getSource());
+
+       // try {
+
+            xCoord = event.getX();
+            yCoord = event.getY();
+            graphics.setYCell(yCoord);
+            graphics.setXCell(xCoord);
+            graphics.drawCell(gameBoard.getGameBoard());
+
+      /*  }catch (ArrayIndexOutOfBoundsException rudi) {
+            gameBoard.getGameBoard();
+            graphics.draw(gameBoard.getGameBoard());
+        }*/
     }
 
     /**
@@ -212,12 +219,6 @@ public class Controller implements Initializable {
         gameBoard.resetGenCount();
         gameBoard.clearBoard();
         graphics.draw(gameBoard.getGameBoard());
-
-       /* if (showGrid) {
-            grid.draw();
-        } else {
-            grid.clearGrid();
-        }*/
     }
 
     /**
@@ -238,7 +239,7 @@ public class Controller implements Initializable {
                 Duration duration = Duration.millis(1000 / FPS);
                 KeyFrame keyframe = new KeyFrame(duration, (ActionEvent e) -> {
                     graphics.draw(gameBoard.getGameBoard());
-                    gameBoard.nextGeneration(grid);
+                    gameBoard.nextGeneration(/*grid*/);
                     genCounter.setText(gameBoard.getGenCounter());
                         /*if(showGrid){
                             grid.draw();
@@ -312,7 +313,6 @@ public class Controller implements Initializable {
             showGrid = true;
             gridToggle.setSelected(true);
             grid.draw();
-
         }else {
             showGrid = false;
             grid.clearGrid();

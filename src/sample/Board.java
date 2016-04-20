@@ -18,19 +18,23 @@ public class Board {
 
     //Datafield
     //protected GraphicsContext gc;
-    private int cellsWide = 100; //Number of cells in gameboards width
+    private int cellsWide = 50; //Number of cells in gameboards width
     private int cellsHigh = cellsWide/2; //Number of cells in gameboards height
     protected int genCounter;
     public boolean[][] gameBoard;
+    public boolean[][] newGameBoard;
 
 
     //Constructor
-    private Board() {
-        System.out.println("Antall celler bredde: " + getBoardWidth());
-        System.out.println("Antall celler høyde: " + getBoardHeight());
+    public Board() {
         gameBoard = new boolean[getBoardWidth()][getBoardHeight()];
     }
 
+
+    /**
+     *
+     * @return
+     */
     public static Board getBoard(){
         if(board == null){
             board = new Board();
@@ -48,7 +52,7 @@ public class Board {
      *         checking the rules
      * @author Olav Smevoll on 08.03.2016
      */
-    protected int countNeighbours(int x, int y) {
+    private int countNeighbours(int x, int y) {
         int counter = 0;
         int blx = gameBoard.length - 1;
         int bly = gameBoard[0].length - 1;
@@ -101,8 +105,9 @@ public class Board {
      *
      *  @author Rudi André Dahle on 04.03.2016
      */
-    public void nextGeneration(Grid grid) {
+    public void nextGeneration() {
         boolean[][] newGameBoard = new boolean[getBoardWidth()][getBoardHeight()];
+        //gameBoard = getGameBoard();
         for (int x = 0; x < gameBoard.length; x++) {
             for (int y = 0; y < gameBoard[0].length; y++) {
                 if (gameBoard[x][y]) {
@@ -159,32 +164,16 @@ public class Board {
 
 
     /**
-     * Sets Gameboard's height
+     * Sets the GameBoard
      *
-     * @author Rudi André Dahle on 24.03.16
-     * @param y Integer value of the board's height
+     * @author Rudi André Dahle on 01.03.2016.
+     * @param gameBoard
      */
-   /* public void setBoardHeight(int y) {
-        cellsHigh = y;
-    }*/
-
-
-    /**
-     * Created by RudiAndre on 09.03.2016.
-     * @return
-     */
-    /*public int getCanvasHeight() {
-        return canvas.heightProperty().intValue();
-    }*/
-
-
-    /**
-     * Created by RudiAndre on 09.03.2016.
-     * @return
-     */
-   /* public int getCanvasWidth() {
-        return canvas.widthProperty().intValue();
-    }*/
+    public void setGameBoard(boolean[][] gameBoard) {
+        this.cellsWide = gameBoard[0].length;
+        this.cellsHigh = gameBoard.length;
+        this.gameBoard = gameBoard;
+    }
 
 
     /**
@@ -197,16 +186,6 @@ public class Board {
         return gameBoard;
     }
 
-
-    /**
-     * Sets the GameBoard
-     *
-     * @author Rudi André Dahle on 01.03.2016.
-     * @param gameBoard
-     */
-    public void setGameBoard(boolean[][] gameBoard) {
-        this.gameBoard = gameBoard;
-    }
 
     /**
      * Clears the board when new board is loaded from rle file
@@ -230,13 +209,9 @@ public class Board {
     @Override
     public String toString() {
         StringBuilder str = new StringBuilder();
-            for (int x = 0; x < gameBoard.length; x++) {
-                for (int y = 0; y < gameBoard.length; y++) {
-                    if (gameBoard[x][y]) {
-                        str.append("1");
-                    } else {
-                        str.append("0");
-                    }
+            for (boolean[] gameArray : gameBoard){
+                for(boolean gameCell : gameArray){
+                    str.append(gameCell ? "1" : "0");
                 }
             }
         return str.toString();
