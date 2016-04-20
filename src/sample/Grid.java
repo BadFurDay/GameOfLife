@@ -41,7 +41,6 @@ public class Grid extends Canvas {
             gcGrid.strokeLine((int)x, 0, (int)x, (int)canvasHeight);
             //System.out.println("grid: " + (int)x);
         }
-
         // horizontal lines
         for (double y = 0; y < canvasHeight; y += cellHeight) {
             gcGrid.strokeLine(0, (int)y, (int)canvasWidth, (int)y);
@@ -106,7 +105,6 @@ public class Grid extends Canvas {
      *                      of the canvas' height
      */
     public void setCanvasHeight(double canvasHeight) {
-        System.out.println("Canvas høyde: "+canvasHeight);
         this.canvasHeight = canvasHeight;
     }
 

@@ -56,7 +56,7 @@ public class FileHandler {
      * @throws IOException
 
      */
-    public void readGameBoardFromFile(File file) throws IOException {
+    private void readGameBoardFromFile(File file) throws IOException {
         FileReader fr = new FileReader(file);
         BufferedReader br = new BufferedReader(fr);
 
@@ -69,6 +69,7 @@ public class FileHandler {
             }
         }
         fromRleToSimplified(rleCode);
+        System.out.println(rleCode);
     }
 
 
@@ -79,7 +80,7 @@ public class FileHandler {
      * @author Olav Smevoll
      * @param rle
      */
-    public void fromRleToSimplified(String rle) {
+    public void fromRleToSimplified(String rle) {  //Hjelpemetode, kan settes private. Da må webfilecontroller endres litt. Sette inn i samme klasse?
         String finalRle = "";
 
         Pattern pattern = Pattern.compile("\\d+|[ob]|\\$");
@@ -105,7 +106,7 @@ public class FileHandler {
      * @author Olav Smevoll
      * @param rle
      */
-    public void rleToArray(String rle) {
+    private void rleToArray(String rle) {
         gameBoard.clearBoard();
         int yCounter = 5;
         int xCounter = 5;
