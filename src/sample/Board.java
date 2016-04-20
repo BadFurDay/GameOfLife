@@ -25,9 +25,7 @@ public class Board {
 
 
     //Constructor
-    private Board() {
-        System.out.println("Antall celler bredde: " + getBoardWidth());
-        System.out.println("Antall celler høyde: " + getBoardHeight());
+    public Board() {
         gameBoard = new boolean[getBoardWidth()][getBoardHeight()];
     }
 
@@ -40,10 +38,12 @@ public class Board {
 
 
     /**
-     * Counts cell neighbours for next generation.
+     * Verifies the logic of the game by counting
+     * the cell neighbors in every direction each
+     * cell comes in contact with.
      *
-     * @param x the arrays x position
-     * @param y the arrays y position
+     * @param x the arrays in x-position
+     * @param y the arrays in y-position
      * @return counter Returns the value of counter after
      *         checking the rules
      * @author Olav Smevoll on 08.03.2016
@@ -97,11 +97,12 @@ public class Board {
 
 
     /**
-     *  Sets the new values in the array for the next generation.
+     *  Sets the new values in the array for the
+     *  next generation.
      *
      *  @author Rudi André Dahle on 04.03.2016
      */
-    public void nextGeneration(Grid grid) {
+    public void nextGeneration() {
         boolean[][] newGameBoard = new boolean[getBoardWidth()][getBoardHeight()];
         for (int x = 0; x < gameBoard.length; x++) {
             for (int y = 0; y < gameBoard[0].length; y++) {
@@ -119,12 +120,13 @@ public class Board {
      * to show as label.
      *
      * @author Olav Smevoll
-     * @return s Value of generation counter in to strings
+     * @return s Value of generation counter in strings
      */
     public String getGenCounter(){
         String s = Integer.toString(genCounter);
         return s;
     }
+
 
     /**
      * Resets the generation counter to zero when
@@ -135,6 +137,7 @@ public class Board {
     public void resetGenCount(){
         genCounter = 0;
     }
+
 
     /**
      * Gameboard's width in number of cells
@@ -159,39 +162,11 @@ public class Board {
 
 
     /**
-     * Sets Gameboard's height
+     * Gets the value of the game board
      *
-     * @author Rudi André Dahle on 24.03.16
-     * @param y Integer value of the board's height
-     */
-   /* public void setBoardHeight(int y) {
-        cellsHigh = y;
-    }*/
-
-
-    /**
-     * Created by RudiAndre on 09.03.2016.
-     * @return
-     */
-    /*public int getCanvasHeight() {
-        return canvas.heightProperty().intValue();
-    }*/
-
-
-    /**
-     * Created by RudiAndre on 09.03.2016.
-     * @return
-     */
-   /* public int getCanvasWidth() {
-        return canvas.widthProperty().intValue();
-    }*/
-
-
-    /**
-     * Gets the GameBoard
-     *
-     * @author RudiAndre on 01.03.2016.
-     * @return gameBoard
+     * @author Rudi André Dahle on 01.03.2016.
+     * @return gameBoard Returns the value of the
+     *                   game board
      */
     public boolean[][] getGameBoard() {
         return gameBoard;
@@ -199,19 +174,22 @@ public class Board {
 
 
     /**
-     * Sets the GameBoard
+     * Sets the value of the GameBoard
      *
      * @author Rudi André Dahle on 01.03.2016.
-     * @param gameBoard
+     * @param gameBoard Receives the value of the game
+     *                  board in boolean 2D array
      */
     public void setGameBoard(boolean[][] gameBoard) {
         this.gameBoard = gameBoard;
     }
 
+
     /**
-     * Clears the board when new board is loaded from rle file
+     * Clears the board when new board is loaded
+     * from rle file
      *
-     * @author Olav
+     * @author Olav Smevoll
      */
     public void clearBoard(){
         for (int x = 0; x < gameBoard.length; x++) {
@@ -223,9 +201,11 @@ public class Board {
 
 
     /**
+     * This method is the string representation of
+     * the Board class.
      *
-     * @author Rudi
-     * @return toString
+     * @author Rudi André Dahle
+     * @return toString String representation of gameBoard
      */
     @Override
     public String toString() {

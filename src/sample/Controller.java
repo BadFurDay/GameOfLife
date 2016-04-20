@@ -1,5 +1,5 @@
 /**
- * sample controller is located at the bottom of the game window.
+ * Controller is located at the bottom of the game window.
  * It contains all the buttons and sliders that the user will
  * use to manipulate the game.
  *
@@ -41,7 +41,7 @@ import javafx.scene.paint.Color;
 
 public class Controller implements Initializable {
 
-    //Data field
+    //Data field related to FXML
     @FXML private Canvas canvas;
     @FXML private Canvas canvasGrid;
     @FXML private Canvas canvasBG;
@@ -54,10 +54,11 @@ public class Controller implements Initializable {
     @FXML private Label fpsCount;
     @FXML private Label zoomCount;
     @FXML private ToggleButton gridToggle;
+
+    //Data field
     private GraphicsContext gc;
     private GraphicsContext gcGrid;
     private GraphicsContext gcBG;
-
     private Timeline timeline;
     private boolean running = false;
     private boolean showGrid = false;
@@ -71,7 +72,6 @@ public class Controller implements Initializable {
     Board gameBoard = Board.getBoard();
     Graphics graphics;
     FileHandler reader;
-    PatternFormatException pfe;
     Stage helpWindow;
     Stage readWeb;
     Alerts error;
@@ -88,11 +88,10 @@ public class Controller implements Initializable {
         graphics = new Graphics(gc);
         grid = new Grid(gcGrid);
         reader = new FileHandler();
-        pfe = new PatternFormatException();
         helpWindow = new Stage();
         readWeb = new Stage();
         error = new Alerts();
-        cell = new Cell();
+        cell = new Cell(gc);
 
 
         //Grid properties
@@ -122,10 +121,7 @@ public class Controller implements Initializable {
         Duration duration = Duration.millis(1000/FPS);
         KeyFrame keyframe = new KeyFrame(duration, (ActionEvent e) -> {
             graphics.draw(gameBoard.getGameBoard());
-               /* if(showGrid){
-                    grid.draw();
-                }*/
-            gameBoard.nextGeneration(grid);
+            gameBoard.nextGeneration();
             genCounter.setText(gameBoard.getGenCounter());  //DUPLIKAT??
         });
         timeline = new Timeline();
@@ -212,13 +208,8 @@ public class Controller implements Initializable {
         gameBoard.resetGenCount();
         gameBoard.clearBoard();
         graphics.draw(gameBoard.getGameBoard());
-
-       /* if (showGrid) {
-            grid.draw();
-        } else {
-            grid.clearGrid();
-        }*/
     }
+
 
     /**
      * Speed slider manipulates the speed of animation
@@ -238,25 +229,23 @@ public class Controller implements Initializable {
                 Duration duration = Duration.millis(1000 / FPS);
                 KeyFrame keyframe = new KeyFrame(duration, (ActionEvent e) -> {
                     graphics.draw(gameBoard.getGameBoard());
-                    gameBoard.nextGeneration(grid);
+                    gameBoard.nextGeneration();
                     genCounter.setText(gameBoard.getGenCounter());
-                        /*if(showGrid){
-                            grid.draw();
-                        }*/
                 });
                 timeline = new Timeline();
                 timeline.setCycleCount(Animation.INDEFINITE);
                 timeline.getKeyFrames().add(keyframe);
-                //timeline.rateProperty().bind(speedSlider.valueProperty());
                 timeline.play();
             }
         }
     }
 
+
     /**
      * Method called when the user drags the zoom slider to
      * zoom in or zoom out
      *
+     * @author Ginelle Ignacio
      * @param event Represents a mouse event used when
      *              the user interacts with the slider
      */
@@ -286,7 +275,7 @@ public class Controller implements Initializable {
 
     /**
      * Change background color of the game.
-     * @author Rudi
+     * @author Rudi André Dahle
      * @param actionEvent represents an Action Event used to
      *                    when a button has been fired.
      */
@@ -303,7 +292,7 @@ public class Controller implements Initializable {
     /**
      * Grid toggle to make the grid visible or invisible
      *
-     * @author Rudi
+     * @author Rudi André Dahle
      * @param actionEvent Represents an Action Event used
      *                    when a button has been fired.
      */
@@ -317,7 +306,6 @@ public class Controller implements Initializable {
             showGrid = false;
             grid.clearGrid();
             gridToggle.setSelected(false);
-            //graphics.draw(gameBoard.getGameBoard());
         }
     }
 
@@ -326,7 +314,7 @@ public class Controller implements Initializable {
      * Method contains information about the rules of the game,
      * and details about the controllers.
      *
-     * @author Ginelle
+     * @author Ginelle Ignacio
      * @param ae represents an Action Event used
      *           when a menu item has been clicked
      */
@@ -376,7 +364,7 @@ public class Controller implements Initializable {
     /**
      * Method called when the user selects "Read Web File.."
      * on the menu list under "File". This method will read
-     * a web address and convert it to a pattern.
+     * a web address and convert it into a pattern.
      *
      * @author Ginelle Ignacio
      * @param ae represents an Action Event used to

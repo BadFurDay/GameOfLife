@@ -2,12 +2,13 @@
  * Main class is responsible for all of the classes.
  * The main window of Game of Life will appear once the
  * programs starts running. Other classes connected to
- * this main class will be called as well when needed.
+ * this class will be called when needed.
  *
  * @author Rudi Andre Dahle
  * @author Ginelle Ignacio
  * @author Olav Smevoll
  */
+
 package sample;
 
 import javafx.application.Application;

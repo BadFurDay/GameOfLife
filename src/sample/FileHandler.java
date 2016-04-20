@@ -29,7 +29,7 @@ public class FileHandler {
     /**
      * Method called to read an RLE file stored in the
      * computer's disk. Program will show a dialog box
-     * containing RLE files which the user can select.
+     * containing RLE files which the user can choose.
      *
      * @author Rudi André Dahle
      * @throws IOException
@@ -52,7 +52,8 @@ public class FileHandler {
      * by using File Reader and Buffered Reader.
      *
      * @author Olav Smevoll
-     * @param file
+     * @param file Receives a file selected by the user
+     *             that the Buffered Reader will read
      * @throws IOException
 
      */
@@ -78,7 +79,8 @@ public class FileHandler {
      * or URL by using Pattern and Matcher.
      *
      * @author Olav Smevoll
-     * @param rle
+     * @param rle Receives a string representation of
+     *            a RLE file
      */
     public void fromRleToSimplified(String rle) {  //Hjelpemetode, kan settes private. Da må webfilecontroller endres litt. Sette inn i samme klasse?
         String finalRle = "";
@@ -101,10 +103,11 @@ public class FileHandler {
 
     /**
      * This method makes it possible for the content of
-     * the RLE file visible on the gameboard.
+     * the RLE file to be visible on the game board.
      *
      * @author Olav Smevoll
-     * @param rle
+     * @param rle Receives a string representation of
+     *            a RLE file
      */
     private void rleToArray(String rle) {
         gameBoard.clearBoard();
@@ -125,6 +128,5 @@ public class FileHandler {
                 xCounter++;
             }
         }
-
     }
 }

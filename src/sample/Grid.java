@@ -39,13 +39,11 @@ public class Grid extends Canvas {
         // vertical lines
         for (double x = 0; x < canvasWidth; x += cellWidth) {
             gcGrid.strokeLine((int)x, 0, (int)x, (int)canvasHeight);
-            //System.out.println("grid: " + (int)x);
         }
+
         // horizontal lines
         for (double y = 0; y < canvasHeight; y += cellHeight) {
             gcGrid.strokeLine(0, (int)y, (int)canvasWidth, (int)y);
-            //System.out.println("grid : " +(int)y);
-
         }
     }
 
@@ -53,7 +51,7 @@ public class Grid extends Canvas {
     /**
      * Clears the grid lines on the canvas area
      *
-     * @author Ginelle
+     * @author Ginelle Ignacio
      */
     public void clearGrid(){
          gcGrid.clearRect(0, 0, canvasWidth, canvasHeight);
@@ -93,7 +91,6 @@ public class Grid extends Canvas {
      */
     public void setCellHeight(double cellHeight) {
         this.cellHeight = cellHeight;
-        //System.out.println(cellHeight);
     }
 
 
