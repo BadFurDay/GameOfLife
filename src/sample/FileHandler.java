@@ -4,51 +4,35 @@
  * and web.
  *
  * @author Rudi André Dahle
- * @author Ginelle Ignacio
  * @author Olav Smevoll
+ * @author Ginelle Ignacio
  */
 
 package sample;
 
-import javafx.event.ActionEvent;
 import javafx.stage.FileChooser;
-
 import java.io.*;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import WebFile.WebFileController;
+
 
 public class FileHandler {
 
     //Data field
     File file;
 
+
+    //Object
     Board gameBoard = Board.getBoard();
-    Alerts error = new Alerts();
-
-    //Constructor
-    //public FileHandler(Board gameboard) {this.gameBoard = gameboard;}
 
 
     /**
-     * Reading game board
+     * Method called to read an RLE file stored in the
+     * computer's disk. Program will show a dialog box
+     * containing RLE files which the user can select.
      *
-     * @param r Returns the game board
-     * @throws IOException
-     * @author Ginelle
-     */
-    public void readGameBoard(Reader r) throws IOException {
-    }
-
-
-    /**
-     * Reading file from disk
-     *
-     * @throws IOException
      * @author Rudi André Dahle
+     * @throws IOException
      */
     public void chooseFile() throws IOException {
         FileChooser fileChooser = new FileChooser();
@@ -64,9 +48,13 @@ public class FileHandler {
 
 
     /**
-     * @param file Returns the file
-     * @throws IOException
+     * Method called to read the content of file
+     * by using File Reader and Buffered Reader.
+     *
      * @author Olav Smevoll
+     * @param file
+     * @throws IOException
+
      */
     public void readGameBoardFromFile(File file) throws IOException {
         FileReader fr = new FileReader(file);
@@ -83,10 +71,13 @@ public class FileHandler {
         fromRleToSimplified(rleCode);
     }
 
+
     /**
+     * Method called to read the content of an RLE file
+     * or URL by using Pattern and Matcher.
      *
-     * @param rle
      * @author Olav Smevoll
+     * @param rle
      */
     public void fromRleToSimplified(String rle) {
         String finalRle = "";
@@ -106,7 +97,12 @@ public class FileHandler {
         rleToArray(finalRle);
     }
 
+
     /**
+     * This method makes it possible for the content of
+     * the RLE file visible on the gameboard.
+     *
+     * @author Olav Smevoll
      * @param rle
      */
     public void rleToArray(String rle) {
@@ -131,16 +127,3 @@ public class FileHandler {
 
     }
 }
-
-
-
-/**
- * Reading file from web
- *
- * @author Ginelle Ignacio
- * @param url Returns the web address
- * @throws IOException
- * @throws PatternFormatException
- */
-
-

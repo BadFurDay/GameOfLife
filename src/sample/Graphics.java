@@ -1,6 +1,6 @@
 /**
- * Graphics Class contains the properties of the cell
- * and their sizes. This class is called when the game
+ * Graphics Class contains the logic and functionality
+ * of the cell. This class is called when the game
  * starts.
  *
  * @author Rudi André Dahle
@@ -11,9 +11,6 @@ package sample;
 import javafx.scene.canvas.GraphicsContext;
 
 
-/**
- * Created by Ginelle on 3/4/2016.
- */
 public class Graphics {
 
     //Data field
@@ -32,7 +29,9 @@ public class Graphics {
 
     /**
      * Draws the board with existing cells for every loop.
-     * @param graphicsBoard
+     *
+     * @param graphicsBoard Receives the value of the graphicBoard
+     *                      in boolean 2D array
      */
     public void draw(boolean[][] graphicsBoard) {
         for(int x = 0; x < graphicsBoard.length; x++) {
@@ -49,8 +48,9 @@ public class Graphics {
 
     /**
      *
-     * @author Rudi
-     * @param graphicsBoard
+     * @author Rudi André Dahle
+     * @param graphicsBoard Receives the value of the graphicBoard
+     *                      in boolean 2D array
      */
     public void drawCell(boolean[][] graphicsBoard) {
         if (!graphicsBoard[getXCell()][getYCell()]) {
@@ -61,13 +61,12 @@ public class Graphics {
         draw(graphicsBoard);
     }
 
-    /*public void clearCell(){
-        graphicsBoard[getXCell()][getYCell()] = false;
-    }*/
 
     /**
+     * Computes the cell's x value when the user inserts
+     * a cell in the canvas area.
      *
-     * @author Rudi
+     * @author Rudi André Dahle
      * @param xCoord
      */
     public void setXCell(double xCoord){
@@ -75,8 +74,10 @@ public class Graphics {
     }
 
     /**
+     * Sets and computes the cell's y value when the user inserts
+     * a cell in the canvas area.
      *
-     * @author Rudi
+     * @author Rudi André Dahle
      * @param yCoord
      */
     public void setYCell(double yCoord){
@@ -84,18 +85,20 @@ public class Graphics {
     }
 
     /**
+     * Gets the x value of cell.
      *
-     * @author Rudi
-     * @return
+     * @author Rudi André Dahle
+     * @return xCell Returns the integer value of  xCell.
      */
     public int getXCell(){
         return xCell;
     }
 
     /**
+     * Gets the y cell.
      *
-     * @author Rudi
-     * @return
+     * @author Rudi André Dahle
+     * @return yCell Returns the integer value of yCell
      */
     public int getYCell(){
         return yCell;
@@ -104,8 +107,9 @@ public class Graphics {
     /**
      * Returns the cellWidth.
      *
-     * @author Rudi
-     * @return cellWidth
+     * @author Rudi André Dahle
+     * @return cellWidth Returns the double value of
+     *                   cellWidth.
      */
     public double getCellWidth() {
         return cellWidth;
@@ -115,8 +119,9 @@ public class Graphics {
     /**
      * Returns the cellHeight.
      *
-     * @author Rudi
-     * @return cellHeight
+     * @author Rudi André Dahle
+     * @return cellHeight Returns the double value of
+     *                    cellHeight
      */
     public double getCellHeight() {
         return cellHeight;
@@ -124,14 +129,13 @@ public class Graphics {
 
 
     /**
-     * Calculates the width of a single cell.
+     * Sets and computes the width of a single cell.
      *
-     * @author Rudi
-     * @return cellWidth
+     * @author Rudi André Dahle
+     * @return cellWidth Returns the value of cellWidth
      */
     public void setCellWidth(int cellsWide){
         this.cellWidth = (double)gc.getCanvas().widthProperty().intValue()/cellsWide;
-        System.out.println("Cellebredden er: " + cellWidth);
     }
 
 
@@ -139,11 +143,10 @@ public class Graphics {
     /**
      * Calculates the height of a single cell.
      *
-     * @author Rudi
-     * @return cellHeight
+     * @author Rudi André Dahle
+     * @return cellHeight Returns the value of cellHeight
      */
     public void setCellHeight(int cellsHigh) {
          this.cellHeight = (double)gc.getCanvas().heightProperty().intValue()/cellsHigh;
-        System.out.println("Cellehøyden er: " + cellHeight);
     }
 }

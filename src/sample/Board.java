@@ -1,6 +1,7 @@
 /**
- * Board class contains the rules of the game that the cells
- * will follow in order to generate.
+ * Board class contains the logic and functionality
+ * of the game that the cells will follow in order to
+ * generate.
  *
  * @author Rudi André Dahle
  * @author Olav Smevoll
@@ -8,8 +9,6 @@
 
 package sample;
 
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.input.MouseEvent;
 
 
 public class Board {
@@ -17,17 +16,14 @@ public class Board {
     private static Board board;
 
     //Datafield
-    //protected GraphicsContext gc;
-    private int cellsWide = 100; //Number of cells in gameboards width
+    private int cellsWide = 50; //Number of cells in gameboards width
     private int cellsHigh = cellsWide/2; //Number of cells in gameboards height
     protected int genCounter;
     public boolean[][] gameBoard;
 
 
     //Constructor
-    private Board() {
-        System.out.println("Antall celler bredde: " + getBoardWidth());
-        System.out.println("Antall celler høyde: " + getBoardHeight());
+    public Board() {
         gameBoard = new boolean[getBoardWidth()][getBoardHeight()];
     }
 
@@ -48,7 +44,7 @@ public class Board {
      *         checking the rules
      * @author Olav Smevoll on 08.03.2016
      */
-    protected int countNeighbours(int x, int y) {
+    private int countNeighbours(int x, int y) {
         int counter = 0;
         int blx = gameBoard.length - 1;
         int bly = gameBoard[0].length - 1;
@@ -97,11 +93,12 @@ public class Board {
 
 
     /**
-     *  Sets the new values in the array for the next generation.
+     *  Sets the new values in the array for the
+     *  next generation.
      *
      *  @author Rudi André Dahle on 04.03.2016
      */
-    public void nextGeneration(Grid grid) {
+    public void nextGeneration() {
         boolean[][] newGameBoard = new boolean[getBoardWidth()][getBoardHeight()];
         for (int x = 0; x < gameBoard.length; x++) {
             for (int y = 0; y < gameBoard[0].length; y++) {
@@ -119,7 +116,7 @@ public class Board {
      * to show as label.
      *
      * @author Olav Smevoll
-     * @return s Value of generation counter in to strings
+     * @return s Value of generation counter in strings
      */
     public String getGenCounter(){
         String s = Integer.toString(genCounter);
@@ -137,7 +134,7 @@ public class Board {
     }
 
     /**
-     * Gameboard's width in number of cells
+     * Gets the gameboard's width in number of cells
      *
      * @author Rudi André Dahle 24.03.16
      * @return cellsWide Returns the cell's width
@@ -148,7 +145,7 @@ public class Board {
 
 
     /**
-     * Gameboards height in number of cells
+     * Gets the gameboard's height in number of cells
      *
      * @author Rudi André Dahle 24.03.16
      * @return cellsHigh Returns the cell's height
@@ -157,41 +154,24 @@ public class Board {
         return cellsHigh;
     }
 
-
     /**
-     * Sets Gameboard's height
+     * Sets the GameBoard
      *
-     * @author Rudi André Dahle on 24.03.16
-     * @param y Integer value of the board's height
+     * @author Rudi André Dahle on 01.03.2016.
+     * @param gameBoard Receives the value of gameBoard
+     *                  in boolean 2D array
      */
-   /* public void setBoardHeight(int y) {
-        cellsHigh = y;
-    }*/
-
+    public void setGameBoard(boolean[][] gameBoard) {
+        this.cellsWide = gameBoard[0].length;
+        this.cellsHigh = gameBoard.length;
+        this.gameBoard = gameBoard;
+    }
 
     /**
-     * Created by RudiAndre on 09.03.2016.
-     * @return
-     */
-    /*public int getCanvasHeight() {
-        return canvas.heightProperty().intValue();
-    }*/
-
-
-    /**
-     * Created by RudiAndre on 09.03.2016.
-     * @return
-     */
-   /* public int getCanvasWidth() {
-        return canvas.widthProperty().intValue();
-    }*/
-
-
-    /**
-     * Gets the GameBoard
+     * Gets the value of gameBoard
      *
      * @author RudiAndre on 01.03.2016.
-     * @return gameBoard
+     * @return gameBoard Returns the value of gameBoard
      */
     public boolean[][] getGameBoard() {
         return gameBoard;
@@ -199,19 +179,9 @@ public class Board {
 
 
     /**
-     * Sets the GameBoard
-     *
-     * @author Rudi André Dahle on 01.03.2016.
-     * @param gameBoard
-     */
-    public void setGameBoard(boolean[][] gameBoard) {
-        this.gameBoard = gameBoard;
-    }
-
-    /**
      * Clears the board when new board is loaded from rle file
      *
-     * @author Olav
+     * @author Olav Smevoll
      */
     public void clearBoard(){
         for (int x = 0; x < gameBoard.length; x++) {
@@ -223,22 +193,20 @@ public class Board {
 
 
     /**
+     * This method is the string representation of the
+     * game board.
      *
-     * @author Rudi
-     * @return toString
+     * @author Rudi André Dahle
+     * @return toString String representation of the object
      */
     @Override
     public String toString() {
         StringBuilder str = new StringBuilder();
-            for (int x = 0; x < gameBoard.length; x++) {
-                for (int y = 0; y < gameBoard.length; y++) {
-                    if (gameBoard[x][y]) {
-                        str.append("1");
-                    } else {
-                        str.append("0");
-                    }
-                }
+        for (boolean[] gameArray : gameBoard){
+            for(boolean gameCell : gameArray){
+                str.append(gameCell ? "1" : "0");
             }
+        }
         return str.toString();
     }
 }

@@ -1,6 +1,6 @@
 /**
  * Compilation of Error Windows that will appear when
- * the program catches an exception when choosing files
+ * the program catches an error when choosing files
  * from disc and web.
  *
  * @author Ginelle Ignacio

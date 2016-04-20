@@ -1,7 +1,8 @@
 /**
- * sample controller is located at the bottom of the game window.
- * It contains all the buttons and sliders that the user will
- * use to manipulate the game.
+ * Controller is located at the bottom of the game window.
+ * Methods in this class contains the functionality of the
+ * game which the user will use to interact and manipulate
+ * with the game.
  *
  * @author Ginelle Ignacio
  * @author Rudi André Dahle
@@ -34,6 +35,7 @@ import java.net.URL;
 import java.util.NoSuchElementException;
 import java.util.ResourceBundle;
 
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.scene.paint.Color;
@@ -41,7 +43,7 @@ import javafx.scene.paint.Color;
 
 public class Controller implements Initializable {
 
-    //Data field
+    //Data field related to FXML
     @FXML private Canvas canvas;
     @FXML private Canvas canvasGrid;
     @FXML private Canvas canvasBG;
@@ -54,10 +56,13 @@ public class Controller implements Initializable {
     @FXML private Label fpsCount;
     @FXML private Label zoomCount;
     @FXML private ToggleButton gridToggle;
+    //@FXML private TextField tipField;
+
+
+    //Data field
     private GraphicsContext gc;
     private GraphicsContext gcGrid;
     private GraphicsContext gcBG;
-
     private Timeline timeline;
     private boolean running = false;
     private boolean showGrid = false;
@@ -71,7 +76,6 @@ public class Controller implements Initializable {
     Board gameBoard = Board.getBoard();
     Graphics graphics;
     FileHandler reader;
-    PatternFormatException pfe;
     Stage helpWindow;
     Stage readWeb;
     Alerts error;
@@ -88,11 +92,10 @@ public class Controller implements Initializable {
         graphics = new Graphics(gc);
         grid = new Grid(gcGrid);
         reader = new FileHandler();
-        pfe = new PatternFormatException();
         helpWindow = new Stage();
         readWeb = new Stage();
         error = new Alerts();
-        cell = new Cell();
+        cell = new Cell(gc);
 
 
         //Grid properties
@@ -122,10 +125,7 @@ public class Controller implements Initializable {
         Duration duration = Duration.millis(1000/FPS);
         KeyFrame keyframe = new KeyFrame(duration, (ActionEvent e) -> {
             graphics.draw(gameBoard.getGameBoard());
-               /* if(showGrid){
-                    grid.draw();
-                }*/
-            gameBoard.nextGeneration(grid);
+            gameBoard.nextGeneration();
             genCounter.setText(gameBoard.getGenCounter());  //DUPLIKAT??
         });
         timeline = new Timeline();
@@ -148,7 +148,7 @@ public class Controller implements Initializable {
         graphics.setYCell(yCoord);
         graphics.setXCell(xCoord);
         graphics.drawCell(gameBoard.getGameBoard());
-        System.out.println(event.getSource());
+
     }
 
     /**
@@ -165,6 +165,7 @@ public class Controller implements Initializable {
         graphics.setYCell(yCoord);
         graphics.setXCell(xCoord);
         graphics.drawCell(gameBoard.getGameBoard());
+
     }
 
 
@@ -186,7 +187,6 @@ public class Controller implements Initializable {
             running = true;
         }
     }
-
 
 
     //Changes the text on the play button pause and vice versa
@@ -212,12 +212,6 @@ public class Controller implements Initializable {
         gameBoard.resetGenCount();
         gameBoard.clearBoard();
         graphics.draw(gameBoard.getGameBoard());
-
-       /* if (showGrid) {
-            grid.draw();
-        } else {
-            grid.clearGrid();
-        }*/
     }
 
     /**
@@ -238,16 +232,12 @@ public class Controller implements Initializable {
                 Duration duration = Duration.millis(1000 / FPS);
                 KeyFrame keyframe = new KeyFrame(duration, (ActionEvent e) -> {
                     graphics.draw(gameBoard.getGameBoard());
-                    gameBoard.nextGeneration(grid);
+                    gameBoard.nextGeneration();
                     genCounter.setText(gameBoard.getGenCounter());
-                        /*if(showGrid){
-                            grid.draw();
-                        }*/
                 });
                 timeline = new Timeline();
                 timeline.setCycleCount(Animation.INDEFINITE);
                 timeline.getKeyFrames().add(keyframe);
-                //timeline.rateProperty().bind(speedSlider.valueProperty());
                 timeline.play();
             }
         }
@@ -257,6 +247,7 @@ public class Controller implements Initializable {
      * Method called when the user drags the zoom slider to
      * zoom in or zoom out
      *
+     * @author Ginelle Ignacio
      * @param event Represents a mouse event used when
      *              the user interacts with the slider
      */
@@ -286,7 +277,7 @@ public class Controller implements Initializable {
 
     /**
      * Change background color of the game.
-     * @author Rudi
+     * @author Rudi André Dahle
      * @param actionEvent represents an Action Event used to
      *                    when a button has been fired.
      */
@@ -296,14 +287,13 @@ public class Controller implements Initializable {
 
         gcBG.setFill(backgroundColor.getValue());
         gcBG.fillRect(0, 0, canvasWidth, canvasHeight);
-
     }
 
 
     /**
      * Grid toggle to make the grid visible or invisible
      *
-     * @author Rudi
+     * @author Rudi André Dahle
      * @param actionEvent Represents an Action Event used
      *                    when a button has been fired.
      */
@@ -317,8 +307,12 @@ public class Controller implements Initializable {
             showGrid = false;
             grid.clearGrid();
             gridToggle.setSelected(false);
-            //graphics.draw(gameBoard.getGameBoard());
         }
+    }
+
+    @FXML
+    public void tipEvent(ActionEvent actionEvent){
+
     }
 
     /**
@@ -326,16 +320,16 @@ public class Controller implements Initializable {
      * Method contains information about the rules of the game,
      * and details about the controllers.
      *
-     * @author Ginelle
+     * @author Ginelle Ignacio
      * @param ae represents an Action Event used
      *           when a menu item has been clicked
      */
     public void helpEvent (ActionEvent ae) throws IOException {
         try{
-        Parent helpRoot = FXMLLoader.load(getClass().getClassLoader().getResource("Rules/Guide.fxml"));
-        helpWindow.setTitle("Guidelines");
-        helpWindow.setScene(new Scene(helpRoot));
-        helpWindow.show();
+            Parent helpRoot = FXMLLoader.load(getClass().getClassLoader().getResource("Rules/Guide.fxml"));
+            helpWindow.setTitle("Guidelines");
+            helpWindow.setScene(new Scene(helpRoot));
+            helpWindow.show();
         } catch (IOException io){
             io.printStackTrace();
         }
@@ -354,20 +348,15 @@ public class Controller implements Initializable {
         try {
             reader.chooseFile();
         } catch (FileNotFoundException fe){
-            System.err.println("File not found! " + fe);
             error.fileNotFound();
         } catch (IOException e) {
             e.printStackTrace();
-            System.err.println("Error opening file! " + e);
             error.errorOpeningfile();
         } catch (NoSuchElementException ne){
-            System.err.println("File format does not match! " + ne);
             error.incorrectMatch();
         } catch (IllegalStateException ie) {
-            System.err.println("Error reading from file! " + ie);
             error.errorReading();
-        } catch(ArrayIndexOutOfBoundsException arraye){
-            System.err.println("Element at an index is outside the array bounds " + arraye);
+        } catch(ArrayIndexOutOfBoundsException arraye){;
             error.arrayException();
         }
     }
@@ -386,10 +375,10 @@ public class Controller implements Initializable {
 
     public void webFile(ActionEvent ae) throws IOException {
         try {
-        Parent webRoot = FXMLLoader.load(getClass().getClassLoader().getResource("WebFile/Webfile.fxml"));
-        readWeb.setTitle("Read web file");
-        readWeb.setScene(new Scene(webRoot));
-        readWeb.show();
+            Parent webRoot = FXMLLoader.load(getClass().getClassLoader().getResource("WebFile/Webfile.fxml"));
+            readWeb.setTitle("Read web file");
+            readWeb.setScene(new Scene(webRoot));
+            readWeb.show();
         } catch (IOException io){
             io.printStackTrace();
         }

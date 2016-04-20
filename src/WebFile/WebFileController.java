@@ -2,6 +2,7 @@
  * Web Controller is responsible for the controllers in
  * the Web File FXML. This is the "Read Web File" under Menu.
  *
+ * @author Olav Smevoll
  * @author Ginelle Ignacio
  */
 
@@ -14,19 +15,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-import sample.Controller;
 import sample.FileHandler;
-import sample.Board;
 import sample.Alerts;
 
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLConnection;
-import java.nio.Buffer;
 import java.util.ResourceBundle;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+
 
 
 
@@ -42,43 +38,42 @@ public class WebFileController implements Initializable {
 
     //Objects
     FileHandler fileHandler = new FileHandler();
-    Alerts error;
-    //Controller controller;
+    Alerts error = new Alerts();
 
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        //Objects
-        error = new Alerts();
     }
 
-    @FXML
-    public void fieldEvent() {
+
+    public void fieldEvent(ActionEvent actionEvent){
         field.getText();
     }
-
 
     /**
      * Method called when user submits a URL to read.
      * Label will change and show a message of the
-     * current situation of the file.
+     * current situation of the file. Method also includes
+     * exceptions.
      *
+     * @author Olav Smevoll
      * @author Ginelle Ignacio
      * @param actionEvent represents an Action Event used to
      *                    when a button has been fired.
      */
     @FXML
     public void submitEvent (ActionEvent actionEvent) throws IOException {
+        //Changes the label text
         if (field.getText() != null && !field.getText().isEmpty()) {
             label.setText("Reading file from web..");
         } else {
             label.setText("No URL was inserted!");
         }
 
+        //Reads the content of the URL to convert to RLE file
         try {
-
             URL url = new URL(field.getText());
             BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
 
@@ -97,9 +92,10 @@ public class WebFileController implements Initializable {
         } catch (IOException ie) {
             error.errorConnection();
         } catch (NullPointerException ne){
-
             error.nullException();
-            ne.printStackTrace();
+        } catch(ArrayIndexOutOfBoundsException arraye){
+            error.arrayException();
+            arraye.printStackTrace();
         }
     }
 

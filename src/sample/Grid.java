@@ -39,11 +39,14 @@ public class Grid extends Canvas {
         // vertical lines
         for (double x = 0; x < canvasWidth; x += cellWidth) {
             gcGrid.strokeLine((int)x, 0, (int)x, (int)canvasHeight);
+            //System.out.println("grid: " + (int)x);
         }
 
         // horizontal lines
         for (double y = 0; y < canvasHeight; y += cellHeight) {
             gcGrid.strokeLine(0, (int)y, (int)canvasWidth, (int)y);
+            //System.out.println("grid : " +(int)y);
+
         }
     }
 
@@ -59,18 +62,21 @@ public class Grid extends Canvas {
 
 
     /**
-     * Gets the canvas' height
+     * Gets the value of canvas' height
      *
      * @author Rudi André Dahle on 29.03.16
-     * @return
+     * @return canvasH Returns the height of the canvas
      */
     public int getCanvasHeight() {
-        return gcGrid.getCanvas().heightProperty().intValue();
+        int canvasH = gcGrid.getCanvas().heightProperty().intValue();
+        return canvasH;
+
     }
 
 
     /**
-     * Sets the cell width
+     * Sets the value of the cell width
+     *
      * @author Rudi André Dahle
      * @param cellWidth
      */
@@ -80,13 +86,15 @@ public class Grid extends Canvas {
 
 
     /**
-     * Sets the cell's height
+     * Sets the value of the cell's height
      *
      * @author Rudi André Dahle
-     * @param cellHeight
+     * @param cellHeight Receives the decimal value of
+     *                   the cell's height
      */
     public void setCellHeight(double cellHeight) {
         this.cellHeight = cellHeight;
+        //System.out.println(cellHeight);
     }
 
 
@@ -94,7 +102,8 @@ public class Grid extends Canvas {
      *  Sets the canvas' height
      *
      *  @author Rudi André Dahle 29.03.16
-     *  @param canvasHeight
+     *  @param canvasHeight Receives the decimal value
+     *                      of the canvas' height
      */
     public void setCanvasHeight(double canvasHeight) {
         System.out.println("Canvas høyde: "+canvasHeight);
@@ -102,23 +111,24 @@ public class Grid extends Canvas {
     }
 
     /**
-     *  Gets the canvas' width
+     *  Gets the value of canvas' width
      *
      *  @author Rudi André Dahle 29.03.16
-     *  @return canvasWidth
+     *  @return canvasWidth Returns the integer value
+     *          of canvas' width
      */
     public int getCanvasWidth() {
         return gcGrid.getCanvas().widthProperty().intValue();
     }
 
     /**
-     * Sets the canvas' width
+     * Sets the value of canvas' width
      *
      * @author Rudi André Dahle 29.03.16
-     * @param canvasWidth
+     * @param canvasWidth Receives the decimal value of
+     *                    canvas' width
      */
     public void setCanvasWidth(double canvasWidth){
-        System.out.println("Canvas bredde: "+canvasWidth);
         this.canvasWidth = canvasWidth;
     }
 
