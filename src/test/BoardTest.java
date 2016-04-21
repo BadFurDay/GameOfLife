@@ -1,15 +1,21 @@
+/**
+ * This class does the JUnit Testing to verify the logic
+ * and functionality of the cell generations in the Board
+ * class.
+ *
+ * @author Rudi André Dahle
+ *
+ */
+
 package test;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import sample.Board;
 
 import static org.junit.Assert.*;
 
-/**
- * Created by RudiAndre on 19.04.2016.
- */
+
 public class BoardTest {
     Board board = new Board();
 
@@ -30,6 +36,8 @@ public class BoardTest {
 
 
     /**
+     * Method called to test the logic of the next
+     * generation.
      *
      * @author Rudi
      * @throws Exception
@@ -37,10 +45,12 @@ public class BoardTest {
     @Test
     public void testNextGeneration() throws Exception {
         board.nextGeneration();
-        org.junit.Assert.assertEquals("010010010", board.toString());
+        assertEquals("010010010", board.toString());
     }
 
     /**
+     * Method called to test if the game board resets to
+     * it's initial value.
      *
      * @author Rudi
      * @throws Exception
@@ -48,7 +58,7 @@ public class BoardTest {
     @Test
     public void testClearBoard() throws Exception {
         board.clearBoard();
-        org.junit.Assert.assertEquals("000000000", board.toString());
+        assertEquals("000000000", board.toString());
     }
 
 

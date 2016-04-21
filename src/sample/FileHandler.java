@@ -44,8 +44,21 @@ public class FileHandler {
         if (file != null) {
             readGameBoardFromFile(file);
         }
+        System.out.println("file: " + file);
     }
 
+    public String toString() {
+        StringBuilder str = new StringBuilder();
+        if (file != null) {
+            try {
+                readGameBoardFromFile(file);
+            } catch (IOException io){
+                io.printStackTrace();
+            }
+            str.append("file");
+        }
+        return toString();
+    }
 
     /**
      * Method called to read the content of file
@@ -78,12 +91,11 @@ public class FileHandler {
      * Method called to read the content of an RLE file
      * or URL by using Pattern and Matcher.
      *
-     * @author Rudi André Dahle
      * @author Olav Smevoll
      * @param rle Receives a string representation of
      *            a RLE file
      */
-    private void fromRleToSimplified(String rle) {  //Hjelpemetode, kan settes private. Da må webfilecontroller endres litt. Sette inn i samme klasse?
+    public void fromRleToSimplified(String rle) {  //Hjelpemetode, kan settes private. Da må webfilecontroller endres litt. Sette inn i samme klasse?
         String finalRle = "";
 
         Pattern pattern = Pattern.compile("\\d+|[ob]|\\$");

@@ -111,7 +111,7 @@ public class Controller implements Initializable {
         colorPicker.setValue(Color.rgb(26,0,104));
         speedSlider.setValue(50.0);
         speedSlider.setShowTickMarks(true);
-       // zoomSlider.setShowTickMarks(true);
+//        zoomSlider.setShowTickMarks(true);
         FPS = speedSlider.getValue();
         fpsCount.setText(Integer.toString((int)FPS));
         //zoomCount.setText(Integer.toString((int)zoomSlider.getValue));
@@ -145,6 +145,7 @@ public class Controller implements Initializable {
         graphics.setXCell(xCoord);
         graphics.drawCell(gameBoard.getGameBoard());
     }
+
 
     /**
      * Method called when user drags cells to input into
@@ -251,13 +252,15 @@ public class Controller implements Initializable {
     public void zoomChanged(MouseEvent event) {
         int zoom = (int)zoomSlider.getValue();
 
-        graphics.setCellHeight(zoom);
+
+
+        /*graphics.setCellHeight(zoom);
         graphics.setCellWidth(zoom/2);
-        graphics.setCellHeight(gameBoard.getBoardHeight());
         grid.setCanvasHeight(gcGrid.getCanvas().heightProperty().intValue());
         grid.setCanvasWidth(gcGrid.getCanvas().widthProperty().intValue());
         grid.setCellHeight(graphics.getCellHeight());
-        grid.setCellWidth(graphics.getCellWidth()/2);
+        grid.setCellWidth(graphics.getCellWidth()/2);*/
+
     }
 
     /**
@@ -318,7 +321,7 @@ public class Controller implements Initializable {
      *           when a menu item has been clicked
      * @throws IOException
      */
-    public void helpEvent (ActionEvent ae) throws IOException {
+    public void helpEvent (ActionEvent ae) throws Exception {
         try{
         Parent helpRoot = FXMLLoader.load(getClass().getClassLoader().getResource("Rules/Guide.fxml"));
         helpWindow.setTitle("Guidelines");
