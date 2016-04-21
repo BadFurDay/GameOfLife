@@ -8,7 +8,7 @@ package sample;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseEvent;
 
-public class Cell extends Graphics {
+public class Cell /*extends Graphics*/ {
 
     /*
      * Note...
@@ -23,13 +23,13 @@ public class Cell extends Graphics {
 
 
     //Data field
-    private int xCell; // X-index of cell
-    private int yCell; // Y-index of cell
+  //  private int xCell; // X-index of cell
+  //  private int yCell; // Y-index of cell
 
-    Graphics graphics;
-    public Cell(GraphicsContext gc) {
-        super(gc);
-    }
+  //  Graphics graphics;
+  //  public Cell(GraphicsContext gc) {
+  //      super(gc);
+  //  }
 
 
 
@@ -38,50 +38,49 @@ public class Cell extends Graphics {
      * @author Rudi
      * @param graphicsBoard
      */
-    public void drawCell(boolean[][] graphicsBoard) {
+   /* public void drawCell(boolean[][] graphicsBoard) {
         if (!graphicsBoard[getXCell()][getYCell()]) {
             graphicsBoard[getXCell()][getYCell()] = true;
         } else {
             graphicsBoard[getXCell()][getYCell()] = false;
         }
        draw(graphicsBoard);
-    }
+    }*/
 
     /**
      *
      * @author Rudi
      * @param xCoord
      */
-    public void setXCell(double xCoord){
+  /*  public void setXCell(double xCoord){
         xCell = (int)Math.floor(xCoord/super.getCellWidth());
-    }
+    }*/
 
     /**
      *
      * @author Rudi
      * @param yCoord
      */
-    public void setYCell(double yCoord){
+  /*  public void setYCell(double yCoord){
         yCell = (int)Math.floor(yCoord/super.getCellHeight());
-    }
+    }*/
 
     /**
      *
      * @author Rudi
      * @return
      */
-    public int getXCell(){
+  /*  public int getXCell(){
         return xCell;
-    }
+    }*/
 
     /**
      *
      * @author Rudi
      * @return
      */
-    public int getYCell(){
+   /* public int getYCell(){
         return yCell;
-    }
-
+    }*/
 
 }

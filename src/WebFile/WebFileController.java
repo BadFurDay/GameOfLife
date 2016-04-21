@@ -53,7 +53,7 @@ public class WebFileController implements Initializable {
     }
 
     /**
-     * Method called when user submits a URL to read.
+     * * Method called when user submits a URL to read.
      * Label will change and show a message of the
      * current situation of the file. Method also includes
      * exceptions.
@@ -62,6 +62,7 @@ public class WebFileController implements Initializable {
      * @author Ginelle Ignacio
      * @param actionEvent represents an Action Event used to
      *                    when a button has been fired.
+     * @throws IOException
      */
     @FXML
     public void submitEvent (ActionEvent actionEvent) throws IOException {

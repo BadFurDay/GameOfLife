@@ -75,7 +75,7 @@ public class Controller implements Initializable {
     Stage helpWindow;
     Stage readWeb;
     Alerts error;
-    Cell cell;
+   // Cell cell;
 
 
     @Override
@@ -91,7 +91,7 @@ public class Controller implements Initializable {
         helpWindow = new Stage();
         readWeb = new Stage();
         error = new Alerts();
-        cell = new Cell(gc);
+      //  cell = new Cell(gc);
 
 
         //Grid properties
@@ -144,7 +144,6 @@ public class Controller implements Initializable {
         graphics.setYCell(yCoord);
         graphics.setXCell(xCoord);
         graphics.drawCell(gameBoard.getGameBoard());
-        System.out.println(event.getSource());
     }
 
     /**
@@ -317,6 +316,7 @@ public class Controller implements Initializable {
      * @author Ginelle Ignacio
      * @param ae represents an Action Event used
      *           when a menu item has been clicked
+     * @throws IOException
      */
     public void helpEvent (ActionEvent ae) throws IOException {
         try{
@@ -337,6 +337,7 @@ public class Controller implements Initializable {
      * @author Ginelle Ignacio
      * @param ae represents an Action Event used
      *           when a menu item has been clicked
+     * @throws IOException
      */
     public void openFiles(ActionEvent ae)throws IOException {
         try {

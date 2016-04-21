@@ -75,7 +75,7 @@ public class Grid extends Canvas {
      * Sets the value of the cell width
      *
      * @author Rudi André Dahle
-     * @param cellWidth
+     * @param cellWidth Width of a single cell
      */
     public void setCellWidth(double cellWidth) {
         this.cellWidth = cellWidth;

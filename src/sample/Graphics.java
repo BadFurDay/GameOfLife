@@ -9,6 +9,7 @@
 package sample;
 
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.shape.ArcType;
 
 
 public class Graphics {
@@ -37,8 +38,10 @@ public class Graphics {
         for(int x = 0; x < graphicsBoard.length; x++) {
             for(int y = 0; y < graphicsBoard[0].length; y++) {
                 if (graphicsBoard[x][y]) {
-                    gc.fillRoundRect(x * getCellWidth(), y * getCellHeight(), (getCellWidth()*0.8), (getCellHeight()*0.8), 100, 100);
-                   // gc.fillRect(x * getCellWidth(), y * getCellHeight(), getCellWidth()*0.8, getCellHeight()*0.8);
+                   // gc.fillRoundRect(x * getCellWidth(), y * getCellHeight(), (getCellWidth()*0.8), (getCellHeight()*0.8), 360, 360);
+                    gc.fillRect(x * getCellWidth(), y * getCellHeight(), getCellWidth(), getCellHeight());
+                   // gc.fillArc(x * getCellWidth(), y * getC
+                    // ellHeight(), getCellWidth()*0.9, getCellHeight() * 0.9, 0, 360, ArcType.ROUND);
                 } else if (!graphicsBoard[x][y]) {
                     gc.clearRect(x * getCellWidth(), y * getCellHeight(), getCellWidth(), getCellHeight());
                 }
@@ -67,7 +70,7 @@ public class Graphics {
      * a cell in the canvas area.
      *
      * @author Rudi André Dahle
-     * @param xCoord
+     * @param xCoord The coordination in the canvas of the selected x-cell
      */
     public void setXCell(double xCoord){
         xCell = (int)Math.floor(xCoord/getCellWidth());
@@ -78,7 +81,7 @@ public class Graphics {
      * a cell in the canvas area.
      *
      * @author Rudi André Dahle
-     * @param yCoord
+     * @param yCoord The coordination in the canvas of the selected y-cell
      */
     public void setYCell(double yCoord){
         yCell = (int)Math.floor(yCoord/getCellHeight());
@@ -132,19 +135,18 @@ public class Graphics {
      * Sets and computes the width of a single cell.
      *
      * @author Rudi André Dahle
-     * @return cellWidth Returns the value of cellWidth
+     * @param cellsWide Number of cells in the game board's width
      */
     public void setCellWidth(int cellsWide){
         this.cellWidth = (double)gc.getCanvas().widthProperty().intValue()/cellsWide;
     }
 
 
-
     /**
      * Calculates the height of a single cell.
      *
      * @author Rudi André Dahle
-     * @return cellHeight Returns the value of cellHeight
+     * @param cellsHigh Number of cells in the game board's height
      */
     public void setCellHeight(int cellsHigh) {
          this.cellHeight = (double)gc.getCanvas().heightProperty().intValue()/cellsHigh;
