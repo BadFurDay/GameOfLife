@@ -8,9 +8,6 @@
 
 package sample;
 
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.input.MouseEvent;
-
 
 public class Board {
 
@@ -100,7 +97,7 @@ public class Board {
      *  Sets the new values in the array for the
      *  next generation.
      *
-     *  @author Rudi André Dahle on 04.03.2016
+     *  @author Rudi André Dahle
      */
     public void nextGeneration() {
         boolean[][] newGameBoard = new boolean[getBoardWidth()][getBoardHeight()];

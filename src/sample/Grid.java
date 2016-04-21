@@ -105,6 +105,7 @@ public class Grid extends Canvas {
         this.canvasHeight = canvasHeight;
     }
 
+
     /**
      *  Gets the value of canvas' width
      *
@@ -115,6 +116,7 @@ public class Grid extends Canvas {
     public int getCanvasWidth() {
         return gcGrid.getCanvas().widthProperty().intValue();
     }
+
 
     /**
      * Sets the value of canvas' width

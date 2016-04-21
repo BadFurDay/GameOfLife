@@ -50,6 +50,8 @@ public class Graphics {
     }
 
     /**
+     * Method called to draw a cell when the user interacts with
+     * the canvas area.
      *
      * @author Rudi André Dahle
      * @param graphicsBoard Receives the value of the graphicBoard
@@ -76,6 +78,7 @@ public class Graphics {
         xCell = (int)Math.floor(xCoord/getCellWidth());
     }
 
+
     /**
      * Sets and computes the cell's y value when the user inserts
      * a cell in the canvas area.
@@ -87,6 +90,7 @@ public class Graphics {
         yCell = (int)Math.floor(yCoord/getCellHeight());
     }
 
+
     /**
      * Gets the x value of cell.
      *
@@ -97,6 +101,7 @@ public class Graphics {
         return xCell;
     }
 
+
     /**
      * Gets the y cell.
      *
@@ -106,6 +111,7 @@ public class Graphics {
     public int getYCell(){
         return yCell;
     }
+
 
     /**
      * Returns the cellWidth.
