@@ -14,14 +14,16 @@ public class Board {
     private static Board board;
 
     //Datafield
-    //protected GraphicsContext gc;
-    private int cellsWide = 50; //Number of cells in gameboards width
-    private int cellsHigh = cellsWide/2; //Number of cells in gameboards height
-    protected int genCounter;
-    public boolean[][] gameBoard;
+    private int cellsWide = 50;             //Number of cells in gameboard's width
+    private int cellsHigh = cellsWide/2;    //Number of cells in gameboard's height
+    protected int genCounter;               /**Number of generations in integer value*/
+    public boolean[][] gameBoard;           //Value of game board in boolean 2D array
 
 
-    //Constructor
+    /**
+     * Board class has a default constructor that
+     * receives no arguments.
+     */
     public Board() {
         gameBoard = new boolean[getBoardWidth()][getBoardHeight()];
     }

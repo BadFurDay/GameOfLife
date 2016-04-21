@@ -26,18 +26,26 @@ import java.util.ResourceBundle;
 
 
 
-public class WebFileController /*implements Initializable*/ {
-/*
+public class WebFileController implements Initializable {
+
     //Data field
-    @FXML protected TextField field;
-    @FXML protected Button submit;
-    @FXML protected Button clear;
-    @FXML protected Label label;
+    @FXML private TextField field;
+    @FXML private Button submit;
+    @FXML private Button clear;
+    @FXML private Label label;
 
     //Objects
     FileHandler fileHandler = new FileHandler();
     Alerts error = new Alerts();
 
+
+    /**
+     * Web File Controller has a default constructor
+     * that receives no arguments.
+     */
+    public WebFileController(){
+
+    }
 
 
     @Override
@@ -48,7 +56,7 @@ public class WebFileController /*implements Initializable*/ {
 
     public void fieldEvent(ActionEvent actionEvent){
         field.getText();
-    }*/
+    }
 
     /**
      * * Method called when user submits a URL to read.
@@ -60,10 +68,9 @@ public class WebFileController /*implements Initializable*/ {
      * @author Ginelle Ignacio
      * @param actionEvent represents an Action Event used to
      *                    when a button has been fired.
-     * @throws IOException
      */
-   /* @FXML
-    public void submitEvent (ActionEvent actionEvent) throws IOException {
+    @FXML
+    public void submitEvent (ActionEvent actionEvent) {
         //Changes the label text
         if (field.getText() != null && !field.getText().isEmpty()) {
             label.setText("Reading file from web..");
@@ -96,7 +103,7 @@ public class WebFileController /*implements Initializable*/ {
             error.arrayException();
             arraye.printStackTrace();
         }
-    }*/
+    }
 
 
 
@@ -108,10 +115,10 @@ public class WebFileController /*implements Initializable*/ {
      * @param actionEvent represents an Action Event used to
      *                    when a button has been fired.
      */
-  /*  @FXML
+    @FXML
     public void clearEvent(ActionEvent actionEvent){
         field.clear();
         label.setText(null);
-    }*/
+    }
 
 }

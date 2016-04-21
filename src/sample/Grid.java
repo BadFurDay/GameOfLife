@@ -21,7 +21,14 @@ public class Grid extends Canvas {
     private double cellWidth;
     private double cellHeight;
 
-    //Constructor
+    /**
+     * Grid's default constructor receives an
+     * argument of the GraphicsContext class
+     * to draw calls to the canvas area.
+     *
+     * @param gcGrid Receives the content related to
+     *               GraphicsContext
+     */
     public Grid(GraphicsContext gcGrid) {
         this.gcGrid = gcGrid;
         /*// Redraw canvas when size changes.

@@ -1,5 +1,5 @@
 /**
- * This class does the JUit Testing ti verify the logic
+ * This class does the JUit Testing to verify the logic
  * and functionality of the cell generations in the Board
  * class.
  *
@@ -15,6 +15,17 @@ import static org.junit.Assert.*;
 
 
 public class BoardTest {
+
+
+    /**
+     * Board Test class has a default constructor
+     * that receives no arguments.
+     */
+    public BoardTest(){
+
+    }
+
+    //Object
     Board board = new Board();
 
     /**
@@ -39,7 +50,7 @@ public class BoardTest {
      * Method called to test the logic of the next
      * generation.
      *
-     * @author Rudi
+     * @author Rudi André Dahle
      * @throws Exception if an error occurs while testing
      */
     @Test
@@ -52,7 +63,7 @@ public class BoardTest {
      * Method called to test if the game board resets
      * to its initial value.
      *
-     * @author Rudi
+     * @author Rudi André Dahle
      * @throws Exception if an error occurs while testing
      */
     @Test

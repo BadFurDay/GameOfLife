@@ -14,6 +14,17 @@ import javafx.scene.control.Alert;
 public class Alerts {
 
     /**
+     * Alert's default constructor receives no argument.
+     *
+     * @author Ginelle Ignacio
+     */
+    public Alerts(){
+
+    }
+
+
+
+    /**
      * Error dialog to notify user that the chosen file is not found.
      *
      * @author Ginelle Ignacio
@@ -84,9 +95,9 @@ public class Alerts {
     public void invalidURL(){
         Alert invalid = new Alert(Alert.AlertType.ERROR);
         invalid.setTitle("Error");
-        invalid.setHeaderText("Invalid web address!");
+        invalid.setHeaderText("Error reading web address!");
         invalid.setContentText("The URL that you entered may no longer exist or is invalid." +
-                " Enter a valid web address.\t");
+                " Enter a new web address.\t");
         invalid.show();
     }
 
@@ -135,6 +146,21 @@ public class Alerts {
         nullPointer.setContentText("The program is accessing a null element causing the " +
                 "program to crash. You may want to choose another URL. \t");
         nullPointer.show();
+    }
+
+
+    /**
+     * Error dialog to notify the user that there were
+     * no file chosen.
+     *
+     * @author Ginelle Ignacio
+     */
+    public void noFile(){
+        Alert nf = new Alert(Alert.AlertType.ERROR);
+        nf.setTitle("Error");
+        nf.setHeaderText(null);
+        nf.setContentText("No file was chosen!");
+        nf.show();
     }
 
 }

@@ -78,6 +78,15 @@ public class Controller implements Initializable {
    // Cell cell;
 
 
+    /**
+     * Controller class has a default constructor that
+     * receives no argument.
+     */
+    public Controller(){
+
+    }
+
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 

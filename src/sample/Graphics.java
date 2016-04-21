@@ -5,7 +5,6 @@
  *
  * @author Rudi André Dahle
  */
-
 package sample;
 
 import javafx.scene.canvas.GraphicsContext;
@@ -15,13 +14,22 @@ import javafx.scene.shape.ArcType;
 public class Graphics {
 
     //Data field
-    protected GraphicsContext gc;
-    private double cellHeight; //Height of each individual cell
-    private double cellWidth;  //Width of each individual cell
-    private int xCell; // X-index of cell
-    private int yCell; // Y-index of cell
+    protected GraphicsContext gc;           //Draws calls to the canvas area
+    private double cellHeight;              //Height of each individual cell
+    private double cellWidth;               //Width of each individual cell
+    private int xCell;                      //X-index of cell
+    private int yCell;                      //Y-index of cell
 
-    //Constructor
+
+    /**
+     * Graphics' default constructor receives an
+     * argument of the GraphicsContext's class to
+     * draw calls to the canvas area.
+     *
+     * @author Rudi André Dahle
+     * @param gc Receives the content related to
+     *           GraphicsContext
+     */
     public Graphics (GraphicsContext gc/*, int cellWidth, int cellHeight*/){
        // this.cellHeight = gc.getCanvas().heightProperty().intValue()/cellHeight;
        // this.cellWidth = gc.getCanvas().widthProperty().intValue()/cellWidth;

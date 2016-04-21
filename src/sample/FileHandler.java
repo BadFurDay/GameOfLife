@@ -21,14 +21,17 @@ public class FileHandler {
     //Data field
     File file;
 
-    //Constructor
+    /**
+     * File Handler class has a default constructor
+     * that receives no arguments.
+     */
     public FileHandler() {
     }
 
 
     //Object
     Board gameBoard = Board.getBoard();
-
+    Alerts alerts = new Alerts();
 
     /**
      * Method called to read an RLE file stored in the
@@ -48,22 +51,11 @@ public class FileHandler {
         if (file != null) {
             System.out.println("Fildestinasjon: " + file);
             readGameBoardFromFile(file);
+        } else {
+            alerts.noFile();
         }
-        System.out.println("file: " + file);
     }
 
-    public String toString() {
-        StringBuilder str = new StringBuilder();
-        if (file != null) {
-            try {
-                readGameBoardFromFile(file);
-            } catch (IOException io){
-                io.printStackTrace();
-            }
-            str.append("file");
-        }
-        return toString();
-    }
 
     /**
      * Method called to read the content of file
@@ -72,10 +64,10 @@ public class FileHandler {
      * @author Olav Smevoll
      * @param file Receives a file selected by the user
      *             that the Buffered Reader will read
-     * @throws IOException
+     * @throws IOException If an error occurs when reading the file
 
      */
-    private void readGameBoardFromFile(File file) throws IOException {
+    public void readGameBoardFromFile(File file) throws IOException {
         FileReader fr = new FileReader(file);
         BufferedReader br = new BufferedReader(fr);
 

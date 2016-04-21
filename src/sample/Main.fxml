@@ -12,7 +12,7 @@
                 <Menu mnemonicParsing="false" text="File">
                     <items>
                         <MenuItem fx:id="fileReader" mnemonicParsing="false" onAction="#openFiles" text="Open File..." />
-                     <!--   <MenuItem fx:id="webReader" mnemonicParsing="false" onAction="#webFile" text="Read web file..." /> -->
+                        <MenuItem fx:id="webReader" mnemonicParsing="false" onAction="#webFile" text="Read web file..." />
                         <MenuItem fx:id="close" mnemonicParsing="false" onAction="#closeWindow" text="Close" />
                     </items>
                 </Menu>
