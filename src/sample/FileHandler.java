@@ -78,6 +78,7 @@ public class FileHandler {
      * Method called to read the content of an RLE file
      * or URL by using Pattern and Matcher.
      *
+     * @author Rudi André Dahle
      * @author Olav Smevoll
      * @param rle Receives a string representation of
      *            a RLE file

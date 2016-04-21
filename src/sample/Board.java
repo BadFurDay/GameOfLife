@@ -181,6 +181,8 @@ public class Board {
      *                  board in boolean 2D array
      */
     public void setGameBoard(boolean[][] gameBoard) {
+        this.cellsWide = gameBoard[0].length;
+        this.cellsHigh = gameBoard.length;
         this.gameBoard = gameBoard;
     }
 
@@ -210,15 +212,11 @@ public class Board {
     @Override
     public String toString() {
         StringBuilder str = new StringBuilder();
-            for (int x = 0; x < gameBoard.length; x++) {
-                for (int y = 0; y < gameBoard.length; y++) {
-                    if (gameBoard[x][y]) {
-                        str.append("1");
-                    } else {
-                        str.append("0");
-                    }
-                }
+        for (boolean[] gameArray : gameBoard){
+            for(boolean gameCell : gameArray){
+                str.append(gameCell ? "1" : "0");
             }
+        }
         return str.toString();
     }
 }
