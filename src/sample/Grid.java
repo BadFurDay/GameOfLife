@@ -61,7 +61,7 @@ public class Grid extends Canvas {
     /**
      * Gets the value of canvas' height
      *
-     * @author Rudi André Dahle on 29.03.16
+     * @author Rudi André Dahle
      * @return canvasH Returns the height of the canvas
      */
     public int getCanvasHeight() {
@@ -97,7 +97,7 @@ public class Grid extends Canvas {
     /**
      *  Sets the canvas' height
      *
-     *  @author Rudi André Dahle 29.03.16
+     *  @author Rudi André Dahle
      *  @param canvasHeight Receives the decimal value
      *                      of the canvas' height
      */
@@ -109,7 +109,7 @@ public class Grid extends Canvas {
     /**
      *  Gets the value of canvas' width
      *
-     *  @author Rudi André Dahle 29.03.16
+     *  @author Rudi André Dahle
      *  @return canvasWidth Returns the integer value
      *          of canvas' width
      */
@@ -121,7 +121,7 @@ public class Grid extends Canvas {
     /**
      * Sets the value of canvas' width
      *
-     * @author Rudi André Dahle 29.03.16
+     * @author Rudi André Dahle
      * @param canvasWidth Receives the decimal value of
      *                    canvas' width
      */

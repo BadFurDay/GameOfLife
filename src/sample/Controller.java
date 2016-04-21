@@ -186,6 +186,13 @@ public class Controller implements Initializable {
 
 
     //Changes the text on the play button pause and vice versa
+
+    /**
+     * Method called when user press play/pause button
+     * to change the button text.
+     *
+     * @author Ginelle Ignacio
+     */
     public void playPauseEvent(){
         if(running){
             playPause.setText("Pause");
@@ -319,7 +326,7 @@ public class Controller implements Initializable {
      * @author Ginelle Ignacio
      * @param ae represents an Action Event used
      *           when a menu item has been clicked
-     * @throws IOException
+     * @throws Exception if an error occurs while opening help window
      */
     public void helpEvent (ActionEvent ae) throws Exception {
         try{
@@ -340,9 +347,9 @@ public class Controller implements Initializable {
      * @author Ginelle Ignacio
      * @param ae represents an Action Event used
      *           when a menu item has been clicked
-     * @throws IOException
+     * @throws Exception if an error occurs while opening file chooser window
      */
-    public void openFiles(ActionEvent ae)throws IOException {
+    public void openFiles(ActionEvent ae)throws Exception {
         try {
             reader.chooseFile();
         } catch (FileNotFoundException fe){
@@ -373,10 +380,10 @@ public class Controller implements Initializable {
      * @author Ginelle Ignacio
      * @param ae represents an Action Event used to
      *           when a menu item has been clicked
-     * @throws IOException
+     * @throws Exception if an error occurs while opening URL window
      */
 
-    public void webFile(ActionEvent ae) throws IOException {
+    public void webFile(ActionEvent ae) throws Exception {
         try {
         Parent webRoot = FXMLLoader.load(getClass().getClassLoader().getResource("WebFile/Webfile.fxml"));
         readWeb.setTitle("Read web file");

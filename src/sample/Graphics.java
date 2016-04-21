@@ -31,6 +31,7 @@ public class Graphics {
     /**
      * Draws the board with existing cells for every loop.
      *
+     * @author Rudi André Dahle
      * @param graphicsBoard Receives the value of the graphicBoard
      *                      in boolean 2D array
      */
@@ -38,10 +39,8 @@ public class Graphics {
         for(int x = 0; x < graphicsBoard.length; x++) {
             for(int y = 0; y < graphicsBoard[0].length; y++) {
                 if (graphicsBoard[x][y]) {
-                   // gc.fillRoundRect(x * getCellWidth(), y * getCellHeight(), (getCellWidth()*0.8), (getCellHeight()*0.8), 360, 360);
                     gc.fillRect(x * getCellWidth(), y * getCellHeight(), getCellWidth(), getCellHeight());
-                   // gc.fillArc(x * getCellWidth(), y * getC
-                    // ellHeight(), getCellWidth()*0.9, getCellHeight() * 0.9, 0, 360, ArcType.ROUND);
+                   // gc.fillArc(x * getCellWidth(), y * getCellHeight(), getCellWidth()*0.9, getCellHeight() * 0.9, 0, 360, ArcType.ROUND);
                 } else if (!graphicsBoard[x][y]) {
                     gc.clearRect(x * getCellWidth(), y * getCellHeight(), getCellWidth(), getCellHeight());
                 }
@@ -72,7 +71,7 @@ public class Graphics {
      * a cell in the canvas area.
      *
      * @author Rudi André Dahle
-     * @param xCoord The coordination in the canvas of the selected x-cell
+     * @param xCoord The coordinates in the canvas of the selected x-cell
      */
     public void setXCell(double xCoord){
         xCell = (int)Math.floor(xCoord/getCellWidth());
@@ -84,7 +83,7 @@ public class Graphics {
      * a cell in the canvas area.
      *
      * @author Rudi André Dahle
-     * @param yCoord The coordination in the canvas of the selected y-cell
+     * @param yCoord The coordinates in the canvas of the selected y-cell
      */
     public void setYCell(double yCoord){
         yCell = (int)Math.floor(yCoord/getCellHeight());
@@ -92,7 +91,7 @@ public class Graphics {
 
 
     /**
-     * Gets the x value of cell.
+     * Gets the x value of a cell.
      *
      * @author Rudi André Dahle
      * @return xCell Returns the integer value of  xCell.
@@ -103,7 +102,7 @@ public class Graphics {
 
 
     /**
-     * Gets the y cell.
+     * Gets the y value of a cell.
      *
      * @author Rudi André Dahle
      * @return yCell Returns the integer value of yCell

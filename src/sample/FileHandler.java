@@ -21,6 +21,10 @@ public class FileHandler {
     //Data field
     File file;
 
+    //Constructor
+    public FileHandler() {
+    }
+
 
     //Object
     Board gameBoard = Board.getBoard();
@@ -32,7 +36,7 @@ public class FileHandler {
      * containing RLE files which the user can choose.
      *
      * @author Rudi André Dahle
-     * @throws IOException
+     * @throws IOException if an error occurs while opening file
      */
     public void chooseFile() throws IOException {
         FileChooser fileChooser = new FileChooser();
@@ -42,6 +46,7 @@ public class FileHandler {
                 new FileChooser.ExtensionFilter("Game of Life WebFile ", "*.rle"));
         file = fileChooser.showOpenDialog(null);
         if (file != null) {
+            System.out.println("Fildestinasjon: " + file);
             readGameBoardFromFile(file);
         }
         System.out.println("file: " + file);
@@ -82,8 +87,8 @@ public class FileHandler {
                 rleCode = rleCode.concat(line + "\n");
             }
         }
+        System.out.println("Lest av rle-kode fra fil: " + rleCode);
         fromRleToSimplified(rleCode);
-        System.out.println(rleCode);
     }
 
 
@@ -110,6 +115,7 @@ public class FileHandler {
                 finalRle += matcher.group();
             }
         }
+        System.out.println("Tolket koden om til enkelte celler: " + finalRle);
         rleToArray(finalRle);
     }
 

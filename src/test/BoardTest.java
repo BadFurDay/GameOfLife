@@ -1,12 +1,10 @@
 /**
- * This class does the JUnit Testing to verify the logic
+ * This class does the JUit Testing ti verify the logic
  * and functionality of the cell generations in the Board
  * class.
  *
  * @author Rudi André Dahle
- *
  */
-
 package test;
 
 import org.junit.Before;
@@ -20,9 +18,11 @@ public class BoardTest {
     Board board = new Board();
 
     /**
+     * The initial setup of a game board used for testing the functionality
+     * of the game board.
      *
-     * @author Rudi
-     * @throws Exception
+     * @author Rudi André Dahle
+     * @throws Exception if an error occurs while testing
      */
     @Before
     public void setUp() throws Exception {
@@ -40,7 +40,7 @@ public class BoardTest {
      * generation.
      *
      * @author Rudi
-     * @throws Exception
+     * @throws Exception if an error occurs while testing
      */
     @Test
     public void testNextGeneration() throws Exception {
@@ -49,11 +49,11 @@ public class BoardTest {
     }
 
     /**
-     * Method called to test if the game board resets to
-     * it's initial value.
+     * Method called to test if the game board resets
+     * to its initial value.
      *
      * @author Rudi
-     * @throws Exception
+     * @throws Exception if an error occurs while testing
      */
     @Test
     public void testClearBoard() throws Exception {

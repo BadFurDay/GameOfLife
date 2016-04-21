@@ -43,7 +43,7 @@ public class Board {
      * @param y the arrays in y-position
      * @return counter Returns the value of counter after
      *         checking the rules
-     * @author Olav Smevoll on 08.03.2016
+     * @author Olav Smevoll
      */
     protected int countNeighbours(int x, int y) {
         int counter = 0;
@@ -139,7 +139,7 @@ public class Board {
     /**
      * Gameboard's width in number of cells
      *
-     * @author Rudi André Dahle 24.03.16
+     * @author Rudi André Dahle
      * @return cellsWide Returns the cell's width
      */
     public int getBoardWidth() {
@@ -150,7 +150,7 @@ public class Board {
     /**
      * Gameboards height in number of cells
      *
-     * @author Rudi André Dahle 24.03.16
+     * @author Rudi André Dahle
      * @return cellsHigh Returns the cell's height
      */
     public int getBoardHeight() {
@@ -161,7 +161,7 @@ public class Board {
     /**
      * Gets the value of the game board
      *
-     * @author Rudi André Dahle on 01.03.2016.
+     * @author Rudi André Dahle
      * @return gameBoard Returns the value of the
      *                   game board
      */
@@ -173,7 +173,7 @@ public class Board {
     /**
      * Sets the value of the GameBoard
      *
-     * @author Rudi André Dahle on 01.03.2016.
+     * @author Rudi André Dahle
      * @param gameBoard Receives the value of the game
      *                  board in boolean 2D array
      */
