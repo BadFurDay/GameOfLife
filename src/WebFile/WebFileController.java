@@ -26,10 +26,8 @@ import java.util.ResourceBundle;
 
 
 
-public class WebFileController implements Initializable {
-
-
-
+public class WebFileController /*implements Initializable*/ {
+/*
     //Data field
     @FXML protected TextField field;
     @FXML protected Button submit;
@@ -50,7 +48,7 @@ public class WebFileController implements Initializable {
 
     public void fieldEvent(ActionEvent actionEvent){
         field.getText();
-    }
+    }*/
 
     /**
      * * Method called when user submits a URL to read.
@@ -64,7 +62,7 @@ public class WebFileController implements Initializable {
      *                    when a button has been fired.
      * @throws IOException
      */
-    @FXML
+   /* @FXML
     public void submitEvent (ActionEvent actionEvent) throws IOException {
         //Changes the label text
         if (field.getText() != null && !field.getText().isEmpty()) {
@@ -98,7 +96,7 @@ public class WebFileController implements Initializable {
             error.arrayException();
             arraye.printStackTrace();
         }
-    }
+    }*/
 
 
 
@@ -110,10 +108,10 @@ public class WebFileController implements Initializable {
      * @param actionEvent represents an Action Event used to
      *                    when a button has been fired.
      */
-    @FXML
+  /*  @FXML
     public void clearEvent(ActionEvent actionEvent){
         field.clear();
         label.setText(null);
-    }
+    }*/
 
 }

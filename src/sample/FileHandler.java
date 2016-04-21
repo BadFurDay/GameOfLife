@@ -83,7 +83,7 @@ public class FileHandler {
      * @param rle Receives a string representation of
      *            a RLE file
      */
-    public void fromRleToSimplified(String rle) {  //Hjelpemetode, kan settes private. Da må webfilecontroller endres litt. Sette inn i samme klasse?
+    private void fromRleToSimplified(String rle) {  //Hjelpemetode, kan settes private. Da må webfilecontroller endres litt. Sette inn i samme klasse?
         String finalRle = "";
 
         Pattern pattern = Pattern.compile("\\d+|[ob]|\\$");
