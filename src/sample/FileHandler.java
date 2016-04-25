@@ -85,7 +85,6 @@ public class FileHandler {
                 rleCode = rleCode.concat(line + "\n");
             }
         }
-        System.out.println("Lest av rle-kode fra fil: " + rleCode);
         fromRleToSimplified(rleCode);
     }
 
@@ -98,7 +97,7 @@ public class FileHandler {
      * @param rle Receives a string representation of
      *            a RLE file
      */
-    public void fromRleToSimplified(String rle) {  //Hjelpemetode, kan settes private. Da må webfilecontroller endres litt. Sette inn i samme klasse?
+    public String fromRleToSimplified(String rle) {  //Hjelpemetode, kan settes private. Da må webfilecontroller endres litt. Sette inn i samme klasse?
         String finalRle = "";
 
         Pattern pattern = Pattern.compile("\\d+|[ob]|\\$");
@@ -113,8 +112,8 @@ public class FileHandler {
                 finalRle += matcher.group();
             }
         }
-        System.out.println("Tolket koden om til enkelte celler: " + finalRle);
         rleToArray(finalRle);
+        return finalRle;
     }
 
 

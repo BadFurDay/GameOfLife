@@ -119,6 +119,7 @@ public class Controller implements Initializable {
         genCounter.setText(gameBoard.getGenCounter());  //DUPLIKAT??
         graphics.gc.setFill(Color.rgb(26,0,104));
         colorPicker.setValue(Color.rgb(26,0,104));
+        backgroundColor.setValue(Color.rgb(220,220,220));
         speedSlider.setValue(50.0);
         speedSlider.setShowTickMarks(true);
 //        zoomSlider.setShowTickMarks(true);

@@ -9,15 +9,15 @@
 package sample;
 
 
-public class Board {
+public /*abstract*/ class Board {
 
     private static Board board;
 
     //Datafield
     private int cellsWide = 50;             //Number of cells in gameboard's width
-    private int cellsHigh = cellsWide/2;    //Number of cells in gameboard's height
-    protected int genCounter;               //Number of generations in integer value
-    public boolean[][] gameBoard;           //Value of game board in boolean 2D array
+    private int cellsHigh = cellsWide;    //Number of cells in gameboard's height
+    private int genCounter;               //Number of generations in integer value
+    protected boolean[][] gameBoard;           //Value of game board in boolean 2D array
 
 
     /**
@@ -138,6 +138,31 @@ public class Board {
      */
     public void resetGenCount(){
         genCounter = 0;
+    }
+
+
+    /**
+     * Sets the state of selected cell to true or false
+     *
+     * @author Rudi André Dahle
+     * @param x
+     * @param y
+     */
+    public void setCellState(int x, int y){ //KASTE EXCEPTION??
+        this.gameBoard[x][y] = gameBoard[x][y];
+    }
+
+
+    /**
+     * Gets the state of selected cell
+     *
+     * @author Rudi André Dahle
+     * @param x
+     * @param y
+     * @return
+     */
+    public boolean getCellState(int x, int y){
+        return gameBoard[x][y];
     }
 
 

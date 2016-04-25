@@ -30,9 +30,7 @@ public class Graphics {
      * @param gc Receives the content related to
      *           GraphicsContext
      */
-    public Graphics (GraphicsContext gc/*, int cellWidth, int cellHeight*/){
-       // this.cellHeight = gc.getCanvas().heightProperty().intValue()/cellHeight;
-       // this.cellWidth = gc.getCanvas().widthProperty().intValue()/cellWidth;
+    public Graphics (GraphicsContext gc){
         this.gc = gc;
     }
 
@@ -47,8 +45,9 @@ public class Graphics {
         for(int x = 0; x < graphicsBoard.length; x++) {
             for(int y = 0; y < graphicsBoard[0].length; y++) {
                 if (graphicsBoard[x][y]) {
-                    gc.fillRect(x * getCellWidth(), y * getCellHeight(), getCellWidth(), getCellHeight());
-                   // gc.fillArc(x * getCellWidth(), y * getCellHeight(), getCellWidth()*0.9, getCellHeight() * 0.9, 0, 360, ArcType.ROUND);
+                   // gc.fillRect(x * getCellWidth(), y * getCellHeight(), getCellWidth()*0.7, getCellHeight()*0.7);
+                    // gc.fillArc(x * getCellWidth(), y * getCellHeight(), getCellWidth(), getCellHeight(), 0, 360, ArcType.ROUND);
+                    gc.fillOval(x * getCellWidth(), y * getCellHeight(), getCellWidth()-1, getCellHeight()-1);
                 } else if (!graphicsBoard[x][y]) {
                     gc.clearRect(x * getCellWidth(), y * getCellHeight(), getCellWidth(), getCellHeight());
                 }
