@@ -33,6 +33,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.NoSuchElementException;
 import java.util.ResourceBundle;
+import java.util.regex.Pattern;
 
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -356,17 +357,21 @@ public class Controller implements Initializable {
      *           when a menu item has been clicked
      * @throws Exception if an error occurs while opening file chooser window
      */
-    public void openFiles(ActionEvent ae)throws Exception {
+    public void openFiles(ActionEvent ae)throws Exception, PatternFormatExceptions {
         try {
             reader.chooseFile();
         } catch (FileNotFoundException fe){
             error.fileNotFound();
+            throw new PatternFormatExceptions("File not found");
         } catch (IOException e) {
             error.errorOpeningfile();
+            throw new PatternFormatExceptions("Error opening file");
         } catch (NoSuchElementException ne){
             error.incorrectMatch();
+            throw new PatternFormatExceptions("Incorrect file format");
         } catch (IllegalStateException ie) {
             error.errorReading();
+            throw new PatternFormatExceptions("Error reading from file");
         }
     }
 
