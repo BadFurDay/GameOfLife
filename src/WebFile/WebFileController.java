@@ -92,16 +92,10 @@ public class WebFileController implements Initializable {
                 }
             }
             fileHandler.fromRleToSimplified(rleCode);
-
-        } catch (MalformedURLException me){
-            error.invalidURL();
         } catch (IOException ie) {
-            error.errorConnection();
+            error.invalidURL();
         } catch (NullPointerException ne){
             error.nullException();
-        } catch(ArrayIndexOutOfBoundsException arraye){
-            error.arrayException();
-            arraye.printStackTrace();
         }
     }
 

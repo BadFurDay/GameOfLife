@@ -186,15 +186,13 @@ public class Controller implements Initializable {
        if(timeline.getStatus() == Status.RUNNING) {
             timeline.pause();
             running = false;
-        } else {
+       } else {
             timeline.play();
             running = true;
         }
     }
 
 
-
-    //Changes the text on the play button pause and vice versa
 
     /**
      * Method called when user press play/pause button
@@ -344,7 +342,7 @@ public class Controller implements Initializable {
         helpWindow.setScene(new Scene(helpRoot));
         helpWindow.show();
         } catch (IOException io){
-            io.printStackTrace();
+            error.notLoading();
         }
     }
 
@@ -362,21 +360,13 @@ public class Controller implements Initializable {
         try {
             reader.chooseFile();
         } catch (FileNotFoundException fe){
-            System.err.println("File not found! " + fe);
             error.fileNotFound();
         } catch (IOException e) {
-            e.printStackTrace();
-            System.err.println("Error opening file! " + e);
             error.errorOpeningfile();
         } catch (NoSuchElementException ne){
-            System.err.println("File format does not match! " + ne);
             error.incorrectMatch();
         } catch (IllegalStateException ie) {
-            System.err.println("Error reading from file! " + ie);
             error.errorReading();
-        } catch(ArrayIndexOutOfBoundsException arraye){
-            System.err.println("Element at an index is outside the array bounds " + arraye);
-            error.arrayException();
         }
     }
 
@@ -399,7 +389,7 @@ public class Controller implements Initializable {
         readWeb.setScene(new Scene(webRoot));
         readWeb.show();
         } catch (IOException io){
-            io.printStackTrace();
+            error.notLoading();
         }
     }
 

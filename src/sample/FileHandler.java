@@ -33,6 +33,7 @@ public class FileHandler {
     Board gameBoard = Board.getBoard();
     Alerts alerts = new Alerts();
 
+
     /**
      * Method called to read an RLE file stored in the
      * computer's disk. Program will show a dialog box
@@ -40,20 +41,24 @@ public class FileHandler {
      *
      * @author Rudi André Dahle
      * @throws IOException if an error occurs while opening file
+     * @throws PatternFormatExceptions Exceptions related to file handling
      */
-    public void chooseFile() throws IOException {
+    public void chooseFile() throws IOException, PatternFormatExceptions {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open file");
         fileChooser.setInitialDirectory(new File(System.getProperty("user.dir")+"/rle"));
         fileChooser.getExtensionFilters().add(
                 new FileChooser.ExtensionFilter("Game of Life WebFile ", "*.rle"));
         file = fileChooser.showOpenDialog(null);
-        if (file != null) {
-            System.out.println("Fildestinasjon: " + file);
-            readGameBoardFromFile(file);
-        } else {
-            alerts.noFile();
-        }
+
+            if (file != null) {
+                System.out.println("Fildestinasjon: " + file);
+                readGameBoardFromFile(file);
+            } else {
+                alerts.noFile();
+                throw new PatternFormatExceptions("No file was chosen");
+
+            }
     }
 
 
@@ -65,9 +70,10 @@ public class FileHandler {
      * @param file Receives a file selected by the user
      *             that the Buffered Reader will read
      * @throws IOException If an error occurs when reading the file
-
+     * @throws PatternFormatExceptions Exceptions related to file handling
      */
-    public void readGameBoardFromFile(File file) throws IOException {
+    public void readGameBoardFromFile(File file) throws IOException,
+            PatternFormatExceptions {
         FileReader fr = new FileReader(file);
         BufferedReader br = new BufferedReader(fr);
 

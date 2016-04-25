@@ -103,37 +103,6 @@ public class Alerts {
 
 
     /**
-     * Error dialog to notify the user that a problem occurred
-     * from reading the web address.
-     *
-     * @author Ginelle Ignacio
-     */
-    public void errorConnection(){
-        Alert ec = new Alert(Alert.AlertType.ERROR);
-        ec.setTitle("Error");
-        ec.setHeaderText("Problem opening URL connection!");
-        ec.setContentText("There was an error connecting to the web address you entered.\t");
-        ec.show();
-    }
-
-
-    /**
-     * Error dialog to notify the user that an Array Index Out of Bounds
-     * Exception has occurred while reading the file.
-     *
-     * @author Ginelle Ignacio
-     */
-    public void arrayException(){
-        Alert arrayE = new Alert(Alert.AlertType.ERROR);
-        arrayE.setTitle("Error");
-        arrayE.setHeaderText("An array exception has been found!");
-        arrayE.setContentText("The program is trying to access an element at an index that" +
-                " is outside of the array bounds causing the program to crash. " +
-                "You may want to choose another file. \t");
-        arrayE.show();
-    }
-
-    /**
      * Error dialog to notify the user that a Null Pointer Exception
      * has occurred.
      *
@@ -163,4 +132,36 @@ public class Alerts {
         nf.show();
     }
 
+
+    /**
+     * Error dialog to notify the user that an error occurred
+     * while opening the window.
+     *
+     * @author Ginelle Ignacio
+     */
+    public void notLoading(){
+        Alert window = new Alert(Alert.AlertType.ERROR);
+        window.setTitle("Error");
+        window.setHeaderText("An error just occurred");
+        window.setContentText("An error occurred while opening the window. " +
+                "Try restarting the program.\t");
+        window.show();
+    }
+
+
+    /**
+     *  Error dialog to notify the user that the program
+     *  catched an Index Out of Bounds Exception.
+     *
+     * @author Ginelle Ignacio
+     */
+    public void indexOutOfBounds(){
+        Alert ib = new Alert(Alert.AlertType.ERROR);
+        ib.setTitle("Error");
+        ib.setHeaderText("The cell pattern is defined outside of the board!");
+        ib.setContentText("The current board is a static class and can not be changed" +
+                " to a bigger board. You may want to choose to change the board into" +
+                " dynamic to suit the chosen cell pattern. \t");
+        ib.show();
+    }
 }

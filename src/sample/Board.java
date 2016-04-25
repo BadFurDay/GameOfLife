@@ -16,7 +16,7 @@ public class Board {
     //Datafield
     private int cellsWide = 50;             //Number of cells in gameboard's width
     private int cellsHigh = cellsWide/2;    //Number of cells in gameboard's height
-    protected int genCounter;               /**Number of generations in integer value*/
+    protected int genCounter;               //Number of generations in integer value
     public boolean[][] gameBoard;           //Value of game board in boolean 2D array
 
 
@@ -41,8 +41,8 @@ public class Board {
      * the cell neighbors in every direction each
      * cell comes in contact with.
      *
-     * @param x the arrays in x-position
-     * @param y the arrays in y-position
+     * @param x integer value of the first parameter
+     * @param y integer value of the second parameter
      * @return counter Returns the value of counter after
      *         checking the rules
      * @author Olav Smevoll
@@ -103,6 +103,8 @@ public class Board {
      */
     public void nextGeneration() {
         boolean[][] newGameBoard = new boolean[getBoardWidth()][getBoardHeight()];
+        boolean[][] inactiveBoard = new boolean[getBoardWidth()][getBoardHeight()];
+
         for (int x = 0; x < gameBoard.length; x++) {
             for (int y = 0; y < gameBoard[0].length; y++) {
                 if (gameBoard[x][y]) {
@@ -113,6 +115,7 @@ public class Board {
         gameBoard = newGameBoard;
         genCounter++;
     }
+
 
     /**
      * Returns the generation counter as a string value
