@@ -355,9 +355,10 @@ public class Controller implements Initializable {
      * @author Ginelle Ignacio
      * @param ae represents an Action Event used
      *           when a menu item has been clicked
-     * @throws Exception if an error occurs while opening file chooser window
+     * @throws PatternFormatExceptions if an error occurs while
+     *         opening file chooser window
      */
-    public void openFiles(ActionEvent ae)throws Exception, PatternFormatExceptions {
+    public void openFiles(ActionEvent ae)throws PatternFormatExceptions {
         try {
             reader.chooseFile();
         } catch (FileNotFoundException fe){
