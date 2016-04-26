@@ -10,6 +10,7 @@ package test;
 import org.junit.Before;
 import org.junit.Test;
 import sample.Board;
+import sample.StatBoard;
 
 import static org.junit.Assert.*;
 
@@ -26,7 +27,7 @@ public class BoardTest {
     }
 
     //Object
-    Board board = new Board();
+    Board statBoard = new StatBoard();
 
     /**
      * The initial setup of a game board used for testing the functionality
@@ -42,7 +43,7 @@ public class BoardTest {
                 {true, true, true},
                 {false, false, false},
         };
-        board.setGameBoard(gameBoard);
+        statBoard.setGameBoard(gameBoard);
     }
 
 
@@ -55,8 +56,8 @@ public class BoardTest {
      */
     @Test
     public void testNextGeneration() throws Exception {
-        board.nextGeneration();
-        assertEquals("010010010", board.toString());
+        statBoard.nextGeneration();
+        assertEquals("010010010", statBoard.toString());
     }
 
     /**
@@ -68,8 +69,8 @@ public class BoardTest {
      */
     @Test
     public void testClearBoard() throws Exception {
-        board.clearBoard();
-        assertEquals("000000000", board.toString());
+        statBoard.clearBoard();
+        assertEquals("000000000", statBoard.toString());
     }
 
 

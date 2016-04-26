@@ -30,7 +30,8 @@ public class FileHandler {
 
 
     //Object
-    Board gameBoard = Board.getBoard();
+    StatBoard statBoard;
+    StatBoard gameBoard = new StatBoard(); //send inn spillbrett
     Alerts alerts = new Alerts();
 
 
@@ -51,14 +52,14 @@ public class FileHandler {
                 new FileChooser.ExtensionFilter("Game of Life WebFile ", "*.rle"));
         file = fileChooser.showOpenDialog(null);
 
-            if (file != null) {
-                System.out.println("Fildestinasjon: " + file);
-                readGameBoardFromFile(file);
-            } else {
-                alerts.noFile();
-                throw new PatternFormatExceptions("No file was chosen");
+        if (file != null) {
+            System.out.println("Fildestinasjon: " + file);
+            readGameBoardFromFile(file);
+        } else {
+            alerts.noFile();
+            throw new PatternFormatExceptions("No file was chosen");
 
-            }
+        }
     }
 
 
@@ -126,7 +127,7 @@ public class FileHandler {
      *            a RLE file
      */
     private void rleToArray(String rle) {
-        gameBoard.clearBoard();
+        statBoard.clearBoard();
         int yCounter = 5;
         int xCounter = 5;
 
@@ -136,11 +137,11 @@ public class FileHandler {
                 xCounter = 5;
             }
             if (rle.charAt(i) == 'b') {
-                gameBoard.gameBoard[xCounter][yCounter] = false;
+                statBoard.statGameBoard[xCounter][yCounter] = false;
                 xCounter++;
             }
             if (rle.charAt(i) == 'o') {
-                gameBoard.gameBoard[xCounter][yCounter] = true;
+                statBoard.statGameBoard[xCounter][yCounter] = true;
                 xCounter++;
             }
         }

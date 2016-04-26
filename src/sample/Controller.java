@@ -70,13 +70,12 @@ public class Controller implements Initializable {
 
     //Objects
     Grid grid;
-    Board gameBoard = Board.getBoard();
+    Board gameBoard = new StatBoard();
     Graphics graphics;
     FileHandler reader;
     Stage helpWindow;
     Stage readWeb;
     Alerts error;
-   // Cell cell;
 
 
     /**
@@ -101,7 +100,6 @@ public class Controller implements Initializable {
         helpWindow = new Stage();
         readWeb = new Stage();
         error = new Alerts();
-      //  cell = new Cell(gc);
 
 
         //Grid properties
@@ -185,10 +183,10 @@ public class Controller implements Initializable {
      */
     @FXML
     public void OnStartClick(ActionEvent actionEvent) {
-       if(timeline.getStatus() == Status.RUNNING) {
+        if(timeline.getStatus() == Status.RUNNING) {
             timeline.pause();
             running = false;
-       } else {
+        } else {
             timeline.play();
             running = true;
         }
@@ -287,7 +285,7 @@ public class Controller implements Initializable {
      *                    when a button has been fired.
      */
     public void colorChanged(ActionEvent actionEvent){
-            graphics.gc.setFill(colorPicker.getValue());
+        graphics.gc.setFill(colorPicker.getValue());
     }
 
 
@@ -339,10 +337,10 @@ public class Controller implements Initializable {
      */
     public void helpEvent (ActionEvent ae) throws Exception {
         try{
-        Parent helpRoot = FXMLLoader.load(getClass().getClassLoader().getResource("Rules/Guide.fxml"));
-        helpWindow.setTitle("Guidelines");
-        helpWindow.setScene(new Scene(helpRoot));
-        helpWindow.show();
+            Parent helpRoot = FXMLLoader.load(getClass().getClassLoader().getResource("Rules/Guide.fxml"));
+            helpWindow.setTitle("Guidelines");
+            helpWindow.setScene(new Scene(helpRoot));
+            helpWindow.show();
         } catch (IOException io){
             error.notLoading();
         }
@@ -391,10 +389,10 @@ public class Controller implements Initializable {
 
     public void webFile(ActionEvent ae) throws Exception {
         try {
-        Parent webRoot = FXMLLoader.load(getClass().getClassLoader().getResource("WebFile/Webfile.fxml"));
-        readWeb.setTitle("Read web file");
-        readWeb.setScene(new Scene(webRoot));
-        readWeb.show();
+            Parent webRoot = FXMLLoader.load(getClass().getClassLoader().getResource("WebFile/Webfile.fxml"));
+            readWeb.setTitle("Read web file");
+            readWeb.setScene(new Scene(webRoot));
+            readWeb.show();
         } catch (IOException io){
             error.notLoading();
         }
