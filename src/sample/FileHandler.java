@@ -20,6 +20,8 @@ public class FileHandler {
 
     //Data field
     File file;
+    private boolean[][] loadBoard;
+    long startTime;
 
     /**
      * File Handler class has a default constructor
@@ -30,9 +32,17 @@ public class FileHandler {
 
 
     //Object
-    StatBoard statBoard;
-    StatBoard gameBoard = new StatBoard(); //send inn spillbrett
+   // StatBoard statBoard;
+    //Board gameBoard;// = new StatBoard(); //send inn spillbrett
     Alerts alerts = new Alerts();
+
+    /**
+     *
+     * @param loadBoard
+     */
+    public void setLoadBoard(boolean[][] loadBoard){
+        this.loadBoard = loadBoard;
+    }
 
 
     /**
@@ -75,6 +85,7 @@ public class FileHandler {
      */
     public void readGameBoardFromFile(File file) throws IOException,
             PatternFormatExceptions {
+        startTime = System.currentTimeMillis();
         FileReader fr = new FileReader(file);
         BufferedReader br = new BufferedReader(fr);
 
@@ -98,7 +109,7 @@ public class FileHandler {
      * @param rle Receives a string representation of
      *            a RLE file
      */
-    public String fromRleToSimplified(String rle) {  //Hjelpemetode, kan settes private. Da må webfilecontroller endres litt. Sette inn i samme klasse?
+    public String fromRleToSimplified(String rle) {
         String finalRle = "";
 
         Pattern pattern = Pattern.compile("\\d+|[ob]|\\$");
@@ -127,23 +138,26 @@ public class FileHandler {
      *            a RLE file
      */
     private void rleToArray(String rle) {
-        statBoard.clearBoard();
+        //statBoard.clearBoard();
         int yCounter = 5;
         int xCounter = 5;
 
         for (int i = 0; i < rle.length(); i++) {
             if (rle.charAt(i) == '$') {
+
                 yCounter++;
                 xCounter = 5;
             }
             if (rle.charAt(i) == 'b') {
-                statBoard.statGameBoard[xCounter][yCounter] = false;
+                loadBoard[xCounter][yCounter] = false;
                 xCounter++;
             }
             if (rle.charAt(i) == 'o') {
-                statBoard.statGameBoard[xCounter][yCounter] = true;
+                loadBoard[xCounter][yCounter] = true;
                 xCounter++;
             }
         }
+        long stopTime = System.currentTimeMillis();
+       // System.out.println(stopTime - startTime);
     }
 }

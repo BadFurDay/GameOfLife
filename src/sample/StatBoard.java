@@ -9,6 +9,7 @@ public class StatBoard extends Board {
 
     //Datafield
     protected boolean[][] statGameBoard;
+    protected byte[][] byteBoard;
 
     /**
      * Board class has a default constructor that
@@ -18,70 +19,82 @@ public class StatBoard extends Board {
         statGameBoard = new boolean[super.getBoardWidth()][super.getBoardHeight()];
     }
 
-
     @Override
-    protected int countNeighbours(int x, int y) {
-        int counter = 0;
+    protected void countNeighbours(int x, int y) {
         int blx = statGameBoard.length - 1;
         int bly = statGameBoard[0].length - 1;
 
+
+        //if (x > 0 && y > 0 && y < bly && x < blx)
         //Check cell neighbor North-West
-        if (x > 0 && y > 0 && statGameBoard[x - 1][y - 1]) {
-            counter++;
+        if (x > 0 && y > 0) {
+            byteBoard[x - 1][y - 1]++;
         }
 
         //Check cell neighbor North
-        if (x > 0 && statGameBoard[x - 1][y]) {
-            counter++;
+        if (x > 0) {
+            byteBoard[x - 1][y]++;
         }
 
         //Check cell neighbor North-East
-        if (x > 0 && y < bly && statGameBoard[x - 1][y + 1]) {
-            counter++;
+        if (x > 0 && y < bly) {
+            byteBoard[x - 1][y + 1]++;
         }
 
         //Check cell neighbor West
-        if (y > 0 && statGameBoard[x][y - 1]) {
-            counter++;
+        if (y > 0) {
+            byteBoard[x][y - 1]++;
         }
 
         //Check cell neighbor East
-        if (y < bly && statGameBoard[x][y + 1]) {
-            counter++;
+        if (y < bly) {
+            byteBoard[x][y + 1]++;
         }
 
         //Check cell neighbor South-West
-        if (x < blx && y > 0 && statGameBoard[x + 1][y - 1]) {
-            counter++;
+        if (x < blx && y > 0) {
+            byteBoard[x + 1][y - 1]++;
         }
 
         //Check cell neighbor South
-        if (x < blx && statGameBoard[x + 1][y]) {
-            counter++;
+        if (x < blx) {
+            byteBoard[x + 1][y]++;
         }
 
         //Check cell neighbor South-East
-        if (x < blx && y < bly && statGameBoard[x + 1][y + 1]) {
-            counter++;
+        if (x < blx && y < bly) {
+            byteBoard[x + 1][y + 1]++;
         }
-        return counter;
+        //System.out.println("byteBoard[" + x + "]" + "[" + y + "]" + " funnet" );
     }
 
     @Override
     public void nextGeneration() {
-        boolean[][] newStatBoard = new boolean[getBoardWidth()][getBoardHeight()];
-        boolean[][] inactiveBoard = new boolean[getBoardWidth()][getBoardHeight()];
+        byteBoard = new byte[getBoardWidth()][getBoardHeight()];
 
         for (int x = 0; x < statGameBoard.length; x++) {
             for (int y = 0; y < statGameBoard[0].length; y++) {
                 if (statGameBoard[x][y]) {
-                    newStatBoard[x][y] = countNeighbours(x, y) == 2 || countNeighbours(x, y) == 3;
-                } else newStatBoard[x][y] = countNeighbours(x, y) == 3;
+                    countNeighbours(x, y);
+                }
             }
         }
-        statGameBoard = newStatBoard;
+        for (int x = 0; x < byteBoard.length; x++) {
+            for (int y = 0; y < byteBoard[0].length; y++) {
+                if (byteBoard[x][y] < 2) {
+                    statGameBoard[x][y] = false;
+                }
+                if (byteBoard[x][y] == 3) {
+                    statGameBoard[x][y] = true;
+                }
+                if (byteBoard[x][y] > 3) {
+                    statGameBoard[x][y] = false;
+                }
+            }
+        }
         genCounter++;
     }
+
 
     @Override
     public void setCellState(int x, int y) {

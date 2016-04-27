@@ -70,7 +70,7 @@ public class Controller implements Initializable {
 
     //Objects
     Grid grid;
-    Board gameBoard = new StatBoard();
+    Board gameBoard;// = new StatBoard();
     Graphics graphics;
     FileHandler reader;
     Stage helpWindow;
@@ -89,8 +89,10 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        long start = System.currentTimeMillis();
 
         //Objects
+        gameBoard = new StatBoard();
         gc = canvas.getGraphicsContext2D();
         gcGrid = canvasGrid.getGraphicsContext2D();
         gcBG = canvasBG.getGraphicsContext2D();
@@ -101,6 +103,7 @@ public class Controller implements Initializable {
         readWeb = new Stage();
         error = new Alerts();
 
+        reader.setLoadBoard(gameBoard.getGameBoard());
 
         //Grid properties
         graphics.setCellHeight(gameBoard.getBoardHeight());
@@ -118,9 +121,9 @@ public class Controller implements Initializable {
         graphics.gc.setFill(Color.rgb(26,0,104));
         colorPicker.setValue(Color.rgb(26,0,104));
         backgroundColor.setValue(Color.rgb(220,220,220));
-        speedSlider.setValue(50.0);
+        speedSlider.setValue(2.0);
         speedSlider.setShowTickMarks(true);
-//        zoomSlider.setShowTickMarks(true);
+        //zoomSlider.setShowTickMarks(true);
         FPS = speedSlider.getValue();
         fpsCount.setText(Integer.toString((int)FPS));
         //zoomCount.setText(Integer.toString((int)zoomSlider.getValue));
@@ -136,6 +139,8 @@ public class Controller implements Initializable {
         timeline = new Timeline();
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.getKeyFrames().add(keyframe);
+        long stop = System.currentTimeMillis();
+        System.out.println("Initialized in: " + (stop - start) + "ms");
     }
 
 
@@ -265,8 +270,6 @@ public class Controller implements Initializable {
      */
     public void zoomChanged(MouseEvent event) {
         int zoom = (int)zoomSlider.getValue();
-
-
 
         /*graphics.setCellHeight(zoom);
         graphics.setCellWidth(zoom/2);

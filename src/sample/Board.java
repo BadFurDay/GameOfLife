@@ -28,6 +28,8 @@ public abstract class Board {
     }
 
 
+
+
     /**
      * Returns the generation counter as a string value
      * to show as label.
@@ -114,7 +116,7 @@ public abstract class Board {
     *         checking the rules
     * @author Olav Smevoll
     */
-    protected abstract int countNeighbours(int x, int y);
+    protected abstract /*int*/void countNeighbours(int x, int y);
 
 
    /**
