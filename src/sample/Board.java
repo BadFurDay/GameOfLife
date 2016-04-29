@@ -37,9 +37,9 @@ public abstract class Board {
      * @author Olav Smevoll
      * @return s Value of generation counter in strings
      */
-    public String getGenCounter(){
-        String s = Integer.toString(genCounter);
-        return s;
+    public int getGenCounter(){
+        //String s = Integer.toString(genCounter);
+        return genCounter;
     }
 
 
@@ -126,6 +126,8 @@ public abstract class Board {
     *  @author Rudi André Dahle
     */
     public abstract void nextGeneration();
+
+    public abstract void rules();
 
 
    /**

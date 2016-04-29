@@ -55,6 +55,7 @@ public class FileHandler {
      * @throws PatternFormatExceptions Exceptions related to file handling
      */
     public void chooseFile() throws IOException, PatternFormatExceptions {
+        long start = System.currentTimeMillis();
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open file");
         fileChooser.setInitialDirectory(new File(System.getProperty("user.dir")+"/rle"));
@@ -63,13 +64,13 @@ public class FileHandler {
         file = fileChooser.showOpenDialog(null);
 
         if (file != null) {
-            System.out.println("Fildestinasjon: " + file);
             readGameBoardFromFile(file);
         } else {
             alerts.noFile();
             throw new PatternFormatExceptions("No file was chosen");
-
         }
+        long stop = System.currentTimeMillis();
+      //  System.out.println("chooseFile: " + (stop - start)+"ms");
     }
 
 
@@ -85,6 +86,7 @@ public class FileHandler {
      */
     public void readGameBoardFromFile(File file) throws IOException,
             PatternFormatExceptions {
+        long start = System.currentTimeMillis();
         startTime = System.currentTimeMillis();
         FileReader fr = new FileReader(file);
         BufferedReader br = new BufferedReader(fr);
@@ -98,6 +100,9 @@ public class FileHandler {
             }
         }
         fromRleToSimplified(rleCode);
+        System.out.println("Leser rle: " + rleCode + "\n");
+        long stop = System.currentTimeMillis();
+   //     System.out.println("readGameBoardFromFile: " + (stop - start)+"ms");
     }
 
 
@@ -110,6 +115,7 @@ public class FileHandler {
      *            a RLE file
      */
     public String fromRleToSimplified(String rle) {
+        long start = System.currentTimeMillis();
         String finalRle = "";
 
         Pattern pattern = Pattern.compile("\\d+|[ob]|\\$");
@@ -125,6 +131,9 @@ public class FileHandler {
             }
         }
         rleToArray(finalRle);
+        System.out.println("Converterer rle: " + finalRle + "\n");
+        long stop = System.currentTimeMillis();
+      //  System.out.println("fromRleToSimplified: " + (stop - start)+"ms");
         return finalRle;
     }
 
@@ -138,6 +147,7 @@ public class FileHandler {
      *            a RLE file
      */
     private void rleToArray(String rle) {
+        long start = System.currentTimeMillis();
         //statBoard.clearBoard();
         int yCounter = 5;
         int xCounter = 5;
@@ -157,7 +167,7 @@ public class FileHandler {
                 xCounter++;
             }
         }
-        long stopTime = System.currentTimeMillis();
-       // System.out.println(stopTime - startTime);
+        long stop = System.currentTimeMillis();
+      //  System.out.println("rleToArray: " + (stop - start)+"ms");
     }
 }

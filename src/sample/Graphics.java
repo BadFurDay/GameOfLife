@@ -42,17 +42,20 @@ public class Graphics {
      *                      in boolean 2D array
      */
     public void draw(boolean[][] graphicsBoard) {
+        long start = System.currentTimeMillis();
         for(int x = 0; x < graphicsBoard.length; x++) {
             for(int y = 0; y < graphicsBoard[0].length; y++) {
                 if (graphicsBoard[x][y]) {
-                   // gc.fillRect(x * getCellWidth(), y * getCellHeight(), getCellWidth()*0.7, getCellHeight()*0.7);
-                    // gc.fillArc(x * getCellWidth(), y * getCellHeight(), getCellWidth(), getCellHeight(), 0, 360, ArcType.ROUND);
-                    gc.fillOval(x * getCellWidth(), y * getCellHeight(), getCellWidth()-1, getCellHeight()-1);
+                    gc.fillRect(x * getCellWidth(), y * getCellHeight(), getCellWidth(), getCellHeight());
+
+                    //gc.fillOval(x * getCellWidth(), y * getCellHeight(), getCellWidth()-1, getCellHeight()-1);
                 } else if (!graphicsBoard[x][y]) {
                     gc.clearRect(x * getCellWidth(), y * getCellHeight(), getCellWidth(), getCellHeight());
                 }
             }
         }
+        long stop = System.currentTimeMillis();
+        //System.out.println("draw cells: " + (stop-start)+"ms");
     }
 
     /**

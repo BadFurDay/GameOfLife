@@ -43,6 +43,7 @@ public class Grid extends Canvas {
      * @author Rudi André Dahle
      */
     public void draw() {
+        long start = System.currentTimeMillis();
         // vertical lines
         for (double x = 0; x < canvasWidth; x += cellWidth) {
             gcGrid.strokeLine((int)x, 0, (int)x, (int)canvasHeight);
@@ -52,6 +53,8 @@ public class Grid extends Canvas {
         for (double y = 0; y < canvasHeight; y += cellHeight) {
             gcGrid.strokeLine(0, (int)y, (int)canvasWidth, (int)y);
         }
+        long stop = System.currentTimeMillis();
+        System.out.println("gridDraw: "+(stop-start)+"ms");
     }
 
 

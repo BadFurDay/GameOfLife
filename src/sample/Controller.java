@@ -14,6 +14,8 @@ import javafx.animation.Animation;
 import javafx.animation.Animation.Status;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -31,6 +33,7 @@ import javafx.event.EventHandler;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
+import java.time.temporal.TemporalUnit;
 import java.util.NoSuchElementException;
 import java.util.ResourceBundle;
 import java.util.regex.Pattern;
@@ -63,9 +66,10 @@ public class Controller implements Initializable {
     private Timeline timeline;
     private boolean running = false;
     private boolean showGrid = false;
-    private double FPS; //frames per second
+    private double FPS;
     private double xCoord;
     private double yCoord;
+    private long meanTime;
 
 
     //Objects
@@ -76,6 +80,7 @@ public class Controller implements Initializable {
     Stage helpWindow;
     Stage readWeb;
     Alerts error;
+    WorkerPool workerPool;
 
 
     /**
@@ -89,7 +94,7 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        long start = System.currentTimeMillis();
+        //long start = System.currentTimeMillis();
 
         //Objects
         gameBoard = new StatBoard();
@@ -102,8 +107,10 @@ public class Controller implements Initializable {
         helpWindow = new Stage();
         readWeb = new Stage();
         error = new Alerts();
+        workerPool = new WorkerPool();
 
         reader.setLoadBoard(gameBoard.getGameBoard());
+
 
         //Grid properties
         graphics.setCellHeight(gameBoard.getBoardHeight());
@@ -117,31 +124,60 @@ public class Controller implements Initializable {
 
 
         //Initial properties in the GUI
-        genCounter.setText(gameBoard.getGenCounter());  //DUPLIKAT??
-        graphics.gc.setFill(Color.rgb(26,0,104));
-        colorPicker.setValue(Color.rgb(26,0,104));
-        backgroundColor.setValue(Color.rgb(220,220,220));
-        speedSlider.setValue(2.0);
+        genCounter.setText(Integer.toString(gameBoard.getGenCounter()));  //DUPLIKAT??
+        graphics.gc.setFill(Color.rgb(26, 0, 104));
+        colorPicker.setValue(Color.rgb(26, 0, 104));
+        backgroundColor.setValue(Color.rgb(220, 220, 220));
+        speedSlider.setValue(1.0);
         speedSlider.setShowTickMarks(true);
         //zoomSlider.setShowTickMarks(true);
         FPS = speedSlider.getValue();
-        fpsCount.setText(Integer.toString((int)FPS));
+        fpsCount.setText((Integer.toString((int) speedSlider.getValue())+" fps"));
+        speedSlider.valueProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observableValue, Number oldValue, Number newValue) {
+                fpsCount.setText(Math.round(newValue.intValue()) + " fps");
+            }
+        });
+
+
         //zoomCount.setText(Integer.toString((int)zoomSlider.getValue));
         //gridToggle.setSelected(true);
 
         //Time properties responsible for the animation
-        Duration duration = Duration.millis(1000/FPS);
+        Duration duration = Duration.millis(1000);
         KeyFrame keyframe = new KeyFrame(duration, (ActionEvent e) -> {
+
+            long start = System.currentTimeMillis();
+            workerPool.setTask(() -> {gameBoard.nextGeneration(); System.out.println("Trådid: " + Thread.currentThread().getId());});
+            try {
+                workerPool.runWorkers();
+                workerPool.clearWorkers();
+            }catch (InterruptedException ee) {
+                workerPool.clearWorkers();
+            }
+            long elapsed = System.currentTimeMillis()-start;
+            System.out.println("NextGen: " + elapsed + "ms");
+
+
+
+            //gameBoard.nextGeneration();
+            gameBoard.rules();
             graphics.draw(gameBoard.getGameBoard());
-            gameBoard.nextGeneration();
-            genCounter.setText(gameBoard.getGenCounter());  //DUPLIKAT??
+            genCounter.setText(Integer.toString(gameBoard.getGenCounter()));  //DUPLIKAT??
         });
         timeline = new Timeline();
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.getKeyFrames().add(keyframe);
-        long stop = System.currentTimeMillis();
-        System.out.println("Initialized in: " + (stop - start) + "ms");
+        timeline.rateProperty().bind(speedSlider.valueProperty());
+       // long stop = System.currentTimeMillis();
+      //  System.out.println("Initialized in: " + (stop - start) + "ms");
     }
+
+
+    /*public void setFPS(Duration duration){
+        FPS = (int)duration/speedSlider.getValue();
+    }*/
 
 
     /**
@@ -238,7 +274,7 @@ public class Controller implements Initializable {
      *              the user interacts with the slider.
      */
     public void speedChanged(MouseEvent event) {
-        timeline.stop();
+        /*timeline.stop();
 
         this.FPS = speedSlider.getValue();
         fpsCount.setText(Integer.toString((int)FPS));
@@ -256,7 +292,7 @@ public class Controller implements Initializable {
                 timeline.getKeyFrames().add(keyframe);
                 timeline.play();
             }
-        }
+        }*/
     }
 
 

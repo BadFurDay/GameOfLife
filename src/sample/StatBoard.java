@@ -1,5 +1,7 @@
 package sample;
 
+import org.omg.SendingContext.RunTime;
+
 /**
  * Created by RudiAndre on 25.04.2016.
  */
@@ -9,7 +11,9 @@ public class StatBoard extends Board {
 
     //Datafield
     protected boolean[][] statGameBoard;
-    protected byte[][] byteBoard;
+    private byte[][] byteBoard;// = new byte[getBoardWidth()][getBoardHeight()];
+    private int boardSplit;
+    private int index;
 
     /**
      * Board class has a default constructor that
@@ -17,13 +21,14 @@ public class StatBoard extends Board {
      */
     public StatBoard() {
         statGameBoard = new boolean[super.getBoardWidth()][super.getBoardHeight()];
+        boardSplit = statGameBoard.length / Runtime.getRuntime().availableProcessors();
     }
 
     @Override
     protected void countNeighbours(int x, int y) {
+       // long start = System.currentTimeMillis();
         int blx = statGameBoard.length - 1;
         int bly = statGameBoard[0].length - 1;
-
 
         //if (x > 0 && y > 0 && y < bly && x < blx)
         //Check cell neighbor North-West
@@ -65,13 +70,19 @@ public class StatBoard extends Board {
         if (x < blx && y < bly) {
             byteBoard[x + 1][y + 1]++;
         }
-        //System.out.println("byteBoard[" + x + "]" + "[" + y + "]" + " funnet" );
     }
 
     @Override
-    public void nextGeneration() {
+    public synchronized void nextGeneration() {
+        //   long start = System.currentTimeMillis();
+        //denne må skje et annet sted ellers utføres den 4 ganger, må være tilgjengelig for alle trådene dine
         byteBoard = new byte[getBoardWidth()][getBoardHeight()];
 
+
+      //  for(int i=index*boardSplit;(i<(index + 1)*boardSplit) && (i < statGameBoard.length);i++){
+        //    for(int j=0;j<statGameBoard[0].length;j++)
+
+        //del denne opp i N = antall kjerner, gjør sjekk fra matrise/N*i til matrise/N*(i+1)
         for (int x = 0; x < statGameBoard.length; x++) {
             for (int y = 0; y < statGameBoard[0].length; y++) {
                 if (statGameBoard[x][y]) {
@@ -79,6 +90,11 @@ public class StatBoard extends Board {
                 }
             }
         }
+    }
+
+
+    @Override
+    public void rules(){
         for (int x = 0; x < byteBoard.length; x++) {
             for (int y = 0; y < byteBoard[0].length; y++) {
                 if (byteBoard[x][y] < 2) {
