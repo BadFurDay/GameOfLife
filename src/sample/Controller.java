@@ -149,6 +149,7 @@ public class Controller implements Initializable {
         KeyFrame keyframe = new KeyFrame(duration, (ActionEvent e) -> {
 
             long start = System.currentTimeMillis();
+            gameBoard.initByteBoard();
             workerPool.setTask(() -> {gameBoard.nextGeneration(); System.out.println("Trådid: " + Thread.currentThread().getId());});
             try {
                 workerPool.runWorkers();
@@ -173,11 +174,6 @@ public class Controller implements Initializable {
        // long stop = System.currentTimeMillis();
       //  System.out.println("Initialized in: " + (stop - start) + "ms");
     }
-
-
-    /*public void setFPS(Duration duration){
-        FPS = (int)duration/speedSlider.getValue();
-    }*/
 
 
     /**
@@ -265,35 +261,6 @@ public class Controller implements Initializable {
         graphics.draw(gameBoard.getGameBoard());
     }
 
-
-    /**
-     * Speed slider manipulates the speed of animation
-     *
-     * @author Ginelle Ignacio
-     * @param event Represents a mouse event used when
-     *              the user interacts with the slider.
-     */
-    public void speedChanged(MouseEvent event) {
-        /*timeline.stop();
-
-        this.FPS = speedSlider.getValue();
-        fpsCount.setText(Integer.toString((int)FPS));
-
-        if (running) {
-            if (FPS != 0) {
-                Duration duration = Duration.millis(1000 / FPS);
-                KeyFrame keyframe = new KeyFrame(duration, (ActionEvent e) -> {
-                    graphics.draw(gameBoard.getGameBoard());
-                    gameBoard.nextGeneration();
-                    genCounter.setText(gameBoard.getGenCounter());
-                });
-                timeline = new Timeline();
-                timeline.setCycleCount(Animation.INDEFINITE);
-                timeline.getKeyFrames().add(keyframe);
-                timeline.play();
-            }
-        }*/
-    }
 
 
     /**
@@ -399,6 +366,7 @@ public class Controller implements Initializable {
     public void openFiles(ActionEvent ae)throws PatternFormatExceptions {
         try {
             reader.chooseFile();
+            graphics.draw(gameBoard.getGameBoard());
         } catch (FileNotFoundException fe){
             error.fileNotFound();
             throw new PatternFormatExceptions("File not found");

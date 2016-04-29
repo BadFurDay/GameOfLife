@@ -21,7 +21,7 @@ public class StatBoard extends Board {
      */
     public StatBoard() {
         statGameBoard = new boolean[super.getBoardWidth()][super.getBoardHeight()];
-        boardSplit = statGameBoard.length / Runtime.getRuntime().availableProcessors();
+        boardSplit = (int)Math.ceil((double)statGameBoard.length / (double)Runtime.getRuntime().availableProcessors());
     }
 
     @Override
@@ -71,25 +71,31 @@ public class StatBoard extends Board {
             byteBoard[x + 1][y + 1]++;
         }
     }
+    @Override
+    public void initByteBoard(){
+        index = 0;
+        byteBoard = new byte[getBoardWidth()][getBoardHeight()];
+    }
 
     @Override
     public synchronized void nextGeneration() {
         //   long start = System.currentTimeMillis();
         //denne må skje et annet sted ellers utføres den 4 ganger, må være tilgjengelig for alle trådene dine
-        byteBoard = new byte[getBoardWidth()][getBoardHeight()];
+
 
 
       //  for(int i=index*boardSplit;(i<(index + 1)*boardSplit) && (i < statGameBoard.length);i++){
         //    for(int j=0;j<statGameBoard[0].length;j++)
 
         //del denne opp i N = antall kjerner, gjør sjekk fra matrise/N*i til matrise/N*(i+1)
-        for (int x = 0; x < statGameBoard.length; x++) {
+        for (int x = index*boardSplit; x < (index+1)*boardSplit && x<statGameBoard.length; x++) {
             for (int y = 0; y < statGameBoard[0].length; y++) {
                 if (statGameBoard[x][y]) {
                     countNeighbours(x, y);
                 }
             }
         }
+        index++;
     }
 
 

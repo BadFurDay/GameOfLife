@@ -37,7 +37,7 @@
         <ToggleButton fx:id="gridToggle" layoutX="841.0" layoutY="593.0" mnemonicParsing="false" onAction="#gridEvent" prefHeight="34.0" prefWidth="60.0" text="Grid" AnchorPane.bottomAnchor="171.0" AnchorPane.rightAnchor="79.0" />
         <!-- <Slider fx:id="zoomSlider" layoutX="187.0" layoutY="528.0" max="100.0" min="15.0" AnchorPane.bottomAnchor="89.0" AnchorPane.leftAnchor="187.0" />
          -->
-        <Slider fx:id="speedSlider" layoutX="801.0" layoutY="506.0" max="50.0" min="1.0" onMouseClicked="#speedChanged" onMouseDragged="#speedChanged" AnchorPane.bottomAnchor="274.0" AnchorPane.rightAnchor="39.0" />
+        <Slider fx:id="speedSlider" layoutX="801.0" layoutY="506.0" max="50.0" min="1.0" AnchorPane.bottomAnchor="274.0" AnchorPane.rightAnchor="39.0" />
         <Label layoutX="807.0" layoutY="474.0" text="Speed:" AnchorPane.bottomAnchor="303.0" AnchorPane.rightAnchor="128.0" />
         <!--  <Label layoutX="117.0" layoutY="536.0" text="Zoom:" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="135.0" />
           -->
