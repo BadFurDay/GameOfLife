@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.scene.canvas.GraphicsContext;
 import org.omg.SendingContext.RunTime;
 
 /**
@@ -7,30 +8,31 @@ import org.omg.SendingContext.RunTime;
  */
 public class StatBoard extends Board {
 
+
     public StatBoard statBoard;
 
     //Datafield
     protected boolean[][] statGameBoard;
-    private byte[][] byteBoard;// = new byte[getBoardWidth()][getBoardHeight()];
+    private byte[][] byteBoard;
     private int boardSplit;
     private int index;
+
 
     /**
      * Board class has a default constructor that
      * receives no arguments.
      */
     public StatBoard() {
-        statGameBoard = new boolean[super.getBoardWidth()][super.getBoardHeight()];
+        statGameBoard = new boolean[cellsWide][cellsHigh];
         boardSplit = (int)Math.ceil((double)statGameBoard.length / (double)Runtime.getRuntime().availableProcessors());
     }
 
     @Override
     protected void countNeighbours(int x, int y) {
-       // long start = System.currentTimeMillis();
         int blx = statGameBoard.length - 1;
         int bly = statGameBoard[0].length - 1;
 
-        //if (x > 0 && y > 0 && y < bly && x < blx)
+
         //Check cell neighbor North-West
         if (x > 0 && y > 0) {
             byteBoard[x - 1][y - 1]++;
@@ -71,24 +73,18 @@ public class StatBoard extends Board {
             byteBoard[x + 1][y + 1]++;
         }
     }
+
     @Override
     public void initByteBoard(){
         index = 0;
-        byteBoard = new byte[getBoardWidth()][getBoardHeight()];
+        byteBoard = new byte[cellsWide][cellsHigh];
     }
 
     @Override
     public synchronized void nextGeneration() {
-        //   long start = System.currentTimeMillis();
-        //denne må skje et annet sted ellers utføres den 4 ganger, må være tilgjengelig for alle trådene dine
-
-
-
-      //  for(int i=index*boardSplit;(i<(index + 1)*boardSplit) && (i < statGameBoard.length);i++){
-        //    for(int j=0;j<statGameBoard[0].length;j++)
-
-        //del denne opp i N = antall kjerner, gjør sjekk fra matrise/N*i til matrise/N*(i+1)
-        for (int x = index*boardSplit; x < (index+1)*boardSplit && x<statGameBoard.length; x++) {
+       // double w = 7.64;
+       // double h = 7.64;
+        for (int x = index*boardSplit; x < (index+1)*boardSplit && x < statGameBoard.length; x++) {
             for (int y = 0; y < statGameBoard[0].length; y++) {
                 if (statGameBoard[x][y]) {
                     countNeighbours(x, y);
@@ -133,6 +129,7 @@ public class StatBoard extends Board {
         return statGameBoard;
     }
 
+
     @Override
     public void setGameBoard(boolean[][] statGameBoard) {
         this.cellsWide = statGameBoard[0].length;
@@ -141,10 +138,12 @@ public class StatBoard extends Board {
     }
 
     @Override
-    public void clearBoard() {
+    public void resetBoard() {
         for (int x = 0; x < statGameBoard.length; x++) {
             for (int y = 0; y < statGameBoard[0].length; y++) {
-                statGameBoard[x][y] = false;
+                if(statGameBoard[x][y]) {
+                    statGameBoard[x][y] = false;
+                }
             }
         }
     }
@@ -152,8 +151,8 @@ public class StatBoard extends Board {
     @Override
     public String toString() {
         StringBuilder str = new StringBuilder();
-        for (boolean[] gameArray : statGameBoard){
-            for(boolean gameCell : gameArray){
+        for (boolean[] gameArray : statGameBoard) {
+            for(boolean gameCell : gameArray) {
                 str.append(gameCell ? "1" : "0");
             }
         }

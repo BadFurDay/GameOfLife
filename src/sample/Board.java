@@ -14,7 +14,7 @@ public abstract class Board {
     //private static Board board;
 
     //Datafield
-    protected int cellsWide = 100;             //Number of cells in gameboard's width
+    protected int cellsWide = 50;             //Number of cells in gameboard's width
     protected int cellsHigh = cellsWide;    //Number of cells in gameboard's height
     protected int genCounter;               //Number of generations in integer value
     //protected boolean[][] gameBoard;           //Value of game board in boolean 2D array
@@ -95,21 +95,19 @@ public abstract class Board {
      */
     public abstract void setGameBoard(boolean[][] gameBoard);
 
-
     /**
      * Clears the board when new board is loaded
      * from rle file
      *
      * @author Olav Smevoll
      */
-    public abstract void clearBoard();
+    public abstract void resetBoard();
 
     /**
      *
      * @author Rudi André Dahle
      */
     public abstract void initByteBoard();
-
 
    /**
     * Verifies the logic of the game by counting

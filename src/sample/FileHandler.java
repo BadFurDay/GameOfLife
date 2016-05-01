@@ -32,8 +32,6 @@ public class FileHandler {
 
 
     //Object
-   // StatBoard statBoard;
-    //Board gameBoard;// = new StatBoard(); //send inn spillbrett
     Alerts alerts = new Alerts();
 
     /**
@@ -148,7 +146,7 @@ public class FileHandler {
      */
     private void rleToArray(String rle) {
         long start = System.currentTimeMillis();
-        //statBoard.clearBoard();
+        //statBoard.resetBoard();
         int yCounter = 5;
         int xCounter = 5;
 

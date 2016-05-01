@@ -42,23 +42,48 @@ public class Graphics {
      *                      in boolean 2D array
      */
     public void draw(boolean[][] graphicsBoard) {
-        long start = System.currentTimeMillis();
         for(int x = 0; x < graphicsBoard.length; x++) {
             for(int y = 0; y < graphicsBoard[0].length; y++) {
                 if (graphicsBoard[x][y]) {
-                    gc.fillRect(x * getCellWidth(), y * getCellHeight(), getCellWidth(), getCellHeight());
-
-                    //gc.fillOval(x * getCellWidth(), y * getCellHeight(), getCellWidth()-1, getCellHeight()-1);
-                } else if (!graphicsBoard[x][y]) {
-                    gc.clearRect(x * getCellWidth(), y * getCellHeight(), getCellWidth(), getCellHeight());
+                    gc.fillRect(x * cellWidth, y * cellHeight, cellWidth, cellHeight);
+                   // gc.fillOval(x * cellWidth, y * cellHeight, cellWidth, cellHeight);
                 }
             }
         }
-        long stop = System.currentTimeMillis();
-        //System.out.println("draw cells: " + (stop-start)+"ms");
     }
 
     /**
+     * Clears the old board before the next generation is drawn
+     *
+     * @author Rudi André Dahle
+     * @param gameBoard
+     */
+    public void clearOldBoard(boolean[][] gameBoard) {
+        for(int x = 0; x < gameBoard.length; x++) {
+            for (int y = 0; y < gameBoard[0].length; y++) {
+                if (gameBoard[x][y]) {
+                    gc.clearRect(x * cellWidth, y * cellHeight, cellWidth, cellHeight);
+                }
+            }
+        }
+    }
+
+    /**
+     * Clears entire board when "Clear" button is pushed
+     *
+     * @author Rudi André Dahle
+     * @param gameBoard
+     */
+    public void clearBoard(boolean[][] gameBoard) {
+        for(int x = 0; x < gameBoard.length; x++) {
+            for (int y = 0; y < gameBoard[0].length; y++) {
+                gc.clearRect(x * cellWidth, y * cellHeight, cellWidth, cellHeight);
+            }
+        }
+    }
+
+    /**
+     *
      * Method called to draw a cell when the user interacts with
      * the canvas area.
      *
@@ -67,10 +92,11 @@ public class Graphics {
      *                      in boolean 2D array
      */
     public void drawCell(boolean[][] graphicsBoard) {
-        if (!graphicsBoard[getXCell()][getYCell()]) {
-            graphicsBoard[getXCell()][getYCell()] = true;
+        if (!graphicsBoard[xCell][yCell]) {
+            graphicsBoard[xCell][yCell] = true;
         } else {
-            graphicsBoard[getXCell()][getYCell()] = false;
+            graphicsBoard[xCell][yCell] = false;
+            gc.clearRect(xCell * cellWidth, yCell * cellHeight, cellWidth, cellHeight);
         }
         draw(graphicsBoard);
     }
@@ -84,7 +110,7 @@ public class Graphics {
      * @param xCoord The coordinates in the canvas of the selected x-cell
      */
     public void setXCell(double xCoord){
-        xCell = (int)Math.floor(xCoord/getCellWidth());
+        xCell = (int)Math.floor(xCoord/cellWidth);
     }
 
 
@@ -96,7 +122,7 @@ public class Graphics {
      * @param yCoord The coordinates in the canvas of the selected y-cell
      */
     public void setYCell(double yCoord){
-        yCell = (int)Math.floor(yCoord/getCellHeight());
+        yCell = (int)Math.floor(yCoord/cellHeight);
     }
 
 
@@ -130,6 +156,7 @@ public class Graphics {
      *                   cellWidth.
      */
     public double getCellWidth() {
+     //   System.out.println(cellWidth);
         return cellWidth;
     }
 

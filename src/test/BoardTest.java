@@ -60,6 +60,9 @@ public class BoardTest {
         assertEquals("010010010", statBoard.toString());
     }
 
+
+    //DENNE MÅ UTFØRES VIA GRAPHICS KLASSEN NÅ
+
     /**
      * Method called to test if the game board resets
      * to its initial value.
@@ -67,11 +70,11 @@ public class BoardTest {
      * @author Rudi André Dahle
      * @throws Exception if an error occurs while testing
      */
-    @Test
+  /*  @Test
     public void testClearBoard() throws Exception {
-        statBoard.clearBoard();
+        graphics.resetBoard();
         assertEquals("000000000", statBoard.toString());
-    }
+    }*/
 
 
 }

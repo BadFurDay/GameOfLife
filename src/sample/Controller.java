@@ -17,8 +17,6 @@ import javafx.animation.Timeline;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -28,15 +26,12 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
-import javafx.event.EventHandler;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
-import java.time.temporal.TemporalUnit;
 import java.util.NoSuchElementException;
 import java.util.ResourceBundle;
-import java.util.regex.Pattern;
 
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -112,6 +107,7 @@ public class Controller implements Initializable {
         reader.setLoadBoard(gameBoard.getGameBoard());
 
 
+
         //Grid properties
         graphics.setCellHeight(gameBoard.getBoardHeight());
         graphics.setCellWidth(gameBoard.getBoardWidth());
@@ -124,7 +120,7 @@ public class Controller implements Initializable {
 
 
         //Initial properties in the GUI
-        genCounter.setText(Integer.toString(gameBoard.getGenCounter()));  //DUPLIKAT??
+        genCounter.setText(Integer.toString(gameBoard.getGenCounter()));
         graphics.gc.setFill(Color.rgb(26, 0, 104));
         colorPicker.setValue(Color.rgb(26, 0, 104));
         backgroundColor.setValue(Color.rgb(220, 220, 220));
@@ -148,24 +144,24 @@ public class Controller implements Initializable {
         Duration duration = Duration.millis(1000);
         KeyFrame keyframe = new KeyFrame(duration, (ActionEvent e) -> {
 
-            long start = System.currentTimeMillis();
             gameBoard.initByteBoard();
-            workerPool.setTask(() -> {gameBoard.nextGeneration(); System.out.println("Trådid: " + Thread.currentThread().getId());});
+            workerPool.setTask(() -> {gameBoard.nextGeneration(); /*System.out.println("Trådid: " + Thread.currentThread().getId());*/});
             try {
                 workerPool.runWorkers();
                 workerPool.clearWorkers();
             }catch (InterruptedException ee) {
                 workerPool.clearWorkers();
             }
-            long elapsed = System.currentTimeMillis()-start;
-            System.out.println("NextGen: " + elapsed + "ms");
 
-
-
-            //gameBoard.nextGeneration();
+            graphics.clearOldBoard(gameBoard.getGameBoard());
+            //gameBoard.resetBoard();
             gameBoard.rules();
+            long start = System.currentTimeMillis();
             graphics.draw(gameBoard.getGameBoard());
-            genCounter.setText(Integer.toString(gameBoard.getGenCounter()));  //DUPLIKAT??
+            long stop = System.currentTimeMillis();
+            System.out.println("Draw: " + (stop - start) + "ms");
+
+            genCounter.setText(Integer.toString(gameBoard.getGenCounter()));
         });
         timeline = new Timeline();
         timeline.setCycleCount(Animation.INDEFINITE);
@@ -257,10 +253,9 @@ public class Controller implements Initializable {
         timeline.stop();
         playPause.setText("Play");
         gameBoard.resetGenCount();
-        gameBoard.clearBoard();
-        graphics.draw(gameBoard.getGameBoard());
+        gameBoard.resetBoard();
+        graphics.clearBoard(gameBoard.getGameBoard());
     }
-
 
 
     /**
@@ -282,6 +277,7 @@ public class Controller implements Initializable {
         grid.setCellWidth(graphics.getCellWidth()/2);*/
 
     }
+
 
     /**
      * Color picker changes the colors of the cells
