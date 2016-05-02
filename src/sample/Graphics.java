@@ -69,6 +69,19 @@ public class Graphics {
         }
     }
 
+
+    public void drawDynamicCell(List<List<Boolean>> dynamicBoard) {
+        if (!dynamicBoard.get(xCell).get(yCell)) {
+            dynamicBoard.get(xCell).set(yCell, true);
+        } else {
+            dynamicBoard.get(xCell).set(yCell, false);
+            gc.clearRect(xCell * cellWidth, yCell * cellHeight, cellWidth, cellHeight);
+        }
+        drawDynamic(dynamicBoard);
+    }
+
+
+
     /**
      * Clears the old board before the next generation is drawn
      *

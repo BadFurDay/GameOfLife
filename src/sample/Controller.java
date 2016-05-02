@@ -196,7 +196,8 @@ public class Controller implements Initializable {
         yCoord = event.getY();
         graphics.setYCell(yCoord);
         graphics.setXCell(xCoord);
-        graphics.drawCells(dynamicBoard.getBoard());
+       // graphics.drawCell(gameBoard.getGameBoard());
+        graphics.drawDynamicCell(dynamicBoard.getBoard());
     }
 
 
@@ -358,6 +359,7 @@ public class Controller implements Initializable {
         try {
             reader.chooseFile();
             graphics.drawDynamic(dynamicBoard.getBoard());
+           // graphics.draw(gameBoard.getGameBoard());
         } catch (FileNotFoundException fe){
             error.fileNotFound();
             throw new PatternFormatExceptions("File not found");
