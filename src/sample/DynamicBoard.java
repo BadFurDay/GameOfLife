@@ -13,11 +13,11 @@ public class DynamicBoard extends Board{
     private int boardSize = 20;
 
 
-    //The board displayed on the screen. SATT SOM STATIC FOR Å TESTE FILEHANDLER
-    private static List<List<Boolean>> dynGameBoard = new ArrayList<>();
+
+    private List<List<Boolean>> dynGameBoard = new ArrayList<>();
 
 
-    public static List getDynBoard(){
+    public List getDynBoard(){
         return dynGameBoard;
     }
 
@@ -194,7 +194,7 @@ public class DynamicBoard extends Board{
         }
     }
 
-    public static void rleToBoard(String finalRle){
+    public void rleToBoard(String finalRle){
         int yCounter = 5;
         int xCounter = 5;
 
