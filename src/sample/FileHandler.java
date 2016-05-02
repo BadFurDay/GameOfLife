@@ -26,7 +26,6 @@ public class FileHandler {
    // private boolean[][] loadBoard;
     private List<List<Boolean>> loadDynamicBoard = new ArrayList<>();
 
-
     public FileHandler(){
     }
 

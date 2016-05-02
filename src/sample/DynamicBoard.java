@@ -252,6 +252,7 @@ public class DynamicBoard extends Board{
     public void resetDynamicBoard(List<List<Boolean>> board) {
         for (int x = 0; x < boardSize; x++) {
             for(int y = 0; y < boardSize; y++){
+                if(board.get(x).get(y))
                 board.get(x).set(y, false);
             }
         }

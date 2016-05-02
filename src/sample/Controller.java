@@ -168,7 +168,7 @@ public class Controller implements Initializable {
 
             graphics.drawDynamic(dynamicBoard.getBoard());
 
-            genCounter.setText(Integer.toString(dynamicBoard.getBoardSize()));
+            genCounter.setText(Integer.toString(dynamicBoard.getGenCounter()));
 
         });
         timeline = new Timeline();
@@ -247,10 +247,9 @@ public class Controller implements Initializable {
     public void clearEvent(ActionEvent actionEvent){
         timeline.stop();
         playPause.setText("Play");
-        gameBoard.resetGenCount();
-        graphics.clearBoard(gameBoard.getGameBoard());
-
-        gameBoard.resetBoard();
+        dynamicBoard.resetGenCount();
+        graphics.clearDynamicBoard(dynamicBoard.getBoard());
+        dynamicBoard.clearDynBoard();
     }
 
 
