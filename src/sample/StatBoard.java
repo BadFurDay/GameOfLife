@@ -75,7 +75,7 @@ public class StatBoard extends Board {
         //return 5;
     }
 
-    @Override
+    //@Override
     public void initByteBoard(){
         index = 0;
         byteBoard = new byte[cellsWide][cellsHigh];

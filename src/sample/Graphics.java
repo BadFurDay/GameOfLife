@@ -10,6 +10,8 @@ package sample;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.shape.ArcType;
 
+import java.util.List;
+
 
 public class Graphics {
 
@@ -19,6 +21,8 @@ public class Graphics {
     private double cellWidth;               //Width of each individual cell
     private int xCell;                      //X-index of cell
     private int yCell;                      //Y-index of cell
+
+
 
 
     /**
@@ -42,11 +46,24 @@ public class Graphics {
      *                      in boolean 2D array
      */
     public void draw(boolean[][] graphicsBoard) {
+
         for(int x = 0; x < graphicsBoard.length; x++) {
             for(int y = 0; y < graphicsBoard[0].length; y++) {
                 if (graphicsBoard[x][y]) {
                     gc.fillRect(x * cellWidth, y * cellHeight, cellWidth, cellHeight);
                    // gc.fillOval(x * cellWidth, y * cellHeight, cellWidth, cellHeight);
+                }
+            }
+        }
+    }
+
+    public void drawDynamic(List<List<Boolean>> dynamicBoard){
+        clearDynamicBoard(dynamicBoard);
+        for(int x = 0; x < dynamicBoard.size(); x++){
+            for(int y = 0; y < dynamicBoard.size(); y++){
+                if(dynamicBoard.get(x).get(y)){
+                    gc.fillRect(x * cellWidth, y * cellHeight, cellWidth, cellHeight);
+                    //gc.fillRect(x * getCellWidth(), y * getCellHeight(), getCellWidth()-1, getCellHeight()-1);
                 }
             }
         }
@@ -62,6 +79,16 @@ public class Graphics {
         for(int x = 0; x < gameBoard.length; x++) {
             for (int y = 0; y < gameBoard[0].length; y++) {
                 if (gameBoard[x][y]) {
+                    gc.clearRect(x * cellWidth, y * cellHeight, cellWidth, cellHeight);
+                }
+            }
+        }
+    }
+
+    public void clearDynamicBoard(List<List<Boolean>> dynBoard){
+        for(int x = 0; x < dynBoard.size(); x++) {
+            for (int y = 0; y < dynBoard.size(); y++) {
+                if (dynBoard.get(x).get(y)) {
                     gc.clearRect(x * cellWidth, y * cellHeight, cellWidth, cellHeight);
                 }
             }

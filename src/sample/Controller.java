@@ -64,6 +64,7 @@ public class Controller implements Initializable {
     private double FPS;
     private double xCoord;
     private double yCoord;
+    private long meanTime;
 
 
     //Objects
@@ -91,7 +92,7 @@ public class Controller implements Initializable {
         //long start = System.currentTimeMillis();
 
         //Objects
-        gameBoard = new StatBoard();
+       // gameBoard = new StatBoard();
         gc = canvas.getGraphicsContext2D();
         gcGrid = canvasGrid.getGraphicsContext2D();
         gcBG = canvasBG.getGraphicsContext2D();
@@ -102,14 +103,13 @@ public class Controller implements Initializable {
         readWeb = new Stage();
         error = new Alerts();
         workerPool = new WorkerPool();
+        DynamicBoard dynamicBoard = DynamicBoard.getInstance();
 
-        reader.setLoadBoard(gameBoard.getGameBoard());
-
-
+//        reader.setLoadBoard(gameBoard.getGameBoard());
 
         //Grid properties
-        graphics.setCellHeight(gameBoard.getBoardHeight());
-        graphics.setCellWidth(gameBoard.getBoardWidth());
+        graphics.setCellHeight(dynamicBoard.cellsWide);
+        graphics.setCellWidth(dynamicBoard.cellsWide);
         graphics.setXCell(xCoord);
         graphics.setYCell(yCoord);
         grid.setCanvasHeight(gcGrid.getCanvas().heightProperty().intValue());
@@ -119,11 +119,11 @@ public class Controller implements Initializable {
 
 
         //Initial properties in the GUI
-        genCounter.setText(Integer.toString(gameBoard.getGenCounter()));
+        genCounter.setText(Integer.toString(dynamicBoard.getGenCounter()));
         graphics.gc.setFill(Color.rgb(26, 0, 104));
         colorPicker.setValue(Color.rgb(26, 0, 104));
         backgroundColor.setValue(Color.rgb(220, 220, 220));
-        speedSlider.setValue(1.0);
+        speedSlider.setValue(10.0);
         speedSlider.setShowTickMarks(true);
         //zoomSlider.setShowTickMarks(true);
         FPS = speedSlider.getValue();
@@ -135,6 +135,10 @@ public class Controller implements Initializable {
             }
         });
 
+        dynamicBoard.createArray();
+        dynamicBoard.setGlider();
+        graphics.drawDynamic(dynamicBoard.getBoard());
+
 
         //zoomCount.setText(Integer.toString((int)zoomSlider.getValue));
         //gridToggle.setSelected(true);
@@ -143,23 +147,27 @@ public class Controller implements Initializable {
         Duration duration = Duration.millis(1000);
         KeyFrame keyframe = new KeyFrame(duration, (ActionEvent e) -> {
 
-            gameBoard.initByteBoard();
-            workerPool.setTask(() -> {gameBoard.nextGeneration(); /*System.out.println("Trådid: " + Thread.currentThread().getId());*/});
-            try {
+           // gameBoard.initByteBoard();
+         //  workerPool.setTask(() -> {dynamicBoard.nextGeneration(); /*System.out.println("Trådid: " + Thread.currentThread().getId());*/});
+           /* try {
                 workerPool.runWorkers();
                 workerPool.clearWorkers();
             }catch (InterruptedException ee) {
                 workerPool.clearWorkers();
-            }
+            }*/
+            dynamicBoard.nextGeneration();
 
-            graphics.clearBoard(gameBoard.getGameBoard());
-            gameBoard.rules();
+            graphics.clearDynamicBoard(dynamicBoard.getBoard());
 
+            graphics.setCellHeight(dynamicBoard.cellsWide);
+            graphics.setCellWidth(dynamicBoard.cellsWide);
 
-            graphics.draw(gameBoard.getGameBoard());
+            dynamicBoard.rules();
 
+            graphics.drawDynamic(dynamicBoard.getBoard());
 
-            genCounter.setText(Integer.toString(gameBoard.getGenCounter()));
+            genCounter.setText(Integer.toString(dynamicBoard.getBoardSize()));
+
         });
         timeline = new Timeline();
         timeline.setCycleCount(Animation.INDEFINITE);
@@ -238,6 +246,7 @@ public class Controller implements Initializable {
         playPause.setText("Play");
         gameBoard.resetGenCount();
         graphics.clearBoard(gameBoard.getGameBoard());
+
         gameBoard.resetBoard();
     }
 
@@ -346,9 +355,6 @@ public class Controller implements Initializable {
     public void openFiles(ActionEvent ae)throws PatternFormatExceptions {
         try {
             reader.chooseFile();
-            //graphics.clearBoard(gameBoard.getGameBoard());
-            //gameBoard.resetBoard();
-
             graphics.draw(gameBoard.getGameBoard());
         } catch (FileNotFoundException fe){
             error.fileNotFound();
