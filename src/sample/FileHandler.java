@@ -185,23 +185,21 @@ public class FileHandler {
 
         for (int i = 0; i < rle.length(); i++) {
             if(xCounter > loadDynamicBoard.size()-5 || yCounter > loadDynamicBoard.size()-5){
-                System.out.println("HI");
                 dynamicBoard.addToArray();
                 addToLoadArray();
+                graphics.setCellHeight(dynamicBoard.cellsWide);
+                graphics.setCellWidth(dynamicBoard.cellsWide);
             }
-
             if (rle.charAt(i) == '$') {
                 yCounter++;
                 xCounter = 5;
             }
             if (rle.charAt(i) == 'b') {
                 loadDynamicBoard.get(xCounter).set(yCounter, false);
-                //loadBoard[xCounter][yCounter] = false;
                 xCounter++;
             }
             if (rle.charAt(i) == 'o') {
                 loadDynamicBoard.get(xCounter).set(yCounter, true);
-                //loadBoard[xCounter][yCounter] = true;
                 xCounter++;
             }
         }
