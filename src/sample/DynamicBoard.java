@@ -82,7 +82,7 @@ public class DynamicBoard extends Board{
     }
 
     @Override
-    protected int countNeighbours(int x, int y) {
+    protected void countNeighbours(int x, int y) {
         int counter = 0;
         int blx = boardSize - 1;
         int bly = boardSize - 1;
@@ -128,7 +128,13 @@ public class DynamicBoard extends Board{
         if (x < blx && y < bly && dynGameBoard.get(x+1).get(y+1)) {
             counter++;
         }
-        return counter;
+      //  return counter;
+    }
+
+    @Override
+    public void initByteBoard(){
+        //index = 0;
+       // byteBoard = new byte[cellsWide][cellsHigh];
     }
 
 
@@ -143,16 +149,35 @@ public class DynamicBoard extends Board{
             storeBoard.add(innerArrayStore);
         }
 
-        for (int x = 0; x < boardSize; x++) {
+       //********REGLER**********
+     /*   for (int x = 0; x < boardSize; x++) {
             for (int y = 0; y < boardSize; y++) {
                 if (dynGameBoard.get(x).get(y)) {
                     storeBoard.get(x).set(y, countNeighbours(x, y) == 2 || countNeighbours(x, y) == 3);
                 } else storeBoard.get(x).set(y, countNeighbours(x, y) == 3);
             }
-        }
+        }*/
         dynGameBoard = storeBoard;
         checkForBoardIncrease();
 
+    }
+
+    @Override
+    public void rules(){
+       /* for (int x = 0; x < byteBoard.length; x++) {
+            for (int y = 0; y < byteBoard[0].length; y++) {
+                if (byteBoard[x][y] < 2) {
+                    statGameBoard[x][y] = false;
+                }
+                if (byteBoard[x][y] == 3) {
+                    statGameBoard[x][y] = true;
+                }
+                if (byteBoard[x][y] > 3) {
+                    statGameBoard[x][y] = false;
+                }
+            }
+        }
+        genCounter++;*/
     }
 
     public void checkForBoardIncrease() {
@@ -221,8 +246,7 @@ public class DynamicBoard extends Board{
     }
 
     @Override
-    public void clearBoard(){
-
+    public void resetBoard() {
     }
 
     @Override
