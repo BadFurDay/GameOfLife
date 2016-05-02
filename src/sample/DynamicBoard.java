@@ -27,7 +27,7 @@ public class DynamicBoard extends Board{
 
     private List<List<Boolean>> dynGameBoard = new ArrayList<>();
     private List<List<Byte>> byteBoard = new ArrayList<>();
-    private int boardSize = 20;
+    private int boardSize = 100;
     private byte zero = 0;
     private int boardSplit;
     private int index;
@@ -250,8 +250,22 @@ public class DynamicBoard extends Board{
     public void initByteBoard(){};
 
 
+
+    public void resetDynamicBoard(List<List<Boolean>> board) {
+        for (int x = 0; x < boardSize; x++) {
+            for(int y = 0; y < boardSize; y++){
+                board.get(x).set(y, false);
+            }
+        }
+    }
+
     @Override
     public void resetBoard() {
+        for (int x = 0; x < boardSize; x++) {
+            for(int y = 0; y < boardSize; y++){
+                dynGameBoard.get(x).set(y, false);
+            }
+        }
     }
 
     @Override

@@ -13,6 +13,8 @@ package sample;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.stage.FileChooser;
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -21,8 +23,8 @@ public class FileHandler {
 
     //Data field
     File file;
-    private boolean[][] loadBoard;
-
+   // private boolean[][] loadBoard;
+    private List<List<Boolean>> loadDynamicBoard = new ArrayList<>();
 
 
     public FileHandler(){
@@ -44,13 +46,24 @@ public class FileHandler {
     Graphics graphics;
     DynamicBoard dynamicBoard = DynamicBoard.getInstance();
 
+    public void createLoadBoard(){
+        int boardSize = dynamicBoard.getBoardSize();
+        for (int x = 0; x < boardSize; x++) {
+            List<Boolean> innerArray = new ArrayList<>();
+            for(int y = 0; y < boardSize; y++){
+                innerArray.add(false);
+            }
+            loadDynamicBoard.add(innerArray);
+        }
+    }
+
     /**
      *
      * @param loadBoard
      */
-    public void setLoadBoard(boolean[][] loadBoard){
-        this.loadBoard = loadBoard;
-    }
+   // public void setLoadBoard(boolean[][] loadBoard){
+    //    this.loadBoard = loadBoard;
+   // }
 
 
 
@@ -151,23 +164,26 @@ public class FileHandler {
     private void rleToArray(String rle) {
         int yCounter = 5;
         int xCounter = 5;
+
+        dynamicBoard.resetDynamicBoard(loadDynamicBoard);
         graphics.clearDynamicBoard(dynamicBoard.getBoard());
-        gameBoard.resetBoard();
 
         for (int i = 0; i < rle.length(); i++) {
             if (rle.charAt(i) == '$') {
-
                 yCounter++;
                 xCounter = 5;
             }
             if (rle.charAt(i) == 'b') {
-                loadBoard[xCounter][yCounter] = false;
+                loadDynamicBoard.get(xCounter).set(yCounter, false);
+                //loadBoard[xCounter][yCounter] = false;
                 xCounter++;
             }
             if (rle.charAt(i) == 'o') {
-                loadBoard[xCounter][yCounter] = true;
+                loadDynamicBoard.get(xCounter).set(yCounter, true);
+                //loadBoard[xCounter][yCounter] = true;
                 xCounter++;
             }
         }
+        dynamicBoard.setDynGameBoard(loadDynamicBoard);
     }
 }

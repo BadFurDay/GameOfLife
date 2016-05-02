@@ -135,9 +135,10 @@ public class Controller implements Initializable {
             }
         });
 
+        reader.createLoadBoard();
         dynamicBoard.createArray();
-        dynamicBoard.setGlider();
-        graphics.drawDynamic(dynamicBoard.getBoard());
+        //dynamicBoard.setGlider();
+        //graphics.drawDynamic(dynamicBoard.getBoard());
 
 
         //zoomCount.setText(Integer.toString((int)zoomSlider.getValue));
