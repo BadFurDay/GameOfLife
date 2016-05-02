@@ -22,21 +22,25 @@ public class FileHandler {
     //Data field
     File file;
     private boolean[][] loadBoard;
-    long startTime;
-    protected GraphicsContext gc;
+
+
+    public FileHandler(){
+    }
 
     /**
      * File Handler class has a default constructor
      * that receives no arguments.
      */
-    public FileHandler() {
+    public FileHandler(Graphics gc, Board statBoard, Alerts alerts) {
+        this.graphics = gc;
+        this.gameBoard = statBoard;
+        this.alerts = alerts;
     }
 
-
     //Object
-    Alerts alerts = new Alerts();
-    Board gameBoard = new StatBoard();
-    Graphics graphics = new Graphics(gc);
+    Alerts alerts;
+    Board gameBoard;
+    Graphics graphics;
 
     /**
      *
@@ -58,12 +62,11 @@ public class FileHandler {
      * @throws PatternFormatExceptions Exceptions related to file handling
      */
     public void chooseFile() throws IOException, PatternFormatExceptions {
-        long start = System.currentTimeMillis();
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open file");
         fileChooser.setInitialDirectory(new File(System.getProperty("user.dir")+"/rle"));
         fileChooser.getExtensionFilters().add(
-                new FileChooser.ExtensionFilter("Game of Life WebFile ", "*.rle"));
+                new FileChooser.ExtensionFilter("Game of Life File ", "*.rle"));
         file = fileChooser.showOpenDialog(null);
 
         if (file != null) {
@@ -72,8 +75,6 @@ public class FileHandler {
             alerts.noFile();
             throw new PatternFormatExceptions("No file was chosen");
         }
-        long stop = System.currentTimeMillis();
-      //  System.out.println("chooseFile: " + (stop - start)+"ms");
     }
 
 
@@ -89,20 +90,17 @@ public class FileHandler {
      */
     public void readGameBoardFromFile(File file) throws IOException,
             PatternFormatExceptions {
-        long start = System.currentTimeMillis();
-        startTime = System.currentTimeMillis();
+
         FileReader fr = new FileReader(file);
         BufferedReader br = new BufferedReader(fr);
 
         String line;
         String rleCode = "";
-        System.out.println("About to read the file");
         while ((line = br.readLine()) != null) {
             if ((line.matches("[b, o, $, !, 0-9]*"))) {
                 rleCode = rleCode.concat(line + "\n");
             }
         }
-        System.out.println("file read complete");
         fromRleToSimplified(rleCode);
        // System.out.println("Leser rle: " + rleCode + "\n");
         long stop = System.currentTimeMillis();
@@ -149,10 +147,10 @@ public class FileHandler {
      *            a RLE file
      */
     private void rleToArray(String rle) {
-        gameBoard.resetBoard();
-        //graphics.clearBoard(gameBoard.getGameBoard());
         int yCounter = 5;
         int xCounter = 5;
+        graphics.clearBoard(gameBoard.getGameBoard());
+        gameBoard.resetBoard();
 
         for (int i = 0; i < rle.length(); i++) {
             if (rle.charAt(i) == '$') {

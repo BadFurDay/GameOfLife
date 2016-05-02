@@ -64,7 +64,6 @@ public class Controller implements Initializable {
     private double FPS;
     private double xCoord;
     private double yCoord;
-    private long meanTime;
 
 
     //Objects
@@ -98,7 +97,7 @@ public class Controller implements Initializable {
         gcBG = canvasBG.getGraphicsContext2D();
         graphics = new Graphics(gc);
         grid = new Grid(gcGrid);
-        reader = new FileHandler();
+        reader = new FileHandler(graphics, gameBoard, error);
         helpWindow = new Stage();
         readWeb = new Stage();
         error = new Alerts();
@@ -154,8 +153,8 @@ public class Controller implements Initializable {
             }
 
             graphics.clearBoard(gameBoard.getGameBoard());
-
             gameBoard.rules();
+
 
             graphics.draw(gameBoard.getGameBoard());
 
@@ -239,7 +238,6 @@ public class Controller implements Initializable {
         playPause.setText("Play");
         gameBoard.resetGenCount();
         graphics.clearBoard(gameBoard.getGameBoard());
-
         gameBoard.resetBoard();
     }
 
@@ -348,6 +346,9 @@ public class Controller implements Initializable {
     public void openFiles(ActionEvent ae)throws PatternFormatExceptions {
         try {
             reader.chooseFile();
+            //graphics.clearBoard(gameBoard.getGameBoard());
+            //gameBoard.resetBoard();
+
             graphics.draw(gameBoard.getGameBoard());
         } catch (FileNotFoundException fe){
             error.fileNotFound();
