@@ -154,12 +154,11 @@ public class Controller implements Initializable {
             }
 
             graphics.clearBoard(gameBoard.getGameBoard());
-            //gameBoard.resetBoard();
+
             gameBoard.rules();
-            long start = System.currentTimeMillis();
+
             graphics.draw(gameBoard.getGameBoard());
-            long stop = System.currentTimeMillis();
-            //System.out.println("Draw: " + (stop - start) + "ms");
+
 
             genCounter.setText(Integer.toString(gameBoard.getGenCounter()));
         });
@@ -239,8 +238,8 @@ public class Controller implements Initializable {
         timeline.stop();
         playPause.setText("Play");
         gameBoard.resetGenCount();
-        gameBoard.resetBoard();
         graphics.clearBoard(gameBoard.getGameBoard());
+        gameBoard.resetBoard();
     }
 
 

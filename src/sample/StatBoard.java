@@ -123,16 +123,16 @@ public class StatBoard extends Board {
     }
 
     @Override
-    public boolean[][] getGameBoard() {
-        return statGameBoard;
-    }
-
-
-    @Override
     public void setGameBoard(boolean[][] statGameBoard) {
         this.cellsWide = statGameBoard[0].length;
         this.cellsHigh = statGameBoard.length;
         this.statGameBoard = statGameBoard;
+    }
+
+
+   // @Override
+    public boolean[][] getGameBoard() {
+        return statGameBoard;
     }
 
     @Override
