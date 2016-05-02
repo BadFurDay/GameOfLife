@@ -153,13 +153,13 @@ public class Controller implements Initializable {
                 workerPool.clearWorkers();
             }
 
-            graphics.clearOldBoard(gameBoard.getGameBoard());
+            graphics.clearBoard(gameBoard.getGameBoard());
             //gameBoard.resetBoard();
             gameBoard.rules();
             long start = System.currentTimeMillis();
             graphics.draw(gameBoard.getGameBoard());
             long stop = System.currentTimeMillis();
-            System.out.println("Draw: " + (stop - start) + "ms");
+            //System.out.println("Draw: " + (stop - start) + "ms");
 
             genCounter.setText(Integer.toString(gameBoard.getGenCounter()));
         });
@@ -172,21 +172,7 @@ public class Controller implements Initializable {
     }
 
 
-    /**
-     * Method called when user selects a single cell
-     * to input into the canvas area
-     *
-     * @author Rudi André Dahle
-     * @param event Represents a mouse event used when
-     *              the user interacts with the GUI.
-     */
-    public void selectCell(MouseEvent event){
-        xCoord = event.getX();
-        yCoord = event.getY();
-        graphics.setYCell(yCoord);
-        graphics.setXCell(xCoord);
-        graphics.drawCell(gameBoard.getGameBoard());
-    }
+
 
 
     /**
@@ -197,7 +183,7 @@ public class Controller implements Initializable {
      * @param event Represents a mouse event used when
      *              the user interacts with the GUI.
      */
-    public void dragCell(MouseEvent event){
+    public void selectDragCell(MouseEvent event){
         xCoord = event.getX();
         yCoord = event.getY();
         graphics.setYCell(yCoord);

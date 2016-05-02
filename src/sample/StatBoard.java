@@ -82,8 +82,6 @@ public class StatBoard extends Board {
 
     @Override
     public synchronized void nextGeneration() {
-       // double w = 7.64;
-       // double h = 7.64;
         for (int x = index*boardSplit; x < (index+1)*boardSplit && x < statGameBoard.length; x++) {
             for (int y = 0; y < statGameBoard[0].length; y++) {
                 if (statGameBoard[x][y]) {

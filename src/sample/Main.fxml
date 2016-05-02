@@ -27,7 +27,7 @@
             <children>
                 <Canvas fx:id="canvasBG" height="764.0" width="764.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="0.0" />
                 <Canvas fx:id="canvas" height="764.0" width="764.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="0.0" />
-                <Canvas fx:id="canvasGrid" height="764.0" onMouseClicked="#selectCell" onMouseDragged="#dragCell" width="764.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="0.0" />
+                <Canvas fx:id="canvasGrid" height="764.0" onMouseClicked="#selectDragCell" onMouseDragged="#selectDragCell" width="764.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="0.0" />
               <!--  style="-fx-background-color: #dcdcdc;"-->
             </children>
         </AnchorPane>

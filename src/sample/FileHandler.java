@@ -10,6 +10,7 @@
 
 package sample;
 
+import javafx.scene.canvas.GraphicsContext;
 import javafx.stage.FileChooser;
 import java.io.*;
 import java.util.regex.Matcher;
@@ -22,6 +23,7 @@ public class FileHandler {
     File file;
     private boolean[][] loadBoard;
     long startTime;
+    protected GraphicsContext gc;
 
     /**
      * File Handler class has a default constructor
@@ -33,6 +35,8 @@ public class FileHandler {
 
     //Object
     Alerts alerts = new Alerts();
+    Board gameBoard = new StatBoard();
+    Graphics graphics = new Graphics(gc);
 
     /**
      *
@@ -41,6 +45,7 @@ public class FileHandler {
     public void setLoadBoard(boolean[][] loadBoard){
         this.loadBoard = loadBoard;
     }
+
 
 
     /**
@@ -91,14 +96,15 @@ public class FileHandler {
 
         String line;
         String rleCode = "";
-
+        System.out.println("About to read the file");
         while ((line = br.readLine()) != null) {
             if ((line.matches("[b, o, $, !, 0-9]*"))) {
                 rleCode = rleCode.concat(line + "\n");
             }
         }
+        System.out.println("file read complete");
         fromRleToSimplified(rleCode);
-        System.out.println("Leser rle: " + rleCode + "\n");
+       // System.out.println("Leser rle: " + rleCode + "\n");
         long stop = System.currentTimeMillis();
    //     System.out.println("readGameBoardFromFile: " + (stop - start)+"ms");
     }
@@ -113,11 +119,11 @@ public class FileHandler {
      *            a RLE file
      */
     public String fromRleToSimplified(String rle) {
-        long start = System.currentTimeMillis();
-        String finalRle = "";
+        StringBuilder finalRle = new StringBuilder();
 
         Pattern pattern = Pattern.compile("\\d+|[ob]|\\$");
         Matcher matcher = pattern.matcher(rle);
+
         while (matcher.find()) {
             int num = 1;
             if (matcher.group().matches("\\d+")) {
@@ -125,14 +131,12 @@ public class FileHandler {
                 matcher.find();
             }
             for (int i = 0; i < num; i++) {
-                finalRle += matcher.group();
+                finalRle.append(matcher.group());
             }
         }
-        rleToArray(finalRle);
-        System.out.println("Converterer rle: " + finalRle + "\n");
-        long stop = System.currentTimeMillis();
-      //  System.out.println("fromRleToSimplified: " + (stop - start)+"ms");
-        return finalRle;
+        finalRle.toString();
+        rleToArray(finalRle.toString());
+        return finalRle.toString();
     }
 
 
@@ -145,8 +149,8 @@ public class FileHandler {
      *            a RLE file
      */
     private void rleToArray(String rle) {
-        long start = System.currentTimeMillis();
-        //statBoard.resetBoard();
+        gameBoard.resetBoard();
+        //graphics.clearBoard(gameBoard.getGameBoard());
         int yCounter = 5;
         int xCounter = 5;
 
@@ -165,7 +169,5 @@ public class FileHandler {
                 xCounter++;
             }
         }
-        long stop = System.currentTimeMillis();
-      //  System.out.println("rleToArray: " + (stop - start)+"ms");
     }
 }
