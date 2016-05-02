@@ -24,6 +24,7 @@ public class FileHandler {
     private boolean[][] loadBoard;
 
 
+
     public FileHandler(){
     }
 
@@ -41,6 +42,7 @@ public class FileHandler {
     Alerts alerts;
     Board gameBoard;
     Graphics graphics;
+    DynamicBoard dynamicBoard = DynamicBoard.getInstance();
 
     /**
      *
@@ -149,7 +151,7 @@ public class FileHandler {
     private void rleToArray(String rle) {
         int yCounter = 5;
         int xCounter = 5;
-        graphics.clearBoard(gameBoard.getGameBoard());
+        graphics.clearDynamicBoard(dynamicBoard.getBoard());
         gameBoard.resetBoard();
 
         for (int i = 0; i < rle.length(); i++) {
