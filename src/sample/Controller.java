@@ -76,6 +76,7 @@ public class Controller implements Initializable {
     Stage readWeb;
     Alerts error;
     WorkerPool workerPool;
+    DynamicBoard dynamicBoard;
 
 
     /**
@@ -103,7 +104,7 @@ public class Controller implements Initializable {
         readWeb = new Stage();
         error = new Alerts();
         workerPool = new WorkerPool();
-        DynamicBoard dynamicBoard = DynamicBoard.getInstance();
+        dynamicBoard = DynamicBoard.getInstance();
 
 //        reader.setLoadBoard(gameBoard.getGameBoard());
 
@@ -195,7 +196,7 @@ public class Controller implements Initializable {
         yCoord = event.getY();
         graphics.setYCell(yCoord);
         graphics.setXCell(xCoord);
-        graphics.drawCell(gameBoard.getGameBoard());
+        graphics.drawCells(dynamicBoard.getBoard());
     }
 
 
@@ -356,7 +357,7 @@ public class Controller implements Initializable {
     public void openFiles(ActionEvent ae)throws PatternFormatExceptions {
         try {
             reader.chooseFile();
-            graphics.draw(gameBoard.getGameBoard());
+            graphics.drawDynamic(dynamicBoard.getBoard());
         } catch (FileNotFoundException fe){
             error.fileNotFound();
             throw new PatternFormatExceptions("File not found");

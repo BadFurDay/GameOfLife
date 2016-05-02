@@ -220,4 +220,10 @@ public class Graphics {
     public void setCellHeight(int cellsHigh) {
          this.cellHeight = (double)gc.getCanvas().heightProperty().intValue()/cellsHigh;
     }
+
+    public void drawCells(List<List<Boolean>> dynamicBoard) {
+        if(dynamicBoard.get(xCell).set(yCell, true)){
+            gc.fillRect(xCell * cellWidth, yCell * cellHeight, cellWidth, cellHeight);
+        }
+    }
 }

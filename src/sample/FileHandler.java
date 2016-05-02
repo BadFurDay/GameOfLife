@@ -57,6 +57,21 @@ public class FileHandler {
         }
     }
 
+    public void addToLoadArray(){
+        for(int x = 0; x < 5; x++) {
+            List<Boolean> innerArray = new ArrayList<>();
+            for(int y = 0; y < dynamicBoard.getBoardSize()-5; y++){
+                innerArray.add(false);
+            }
+            loadDynamicBoard.add(innerArray);
+        }
+        for(int x = 0; x < dynamicBoard.getBoardSize(); x++){
+            for(int y = 0; y < 5; y++) {
+                loadDynamicBoard.get(x).add(false);
+            }
+        }
+    }
+
     /**
      *
      * @param loadBoard
@@ -169,6 +184,12 @@ public class FileHandler {
         graphics.clearDynamicBoard(dynamicBoard.getBoard());
 
         for (int i = 0; i < rle.length(); i++) {
+            if(xCounter > loadDynamicBoard.size()-5 || yCounter > loadDynamicBoard.size()-5){
+                System.out.println("HI");
+                dynamicBoard.addToArray();
+                addToLoadArray();
+            }
+
             if (rle.charAt(i) == '$') {
                 yCounter++;
                 xCounter = 5;

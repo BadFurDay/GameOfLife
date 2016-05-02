@@ -1,8 +1,6 @@
 package sample;
 
 
-import javafx.scene.canvas.GraphicsContext;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,22 +10,22 @@ import java.util.List;
 public class DynamicBoard extends Board{
 
 
-        private static DynamicBoard dynamicSingelton = null;
+        private static DynamicBoard dynamicSingleton = null;
 
         private DynamicBoard(){ }
 
 
         public static DynamicBoard getInstance( ) {
-            if(dynamicSingelton == null){
-                dynamicSingelton = new DynamicBoard();
+            if(dynamicSingleton == null){
+                dynamicSingleton = new DynamicBoard();
             }
-            return dynamicSingelton;
+            return dynamicSingleton;
         }
 
 
     private List<List<Boolean>> dynGameBoard = new ArrayList<>();
     private List<List<Byte>> byteBoard = new ArrayList<>();
-    private int boardSize = 100;
+    private int boardSize = super.cellsWide;
     private byte zero = 0;
     private int boardSplit;
     private int index;
