@@ -34,6 +34,7 @@ public class StatBoard extends Board {
 
 
         //Check cell neighbor North-West
+     // if (x > 0 && y > 0 && statGameBoard[x - 1][y - 1]) {
         if (x > 0 && y > 0) {
             byteBoard[x - 1][y - 1]++;
         }
@@ -72,6 +73,7 @@ public class StatBoard extends Board {
         if (x < blx && y < bly) {
             byteBoard[x + 1][y + 1]++;
         }
+        //return 5;
     }
 
     @Override

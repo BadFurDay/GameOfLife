@@ -239,6 +239,7 @@ public class Controller implements Initializable {
         playPause.setText("Play");
         gameBoard.resetGenCount();
         graphics.clearBoard(gameBoard.getGameBoard());
+
         gameBoard.resetBoard();
     }
 

@@ -120,7 +120,7 @@ public abstract class Board {
     *         checking the rules
     * @author Olav Smevoll
     */
-    protected abstract /*int*/void countNeighbours(int x, int y);
+    protected abstract void countNeighbours(int x, int y);
 
 
    /**

@@ -10,11 +10,14 @@ import java.util.List;
  */
 public class DynamicBoard extends Board{
 
-    private int boardSize = 20;
-
-
-
+    //The board displayed on the screen. SATT SOM STATIC FOR Å TESTE FILEHANDLER
     private List<List<Boolean>> dynGameBoard = new ArrayList<>();
+    private List<List<Byte>> byteBoard = new ArrayList<>();
+    private int boardSize = 20;
+    private byte zero = 0;
+    private int boardSplit;
+    private int index;
+
 
 
     public List getDynBoard(){
@@ -83,102 +86,107 @@ public class DynamicBoard extends Board{
 
     @Override
     protected void countNeighbours(int x, int y) {
-        int counter = 0;
+       // int counter = 0;
         int blx = boardSize - 1;
         int bly = boardSize - 1;
 
 
-
         //Check cell neighbor North-West
-        if (x > 0 && y > 0 && dynGameBoard.get(x-1).get(y-1)) {
-            counter++;
+        if (x > 0 && y > 0) {
+            byte tmp = (byteBoard.get(x-1).get(y-1));
+            byteBoard.get(x-1).set(y-1, (byte)(tmp+1));
         }
 
         //Check cell neighbor North
-        if (x > 0 && dynGameBoard.get(x-1).get(y)) {
-            counter++;
+        if (x > 0) {
+            byte tmp = (byteBoard.get(x-1).get(y));
+            byteBoard.get(x-1).set(y, (byte)(tmp+1));
         }
 
         //Check cell neighbor North-East
-        if (x > 0 && y < bly && dynGameBoard.get(x-1).get(y+1)) {
-            counter++;
+        if (x > 0 && y < bly) {
+            byte tmp = (byteBoard.get(x-1).get(y+1));
+            byteBoard.get(x-1).set(y+1, (byte)(tmp+1));
         }
 
         //Check cell neighbor West
-        if (y > 0 && dynGameBoard.get(x).get(y-1)) {
-            counter++;
+        if (y > 0) {
+            byte tmp = (byteBoard.get(x).get(y-1));
+            byteBoard.get(x).set(y-1, (byte)(tmp+1));
         }
 
         //Check cell neighbor East
-        if (y < bly && dynGameBoard.get(x).get(y+1)) {
-            counter++;
+        if (y < bly) {
+            byte tmp = (byteBoard.get(x).get(y+1));
+            byteBoard.get(x).set(y+1, (byte)(tmp+1));
         }
 
         //Check cell neighbor South-West
-        if (x < blx && y > 0 && dynGameBoard.get(x+1).get(y-1)) {
-            counter++;
+        if (x < blx && y > 0) {
+            byte tmp = (byteBoard.get(x+1).get(y-1));
+            byteBoard.get(x+1).set(y-1, (byte)(tmp+1));
         }
 
         //Check cell neighbor South
-        if (x < blx && dynGameBoard.get(x+1).get(y)) {
-            counter++;
+        if (x < blx) {
+            byte tmp = (byteBoard.get(x+1).get(y));
+            byteBoard.get(x+1).set(y, (byte)(tmp+1));
         }
 
         //Check cell neighbor South-East
-        if (x < blx && y < bly && dynGameBoard.get(x+1).get(y+1)) {
-            counter++;
+        if (x < blx && y < bly) {
+            byte tmp = (byteBoard.get(x+1).get(y+1));
+            byteBoard.get(x+1).set(y+1, (byte)(tmp+1));
         }
-      //  return counter;
     }
 
     @Override
     public void initByteBoard(){
-        //index = 0;
-       // byteBoard = new byte[cellsWide][cellsHigh];
+        index = 0;
+
+        for (int x = 0; x < boardSize; x++) {
+            List<Byte> innerByteArray = new ArrayList<>();
+            for(int y = 0; y < boardSize; y++){
+                innerByteArray.add(zero);
+            }
+            byteBoard.add(innerByteArray);
+        }
     }
 
 
     @Override
-    public void nextGeneration() {
+    public synchronized void nextGeneration() {
         List<List<Boolean>> storeBoard = new ArrayList<>();
-        for (int x = 0; x < boardSize; x++) {
+        for (int x = index*boardSplit; x < (index+1)*boardSplit && x < boardSize; x++) {
             List<Boolean> innerArrayStore = new ArrayList<>();
             for(int y = 0; y < boardSize; y++){
                 innerArrayStore.add(false);
             }
             storeBoard.add(innerArrayStore);
         }
-
-       //********REGLER**********
-     /*   for (int x = 0; x < boardSize; x++) {
-            for (int y = 0; y < boardSize; y++) {
-                if (dynGameBoard.get(x).get(y)) {
-                    storeBoard.get(x).set(y, countNeighbours(x, y) == 2 || countNeighbours(x, y) == 3);
-                } else storeBoard.get(x).set(y, countNeighbours(x, y) == 3);
-            }
-        }*/
+        index++;
         dynGameBoard = storeBoard;
         checkForBoardIncrease();
-
     }
 
     @Override
     public void rules(){
-       /* for (int x = 0; x < byteBoard.length; x++) {
-            for (int y = 0; y < byteBoard[0].length; y++) {
-                if (byteBoard[x][y] < 2) {
-                    statGameBoard[x][y] = false;
+        for (int x = 0; x < boardSize; x++) {
+            for (int y = 0; y < boardSize; y++) {
+                if (byteBoard.get(x).get(y) < 2) {
+                    dynGameBoard.get(x).set(y, false);
                 }
-                if (byteBoard[x][y] == 3) {
-                    statGameBoard[x][y] = true;
+                if (byteBoard.get(x).get(y) == 3) {
+                    dynGameBoard.get(x).set(y, true);
                 }
-                if (byteBoard[x][y] > 3) {
-                    statGameBoard[x][y] = false;
+                if (byteBoard.get(x).get(y) > 3) {
+                    dynGameBoard.get(x).set(y, false);
                 }
             }
         }
-        genCounter++;*/
+        genCounter++;
     }
+
 
     public void checkForBoardIncrease() {
 
@@ -194,27 +202,6 @@ public class DynamicBoard extends Board{
         }
     }
 
-    public void rleToBoard(String finalRle){
-        int yCounter = 5;
-        int xCounter = 5;
-
-        for (int i = 0; i < finalRle.length(); i++) {
-            if (finalRle.charAt(i) == '$') {
-                yCounter++;
-                xCounter = 5;
-            }
-            if (finalRle.charAt(i) == 'b') {
-                dynGameBoard.get(xCounter).set(yCounter, false);
-                //statBoard.statGameBoard[xCounter][yCounter] = false;
-                xCounter++;
-            }
-            if (finalRle.charAt(i) == 'o') {
-                dynGameBoard.get(xCounter).set(yCounter, true);
-                //statBoard.statGameBoard[xCounter][yCounter] = true;
-                xCounter++;
-            }
-        }
-    }
 
     @Override
     public void setCellState(int x, int y) {
