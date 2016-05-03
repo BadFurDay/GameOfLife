@@ -28,6 +28,16 @@ public class StatBoard extends Board {
     }
 
     @Override
+    public int getCellsWide() {
+        return cellsWide;
+    }
+
+    @Override
+    public void setCellsWide(int cellsWide) {
+        this.cellsWide = cellsWide;
+    }
+
+    @Override
     protected void countNeighbours(int x, int y) {
         int blx = statGameBoard.length - 1;
         int bly = statGameBoard[0].length - 1;
@@ -125,10 +135,10 @@ public class StatBoard extends Board {
     }
 
     @Override
-    public void setGameBoard(boolean[][] statGameBoard) {
-        this.cellsWide = statGameBoard[0].length;
-        this.cellsHigh = statGameBoard.length;
-        this.statGameBoard = statGameBoard;
+    public <T> void setGameBoard(T statGameBoard) {
+        this.cellsWide = ((boolean[][])statGameBoard)[0].length;
+        this.cellsHigh = ((boolean[][])statGameBoard).length;
+        this.statGameBoard = ((boolean[][])statGameBoard);
     }
 
 

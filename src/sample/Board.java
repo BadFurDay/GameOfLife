@@ -13,6 +13,14 @@ public abstract class Board {
 
     //private static Board board;
 
+    public int getCellsWide() {
+        return cellsWide;
+    }
+
+    public void setCellsWide(int cellsWide) {
+        this.cellsWide = cellsWide;
+    }
+
     //Datafield
     protected int cellsWide = 30;             //Number of cells in gameboard's width
     protected int cellsHigh = cellsWide;    //Number of cells in gameboard's height
@@ -93,7 +101,7 @@ public abstract class Board {
      * @param gameBoard Receives the value of the game
      *                  board in boolean 2D array
      */
-    public abstract void setGameBoard(boolean[][] gameBoard);
+    public abstract <T> void setGameBoard(T gameBoard);
 
     /**
      * Clears the board when new board is loaded

@@ -250,6 +250,8 @@ public class Controller implements Initializable {
         dynamicBoard.resetGenCount();
         graphics.clearDynamicBoard();
         dynamicBoard.clearDynBoard();
+        gameBoard.setCellsWide(20);
+        dynamicBoard.setCellsWide(20);
         //dynamicBoard.setBoardSize(30); reset boardsize til 30 ved bruk av clearbutton
     }
 

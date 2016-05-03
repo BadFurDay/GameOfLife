@@ -294,8 +294,9 @@ public class DynamicBoard extends Board{
     }
 
     @Override
-    public void setGameBoard(boolean[][] gameBoard) {
-
+    @SuppressWarnings("unchecked warnings")
+    public <T> void setGameBoard(T board){
+        dynGameBoard = (List<List<Boolean>>)board;
     }
 
     //Kills every cell on the board.
@@ -341,6 +342,16 @@ public class DynamicBoard extends Board{
     @Override
     public List<List<Boolean>> getGameBoard(){
         return dynGameBoard;
+    }
+
+    @Override
+    public int getCellsWide() {
+        return cellsWide;
+    }
+
+    @Override
+    public void setCellsWide(int cellsWide) {
+        this.cellsWide = cellsWide;
     }
 
     @Override
