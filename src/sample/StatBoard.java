@@ -6,6 +6,7 @@ import org.omg.SendingContext.RunTime;
 /**
  * Created by RudiAndre on 25.04.2016.
  */
+@Deprecated
 public class StatBoard extends Board {
 
 
@@ -124,10 +125,10 @@ public class StatBoard extends Board {
     }
 
     @Override
-    public void setGameBoard(boolean[][] statGameBoard) {
-        this.cellsWide = statGameBoard[0].length;
-        this.cellsHigh = statGameBoard.length;
-        this.statGameBoard = statGameBoard;
+    public <T> void setGameBoard(T statGameBoard) {
+        this.cellsWide = ((boolean[][])statGameBoard)[0].length;
+        this.cellsHigh = ((boolean[][])statGameBoard).length;
+        this.statGameBoard = ((boolean[][])statGameBoard);
     }
 
 

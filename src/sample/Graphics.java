@@ -23,8 +23,6 @@ public class Graphics {
     private int yCell;                      //Y-index of cell
 
 
-
-
     /**
      * Graphics' default constructor receives an
      * argument of the GraphicsContext's class to
@@ -81,9 +79,8 @@ public class Graphics {
     }
 
 
-
     /**
-     * Clears the old board before the next generation is drawn
+     * Clears the old static board before the next generation is drawn
      *
      * @author Rudi André Dahle
      * @param gameBoard
@@ -108,19 +105,6 @@ public class Graphics {
         }
     }
 
-    /**
-     * Clears entire board when "Clear" button is pushed
-     *
-     * @author Rudi André Dahle
-     * @param gameBoard
-     */
-   /* public void clearBoard(boolean[][] gameBoard) {
-        for(int x = 0; x < gameBoard.length; x++) {
-            for (int y = 0; y < gameBoard[0].length; y++) {
-                gc.clearRect(x * cellWidth, y * cellHeight, cellWidth, cellHeight);
-            }
-        }
-    }*/
 
     /**
      *

@@ -83,7 +83,7 @@ public abstract class Board {
      * @return gameBoard Returns the value of the
      *                   game board
      */
-    public abstract boolean[][] getGameBoard();
+    public abstract <T> T getGameBoard();
 
 
     /**
@@ -93,7 +93,7 @@ public abstract class Board {
      * @param gameBoard Receives the value of the game
      *                  board in boolean 2D array
      */
-    public abstract void setGameBoard(boolean[][] gameBoard);
+    public abstract <T> void setGameBoard(T gameBoard);
 
     /**
      * Clears the board when new board is loaded
@@ -103,11 +103,6 @@ public abstract class Board {
      */
     public abstract void resetBoard();
 
-    /**
-     *
-     * @author Rudi André Dahle
-     */
-    public abstract void initByteBoard();
 
    /**
     * Verifies the logic of the game by counting

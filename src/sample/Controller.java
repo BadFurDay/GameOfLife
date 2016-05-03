@@ -139,7 +139,7 @@ public class Controller implements Initializable {
         reader.createLoadBoard();
         dynamicBoard.createArray();
         //dynamicBoard.setGlider();
-        //graphics.drawDynamic(dynamicBoard.getBoard());
+        //graphics.drawDynamic(dynamicBoard.getGameBoard());
 
 
         //zoomCount.setText(Integer.toString((int)zoomSlider.getValue));
@@ -150,8 +150,8 @@ public class Controller implements Initializable {
         KeyFrame keyframe = new KeyFrame(duration, (ActionEvent e) -> {
 
            // gameBoard.initByteBoard();
-         //  workerPool.setTask(() -> {dynamicBoard.nextGeneration(); /*System.out.println("Trådid: " + Thread.currentThread().getId());*/});
-           /* try {
+          /* workerPool.setTask(() -> {dynamicBoard.nextGeneration(); System.out.println("Trådid: " + Thread.currentThread().getId());});
+            try {
                 workerPool.runWorkers();
                 workerPool.clearWorkers();
             }catch (InterruptedException ee) {
@@ -159,14 +159,14 @@ public class Controller implements Initializable {
             }*/
             dynamicBoard.nextGeneration();
 
-            graphics.clearDynamicBoard(dynamicBoard.getBoard());
+            graphics.clearDynamicBoard(dynamicBoard.getGameBoard());
 
             graphics.setCellHeight(dynamicBoard.cellsWide);
             graphics.setCellWidth(dynamicBoard.cellsWide);
 
             dynamicBoard.rules();
 
-            graphics.drawDynamic(dynamicBoard.getBoard());
+            graphics.drawDynamic(dynamicBoard.getGameBoard());
 
             genCounter.setText(Integer.toString(dynamicBoard.getGenCounter()));
 
@@ -197,7 +197,7 @@ public class Controller implements Initializable {
         graphics.setYCell(yCoord);
         graphics.setXCell(xCoord);
        // graphics.drawCell(gameBoard.getGameBoard());
-        graphics.drawDynamicCell(dynamicBoard.getBoard());
+        graphics.drawDynamicCell(dynamicBoard.getGameBoard());
     }
 
 
@@ -248,7 +248,7 @@ public class Controller implements Initializable {
         timeline.stop();
         playPause.setText("Play");
         dynamicBoard.resetGenCount();
-        graphics.clearDynamicBoard(dynamicBoard.getBoard());
+        graphics.clearDynamicBoard(dynamicBoard.getGameBoard());
         dynamicBoard.clearDynBoard();
     }
 
@@ -357,7 +357,7 @@ public class Controller implements Initializable {
     public void openFiles(ActionEvent ae)throws PatternFormatExceptions {
         try {
             reader.chooseFile();
-            graphics.drawDynamic(dynamicBoard.getBoard());
+            graphics.drawDynamic(dynamicBoard.getGameBoard());
            // graphics.draw(gameBoard.getGameBoard());
         } catch (FileNotFoundException fe){
             error.fileNotFound();

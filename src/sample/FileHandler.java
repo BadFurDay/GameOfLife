@@ -10,7 +10,6 @@
 
 package sample;
 
-import javafx.scene.canvas.GraphicsContext;
 import javafx.stage.FileChooser;
 import java.io.*;
 import java.util.ArrayList;
@@ -180,7 +179,7 @@ public class FileHandler {
         int xCounter = 5;
 
         dynamicBoard.resetDynamicBoard(loadDynamicBoard);
-        graphics.clearDynamicBoard(dynamicBoard.getBoard());
+        graphics.clearDynamicBoard(dynamicBoard.getGameBoard());
 
         for (int i = 0; i < rle.length(); i++) {
             if(xCounter > loadDynamicBoard.size()-5 || yCounter > loadDynamicBoard.size()-5){
@@ -202,6 +201,6 @@ public class FileHandler {
                 xCounter++;
             }
         }
-        dynamicBoard.setDynGameBoard(loadDynamicBoard);
+        dynamicBoard.setGameBoard(loadDynamicBoard);
     }
 }

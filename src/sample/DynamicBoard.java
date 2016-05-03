@@ -10,25 +10,26 @@ import java.util.List;
 public class DynamicBoard extends Board{
 
 
-        private static DynamicBoard dynamicSingleton = null;
-
-        private DynamicBoard(){ }
-
-
-        public static DynamicBoard getInstance( ) {
-            if(dynamicSingleton == null){
-                dynamicSingleton = new DynamicBoard();
-            }
-            return dynamicSingleton;
-        }
-
-
     private List<List<Boolean>> dynGameBoard = new ArrayList<>();
     private List<List<Byte>> byteBoard = new ArrayList<>();
     private int boardSize = super.cellsWide;
     private byte zero = 0;
     private int boardSplit;
     private int index;
+    private static DynamicBoard dynamicSingleton = null;
+
+
+    //Constructor
+    private DynamicBoard(){ }
+
+
+    public static DynamicBoard getInstance( ) {
+        if(dynamicSingleton == null){
+            dynamicSingleton = new DynamicBoard();
+        }
+        return dynamicSingleton;
+    }
+
 
     /**
      * Fills the dynGameBoard with arrays at the program startup.
@@ -52,25 +53,33 @@ public class DynamicBoard extends Board{
      *
      */
     public void addToArray(){
-        super.cellsWide += 5;
-        super.cellsHigh += 5;
-        boardSize += 5;
+        int increase = 5;
+        super.cellsWide += increase;
+        super.cellsHigh += increase;
+        boardSize += increase;
 
-
-        for(int x = 0; x < 5; x++) {
+        for(int x = 0; x < increase; x++) {
             List<Boolean> innerArray = new ArrayList<>();
+         //   List<Boolean> outerArray = new ArrayList<>();
             List<Byte> innerByteArray = new ArrayList<>();
-            for(int y = 0; y < boardSize-5; y++){
+         //   List<Byte> outerByteArray = new ArrayList<>();
+            for(int y = 0; y < boardSize-increase; y++){
                 innerArray.add(false);
+         //       outerArray.add(0, false);
                 innerByteArray.add(zero);
+         //       outerByteArray.add(0, zero);
             }
             dynGameBoard.add(innerArray);
+         //   dynGameBoard.add(outerArray);
             byteBoard.add(innerByteArray);
+        //    byteBoard.add(outerByteArray);
         }
         for(int x = 0; x < boardSize; x++){
-            for(int y = 0; y < 5; y++) {
+            for(int y = 0; y < increase; y++) {
                 dynGameBoard.get(x).add(false);
+           //     dynGameBoard.get(x).add(0, false);
                 byteBoard.get(x).add(zero);
+          //      byteBoard.get(x).add(0, zero);
             }
         }
     }
@@ -91,12 +100,15 @@ public class DynamicBoard extends Board{
         return boardSize;
     }
 
-    public List getBoard(){
+    @Override
+    public List<List<Boolean>> getGameBoard(){
         return dynGameBoard;
     }
 
-    public void setDynGameBoard(List<List<Boolean>> board){
-        dynGameBoard = board;
+    @Override
+    @SuppressWarnings("unchecked warnings")
+    public <T> void setGameBoard(T board){
+        dynGameBoard = (List<List<Boolean>>)board;
     }
 
     @Override
@@ -170,9 +182,6 @@ public class DynamicBoard extends Board{
            // storeBoard.add(innerArrayStore);
         }
 
-
-
-
        // index++;
 
         //dynGameBoard = storeBoard;
@@ -222,10 +231,6 @@ public class DynamicBoard extends Board{
         return false;
     }
 
-    @Override
-    public void setGameBoard(boolean[][] gameBoard) {
-
-    }
 
     //Kills every cell on the board.
     public void clearDynBoard(/*List<List<Boolean>> listArray*/) {
@@ -243,10 +248,6 @@ public class DynamicBoard extends Board{
             }
         }
     }
-
-    @Override
-    public void initByteBoard(){};
-
 
 
     public void resetDynamicBoard(List<List<Boolean>> board) {
@@ -267,11 +268,6 @@ public class DynamicBoard extends Board{
         }
     }
 
-    @Override
-    public boolean[][] getGameBoard(){
-        boolean[][] brett = new boolean[0][0];
-        return brett;
-    };
 
     @Override
     public String toString() {
