@@ -177,9 +177,9 @@ public class FileHandler {
     private void rleToArray(String rle) {
         int yCounter = 5;
         int xCounter = 5;
-
+        createLoadBoard();
         dynamicBoard.resetDynamicBoard(loadDynamicBoard);
-        graphics.clearDynamicBoard();
+        //graphics.clearDynamicBoard();
 
         for (int i = 0; i < rle.length(); i++) {
             if(xCounter > loadDynamicBoard.size()-5 || yCounter > loadDynamicBoard.size()-5){

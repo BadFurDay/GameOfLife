@@ -136,7 +136,7 @@ public class Controller implements Initializable {
             }
         });
 
-        reader.createLoadBoard();
+        //reader.createLoadBoard();
         dynamicBoard.createArray();
         //dynamicBoard.setGlider();
         //graphics.drawDynamic(dynamicBoard.getBoard());
@@ -248,10 +248,9 @@ public class Controller implements Initializable {
         timeline.stop();
         playPause.setText("Play");
         dynamicBoard.resetGenCount();
-        graphics.clearDynamicBoard();
         dynamicBoard.clearDynBoard();
-        gameBoard.setCellsWide(20);
-        dynamicBoard.setCellsWide(20);
+        //dynamicBoard.setCellsWide(20);
+        graphics.drawDynamic(dynamicBoard.getGameBoard());
         //dynamicBoard.setBoardSize(30); reset boardsize til 30 ved bruk av clearbutton
     }
 

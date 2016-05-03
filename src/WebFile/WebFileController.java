@@ -91,12 +91,13 @@ public class WebFileController implements Initializable {
                     rleCode = rleCode.concat(readFromWeb + "\n");
                 }
             }
+            //fileHandler.createLoadBoard();
             fileHandler.fromRleToSimplified(rleCode);
         } catch (IOException ie) {
             error.invalidURL();
-        } catch (NullPointerException ne){
+        } /*catch (NullPointerException ne){
             error.nullException();
-        }
+        }*/
     }
 
 

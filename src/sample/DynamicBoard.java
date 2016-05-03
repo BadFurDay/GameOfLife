@@ -301,9 +301,14 @@ public class DynamicBoard extends Board{
 
     //Kills every cell on the board.
     public void clearDynBoard(/*List<List<Boolean>> listArray*/) {
+        dynGameBoard.clear();
+        boardSize = 30;
+        super.cellsWide = 30;
+        super.cellsHigh = super.cellsWide;
         for (int x = 0; x < boardSize; x++) {
+            dynGameBoard.add(new ArrayList<>());
             for(int y = 0; y < boardSize; y++){
-                dynGameBoard.get(x).set(y, false);
+                dynGameBoard.get(x).add(false);
             }
         }
     }
@@ -322,10 +327,11 @@ public class DynamicBoard extends Board{
 
 
     public void resetDynamicBoard(List<List<Boolean>> board) {
+        board.clear();
         for (int x = 0; x < boardSize; x++) {
+            board.add(new ArrayList<>());
             for(int y = 0; y < boardSize; y++){
-                if(board.get(x).get(y))
-                board.get(x).set(y, false);
+                board.get(x).add(y, false);
             }
         }
     }
