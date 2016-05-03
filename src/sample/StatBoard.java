@@ -6,7 +6,6 @@ import org.omg.SendingContext.RunTime;
 /**
  * Created by RudiAndre on 25.04.2016.
  */
-@Deprecated
 public class StatBoard extends Board {
 
 
@@ -35,6 +34,7 @@ public class StatBoard extends Board {
 
 
         //Check cell neighbor North-West
+     // if (x > 0 && y > 0 && statGameBoard[x - 1][y - 1]) {
         if (x > 0 && y > 0) {
             byteBoard[x - 1][y - 1]++;
         }
@@ -125,14 +125,14 @@ public class StatBoard extends Board {
     }
 
     @Override
-    public <T> void setGameBoard(T statGameBoard) {
-        this.cellsWide = ((boolean[][])statGameBoard)[0].length;
-        this.cellsHigh = ((boolean[][])statGameBoard).length;
-        this.statGameBoard = ((boolean[][])statGameBoard);
+    public void setGameBoard(boolean[][] statGameBoard) {
+        this.cellsWide = statGameBoard[0].length;
+        this.cellsHigh = statGameBoard.length;
+        this.statGameBoard = statGameBoard;
     }
 
 
-    //@Override
+   // @Override
     public boolean[][] getGameBoard() {
         return statGameBoard;
     }

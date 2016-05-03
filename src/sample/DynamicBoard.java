@@ -10,26 +10,25 @@ import java.util.List;
 public class DynamicBoard extends Board{
 
 
+        private static DynamicBoard dynamicSingleton = null;
+
+        private DynamicBoard(){ }
+
+
+        public static DynamicBoard getInstance( ) {
+            if(dynamicSingleton == null){
+                dynamicSingleton = new DynamicBoard();
+            }
+            return dynamicSingleton;
+        }
+
+
     private List<List<Boolean>> dynGameBoard = new ArrayList<>();
     private List<List<Byte>> byteBoard = new ArrayList<>();
     private int boardSize = super.cellsWide;
     private byte zero = 0;
     private int boardSplit;
     private int index;
-    private static DynamicBoard dynamicSingleton = null;
-
-
-    //Constructor
-    private DynamicBoard(){ }
-
-
-    public static DynamicBoard getInstance( ) {
-        if(dynamicSingleton == null){
-            dynamicSingleton = new DynamicBoard();
-        }
-        return dynamicSingleton;
-    }
-
 
     /**
      * Fills the dynGameBoard with arrays at the program startup.
@@ -52,44 +51,54 @@ public class DynamicBoard extends Board{
      * Increases existing vectors by 5 and adding 5 new vectors.
      *
      */
-    public void addToArray(){
+    public void addToArrayEastSouth(){
         int increase = 5;
         super.cellsWide += increase;
         super.cellsHigh += increase;
         boardSize += increase;
 
+
         for(int x = 0; x < increase; x++) {
             List<Boolean> innerArray = new ArrayList<>();
-         //   List<Boolean> outerArray = new ArrayList<>();
             List<Byte> innerByteArray = new ArrayList<>();
-         //   List<Byte> outerByteArray = new ArrayList<>();
             for(int y = 0; y < boardSize-increase; y++){
                 innerArray.add(false);
-         //       outerArray.add(0, false);
                 innerByteArray.add(zero);
-         //       outerByteArray.add(0, zero);
             }
             dynGameBoard.add(innerArray);
-         //   dynGameBoard.add(outerArray);
             byteBoard.add(innerByteArray);
-        //    byteBoard.add(outerByteArray);
         }
         for(int x = 0; x < boardSize; x++){
             for(int y = 0; y < increase; y++) {
                 dynGameBoard.get(x).add(false);
-           //     dynGameBoard.get(x).add(0, false);
                 byteBoard.get(x).add(zero);
-          //      byteBoard.get(x).add(0, zero);
             }
         }
     }
 
-    public void setGlider(){
-        dynGameBoard.get(1).set(5, true);
-        dynGameBoard.get(2).set(3, true);
-        dynGameBoard.get(2).set(5, true);
-        dynGameBoard.get(3).set(4, true);
-        dynGameBoard.get(3).set(5, true);
+    public void addToArrayWestNorth(){
+        int increase = 5;
+        super.cellsWide += increase;
+        super.cellsHigh += increase;
+        boardSize += increase;
+
+
+        for(int x = 0; x < increase; x++) {
+            List<Boolean> innerArray = new ArrayList<>();
+            List<Byte> innerByteArray = new ArrayList<>();
+            for(int y = 0; y < boardSize-increase; y++){
+                innerArray.add(0,false);
+                innerByteArray.add(0, zero);
+            }
+            dynGameBoard.add(0, innerArray);
+            byteBoard.add(0, innerByteArray);
+        }
+        for(int x = 0; x < boardSize; x++){
+            for(int y = 0; y < increase; y++) {
+                dynGameBoard.get(x).add(0, false);
+                byteBoard.get(x).add(0, zero);
+            }
+        }
     }
 
     public void setBoardSize(int size){
@@ -100,15 +109,12 @@ public class DynamicBoard extends Board{
         return boardSize;
     }
 
-    @Override
-    public List<List<Boolean>> getGameBoard(){
+    public List getBoard(){
         return dynGameBoard;
     }
 
-    @Override
-    @SuppressWarnings("unchecked warnings")
-    public <T> void setGameBoard(T board){
-        dynGameBoard = (List<List<Boolean>>)board;
+    public void setDynGameBoard(List<List<Boolean>> board){
+        dynGameBoard = board;
     }
 
     @Override
@@ -170,7 +176,7 @@ public class DynamicBoard extends Board{
     @Override
     public synchronized void nextGeneration() {
         checkForBoardIncrease();
-       // List<List<Boolean>> storeBoard = new ArrayList<>();
+
         for (int x = 0/*index*boardSplit*/; x < /*(index+1)*boardSplit && x < */ boardSize; x++) {
             //List<Boolean> innerArrayStore = new ArrayList<>();
             for(int y = 0; y < boardSize; y++){
@@ -181,6 +187,9 @@ public class DynamicBoard extends Board{
             }
            // storeBoard.add(innerArrayStore);
         }
+
+
+
 
        // index++;
 
@@ -207,16 +216,69 @@ public class DynamicBoard extends Board{
         clearByteBoard();
     }
 
-    public void checkForBoardIncrease() {
+   /* public void checkForBoardIncrease() {
 
         for (int x = 0; x < boardSize; x++) {
             for (int y = 0; y < boardSize; y++) {
                 if (x == boardSize - 1 || y == boardSize - 1) {
                     if (dynGameBoard.get(x).get(y)) {
-                        addToArray();
+                        addToArrayEastSouth();
                         return;
                     }
                 }
+            }
+        }
+    }*/
+
+    //Erstatter checkForBoardIncrease for raskere gjenneomkjøring
+
+    public void checkForBoardIncrease(){
+        for (int x = 0; x < boardSize; x++) {
+            for (int y = 0; y < boardSize; y++) {
+                if (x >= boardSize - 2 || y >= boardSize - 2 || x < 1 || y < 1) {
+                    if (dynGameBoard.get(x).get(y)) {
+                        addToArrayEastSouth();
+                        addToArrayWestNorth();
+                        return;
+                    }
+                }
+            }
+        }
+    }
+
+    public void checkForBoardIncreaseEastSouth(){
+        int y = boardSize-1;
+        int x = boardSize-1;
+
+        for(int xCounter = 0; xCounter < boardSize; xCounter++){
+            if(dynGameBoard.get(xCounter).get(y)){
+                addToArrayEastSouth();
+                return;
+            }
+        }
+        for(int yCounter = 0; yCounter < boardSize; yCounter++){
+            if(dynGameBoard.get(x).get(yCounter)){
+                addToArrayEastSouth();
+                return;
+            }
+        }
+
+    }
+
+    public void checkForBoardIncreaseWestNorth(){
+        int y = 0;
+        int x = 0;
+
+        for(int xCounter = 0; xCounter < boardSize; xCounter++){
+            if(dynGameBoard.get(xCounter).get(y)){
+                addToArrayWestNorth();
+                return;
+            }
+        }
+        for(int yCounter = 0; yCounter < boardSize; yCounter++){
+            if(dynGameBoard.get(x).get(yCounter)){
+                addToArrayWestNorth();
+                return;
             }
         }
     }
@@ -231,6 +293,10 @@ public class DynamicBoard extends Board{
         return false;
     }
 
+    @Override
+    public void setGameBoard(boolean[][] gameBoard) {
+
+    }
 
     //Kills every cell on the board.
     public void clearDynBoard(/*List<List<Boolean>> listArray*/) {
@@ -248,6 +314,10 @@ public class DynamicBoard extends Board{
             }
         }
     }
+
+    @Override
+    public void initByteBoard(){};
+
 
 
     public void resetDynamicBoard(List<List<Boolean>> board) {
@@ -268,6 +338,10 @@ public class DynamicBoard extends Board{
         }
     }
 
+    @Override
+    public List<List<Boolean>> getGameBoard(){
+        return dynGameBoard;
+    }
 
     @Override
     public String toString() {

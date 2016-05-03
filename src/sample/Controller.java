@@ -139,7 +139,7 @@ public class Controller implements Initializable {
         reader.createLoadBoard();
         dynamicBoard.createArray();
         //dynamicBoard.setGlider();
-        //graphics.drawDynamic(dynamicBoard.getGameBoard());
+        //graphics.drawDynamic(dynamicBoard.getBoard());
 
 
         //zoomCount.setText(Integer.toString((int)zoomSlider.getValue));
@@ -150,8 +150,8 @@ public class Controller implements Initializable {
         KeyFrame keyframe = new KeyFrame(duration, (ActionEvent e) -> {
 
            // gameBoard.initByteBoard();
-          /* workerPool.setTask(() -> {dynamicBoard.nextGeneration(); System.out.println("Trådid: " + Thread.currentThread().getId());});
-            try {
+         //  workerPool.setTask(() -> {dynamicBoard.nextGeneration(); /*System.out.println("Trådid: " + Thread.currentThread().getId());*/});
+           /* try {
                 workerPool.runWorkers();
                 workerPool.clearWorkers();
             }catch (InterruptedException ee) {
@@ -159,7 +159,7 @@ public class Controller implements Initializable {
             }*/
             dynamicBoard.nextGeneration();
 
-            graphics.clearDynamicBoard(dynamicBoard.getGameBoard());
+            graphics.clearDynamicBoard();
 
             graphics.setCellHeight(dynamicBoard.cellsWide);
             graphics.setCellWidth(dynamicBoard.cellsWide);
@@ -248,8 +248,9 @@ public class Controller implements Initializable {
         timeline.stop();
         playPause.setText("Play");
         dynamicBoard.resetGenCount();
-        graphics.clearDynamicBoard(dynamicBoard.getGameBoard());
+        graphics.clearDynamicBoard();
         dynamicBoard.clearDynBoard();
+        //dynamicBoard.setBoardSize(30); reset boardsize til 30 ved bruk av clearbutton
     }
 
 

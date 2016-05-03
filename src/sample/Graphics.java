@@ -23,6 +23,8 @@ public class Graphics {
     private int yCell;                      //Y-index of cell
 
 
+
+
     /**
      * Graphics' default constructor receives an
      * argument of the GraphicsContext's class to
@@ -56,7 +58,7 @@ public class Graphics {
     }
 
     public void drawDynamic(List<List<Boolean>> dynamicBoard){
-        clearDynamicBoard(dynamicBoard);
+        clearDynamicBoard();
         for(int x = 0; x < dynamicBoard.size(); x++){
             for(int y = 0; y < dynamicBoard.size(); y++){
                 if(dynamicBoard.get(x).get(y)){
@@ -79,8 +81,9 @@ public class Graphics {
     }
 
 
+
     /**
-     * Clears the old static board before the next generation is drawn
+     * Clears the old board before the next generation is drawn
      *
      * @author Rudi André Dahle
      * @param gameBoard
@@ -95,16 +98,23 @@ public class Graphics {
         }
     }
 
-    public void clearDynamicBoard(List<List<Boolean>> dynBoard){
-        for(int x = 0; x < dynBoard.size(); x++) {
-            for (int y = 0; y < dynBoard.size(); y++) {
-                if (dynBoard.get(x).get(y)) {
-                    gc.clearRect(x * cellWidth, y * cellHeight, cellWidth, cellHeight);
+    public void clearDynamicBoard(){
+        gc.clearRect(0,0,gc.getCanvas().getWidth(),gc.getCanvas().getHeight());
                 }
+
+    /**
+     * Clears entire board when "Clear" button is pushed
+     *
+     * @author Rudi André Dahle
+     * @param gameBoard
+     */
+   /* public void clearBoard(boolean[][] gameBoard) {
+        for(int x = 0; x < gameBoard.length; x++) {
+            for (int y = 0; y < gameBoard[0].length; y++) {
+                gc.clearRect(x * cellWidth, y * cellHeight, cellWidth, cellHeight);
             }
         }
-    }
-
+    }*/
 
     /**
      *

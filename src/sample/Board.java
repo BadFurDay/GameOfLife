@@ -14,7 +14,7 @@ public abstract class Board {
     //private static Board board;
 
     //Datafield
-    protected int cellsWide = 10;             //Number of cells in gameboard's width
+    protected int cellsWide = 30;             //Number of cells in gameboard's width
     protected int cellsHigh = cellsWide;    //Number of cells in gameboard's height
     protected int genCounter;               //Number of generations in integer value
     //protected boolean[][] gameBoard;           //Value of game board in boolean 2D array
@@ -93,7 +93,7 @@ public abstract class Board {
      * @param gameBoard Receives the value of the game
      *                  board in boolean 2D array
      */
-    public abstract <T> void setGameBoard(T gameBoard);
+    public abstract void setGameBoard(boolean[][] gameBoard);
 
     /**
      * Clears the board when new board is loaded
@@ -103,6 +103,11 @@ public abstract class Board {
      */
     public abstract void resetBoard();
 
+    /**
+     *
+     * @author Rudi André Dahle
+     */
+    public abstract void initByteBoard();
 
    /**
     * Verifies the logic of the game by counting

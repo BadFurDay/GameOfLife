@@ -179,11 +179,11 @@ public class FileHandler {
         int xCounter = 5;
 
         dynamicBoard.resetDynamicBoard(loadDynamicBoard);
-        graphics.clearDynamicBoard(dynamicBoard.getGameBoard());
+        graphics.clearDynamicBoard();
 
         for (int i = 0; i < rle.length(); i++) {
             if(xCounter > loadDynamicBoard.size()-5 || yCounter > loadDynamicBoard.size()-5){
-                dynamicBoard.addToArray();
+                dynamicBoard.addToArrayEastSouth();
                 addToLoadArray();
                 graphics.setCellHeight(dynamicBoard.cellsWide);
                 graphics.setCellWidth(dynamicBoard.cellsWide);
@@ -201,6 +201,6 @@ public class FileHandler {
                 xCounter++;
             }
         }
-        dynamicBoard.setGameBoard(loadDynamicBoard);
+        dynamicBoard.setDynGameBoard(loadDynamicBoard);
     }
 }
