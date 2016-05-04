@@ -85,8 +85,9 @@ public class DynamicBoard extends Board{
         }
     }
 
+
     /**
-     * Increases existing vectors by 5 and adding 5 new vectors.
+     * Increases existing vectors by 2 and adding 2 new vectors.
      *
      * @author Olav Smevoll
      */
@@ -265,8 +266,8 @@ public class DynamicBoard extends Board{
      */
     @Override
     public synchronized void nextGeneration() {
-        for (int x = index*boardSplit; x < (index+1)*boardSplit && x <  boardSize; x++) {
-        //for (int x = 0; x <  boardSize; x++) {
+        for (int x = index*boardSplit; x < (index+1)*boardSplit && x < boardSize; x++) {
+            //List<Boolean> innerArrayStore = new ArrayList<>();
             for(int y = 0; y < boardSize; y++){
                 if(dynGameBoard.get(x).get(y)){
                     countNeighbours(x,y);
@@ -283,7 +284,7 @@ public class DynamicBoard extends Board{
      * board.
      *
      * @author Rudi André Dahle
-     * @author Olav Smevoll
+     * @coauthor Olav Smevoll
      */
     @Override
     public void rules(){
@@ -302,19 +303,7 @@ public class DynamicBoard extends Board{
         index = 0;
     }
 
-    /*public void checkForBoardIncrease() {
-        for (int x = 0; x < boardSize; x++) {
-            for (int y = 0; y < boardSize; y++) {
-                if (x >= boardSize - 2 || y >= boardSize - 2 || x < 1 || y < 1) {
-                    if (dynGameBoard.get(x).get(y)) {
-                        addToArrayEastSouth();
-                        addToArrayWestNorth();
-                        return;
-                    }
-                }
-            }
-        }
-    }*/
+
     public void checkForBoardIncrease(){
         int minY = 0;
         int maxY = boardSize-1;

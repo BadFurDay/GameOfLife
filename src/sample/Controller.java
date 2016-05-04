@@ -17,6 +17,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -49,14 +50,13 @@ public class Controller implements Initializable {
     @FXML private Canvas canvasBG;
     @FXML private ColorPicker colorPicker;
     @FXML private ColorPicker backgroundColor;
-    @FXML private Slider zoomSlider;
     @FXML private Slider speedSlider;
     @FXML private Button playPause;
     @FXML private Label genCounter;
     @FXML private Label fpsCount;
-    @FXML private Label zoomCount;
     @FXML private ToggleButton gridToggle;
     @FXML private TextArea tipField;
+    @FXML private ComboBox cellShapeBox;
 
     //Data field
     private GraphicsContext gc;
@@ -65,6 +65,7 @@ public class Controller implements Initializable {
     private Timeline timeline;
     private boolean running = false;
     private boolean showGrid = false;
+    private boolean shape = false;
     private double FPS;
     private double xCoord;
     private double yCoord;
@@ -97,6 +98,9 @@ public class Controller implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         //long start = System.currentTimeMillis();
 
+        //Fixes a bug problem within Java when using combo box
+        System.setProperty("glass.accessible.force", "false");
+
         //Objects
        // gameBoard = new StatBoard();
         gc = canvas.getGraphicsContext2D();
@@ -123,6 +127,13 @@ public class Controller implements Initializable {
         grid.setCellWidth(graphics.getCellWidth());
         grid.setCellHeight(graphics.getCellHeight());
 
+
+        //Combob ox list
+        cellShapeBox.getItems().addAll(
+                "Square",
+                "Circle"
+        );
+        //cellShapeBox.setValue("Square");
 
         //Initial properties in the GUI
         tipField.setText("Welcome to Game of Life! \nYou can draw your own \npattern, " +
@@ -189,15 +200,14 @@ public class Controller implements Initializable {
 
             dynamicBoard.rules();
 
+            if(showGrid){
+                grid.draw();
+            }
 
             long startDraw = System.currentTimeMillis();
             graphics.drawDynamic(dynamicBoard.getGameBoard());
             long timeDraw = System.currentTimeMillis() - startDraw;
-            // System.out.println("Draw: " + timeDraw);
-
-            if(showGrid){
-                grid.draw();
-            }
+           // System.out.println("Draw: " + timeDraw);
 
             genCounter.setText(Integer.toString(dynamicBoard.getGenCounter()));
 
@@ -238,6 +248,23 @@ public class Controller implements Initializable {
         tipField.setText("Draw your own pattern!");
     }
 
+
+    /**
+     * Method called when the user selects either "Square"
+     * or "Circle" as the shape of the cells.
+     *
+     * @author Ginelle Ignacio
+     * @param actionEvent
+     */
+    public void cellShapeEvent(ActionEvent actionEvent){
+         if (cellShapeBox.getValue() == "Square") {
+             shape = true;
+            } else if (cellShapeBox.getValue() == "Circle") {
+                shape = false;
+            }
+        graphics.setShape(shape);
+        graphics.drawDynamic(dynamicBoard.getGameBoard());
+    }
 
 
     /**
@@ -361,7 +388,8 @@ public class Controller implements Initializable {
      */
     public void helpEvent (ActionEvent ae) throws Exception {
         try{
-            Parent helpRoot = FXMLLoader.load(getClass().getClassLoader().getResource("Rules/Guide.fxml"));
+            Parent helpRoot = FXMLLoader.load(getClass().getClassLoader()
+                    .getResource("Rules/Guide.fxml"));
             helpWindow.setTitle("Guidelines");
             helpWindow.setScene(new Scene(helpRoot));
             helpWindow.show();
@@ -415,14 +443,16 @@ public class Controller implements Initializable {
 
     public void webFile(ActionEvent ae) throws Exception {
         try {
-            Parent webRoot = FXMLLoader.load(getClass().getClassLoader().getResource("WebFile/Webfile.fxml"));
+            Parent webRoot = FXMLLoader.load(getClass().getClassLoader()
+                    .getResource("WebFile/Webfile.fxml"));
             readWeb.setTitle("Read web file");
             readWeb.setScene(new Scene(webRoot));
             readWeb.show();
         } catch (IOException io){
             error.notLoading();
         }
-        tipField.setText("After submitting a URL, \nClick 'Play' to view the \npattern! ");
+        tipField.setText("After submitting a URL, \nClick 'Play' to view the " +
+                "\npattern! ");
     }
 
     /**

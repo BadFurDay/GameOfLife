@@ -5,6 +5,7 @@
 <?import javafx.scene.canvas.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.collections.*?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="798.0" prefWidth="980.0" stylesheets="@GoL.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
     <children>
@@ -43,18 +44,20 @@
         <!--  <Label layoutX="117.0" layoutY="536.0" text="Zoom:" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="135.0" />
           -->
         <Label layoutX="801.0" layoutY="752.0" text="Generations:" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="96.0" />
-        <Label layoutX="802.0" layoutY="102.0" text="Cell Color:" AnchorPane.bottomAnchor="675.0" AnchorPane.rightAnchor="110.0" />
+        <Label layoutX="788.0" layoutY="184.0" text="Cell Color:" AnchorPane.bottomAnchor="587.0" AnchorPane.leftAnchor="788.0" AnchorPane.rightAnchor="110.0" AnchorPane.topAnchor="184.0" />
         <Label fx:id="genCounter" layoutX="894.0" layoutY="750.0" prefHeight="27.0" prefWidth="47.0" AnchorPane.bottomAnchor="21.0" AnchorPane.rightAnchor="39.0" />
-        <Label layoutX="801.0" layoutY="202.0" text="Background Color:" AnchorPane.bottomAnchor="575.0" AnchorPane.rightAnchor="56.0" />
+        <Label layoutX="788.0" layoutY="271.0" text="Background Color:" AnchorPane.bottomAnchor="500.0" AnchorPane.leftAnchor="788.0" AnchorPane.rightAnchor="44.0" AnchorPane.topAnchor="271.0" />
         <Label fx:id="fpsCount" layoutX="860.0" layoutY="472.0" prefHeight="27.0" prefWidth="47.0" AnchorPane.bottomAnchor="299.0" AnchorPane.rightAnchor="73.0" />
-        <ColorPicker fx:id="colorPicker" layoutX="802.0" layoutY="136.0" onAction="#colorChanged" prefHeight="34.0" prefWidth="100.0" AnchorPane.bottomAnchor="628.0" AnchorPane.rightAnchor="78.0" />
-        <ColorPicker fx:id="backgroundColor" layoutX="801.0" layoutY="236.0" onAction="#backgroundChanged" prefHeight="34.0" prefWidth="100.0" AnchorPane.bottomAnchor="528.0" AnchorPane.rightAnchor="79.0" />
+        <ColorPicker fx:id="colorPicker" layoutX="788.0" layoutY="217.0" onAction="#colorChanged" prefHeight="34.0" prefWidth="100.0" AnchorPane.bottomAnchor="547.0" AnchorPane.leftAnchor="788.0" AnchorPane.rightAnchor="92.0" AnchorPane.topAnchor="217.0" />
+        <ColorPicker fx:id="backgroundColor" layoutX="788.0" layoutY="304.0" onAction="#backgroundChanged" prefHeight="34.0" prefWidth="100.0" AnchorPane.bottomAnchor="460.0" AnchorPane.leftAnchor="788.0" AnchorPane.rightAnchor="92.0" AnchorPane.topAnchor="304.0" />
         <Separator layoutY="29.0" prefHeight="0.0" prefWidth="900.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="29.0" />
-      <TextArea fx:id="tipField" editable="false" layoutX="792.0" layoutY="331.0" prefHeight="97.0" prefWidth="159.0" />
-      <Label fx:id="tipLabel" layoutX="789.0" layoutY="297.0" prefHeight="27.0" prefWidth="60.0" text="Tip:">
+      <TextArea fx:id="tipField" editable="false" layoutX="788.0" layoutY="74.0" prefHeight="93.0" prefWidth="169.0" AnchorPane.bottomAnchor="631.0" AnchorPane.leftAnchor="788.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="74.0" />
+      <Label fx:id="tipLabel" layoutX="788.0" layoutY="47.0" prefHeight="27.0" prefWidth="60.0" text="Tip:" AnchorPane.bottomAnchor="724.0" AnchorPane.leftAnchor="788.0" AnchorPane.rightAnchor="132.0" AnchorPane.topAnchor="47.0">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
       </Label>
+        <ComboBox fx:id="cellShapeBox" layoutX="788.0" layoutY="387.0" onAction="#cellShapeEvent" prefHeight="39.0" prefWidth="100.0" promptText="Cell shape" AnchorPane.bottomAnchor="372.0" AnchorPane.leftAnchor="788.0" AnchorPane.rightAnchor="92.0" AnchorPane.topAnchor="387.0" />
+      <Label layoutX="788.0" layoutY="353.0" prefHeight="27.0" prefWidth="114.0" text="Cell shape:" AnchorPane.bottomAnchor="418.0" AnchorPane.leftAnchor="788.0" AnchorPane.rightAnchor="81.0" AnchorPane.topAnchor="353.0" />
     </children>
 </AnchorPane>

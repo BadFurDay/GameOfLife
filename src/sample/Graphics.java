@@ -21,6 +21,7 @@ public class Graphics {
     private double cellWidth;               //Width of each individual cell
     private int xCell;
     private int yCell;
+    private boolean shape = true;
 
 
     /**
@@ -54,6 +55,10 @@ public class Graphics {
         }
     }
 
+
+    public void setShape(boolean s){
+        this.shape = s;
+    }
     /**
      * Method called to make the cells visible on the
      * dynamic board
@@ -67,12 +72,16 @@ public class Graphics {
         for(int x = 0; x < dynamicBoard.size(); x++){
             for(int y = 0; y < dynamicBoard.size(); y++){
                 if(dynamicBoard.get(x).get(y)){
-                   // gc.fillRect(x * cellWidth, y * cellHeight, cellWidth, cellHeight);
-                    gc.fillOval(x * cellWidth, y * cellHeight, cellWidth, cellHeight);
+                    if(shape){
+                        gc.fillRect(x * cellWidth, y * cellHeight, cellWidth, cellHeight);
+                    } else {
+                        gc.fillOval(x * cellWidth, y * cellHeight, cellWidth, cellHeight);
+                    }
                 }
             }
         }
     }
+
 
 
     /**

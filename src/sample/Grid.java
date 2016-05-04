@@ -24,7 +24,6 @@ public class Grid extends Canvas{
     private double cellWidth;
     private double cellHeight;
 
-    DynamicBoard dynamicBoard = DynamicBoard.getInstance();
 
     /**
      * Grid's default constructor receives an
@@ -57,7 +56,6 @@ public class Grid extends Canvas{
         }
 
     }
-
 
     /**
      * Clears the grid lines on the canvas area

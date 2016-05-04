@@ -75,15 +75,15 @@ public class FileHandler {
      * @author Olav Smevoll
      */
     public void addToLoadArray(){
-        for(int x = 0; x < 5; x++) {
+        for(int x = 0; x < 2; x++) {
             List<Boolean> innerArray = new ArrayList<>();
-            for(int y = 0; y < dynamicBoard.getBoardSize()-5; y++){
+            for(int y = 0; y < dynamicBoard.getBoardSize()-2; y++){
                 innerArray.add(false);
             }
             loadDynamicBoard.add(innerArray);
         }
         for(int x = 0; x < dynamicBoard.getBoardSize(); x++){
-            for(int y = 0; y < 5; y++) {
+            for(int y = 0; y < 2; y++) {
                 loadDynamicBoard.get(x).add(false);
             }
         }
