@@ -24,14 +24,12 @@ public class Main extends Application {
     @FXML
     public void start(Stage primaryStage) throws Exception {
 
-            try {
-                Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
-                primaryStage.setTitle("Game of Life");
-                primaryStage.setScene(new Scene(root));
-                primaryStage.show();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
+        primaryStage.setTitle("Game of Life");
+        primaryStage.setScene(new Scene(root));
+        //primaryStage.setResizable(false);
+        primaryStage.show();
+
     }
 
     public static void main(String[] args) {

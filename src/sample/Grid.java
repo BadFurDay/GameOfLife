@@ -11,8 +11,11 @@ package sample;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 
+import java.util.ArrayList;
+import java.util.List;
 
-public class Grid extends Canvas {
+
+public class Grid extends Canvas{
 
     //Data field
     private GraphicsContext gcGrid;
@@ -20,6 +23,8 @@ public class Grid extends Canvas {
     private double canvasWidth;
     private double cellWidth;
     private double cellHeight;
+
+    DynamicBoard dynamicBoard = DynamicBoard.getInstance();
 
     /**
      * Grid's default constructor receives an
@@ -32,6 +37,7 @@ public class Grid extends Canvas {
     public Grid(GraphicsContext gcGrid) {
         this.gcGrid = gcGrid;
     }
+
 
 
     /**
@@ -49,6 +55,7 @@ public class Grid extends Canvas {
         for (double y = 0; y < canvasHeight; y += cellHeight) {
             gcGrid.strokeLine(0, (int)y, (int)canvasWidth, (int)y);
         }
+
     }
 
 
@@ -133,17 +140,4 @@ public class Grid extends Canvas {
         this.canvasWidth = canvasWidth;
     }
 
-
-    /*@Override
-    public boolean isResizable() {
-        return true;
-    }
-    @Override12
-    public double prefWidth(double height) {
-        return getWidth();
-    }
-    @Override
-    public double prefHeight(double width) {
-        return getHeight();
-    }*/
 }

@@ -22,15 +22,21 @@ public class FileHandler {
 
     //Data field
     File file;
-   // private boolean[][] loadBoard;
     private List<List<Boolean>> loadDynamicBoard = new ArrayList<>();
 
+
+    /**
+     * File Handler's constructor receives no arguments.
+     */
     public FileHandler(){
     }
 
     /**
-     * File Handler class has a default constructor
-     * that receives no arguments.
+     * The File Handler constructor contains parameters.
+     *
+     * @param gc GraphicsContext's variable
+     * @param statBoard Board's variable
+     * @param alerts Alerts' variable
      */
     public FileHandler(Graphics gc, Board statBoard, Alerts alerts) {
         this.graphics = gc;
@@ -38,12 +44,19 @@ public class FileHandler {
         this.alerts = alerts;
     }
 
-    //Object
+
+    //Objects
     Alerts alerts;
     Board gameBoard;
     Graphics graphics;
     DynamicBoard dynamicBoard = DynamicBoard.getInstance();
 
+
+    /**
+     *
+     *
+     * @author Olav Smevoll
+     */
     public void createLoadBoard(){
         int boardSize = dynamicBoard.getBoardSize();
         for (int x = 0; x < boardSize; x++) {
@@ -55,6 +68,12 @@ public class FileHandler {
         }
     }
 
+    /**
+     * Method called to enable the ability of the program to
+     * read a file and add it to the array list.
+     *
+     * @author Olav Smevoll
+     */
     public void addToLoadArray(){
         for(int x = 0; x < 5; x++) {
             List<Boolean> innerArray = new ArrayList<>();
@@ -70,15 +89,6 @@ public class FileHandler {
         }
     }
 
-    /**
-     *
-     * @param loadBoard
-     */
-   // public void setLoadBoard(boolean[][] loadBoard){
-    //    this.loadBoard = loadBoard;
-   // }
-
-
 
     /**
      * Method called to read an RLE file stored in the
@@ -90,6 +100,7 @@ public class FileHandler {
      * @throws PatternFormatExceptions Exceptions related to file handling
      */
     public void chooseFile() throws IOException, PatternFormatExceptions {
+        long start = System.currentTimeMillis();
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open file");
         fileChooser.setInitialDirectory(new File(System.getProperty("user.dir")+"/rle"));
@@ -101,8 +112,10 @@ public class FileHandler {
             readGameBoardFromFile(file);
         } else {
             alerts.noFile();
-            throw new PatternFormatExceptions("No file was chosen");
+            //throw new PatternFormatExceptions("No file was chosen");
         }
+        long stop = System.currentTimeMillis();
+      //  System.out.println("chooseFile: " + (stop - start)+"ms");
     }
 
 
@@ -124,15 +137,15 @@ public class FileHandler {
 
         String line;
         String rleCode = "";
+        System.out.println("About to read the file");
+
         while ((line = br.readLine()) != null) {
             if ((line.matches("[b, o, $, !, 0-9]*"))) {
                 rleCode = rleCode.concat(line + "\n");
             }
         }
         fromRleToSimplified(rleCode);
-       // System.out.println("Leser rle: " + rleCode + "\n");
         long stop = System.currentTimeMillis();
-   //     System.out.println("readGameBoardFromFile: " + (stop - start)+"ms");
     }
 
 

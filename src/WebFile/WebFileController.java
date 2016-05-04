@@ -11,12 +11,12 @@ package WebFile;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-import sample.FileHandler;
-import sample.Alerts;
+import sample.*;
 
 import java.io.*;
 import java.net.MalformedURLException;
@@ -35,9 +35,12 @@ public class WebFileController implements Initializable {
     @FXML private Label label;
 
     //Objects
-    FileHandler fileHandler = new FileHandler();
-    Alerts error = new Alerts();
-
+    FileHandler fileHandler;
+    Alerts error;
+    GraphicsContext gc;
+    Graphics graphics;
+    DynamicBoard dynamicBoard;
+    Board gameBoard;
 
     /**
      * Web File Controller has a default constructor
@@ -50,7 +53,10 @@ public class WebFileController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        dynamicBoard = DynamicBoard.getInstance();
+        fileHandler = new FileHandler(graphics, gameBoard, error);
+        error = new Alerts();
+        graphics = new Graphics(gc);
     }
 
 
@@ -59,10 +65,9 @@ public class WebFileController implements Initializable {
     }
 
     /**
-     * * Method called when user submits a URL to read.
-     * Label will change and show a message of the
-     * current situation of the file. Method also includes
-     * exceptions.
+     * Method called when user submits a URL to read.
+     * The program can only read RLE file that's within
+     * the array range of the static board.
      *
      * @author Olav Smevoll
      * @author Ginelle Ignacio
@@ -93,11 +98,12 @@ public class WebFileController implements Initializable {
             }
             //fileHandler.createLoadBoard();
             fileHandler.fromRleToSimplified(rleCode);
+            //graphics.drawDynamic(dynamicBoard.getBoard());
+
         } catch (IOException ie) {
             error.invalidURL();
-        } /*catch (NullPointerException ne){
-            error.nullException();
-        }*/
+        }
+
     }
 
 

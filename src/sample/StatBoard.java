@@ -1,11 +1,14 @@
+/**
+ * This class board represents a static board inherited
+ * from the Board class. This class is not able to read
+ * a file that contains a pattern with the value that is
+ * greater than the the 2D array of the this game board.
+ *
+ * @author Rudi Andre Dahle
+ */
+
 package sample;
 
-import javafx.scene.canvas.GraphicsContext;
-import org.omg.SendingContext.RunTime;
-
-/**
- * Created by RudiAndre on 25.04.2016.
- */
 public class StatBoard extends Board {
 
 
@@ -20,7 +23,7 @@ public class StatBoard extends Board {
 
     /**
      * Board class has a default constructor that
-     * receives no arguments.
+     * receives no arguments..
      */
     public StatBoard() {
         statGameBoard = new boolean[cellsWide][cellsHigh];
@@ -29,14 +32,22 @@ public class StatBoard extends Board {
 
     @Override
     public int getCellsWide() {
-        return cellsWide;
+        return super.cellsWide;
     }
 
     @Override
     public void setCellsWide(int cellsWide) {
-        this.cellsWide = cellsWide;
+        super.cellsWide = cellsWide;
     }
 
+
+    /**
+     * Overrides the method countNeighbor inherited from
+     * the Board class to adapt with the static board.
+     *
+     * @param x integer value of the first parameter
+     * @param y integer value of the second parameter
+     */
     @Override
     protected void countNeighbours(int x, int y) {
         int blx = statGameBoard.length - 1;
@@ -87,11 +98,23 @@ public class StatBoard extends Board {
     }
 
     //@Override
+
+    /**
+     * Initializes the board
+     *
+     *@author Rudi André Dahle
+     */
     public void initByteBoard(){
         index = 0;
         byteBoard = new byte[cellsWide][cellsHigh];
     }
 
+    /**
+     * Overrides the nextGeneration method inherited from the
+     * Board class to adapt with the Static Board.
+     *
+     * @author Rudi André Dahle
+     */
     @Override
     public synchronized void nextGeneration() {
         for (int x = index*boardSplit; x < (index+1)*boardSplit && x < statGameBoard.length; x++) {
@@ -104,7 +127,12 @@ public class StatBoard extends Board {
         index++;
     }
 
-
+    /**
+     * Overrides the rules method inherited from the
+     * Board class to adapt with the Static Board.
+     *
+     * @author Rudi André Dahle
+     */
     @Override
     public void rules(){
         for (int x = 0; x < byteBoard.length; x++) {
@@ -121,19 +149,43 @@ public class StatBoard extends Board {
             }
         }
         genCounter++;
+
     }
 
-
+    /**
+     * Overrides the setCellState method inherited from the Board
+     * class to adapt with the static board.
+     *
+     * @author Rudi André Dahle
+     * @param x integer value of x cell state
+     * @param y integer value of y cell state
+     */
     @Override
     public void setCellState(int x, int y) {
         this.statGameBoard[x][y] = statGameBoard[x][y];
     }
 
+    /**
+     * Overrides the getCellState method inherited from the Board
+     * class to adapt with the static board.
+     *
+     * @author Olav Smevoll
+     * @param x integer value of x cell state
+     * @param y integer value of y cell state
+     * @return statGameBoard The value of the game board
+     */
     @Override
     public boolean getCellState(int x, int y) {
         return statGameBoard[x][y];
     }
 
+    /**
+     * Overrides the setGameBoard method inherited from the
+     * Board class to adapat with the static board.
+     *
+     * @author Rudi André Dahle
+     * @param statGameBoard Receives the boolean value of the game
+     */
     @Override
     public <T> void setGameBoard(T statGameBoard) {
         this.cellsWide = ((boolean[][])statGameBoard)[0].length;
@@ -141,12 +193,20 @@ public class StatBoard extends Board {
         this.statGameBoard = ((boolean[][])statGameBoard);
     }
 
-
-   // @Override
+    /**
+     * Method called to get the value the game board
+     *
+     * @return statGameBoard The value of the static game board
+     */
+    //@Override
     public boolean[][] getGameBoard() {
         return statGameBoard;
     }
 
+    /**
+     * Overrides the resetBoard method inherited from the Board
+     * class to adapt with the static board
+     */
     @Override
     public void resetBoard() {
         for (int x = 0; x < statGameBoard.length; x++) {
@@ -158,6 +218,15 @@ public class StatBoard extends Board {
         }
     }
 
+
+
+    /**
+     * Overrides the toString method inherited from the Board
+     * class to adapt with the static board.
+     *
+     * @return str.toString Value of the string builder's
+     *                      to string
+     */
     @Override
     public String toString() {
         StringBuilder str = new StringBuilder();

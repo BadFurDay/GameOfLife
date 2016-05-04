@@ -19,8 +19,8 @@ public class Graphics {
     protected GraphicsContext gc;           //Draws calls to the canvas area
     private double cellHeight;              //Height of each individual cell
     private double cellWidth;               //Width of each individual cell
-    private int xCell;                      //X-index of cell
-    private int yCell;                      //Y-index of cell
+    private int xCell;
+    private int yCell;
 
 
 
@@ -46,7 +46,6 @@ public class Graphics {
      *                      in boolean 2D array
      */
     public void draw(boolean[][] graphicsBoard) {
-
         for(int x = 0; x < graphicsBoard.length; x++) {
             for(int y = 0; y < graphicsBoard[0].length; y++) {
                 if (graphicsBoard[x][y]) {
@@ -57,6 +56,14 @@ public class Graphics {
         }
     }
 
+    /**
+     * Method called to make the cells visible on the
+     * dynamic board
+     *
+     * @author Olav Smevoll
+     * @param dynamicBoard Parameter receives a list within a list
+     *                     and a boolean element of the dynamic board
+     */
     public void drawDynamic(List<List<Boolean>> dynamicBoard){
         clearDynamicBoard();
         for(int x = 0; x < dynamicBoard.size(); x++){
@@ -70,6 +77,15 @@ public class Graphics {
     }
 
 
+    /**
+     * Method called to make a living or dead cell when the user draws
+     * into the canvas area.
+     *
+     * @author Rudi Andre Dahle
+     * @author Ginelle Ignacio
+     * @param dynamicBoard Parameter receives a list within a list
+     *                     and a boolean element of the dynamic board
+     */
     public void drawDynamicCell(List<List<Boolean>> dynamicBoard) {
         if (!dynamicBoard.get(xCell).get(yCell)) {
             dynamicBoard.get(xCell).set(yCell, true);
@@ -81,7 +97,6 @@ public class Graphics {
     }
 
 
-
     /**
      * Clears the old board before the next generation is drawn
      *
@@ -89,6 +104,7 @@ public class Graphics {
      * @param gameBoard
      */
     public void clearBoard(boolean[][] gameBoard) {
+
         for(int x = 0; x < gameBoard.length; x++) {
             for (int y = 0; y < gameBoard[0].length; y++) {
                 if (gameBoard[x][y]) {
@@ -98,9 +114,31 @@ public class Graphics {
         }
     }
 
+    /**
+     * Method called to clear the dynamic board area.
+     *
+     * @author Olav Smevoll
+     * @param dynBoard Parameter receives a list within a list
+     *                 and a boolean element of the dynamic board
+     *
+    public void clearDynamicBoard(List<List<Boolean>> dynBoard){
+        for(int x = 0; x < dynBoard.size(); x++) {
+            for (int y = 0; y < dynBoard.size(); y++) {
+
+                gc.clearRect(x * cellWidth, y * cellHeight, cellWidth, cellHeight);
+            }
+        }
+    }*/
+
+    /**
+     * Method called to clear the dynamic board area.
+     *
+     * @author Olav Smevoll
+     */
     public void clearDynamicBoard(){
         gc.clearRect(0,0,gc.getCanvas().getWidth(),gc.getCanvas().getHeight());
-                }
+    }
+
 
     /**
      * Clears entire board when "Clear" button is pushed
@@ -125,6 +163,7 @@ public class Graphics {
      * @param graphicsBoard Receives the value of the graphicBoard
      *                      in boolean 2D array
      */
+    @Deprecated
     public void drawCell(boolean[][] graphicsBoard) {
         if (!graphicsBoard[xCell][yCell]) {
             graphicsBoard[xCell][yCell] = true;
@@ -145,6 +184,7 @@ public class Graphics {
      */
     public void setXCell(double xCoord){
         xCell = (int)Math.floor(xCoord/cellWidth);
+
     }
 
 
@@ -228,6 +268,7 @@ public class Graphics {
          this.cellHeight = (double)gc.getCanvas().heightProperty().intValue()/cellsHigh;
     }
 
+    @Deprecated
     public void drawCells(List<List<Boolean>> dynamicBoard) {
         if(dynamicBoard.get(xCell).set(yCell, true)){
             gc.fillRect(xCell * cellWidth, yCell * cellHeight, cellWidth, cellHeight);

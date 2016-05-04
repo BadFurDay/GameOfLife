@@ -10,6 +10,7 @@
 
 package sample;
 
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import javafx.animation.Animation;
 import javafx.animation.Animation.Status;
 import javafx.animation.KeyFrame;
@@ -25,6 +26,8 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
 import java.io.FileNotFoundException;
@@ -65,6 +68,7 @@ public class Controller implements Initializable {
     private double xCoord;
     private double yCoord;
     private long meanTime;
+    int positionX, positionY;
 
 
     //Objects
@@ -76,6 +80,7 @@ public class Controller implements Initializable {
     Stage readWeb;
     Alerts error;
     WorkerPool workerPool;
+    MoveFilePattern moveFilePattern;
     DynamicBoard dynamicBoard;
 
 
@@ -104,10 +109,10 @@ public class Controller implements Initializable {
         readWeb = new Stage();
         error = new Alerts();
         workerPool = new WorkerPool();
+        moveFilePattern = new MoveFilePattern(gc);
         dynamicBoard = DynamicBoard.getInstance();
 
 //        reader.setLoadBoard(gameBoard.getGameBoard());
-
         //Grid properties
         graphics.setCellHeight(dynamicBoard.cellsWide);
         graphics.setCellWidth(dynamicBoard.cellsWide);
@@ -124,9 +129,9 @@ public class Controller implements Initializable {
         graphics.gc.setFill(Color.rgb(26, 0, 104));
         colorPicker.setValue(Color.rgb(26, 0, 104));
         backgroundColor.setValue(Color.rgb(220, 220, 220));
+        //backgroundColor.setValue(Color.web(String.valueOf(333333)));
         speedSlider.setValue(10.0);
         speedSlider.setShowTickMarks(true);
-        //zoomSlider.setShowTickMarks(true);
         FPS = speedSlider.getValue();
         fpsCount.setText((Integer.toString((int) speedSlider.getValue())+" fps"));
         speedSlider.valueProperty().addListener(new ChangeListener<Number>() {
@@ -142,9 +147,6 @@ public class Controller implements Initializable {
         //graphics.drawDynamic(dynamicBoard.getBoard());
 
 
-        //zoomCount.setText(Integer.toString((int)zoomSlider.getValue));
-        //gridToggle.setSelected(true);
-
         //Time properties responsible for the animation
         Duration duration = Duration.millis(1000);
         KeyFrame keyframe = new KeyFrame(duration, (ActionEvent e) -> {
@@ -158,16 +160,11 @@ public class Controller implements Initializable {
                 workerPool.clearWorkers();
             }*/
             dynamicBoard.nextGeneration();
-
             graphics.clearDynamicBoard();
-
             graphics.setCellHeight(dynamicBoard.cellsWide);
             graphics.setCellWidth(dynamicBoard.cellsWide);
-
             dynamicBoard.rules();
-
             graphics.drawDynamic(dynamicBoard.getGameBoard());
-
             genCounter.setText(Integer.toString(dynamicBoard.getGenCounter()));
 
         });
@@ -175,8 +172,6 @@ public class Controller implements Initializable {
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.getKeyFrames().add(keyframe);
         timeline.rateProperty().bind(speedSlider.valueProperty());
-       // long stop = System.currentTimeMillis();
-      //  System.out.println("Initialized in: " + (stop - start) + "ms");
     }
 
 
@@ -188,17 +183,25 @@ public class Controller implements Initializable {
      * the canvas area
      *
      * @author Rudi André Dahle
+     * @author Ginelle Ignacio
      * @param event Represents a mouse event used when
      *              the user interacts with the GUI.
      */
     public void selectDragCell(MouseEvent event){
+        int canvasH = canvasGrid.heightProperty().intValue();
+        int canvasW = canvasGrid.widthProperty().intValue();
+
         xCoord = event.getX();
         yCoord = event.getY();
-        graphics.setYCell(yCoord);
-        graphics.setXCell(xCoord);
-       // graphics.drawCell(gameBoard.getGameBoard());
-        graphics.drawDynamicCell(dynamicBoard.getGameBoard());
+
+        //fix for handling index out of bounds exception
+        if(xCoord > 0 && yCoord > 0 && xCoord < canvasH && yCoord < canvasW) {
+            graphics.setYCell(yCoord);
+            graphics.setXCell(xCoord);
+            graphics.drawDynamicCell(dynamicBoard.getGameBoard());
+        }
     }
+
 
 
     /**
@@ -249,32 +252,13 @@ public class Controller implements Initializable {
         playPause.setText("Play");
         dynamicBoard.resetGenCount();
         dynamicBoard.clearDynBoard();
-        //dynamicBoard.setCellsWide(20);
+
+        //Resets to the original size of the board
+        dynamicBoard.setBoardSize(40);
+        graphics.setCellHeight(dynamicBoard.getCellsWide());
+        graphics.setCellWidth(dynamicBoard.getCellsWide());
         graphics.drawDynamic(dynamicBoard.getGameBoard());
-        //dynamicBoard.setBoardSize(30); reset boardsize til 30 ved bruk av clearbutton
     }
-
-
-    /**
-     * Method called when the user drags the zoom slider to
-     * zoom in or zoom out
-     *
-     * @author Ginelle Ignacio
-     * @param event Represents a mouse event used when
-     *              the user interacts with the slider
-     */
-    public void zoomChanged(MouseEvent event) {
-        int zoom = (int)zoomSlider.getValue();
-
-        /*graphics.setCellHeight(zoom);
-        graphics.setCellWidth(zoom/2);
-        grid.setCanvasHeight(gcGrid.getCanvas().heightProperty().intValue());
-        grid.setCanvasWidth(gcGrid.getCanvas().widthProperty().intValue());
-        grid.setCellHeight(graphics.getCellHeight());
-        grid.setCellWidth(graphics.getCellWidth()/2);*/
-
-    }
-
 
     /**
      * Color picker changes the colors of the cells
@@ -360,7 +344,6 @@ public class Controller implements Initializable {
         try {
             reader.chooseFile();
             graphics.drawDynamic(dynamicBoard.getGameBoard());
-           // graphics.draw(gameBoard.getGameBoard());
         } catch (FileNotFoundException fe){
             error.fileNotFound();
             throw new PatternFormatExceptions("File not found");
@@ -397,6 +380,7 @@ public class Controller implements Initializable {
         } catch (IOException io){
             error.notLoading();
         }
+
     }
 
     /**

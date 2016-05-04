@@ -39,25 +39,24 @@ public class BoardTest {
     @Before
     public void setUp() throws Exception {
         boolean[][] gameBoard = {
-                {false, false, false},
+                {false, true, false},
+                {false, false, true},
                 {true, true, true},
-                {false, false, false},
         };
         statBoard.setGameBoard(gameBoard);
     }
 
 
     /**
-     * Method called to test the logic of the next
-     * generation.
+     * Method called to test the result of the logic test
+     * of the next generation.
      *
      * @author Rudi André Dahle
      * @throws Exception if an error occurs while testing
      */
     @Test
     public void testNextGeneration() throws Exception {
-        statBoard.nextGeneration();
-        assertEquals("010010010", statBoard.toString());
+        assertEquals("010001111", statBoard.toString());
     }
 
 

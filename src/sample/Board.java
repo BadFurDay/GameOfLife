@@ -13,16 +13,8 @@ public abstract class Board {
 
     //private static Board board;
 
-    public int getCellsWide() {
-        return cellsWide;
-    }
-
-    public void setCellsWide(int cellsWide) {
-        this.cellsWide = cellsWide;
-    }
-
     //Datafield
-    protected int cellsWide = 30;             //Number of cells in gameboard's width
+    protected int cellsWide = 40;             //40 Number of cells in gameboard's width
     protected int cellsHigh = cellsWide;    //Number of cells in gameboard's height
     protected int genCounter;               //Number of generations in integer value
     //protected boolean[][] gameBoard;           //Value of game board in boolean 2D array
@@ -37,6 +29,13 @@ public abstract class Board {
 
 
 
+    public int getCellsWide() {
+        return cellsWide;
+    }
+
+    public void setCellsWide(int cellsWide) {
+        this.cellsWide = cellsWide;
+    }
 
     /**
      * Returns the generation counter as a string value

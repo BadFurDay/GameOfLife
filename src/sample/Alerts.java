@@ -54,6 +54,20 @@ public class Alerts {
         eof.show();
     }
 
+    /**
+     * Error dialog to notify the user that the file chosen
+     * is empty.
+     *
+     * @author Ginelle Ignacio
+     */
+    public void emptyFile(){
+        Alert empty = new Alert(Alert.AlertType.ERROR);
+        empty.setTitle("Error");
+        empty.setHeaderText("File is empty!");
+        empty.setContentText("The program can not find a cell pattern within the file. " +
+                " Choose anothe file.\t");
+    }
+
 
     /**
      * Error dialog to notify user that the file chosen
@@ -126,7 +140,7 @@ public class Alerts {
      */
     public void noFile(){
         Alert nf = new Alert(Alert.AlertType.ERROR);
-        nf.setTitle("Error");
+        nf.setTitle("Warning");
         nf.setHeaderText(null);
         nf.setContentText("No file was chosen!");
         nf.show();
@@ -148,20 +162,4 @@ public class Alerts {
         window.show();
     }
 
-
-    /**
-     *  Error dialog to notify the user that the program
-     *  catched an Index Out of Bounds Exception.
-     *
-     * @author Ginelle Ignacio
-     */
-    public void indexOutOfBounds(){
-        Alert ib = new Alert(Alert.AlertType.ERROR);
-        ib.setTitle("Error");
-        ib.setHeaderText("The cell pattern is defined outside of the board!");
-        ib.setContentText("The current board is a static class and can not be changed" +
-                " to a bigger board. You may want to choose to change the board into" +
-                " dynamic to suit the chosen cell pattern. \t");
-        ib.show();
-    }
 }
