@@ -67,8 +67,8 @@ public class Graphics {
         for(int x = 0; x < dynamicBoard.size(); x++){
             for(int y = 0; y < dynamicBoard.size(); y++){
                 if(dynamicBoard.get(x).get(y)){
-                    gc.fillRect(x * cellWidth, y * cellHeight, cellWidth, cellHeight);
-                    //gc.fillRect(x * getCellWidth(), y * getCellHeight(), getCellWidth()-1, getCellHeight()-1);
+                   // gc.fillRect(x * cellWidth, y * cellHeight, cellWidth, cellHeight);
+                    gc.fillOval(x * cellWidth, y * cellHeight, cellWidth, cellHeight);
                 }
             }
         }

@@ -91,7 +91,7 @@ public class DynamicBoard extends Board{
      * @author Olav Smevoll
      */
     public void addToArrayEastSouth(){
-        int increase = 2;
+        int increase = 5;
         super.cellsWide += increase;
         super.cellsHigh += increase;
         boardSize += increase;
@@ -116,7 +116,7 @@ public class DynamicBoard extends Board{
     }
 
     public void addToArrayWestNorth(){
-        int increase = 2;
+        int increase = 5;
         super.cellsWide += increase;
         super.cellsHigh += increase;
         boardSize += increase;

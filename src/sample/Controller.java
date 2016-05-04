@@ -188,12 +188,16 @@ public class Controller implements Initializable {
             grid.clearGrid();
 
             dynamicBoard.rules();
-            grid.draw();
+
 
             long startDraw = System.currentTimeMillis();
             graphics.drawDynamic(dynamicBoard.getGameBoard());
             long timeDraw = System.currentTimeMillis() - startDraw;
-           // System.out.println("Draw: " + timeDraw);
+            // System.out.println("Draw: " + timeDraw);
+
+            if(showGrid){
+                grid.draw();
+            }
 
             genCounter.setText(Integer.toString(dynamicBoard.getGenCounter()));
 
