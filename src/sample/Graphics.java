@@ -114,21 +114,6 @@ public class Graphics {
         }
     }
 
-    /**
-     * Method called to clear the dynamic board area.
-     *
-     * @author Olav Smevoll
-     * @param dynBoard Parameter receives a list within a list
-     *                 and a boolean element of the dynamic board
-     *
-    public void clearDynamicBoard(List<List<Boolean>> dynBoard){
-        for(int x = 0; x < dynBoard.size(); x++) {
-            for (int y = 0; y < dynBoard.size(); y++) {
-
-                gc.clearRect(x * cellWidth, y * cellHeight, cellWidth, cellHeight);
-            }
-        }
-    }*/
 
     /**
      * Method called to clear the dynamic board area.
@@ -157,7 +142,8 @@ public class Graphics {
     /**
      *
      * Method called to draw a cell when the user interacts with
-     * the canvas area.
+     * the canvas area. This method is used together with the
+     * static board.
      *
      * @author Rudi André Dahle
      * @param graphicsBoard Receives the value of the graphicBoard

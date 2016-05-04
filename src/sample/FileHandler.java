@@ -195,7 +195,7 @@ public class FileHandler {
         //graphics.clearDynamicBoard();
 
         for (int i = 0; i < rle.length(); i++) {
-            if(xCounter > loadDynamicBoard.size()-5 || yCounter > loadDynamicBoard.size()-5){
+            if(xCounter == loadDynamicBoard.size() || yCounter == loadDynamicBoard.size()){
                 dynamicBoard.addToArrayEastSouth();
                 addToLoadArray();
                 graphics.setCellHeight(dynamicBoard.cellsWide);

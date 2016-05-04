@@ -56,6 +56,7 @@ public class Controller implements Initializable {
     @FXML private Label fpsCount;
     @FXML private Label zoomCount;
     @FXML private ToggleButton gridToggle;
+    @FXML private TextArea tipField;
 
     //Data field
     private GraphicsContext gc;
@@ -68,7 +69,6 @@ public class Controller implements Initializable {
     private double xCoord;
     private double yCoord;
     private long meanTime;
-    int positionX, positionY;
 
 
     //Objects
@@ -125,11 +125,14 @@ public class Controller implements Initializable {
 
 
         //Initial properties in the GUI
+        tipField.setText("Welcome to Game of Life! \nYou can draw your own \npattern, " +
+                "upload a file, or \nread a file from web \nto begin the game!");
         genCounter.setText(Integer.toString(dynamicBoard.getGenCounter()));
         graphics.gc.setFill(Color.rgb(26, 0, 104));
         colorPicker.setValue(Color.rgb(26, 0, 104));
         backgroundColor.setValue(Color.rgb(220, 220, 220));
         //backgroundColor.setValue(Color.web(String.valueOf(333333)));
+        //gcBG.setFill(Color.web(String.valueOf(333333)));
         speedSlider.setValue(10.0);
         speedSlider.setShowTickMarks(true);
         FPS = speedSlider.getValue();
@@ -138,6 +141,7 @@ public class Controller implements Initializable {
             @Override
             public void changed(ObservableValue<? extends Number> observableValue, Number oldValue, Number newValue) {
                 fpsCount.setText(Math.round(newValue.intValue()) + " fps");
+                tipField.setText("FPS is frames per second. \n");
             }
         });
 
@@ -200,6 +204,8 @@ public class Controller implements Initializable {
             graphics.setXCell(xCoord);
             graphics.drawDynamicCell(dynamicBoard.getGameBoard());
         }
+
+        tipField.setText("Draw your own pattern!");
     }
 
 
@@ -220,6 +226,7 @@ public class Controller implements Initializable {
         } else {
             timeline.play();
             running = true;
+            tipField.setText("Enjoy playing!");
         }
     }
 
@@ -254,10 +261,15 @@ public class Controller implements Initializable {
         dynamicBoard.clearDynBoard();
 
         //Resets to the original size of the board
-        dynamicBoard.setBoardSize(40);
+        dynamicBoard.setBoardSize(30);
         graphics.setCellHeight(dynamicBoard.getCellsWide());
         graphics.setCellWidth(dynamicBoard.getCellsWide());
         graphics.drawDynamic(dynamicBoard.getGameBoard());
+
+        //Plays the new cells drawn
+        grid.setCanvasHeight(dynamicBoard.getBoardHeight());
+        grid.setCanvasWidth(dynamicBoard.getBoardWidth());
+
     }
 
     /**
@@ -300,7 +312,6 @@ public class Controller implements Initializable {
             showGrid = true;
             gridToggle.setSelected(true);
             grid.draw();
-
         }else {
             showGrid = false;
             grid.clearGrid();
@@ -343,6 +354,7 @@ public class Controller implements Initializable {
     public void openFiles(ActionEvent ae)throws PatternFormatExceptions {
         try {
             reader.chooseFile();
+            dynamicBoard.resetGenCount();
             graphics.drawDynamic(dynamicBoard.getGameBoard());
         } catch (FileNotFoundException fe){
             error.fileNotFound();
@@ -380,8 +392,10 @@ public class Controller implements Initializable {
         } catch (IOException io){
             error.notLoading();
         }
-
+        tipField.setText("After submitting a URL, \nClick 'Play' to view the \npattern! ");
     }
+
+
 
     /**
      * Method called when the user clicks on the "Close"

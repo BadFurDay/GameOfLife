@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import javafx.scene.canvas.*?>
 <?import javafx.scene.control.*?>
@@ -28,7 +29,7 @@
                 <Canvas fx:id="canvasBG" height="764.0" width="764.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="0.0" />
                 <Canvas fx:id="canvas" height="764.0" width="764.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="0.0" />
                 <Canvas fx:id="canvasGrid" height="764.0" onMouseClicked="#selectDragCell" onMouseDragged="#selectDragCell" width="764.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="0.0" />
-              <!--  style="-fx-background-color: #dcdcdc;"-->
+              <!--style="-fx-background-color: #dcdcdc;"-->
             </children>
         </AnchorPane>
       <Separator layoutX="765.0" layoutY="33.0" orientation="VERTICAL" prefHeight="765.0" prefWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="209.0" AnchorPane.topAnchor="33.0" />
@@ -49,5 +50,11 @@
         <ColorPicker fx:id="colorPicker" layoutX="802.0" layoutY="136.0" onAction="#colorChanged" prefHeight="34.0" prefWidth="100.0" AnchorPane.bottomAnchor="628.0" AnchorPane.rightAnchor="78.0" />
         <ColorPicker fx:id="backgroundColor" layoutX="801.0" layoutY="236.0" onAction="#backgroundChanged" prefHeight="34.0" prefWidth="100.0" AnchorPane.bottomAnchor="528.0" AnchorPane.rightAnchor="79.0" />
         <Separator layoutY="29.0" prefHeight="0.0" prefWidth="900.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="29.0" />
+      <TextArea fx:id="tipField" editable="false" layoutX="792.0" layoutY="331.0" prefHeight="97.0" prefWidth="159.0" />
+      <Label fx:id="tipLabel" layoutX="789.0" layoutY="297.0" prefHeight="27.0" prefWidth="60.0" text="Tip:">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font>
+      </Label>
     </children>
 </AnchorPane>

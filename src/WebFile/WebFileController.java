@@ -98,8 +98,7 @@ public class WebFileController implements Initializable {
             }
             //fileHandler.createLoadBoard();
             fileHandler.fromRleToSimplified(rleCode);
-            //graphics.drawDynamic(dynamicBoard.getBoard());
-
+            //graphics.drawDynamic(dynamicBoard.getBoard())
         } catch (IOException ie) {
             error.invalidURL();
         }

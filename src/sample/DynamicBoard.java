@@ -120,6 +120,7 @@ public class DynamicBoard extends Board{
             for(int y = 0; y < boardSize-increase; y++){
                 innerArray.add(0,false);
                 innerByteArray.add(0, zero);
+
             }
             dynGameBoard.add(0, innerArray);
             byteBoard.add(0, innerByteArray);
@@ -513,10 +514,9 @@ public class DynamicBoard extends Board{
 
     /**
      * Overrides the method getGameBoard inherited from the
-     * Board class to adpat with the dynamic board.
+     * Board class to adapt with the dynamic board.
      *
      * @author Olav Smevoll
-     * @return brett Returns a boolean 2 array of the board
      */
     @Override
     public List<List<Boolean>> getGameBoard(){
