@@ -9,6 +9,7 @@
 
 package sample;
 
+@Deprecated
 public class StatBoard extends Board {
 
 
@@ -137,14 +138,11 @@ public class StatBoard extends Board {
     public void rules(){
         for (int x = 0; x < byteBoard.length; x++) {
             for (int y = 0; y < byteBoard[0].length; y++) {
-                if (byteBoard[x][y] < 2) {
+                if (byteBoard[x][y] < 2 || byteBoard[x][y] > 3) {
                     statGameBoard[x][y] = false;
                 }
                 if (byteBoard[x][y] == 3) {
                     statGameBoard[x][y] = true;
-                }
-                if (byteBoard[x][y] > 3) {
-                    statGameBoard[x][y] = false;
                 }
             }
         }

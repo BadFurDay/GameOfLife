@@ -23,8 +23,6 @@ public class Graphics {
     private int yCell;
 
 
-
-
     /**
      * Graphics' default constructor receives an
      * argument of the GraphicsContext's class to
@@ -98,7 +96,7 @@ public class Graphics {
 
 
     /**
-     * Clears the old board before the next generation is drawn
+     * Clears the old static board before the next generation is drawn
      *
      * @author Rudi André Dahle
      * @param gameBoard
@@ -216,7 +214,6 @@ public class Graphics {
      *                   cellWidth.
      */
     public double getCellWidth() {
-     //   System.out.println(cellWidth);
         return cellWidth;
     }
 
@@ -253,6 +250,7 @@ public class Graphics {
     public void setCellHeight(int cellsHigh) {
          this.cellHeight = (double)gc.getCanvas().heightProperty().intValue()/cellsHigh;
     }
+
 
     @Deprecated
     public void drawCells(List<List<Boolean>> dynamicBoard) {

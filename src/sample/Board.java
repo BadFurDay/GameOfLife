@@ -27,7 +27,13 @@ public abstract class Board {
     public Board() {
     }
 
+    public int getCellsHigh() {
+        return cellsHigh;
+    }
 
+    public void setCellsHigh(int cellsHigh) {
+        this.cellsWide = cellsHigh;
+    }
 
     public int getCellsWide() {
         return cellsWide;
@@ -114,7 +120,7 @@ public abstract class Board {
      *
      * @author Rudi André Dahle
      */
-    public abstract void initByteBoard();
+   // public abstract void initByteBoard();
 
    /**
     * Verifies the logic of the game by counting

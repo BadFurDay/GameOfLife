@@ -214,6 +214,6 @@ public class FileHandler {
                 xCounter++;
             }
         }
-        dynamicBoard.setDynGameBoard(loadDynamicBoard);
+        dynamicBoard.setGameBoard(loadDynamicBoard);
     }
 }

@@ -80,7 +80,7 @@ public class Controller implements Initializable {
     Stage readWeb;
     Alerts error;
     WorkerPool workerPool;
-    MoveFilePattern moveFilePattern;
+    //MoveFilePattern moveFilePattern;
     DynamicBoard dynamicBoard;
 
 
@@ -109,7 +109,7 @@ public class Controller implements Initializable {
         readWeb = new Stage();
         error = new Alerts();
         workerPool = new WorkerPool();
-        moveFilePattern = new MoveFilePattern(gc);
+     //   moveFilePattern = new MoveFilePattern(gc);
         dynamicBoard = DynamicBoard.getInstance();
 
 //        reader.setLoadBoard(gameBoard.getGameBoard());
@@ -148,27 +148,53 @@ public class Controller implements Initializable {
         //reader.createLoadBoard();
         dynamicBoard.createArray();
         //dynamicBoard.setGlider();
-        //graphics.drawDynamic(dynamicBoard.getBoard());
+        //graphics.drawDynamic(dynamicBoard.getGameBoard());
 
 
         //Time properties responsible for the animation
         Duration duration = Duration.millis(1000);
         KeyFrame keyframe = new KeyFrame(duration, (ActionEvent e) -> {
 
-           // gameBoard.initByteBoard();
-         //  workerPool.setTask(() -> {dynamicBoard.nextGeneration(); /*System.out.println("Trådid: " + Thread.currentThread().getId());*/});
-           /* try {
+
+            dynamicBoard.checkForBoardIncrease();
+
+            dynamicBoard.setBoardSplit();
+            long startNext = System.currentTimeMillis();
+            workerPool.setTask(() -> {dynamicBoard.nextGeneration(); /*System.out.println("Trådid: " + Thread.currentThread().getId());*/});
+            try {
                 workerPool.runWorkers();
                 workerPool.clearWorkers();
             }catch (InterruptedException ee) {
                 workerPool.clearWorkers();
-            }*/
+            }
+            long timeNext = System.currentTimeMillis() - startNext;
+           // System.out.println("NextGen: " + timeNext);
+
+           /* long startNext = System.currentTimeMillis();
             dynamicBoard.nextGeneration();
+            long timeNext = System.currentTimeMillis() - startNext;
+            System.out.println("NextGen: " + timeNext);
+        */
+            long startClear = System.currentTimeMillis();
             graphics.clearDynamicBoard();
-            graphics.setCellHeight(dynamicBoard.cellsWide);
+            long timeClear = System.currentTimeMillis() - startClear;
+            //System.out.println(timeClear);
+
+
+            graphics.setCellHeight(dynamicBoard.cellsHigh);
             graphics.setCellWidth(dynamicBoard.cellsWide);
+            grid.setCellHeight(graphics.getCellHeight());
+            grid.setCellWidth(graphics.getCellWidth());
+            grid.clearGrid();
+
             dynamicBoard.rules();
+            grid.draw();
+
+            long startDraw = System.currentTimeMillis();
             graphics.drawDynamic(dynamicBoard.getGameBoard());
+            long timeDraw = System.currentTimeMillis() - startDraw;
+           // System.out.println("Draw: " + timeDraw);
+
             genCounter.setText(Integer.toString(dynamicBoard.getGenCounter()));
 
         });
@@ -262,7 +288,7 @@ public class Controller implements Initializable {
 
         //Resets to the original size of the board
         dynamicBoard.setBoardSize(30);
-        graphics.setCellHeight(dynamicBoard.getCellsWide());
+        graphics.setCellHeight(dynamicBoard.getCellsHigh());
         graphics.setCellWidth(dynamicBoard.getCellsWide());
         graphics.drawDynamic(dynamicBoard.getGameBoard());
 
@@ -394,8 +420,6 @@ public class Controller implements Initializable {
         }
         tipField.setText("After submitting a URL, \nClick 'Play' to view the \npattern! ");
     }
-
-
 
     /**
      * Method called when the user clicks on the "Close"
