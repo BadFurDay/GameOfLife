@@ -70,7 +70,7 @@ public class Controller implements Initializable {
 
     //Objects
     Grid grid;
-    Board gameBoard;// = new StatBoard();
+    Board gameBoard;
     Graphics graphics;
     FileHandler reader;
     Stage helpWindow;
@@ -91,26 +91,22 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //long start = System.currentTimeMillis();
-
         //Fixes a bug problem within Java when using combo box
         System.setProperty("glass.accessible.force", "false");
 
         //Objects
-       // gameBoard = new StatBoard();
         gc = canvas.getGraphicsContext2D();
         gcGrid = canvasGrid.getGraphicsContext2D();
         gcBG = canvasBG.getGraphicsContext2D();
         graphics = new Graphics(gc);
         grid = new Grid(gcGrid);
-        reader = new FileHandler(graphics, gameBoard, alerts);
+        reader = new FileHandler(graphics, gameBoard);
         helpWindow = new Stage();
         readWeb = new Stage();
         alerts = new Alerts();
         workerPool = new WorkerPool();
         dynamicBoard = DynamicBoard.getInstance();
 
-//        reader.setLoadBoard(gameBoard.getGameBoard());
         //Grid properties
         graphics.setCellHeight(dynamicBoard.cellsWide);
         graphics.setCellWidth(dynamicBoard.cellsWide);
@@ -122,25 +118,20 @@ public class Controller implements Initializable {
         grid.setCellHeight(graphics.getCellHeight());
 
 
-        //Combobox list
+        //Combo box list
         cellShapeBox.getItems().addAll(
                 "Square",
                 "Circle"
         );
-        //cellShapeBox.setValue("Square");
 
         //Initial properties in the GUI
-        tipField.setText("Welcome to Game of Life! \nYou can draw your own \npattern, " +
-                "upload a file, or \nread a file from web \nto begin the game!");
+        tipField.setText("Welcome to Game of \nLife! You can draw your \nown pattern, " +
+                "upload \na file, or read a file from \nweb to begin the game!");
         genCounter.setText(Integer.toString(dynamicBoard.getGenCounter()));
         graphics.gc.setFill(Color.rgb(26, 0, 104));
         colorPicker.setValue(Color.rgb(26, 0, 104));
-        backgroundColor.setValue(Color.rgb(220, 220, 220));
-        //backgroundColor.setValue(Color.web(String.valueOf(333333)));
-        //gcBG.setFill(Color.web(String.valueOf(333333)));
         speedSlider.setValue(10.0);
         speedSlider.setShowTickMarks(true);
-        //zoomSlider.setShowTickMarks(true);
         FPS = speedSlider.getValue();
         fpsCount.setText((Integer.toString((int) speedSlider.getValue())+" fps"));
         speedSlider.valueProperty().addListener(new ChangeListener<Number>() {
@@ -152,7 +143,6 @@ public class Controller implements Initializable {
         });
 
         dynamicBoard.createArray();
-        //reader.createLoadBoard();
 
 
 
@@ -192,6 +182,7 @@ public class Controller implements Initializable {
 
 
             genCounter.setText(Integer.toString(dynamicBoard.getGenCounter()));
+
         });
         timeline = new Timeline();
         timeline.setCycleCount(Animation.INDEFINITE);
@@ -232,14 +223,19 @@ public class Controller implements Initializable {
      * or "Circle" as the shape of the cells.
      *
      * @author Ginelle Ignacio
+     * @author Rudi André Dahle
      * @param actionEvent
      */
     public void cellShapeEvent(ActionEvent actionEvent){
          if (cellShapeBox.getValue() == "Square") {
              shape = true;
-            } else if (cellShapeBox.getValue() == "Circle") {
-                shape = false;
-            }
+             tipField.setText("You can also choose \n" +
+                     "circle as the shape \nof the cells!");
+         } else if (cellShapeBox.getValue() == "Circle") {
+             shape = false;
+             tipField.setText("You can also choose \n" +
+                     "square as the shape \nof the cells!");
+         }
         graphics.setShape(shape);
         graphics.drawDynamic(dynamicBoard.getGameBoard());
     }
@@ -258,6 +254,7 @@ public class Controller implements Initializable {
         if(timeline.getStatus() == Status.RUNNING) {
             timeline.pause();
             running = false;
+            tipField.setText("Click 'Play' to watch \nthe animation!");
         } else {
             timeline.play();
             running = true;
@@ -313,6 +310,7 @@ public class Controller implements Initializable {
 
     }
 
+
     /**
      * Color picker changes the colors of the cells
      *
@@ -322,6 +320,8 @@ public class Controller implements Initializable {
      */
     public void colorChanged(ActionEvent actionEvent){
         graphics.gc.setFill(colorPicker.getValue());
+        tipField.setText("Choose different colors \nand" +
+                " have fun!");
         graphics.drawDynamic(dynamicBoard.getGameBoard());
     }
 
@@ -401,45 +401,40 @@ public class Controller implements Initializable {
 
             grid.setCellHeight(graphics.getCellHeight());
             grid.setCellWidth(graphics.getCellWidth());
-
             grid.clearGrid();
-
 
             if(showGrid) {
                 grid.draw();
             }
 
+            errorContent();
             dynamicBoard.resetGenCount();
             graphics.drawDynamic(dynamicBoard.getGameBoard());
+            tipField.setText("Great choice of pattern!\nClick 'Play'" +
+                    "to watch the \nanimation!");
         } catch (FileNotFoundException fe){
             alerts.fileNotFound();
-            throw new PatternFormatExceptions("File not found");
         } catch (IOException e) {
             alerts.errorOpeningfile();
-            throw new PatternFormatExceptions("Error opening file");
         } catch (NoSuchElementException ne){
             alerts.incorrectMatch();
-            throw new PatternFormatExceptions("Incorrect file format");
         } catch (IllegalStateException ie) {
             alerts.errorReading();
-            throw new PatternFormatExceptions("Error reading from file");
         }
     }
 
- /*   public void emptyFile() {
+    /**
+     * Helping method to get the error when the program
+     * reads a wrong file format
+     *
+     * @author Rudi André Dahle
+     */
+    public void errorContent(){
         boolean error = reader.getError();
-        if (error) {
-            alerts.emptyFile();
-        }
-    }
-
-    public void wrongFormat() {
-        boolean error = reader.getError();
-        if (error) {
+        if(error){
             alerts.errorReading();
         }
-    }*/
-
+    }
 
     /**
      * Method called when the user selects "Read Web File.."

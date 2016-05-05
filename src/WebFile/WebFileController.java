@@ -18,6 +18,7 @@ import javafx.scene.control.TextField;
 
 import sample.*;
 
+import javax.xml.bind.SchemaOutputResolver;
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -31,7 +32,6 @@ public class WebFileController implements Initializable {
     //Data field
     @FXML private TextField field;
     @FXML private Button submit;
-    @FXML private Button clear;
     @FXML private Label label;
 
     //Objects
@@ -54,7 +54,7 @@ public class WebFileController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         dynamicBoard = DynamicBoard.getInstance();
-        fileHandler = new FileHandler(graphics, gameBoard, error);
+        fileHandler = new FileHandler(graphics, gameBoard);
         error = new Alerts();
         graphics = new Graphics(gc);
     }
@@ -75,7 +75,7 @@ public class WebFileController implements Initializable {
      *                    when a button has been fired.
      */
     @FXML
-    public void submitEvent (ActionEvent actionEvent) {
+    public void submitEvent (ActionEvent actionEvent) throws Exception{
         //Changes the label text
         if (field.getText() != null && !field.getText().isEmpty()) {
             label.setText("Reading file from web..");
@@ -86,7 +86,8 @@ public class WebFileController implements Initializable {
         //Reads the content of the URL to convert to RLE file
         try {
             URL url = new URL(field.getText());
-            BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
+            BufferedReader in = new BufferedReader(new
+                    InputStreamReader(url.openStream()));
 
             String readFromWeb;
             String rleCode = "";
@@ -96,15 +97,13 @@ public class WebFileController implements Initializable {
                     rleCode = rleCode.concat(readFromWeb + "\n");
                 }
             }
-            //fileHandler.createLoadBoard();
             fileHandler.fromRleToSimplified(rleCode);
-            //graphics.drawDynamic(dynamicBoard.getBoard())
-        } catch (IOException ie) {
+//          graphics.drawDynamic(dynamicBoard.getGameBoard());
+        } catch (Exception e) {
             error.invalidURL();
         }
 
     }
-
 
 
     /**
@@ -120,5 +119,4 @@ public class WebFileController implements Initializable {
         field.clear();
         label.setText(null);
     }
-
 }

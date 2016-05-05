@@ -11,10 +11,9 @@ package sample;
 
 public abstract class Board {
 
-    //private static Board board;
 
     //Datafield
-    protected int initialCells = 10;
+    protected int initialCells = 30;
     protected int cellsWide = initialCells;
     protected int cellsHigh = cellsWide;
     protected int genCounter;

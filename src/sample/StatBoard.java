@@ -1,8 +1,11 @@
 /**
  * This class board represents a static board inherited
- * from the Board class. This class is not able to read
- * a file that contains a pattern with the value that is
- * greater than the the 2D array of the this game board.
+ * from the Board class. This class has no ability to read
+ * a file that contains a pattern with a greater value than
+ * the predefined 2D array.
+ *
+ * This board is no longer in use because of the dynamic
+ * board.
  *
  * @author Rudi Andre Dahle
  */
@@ -97,8 +100,6 @@ public class StatBoard extends Board {
         //return 5;
     }
 
-    //@Override
-
     /**
      * Initializes the board
      *
@@ -149,6 +150,7 @@ public class StatBoard extends Board {
 
     }
 
+
     /**
      * Overrides the setCellState method inherited from the Board
      * class to adapt with the static board.
@@ -161,6 +163,7 @@ public class StatBoard extends Board {
     public void setCellState(int x, int y) {
         this.statGameBoard[x][y] = statGameBoard[x][y];
     }*/
+
 
     /**
      * Overrides the getCellState method inherited from the Board
@@ -176,6 +179,7 @@ public class StatBoard extends Board {
         return statGameBoard[x][y];
     }*/
 
+
     /**
      * Overrides the setGameBoard method inherited from the
      * Board class to adapat with the static board.
@@ -189,6 +193,7 @@ public class StatBoard extends Board {
         this.cellsHigh = ((boolean[][])statGameBoard).length;
         this.statGameBoard = ((boolean[][])statGameBoard);
     }
+
 
     /**
      * Method called to get the value the game board
@@ -216,10 +221,10 @@ public class StatBoard extends Board {
     }*/
 
 
-
     /**
      * Overrides the toString method inherited from the Board
-     * class to adapt with the static board.
+     * class to adapt with the static board. This method is
+     * used for Junit testing.
      *
      * @return str.toString Value of the string builder's
      *                      to string

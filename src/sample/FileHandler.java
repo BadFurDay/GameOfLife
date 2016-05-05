@@ -23,7 +23,14 @@ public class FileHandler {
     //Data field
     File file;
     private List<List<Boolean>> loadDynamicBoard = new ArrayList<>();
+    private boolean error = true;
 
+
+    //Objects
+    Board gameBoard;
+    Graphics graphics;
+    Alerts alerts = new Alerts();
+    DynamicBoard dynamicBoard = DynamicBoard.getInstance();
 
     /**
      * File Handler's constructor receives no arguments.
@@ -32,21 +39,26 @@ public class FileHandler {
     }
 
     /**
-     * File Handler class has a default constructor
-     * that receives no arguments.
+     * The File Handler constructor contains parameters.
+     *
+     * @param gc GraphicsContext's variable
+     * @param statBoard Board's variable
      */
-    public FileHandler(Graphics gc, Board statBoard, Alerts alerts) {
+    public FileHandler(Graphics gc, Board statBoard) {
         this.graphics = gc;
         this.gameBoard = statBoard;
-        this.alerts = alerts;
     }
 
-    //Object
-    Alerts alerts;
-    Board gameBoard;
-    Graphics graphics;
-    DynamicBoard dynamicBoard = DynamicBoard.getInstance();
 
+    /**
+     * Gets boolean value of error
+     *
+     * @author Rudi André Dahle
+     * @return error Returns the boolean value of error
+     */
+    public boolean getError(){
+        return error;
+    }
 
 
     /**
@@ -63,11 +75,16 @@ public class FileHandler {
      * computer's disk. Program will show a dialog box
      * containing RLE files which the user can choose.
      *
+     * The only file format that will be available and
+     * visible for the user when choosing a file is RLE.
+     * This will avoid errors for wrong file formats.
+     *
      * @author Rudi André Dahle
-     * @throws IOException if an error occurs while opening file
+     * @throws IOException if an alerts occurs while opening file
      * @throws PatternFormatExceptions Exceptions related to file handling
      */
     public void chooseFile() throws IOException, PatternFormatExceptions {
+        long start = System.currentTimeMillis();
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open file");
         fileChooser.setInitialDirectory(new File(System.getProperty("user.dir")+"/rle"));
@@ -75,12 +92,13 @@ public class FileHandler {
                 new FileChooser.ExtensionFilter("Game of Life File ", "*.rle"));
         file = fileChooser.showOpenDialog(null);
 
-        if (file != null) {
+       if (file != null) {
             readGameBoardFromFile(file);
-        } else {
-            alerts.noFile();
-            throw new PatternFormatExceptions("No file was chosen");
-        }
+       } else {
+           alerts.noFile();
+       }
+
+        long stop = System.currentTimeMillis();
     }
 
 
@@ -89,27 +107,41 @@ public class FileHandler {
      * by using File Reader and Buffered Reader.
      *
      * @author Olav Smevoll
+     * @author Rudi André Dahle
+     * @author Ginelle Ignacio
      * @param file Receives a file selected by the user
      *             that the Buffered Reader will read
-     * @throws IOException If an error occurs when reading the file
+     * @throws IOException If an alerts occurs when reading the file
      * @throws PatternFormatExceptions Exceptions related to file handling
      */
     public void readGameBoardFromFile(File file) throws IOException,
             PatternFormatExceptions {
-
         FileReader fr = new FileReader(file);
         BufferedReader br = new BufferedReader(fr);
 
         String line;
         String rleCode = "";
-        System.out.println("About to read the file");
 
-        while ((line = br.readLine()) != null) {
-            if ((line.matches("[b, o, $, !, 0-9]*"))) {
-                rleCode = rleCode.concat(line + "\n");
+        //Checks if file content is empty
+        if (br.readLine() == null){
+            alerts.emptyFile();
+            //throw new PatternFormatExceptions("File is empty");
+        }
+
+        //Checks and reads wrong file content
+        if((line = br.readLine()) != null){
+            if(!line.matches("[^b, ^o, ^$, ^!, ^0-9]")){
+                error = true;
             }
         }
 
+        //Checks and reads correct file content
+        while ((line = br.readLine()) != null) {
+            if ((line.matches("[b, o, $, !, 0-9]*"))) {
+                error = false;
+                rleCode = rleCode.concat(line + "\n");
+            }
+        }
         fromRleToSimplified(rleCode);
         long stop = System.currentTimeMillis();
     }
@@ -128,7 +160,6 @@ public class FileHandler {
 
         Pattern pattern = Pattern.compile("\\d+|[ob]|\\$");
         Matcher matcher = pattern.matcher(rle);
-
 
         while (matcher.find()) {
             int num = 1;
@@ -176,7 +207,6 @@ public class FileHandler {
             if (rle.charAt(i) == 'b') {
                loadDynamicBoard.get(xCounter).set(yCounter, false);
                 xCounter++;
-
             }
             if (rle.charAt(i) == 'o') {
                 loadDynamicBoard.get(xCounter).set(yCounter, true);

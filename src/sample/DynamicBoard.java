@@ -85,6 +85,7 @@ public class DynamicBoard extends Board{
      * This method is used together with the addToArrayWestNorth if a cell reaches the edge during runtime,
      * increasing the board by a total of 4 cells.
      *
+     * @author Olav Smevoll
      */
     public void addToArrayEastSouth(){
         int increase = 2;
@@ -279,8 +280,11 @@ public class DynamicBoard extends Board{
     }
 
     /**
-     * Checks if the board size needs to be increased before the next generation.
+     * Method called to check if it's necessary for the
+     * board to increase it's size when a cell reaches
+     * the edges of the game board.
      *
+     * @author Olav Smevoll
      */
     public void checkForBoardIncrease(){
         int minY = 0;
