@@ -74,7 +74,7 @@ public class FileHandler {
      *
      * @author Olav Smevoll
      */
-    public void addToLoadArray(){
+  /*  public void addToLoadArray(){
         for(int x = 0; x < 2; x++) {
             List<Boolean> innerArray = new ArrayList<>();
             for(int y = 0; y < dynamicBoard.getBoardSize()-2; y++){
@@ -87,7 +87,7 @@ public class FileHandler {
                 loadDynamicBoard.get(x).add(false);
             }
         }
-    }
+    }*/
 
 
     /**
@@ -197,7 +197,7 @@ public class FileHandler {
         for (int i = 0; i < rle.length(); i++) {
             if(xCounter == loadDynamicBoard.size() || yCounter == loadDynamicBoard.size()){
                 dynamicBoard.addToArrayEastSouth();
-                addToLoadArray();
+               // addToLoadArray();
                 graphics.setCellHeight(dynamicBoard.cellsWide);
                 graphics.setCellWidth(dynamicBoard.cellsWide);
             }
