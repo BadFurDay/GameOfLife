@@ -14,7 +14,7 @@ import sample.StatBoard;
 
 import static org.junit.Assert.*;
 
-
+@Deprecated
 public class BoardTest {
 
 

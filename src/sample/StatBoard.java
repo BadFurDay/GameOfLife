@@ -96,6 +96,17 @@ public class StatBoard extends Board {
         if (x < blx && y < bly) {
             byteBoard[x + 1][y + 1]++;
         }
+
+    }
+
+    /**
+     * Initializes the board
+     *
+     *@author Rudi André Dahle
+     */
+    public void initByteBoard(){
+        index = 0;
+        byteBoard = new byte[cellsWide][cellsHigh];
     }
 
     /**
@@ -160,6 +171,8 @@ public class StatBoard extends Board {
     public boolean[][] getGameBoard() {
         return statGameBoard;
     }
+
+
 
     /**
      * Overrides the toString method inherited from the Board

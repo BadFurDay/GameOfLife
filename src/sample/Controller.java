@@ -92,6 +92,7 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         //Fixes a bug problem within Java when using combo box
         System.setProperty("glass.accessible.force", "false");
 
@@ -153,6 +154,7 @@ public class Controller implements Initializable {
         //Time properties responsible for the animation
         Duration duration = Duration.millis(1000);
         KeyFrame keyframe = new KeyFrame(duration, (ActionEvent e) -> {
+
             dynamicBoard.checkForBoardIncrease();
             dynamicBoard.setBoardSplit();
 

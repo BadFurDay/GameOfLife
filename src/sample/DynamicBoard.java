@@ -53,6 +53,8 @@ public class DynamicBoard extends Board{
     }
 
     /**
+     * Method called to calculate the the number of cells
+     * designated to each thread
      *
      * @author Rudi André Dahle
      */
@@ -115,6 +117,7 @@ public class DynamicBoard extends Board{
     /**
      * Increases the dynGameBoard by 2 in the west and north direction as well as moving the existing pattern 2 cells into the east/south direction.
      *
+     * @author Olav Smevold
      */
     public void addToArrayWestNorth(){
         int increase = 2;
@@ -142,6 +145,17 @@ public class DynamicBoard extends Board{
     }
 
     /**
+     * Sets the value of the board size
+     *
+     * @author Olav Smevoll
+     * @param size Receives a parameter with an integer
+     *             value
+     */
+    public void setBoardSize(int size){
+        boardSize = size;
+    }
+
+    /**
      * Overrides the method getGameBoard inherited from the
      * Board class to adpat with the dynamic board.
      *
@@ -153,6 +167,7 @@ public class DynamicBoard extends Board{
     public List<List<Boolean>> getGameBoard(){
         return dynGameBoard;
     }
+
 
     /**
      * Sets the value of the dynamic board with
@@ -166,7 +181,6 @@ public class DynamicBoard extends Board{
     @SuppressWarnings("unchecked warnings")
     public <T> void setGameBoard(T board){
         dynGameBoard = (List<List<Boolean>>)board;
-
     }
 
     /**
@@ -244,7 +258,6 @@ public class DynamicBoard extends Board{
     @Override
     public synchronized void nextGeneration() {
         for (int x = index*boardSplit; x < (index+1)*boardSplit && x < boardSize; x++) {
-            //List<Boolean> innerArrayStore = new ArrayList<>();
             for(int y = 0; y < boardSize; y++){
                 if(dynGameBoard.get(x).get(y)){
                     countNeighbours(x,y);
@@ -339,7 +352,7 @@ public class DynamicBoard extends Board{
     }
 
     /**
-     * Clears the byte board.
+     * Method call to clear the byte board.
      *
      * @author Olav Smevoll
      */
@@ -372,15 +385,22 @@ public class DynamicBoard extends Board{
     }
 
 
+
     /**
      * Overrides the toString method inherited from the Board
      * class to adapt with the dynamic board.
      *
-     * @return null Returns the value null
+     * @return str.toString Value of the string builder's
+     *                      to string
      */
     @Override
     public String toString() {
         StringBuilder str = new StringBuilder();
+        for (List<Boolean> gameArray : dynGameBoard) {
+            for(boolean gameCell : gameArray) {
+                str.append(gameCell ? "1" : "0");
+            }
+        }
 
         return str.toString();
     }

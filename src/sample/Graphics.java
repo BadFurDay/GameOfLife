@@ -240,6 +240,6 @@ public class Graphics {
      * @param cellsHigh Number of cells in the game board's height
      */
     public void setCellHeight(int cellsHigh) {
-         this.cellHeight = (double)gc.getCanvas().heightProperty().intValue()/cellsHigh;
+        this.cellHeight = (double)gc.getCanvas().heightProperty().intValue()/cellsHigh;
     }
 }
