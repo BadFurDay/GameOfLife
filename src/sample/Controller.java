@@ -70,8 +70,6 @@ public class Controller implements Initializable {
     private double FPS;
     private double xCoord;
     private double yCoord;
-    private long meanTime;
-
 
     //Objects
     Grid grid;
@@ -84,7 +82,6 @@ public class Controller implements Initializable {
     WorkerPool workerPool;
     DynamicBoard dynamicBoard;
 
-
     /**
      * Controller class has a default constructor that
      * receives no argument.
@@ -92,7 +89,6 @@ public class Controller implements Initializable {
     public Controller(){
 
     }
-
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -136,6 +132,7 @@ public class Controller implements Initializable {
         genCounter.setText(Integer.toString(dynamicBoard.getGenCounter()));
         graphics.gc.setFill(Color.rgb(26, 0, 104));
         colorPicker.setValue(Color.rgb(26, 0, 104));
+        backgroundColor.setValue(Color.rgb(220, 220, 220));
         speedSlider.setValue(10.0);
         speedSlider.setShowTickMarks(true);
         FPS = speedSlider.getValue();
@@ -148,7 +145,9 @@ public class Controller implements Initializable {
                         "Move along the slider to \nmanipulate the speed!");
             }
         });
+
         dynamicBoard.createArray();
+
 
 
         //Time properties responsible for the animation
@@ -178,7 +177,10 @@ public class Controller implements Initializable {
                 grid.draw();
             }
 
+
             graphics.drawDynamic(dynamicBoard.getGameBoard());
+
+
             genCounter.setText(Integer.toString(dynamicBoard.getGenCounter()));
 
         });
@@ -187,7 +189,6 @@ public class Controller implements Initializable {
         timeline.getKeyFrames().add(keyframe);
         timeline.rateProperty().bind(speedSlider.valueProperty());
     }
-
 
     /**
      * Method called when user drags cells to input into
@@ -270,7 +271,6 @@ public class Controller implements Initializable {
         graphics.drawDynamic(dynamicBoard.getGameBoard());
     }
 
-
     /**
      * Method called when user plays or pauses the button
      * for the animation
@@ -292,8 +292,6 @@ public class Controller implements Initializable {
         }
     }
 
-
-
     /**
      * Method called when user press play/pause button
      * to change the button text.
@@ -308,9 +306,9 @@ public class Controller implements Initializable {
         }
     }
 
-
     /**
-     * Clear button to clear the cells in the canvas area
+     * Method for the clear button
+     * Kills every cell on the board and goes back to the original size.
      *
      * @author Ginelle Ignacio
      * @param actionEvent represents an Action Event used to
@@ -324,20 +322,18 @@ public class Controller implements Initializable {
         dynamicBoard.clearByteBoard();
         grid.clearGrid();
 
-        //Resets to the original size of the board
+
         graphics.setCellHeight(dynamicBoard.getCellsHigh());
         graphics.setCellWidth(dynamicBoard.getCellsWide());
         graphics.drawDynamic(dynamicBoard.getGameBoard());
 
-        //Plays the new cells drawn
+
         grid.setCellHeight(graphics.getCellHeight());
         grid.setCellWidth(graphics.getCellWidth());
         if(showGrid) {
             grid.draw();
         }
-
     }
-
 
     /**
      * Color picker changes the colors of the cells
@@ -353,7 +349,6 @@ public class Controller implements Initializable {
         graphics.drawDynamic(dynamicBoard.getGameBoard());
     }
 
-
     /**
      * Change background color of the game.
      * @author Rudi André Dahle
@@ -368,7 +363,6 @@ public class Controller implements Initializable {
         gcBG.fillRect(0, 0, canvasWidth, canvasHeight);
 
     }
-
 
     /**
      * Grid toggle to make the grid visible or invisible
@@ -411,7 +405,6 @@ public class Controller implements Initializable {
         }
     }
 
-
     /**
      * "Open File..." menu item set to open FileChooser window
      * Method also includes exceptions.
@@ -429,7 +422,9 @@ public class Controller implements Initializable {
 
             grid.setCellHeight(graphics.getCellHeight());
             grid.setCellWidth(graphics.getCellWidth());
+
             grid.clearGrid();
+
 
             if(showGrid) {
                 grid.draw();

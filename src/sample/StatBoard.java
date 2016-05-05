@@ -57,7 +57,6 @@ public class StatBoard extends Board {
         int blx = statGameBoard.length - 1;
         int bly = statGameBoard[0].length - 1;
 
-
         //Check cell neighbor North-West
         if (x > 0 && y > 0) {
             byteBoard[x - 1][y - 1]++;
@@ -97,17 +96,6 @@ public class StatBoard extends Board {
         if (x < blx && y < bly) {
             byteBoard[x + 1][y + 1]++;
         }
-        //return 5;
-    }
-
-    /**
-     * Initializes the board
-     *
-     *@author Rudi André Dahle
-     */
-    public void initByteBoard(){
-        index = 0;
-        byteBoard = new byte[cellsWide][cellsHigh];
     }
 
     /**
@@ -147,38 +135,7 @@ public class StatBoard extends Board {
             }
         }
         genCounter++;
-
     }
-
-
-    /**
-     * Overrides the setCellState method inherited from the Board
-     * class to adapt with the static board.
-     *
-     * @author Rudi André Dahle
-     * @param x integer value of x cell state
-     * @param y integer value of y cell state
-     */
-    /*@Override
-    public void setCellState(int x, int y) {
-        this.statGameBoard[x][y] = statGameBoard[x][y];
-    }*/
-
-
-    /**
-     * Overrides the getCellState method inherited from the Board
-     * class to adapt with the static board.
-     *
-     * @author Olav Smevoll
-     * @param x integer value of x cell state
-     * @param y integer value of y cell state
-     * @return statGameBoard The value of the game board
-     */
-    /*@Override
-    public boolean getCellState(int x, int y) {
-        return statGameBoard[x][y];
-    }*/
-
 
     /**
      * Overrides the setGameBoard method inherited from the
@@ -194,7 +151,6 @@ public class StatBoard extends Board {
         this.statGameBoard = ((boolean[][])statGameBoard);
     }
 
-
     /**
      * Method called to get the value the game board
      *
@@ -204,22 +160,6 @@ public class StatBoard extends Board {
     public boolean[][] getGameBoard() {
         return statGameBoard;
     }
-
-    /**
-     * Overrides the resetBoard method inherited from the Board
-     * class to adapt with the static board
-     */
-    /*@Override
-    public void resetBoard() {
-        for (int x = 0; x < statGameBoard.length; x++) {
-            for (int y = 0; y < statGameBoard[0].length; y++) {
-                if(statGameBoard[x][y]) {
-                    statGameBoard[x][y] = false;
-                }
-            }
-        }
-    }*/
-
 
     /**
      * Overrides the toString method inherited from the Board

@@ -16,13 +16,12 @@ import java.util.List;
 public class Graphics {
 
     //Data field
-    protected GraphicsContext gc;           //Draws calls to the canvas area
-    private double cellHeight;              //Height of each individual cell
-    private double cellWidth;               //Width of each individual cell
+    protected GraphicsContext gc;
+    private double cellHeight;
+    private double cellWidth;
     private int xCell;
     private int yCell;
     private boolean shape = true;
-
 
     /**
      * Graphics' default constructor receives an
@@ -57,7 +56,6 @@ public class Graphics {
         }
     }
 
-
     /**
      * Sets the value of shape
      *
@@ -91,8 +89,6 @@ public class Graphics {
         }
     }
 
-
-
     /**
      * Method called to make a living or dead cell when the user draws
      * into the canvas area.
@@ -111,7 +107,6 @@ public class Graphics {
         }
         drawDynamic(dynamicBoard);
     }
-
 
     /**
      * Clears the old static board before the next generation
@@ -132,7 +127,6 @@ public class Graphics {
         }
     }
 
-
     /**
      * Method called to clear the dynamic board.
      *
@@ -142,13 +136,11 @@ public class Graphics {
         gc.clearRect(0,0,gc.getCanvas().getWidth(),gc.getCanvas().getHeight());
     }
 
-
-
     /**
      *
-     * Method called to draw a cell in the static board when
-     * the user interacts with the canvas area. No longer in
-     * use because of the dynamic board.
+     * Method called to draw a cell when the user interacts with
+     * the canvas area. This method is used together with the
+     * static board.
      *
      * @author Rudi André Dahle
      * @param graphicsBoard Receives the value of the graphicBoard
@@ -165,7 +157,6 @@ public class Graphics {
         draw(graphicsBoard);
     }
 
-
     /**
      * Computes the cell's x value when the user inserts
      * a cell in the canvas area.
@@ -175,9 +166,7 @@ public class Graphics {
      */
     public void setXCell(double xCoord){
         xCell = (int)Math.floor(xCoord/cellWidth);
-
     }
-
 
     /**
      * Sets and computes the cell's y value when the user inserts
@@ -189,7 +178,6 @@ public class Graphics {
     public void setYCell(double yCoord){
         yCell = (int)Math.floor(yCoord/cellHeight);
     }
-
 
     /**
      * Gets the x value of a cell.
@@ -224,7 +212,6 @@ public class Graphics {
         return cellWidth;
     }
 
-
     /**
      * Returns the cellHeight.
      *
@@ -236,7 +223,6 @@ public class Graphics {
         return cellHeight;
     }
 
-
     /**
      * Sets and computes the width of a single cell.
      *
@@ -246,7 +232,6 @@ public class Graphics {
     public void setCellWidth(int cellsWide){
         this.cellWidth = (double)gc.getCanvas().widthProperty().intValue()/cellsWide;
     }
-
 
     /**
      * Calculates the height of a single cell.

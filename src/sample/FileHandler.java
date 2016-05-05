@@ -101,7 +101,6 @@ public class FileHandler {
         long stop = System.currentTimeMillis();
     }
 
-
     /**
      * Method called to read the content of file
      * by using File Reader and Buffered Reader.
@@ -111,7 +110,7 @@ public class FileHandler {
      * @author Ginelle Ignacio
      * @param file Receives a file selected by the user
      *             that the Buffered Reader will read
-     * @throws IOException If an alerts occurs when reading the file
+     * @throws IOException If an alert occurs when reading the file
      * @throws PatternFormatExceptions Exceptions related to file handling
      */
     public void readGameBoardFromFile(File file) throws IOException,
@@ -143,13 +142,12 @@ public class FileHandler {
             }
         }
         fromRleToSimplified(rleCode);
-        long stop = System.currentTimeMillis();
     }
 
 
     /**
-     * Method called to read the content of an RLE file
-     * or URL by using Pattern and Matcher.
+     * Transforms the rle code into a string consisting of o, b and $.
+     * 3b from the rle code will turn into bbb etc.     *
      *
      * @author Olav Smevoll
      * @param rle Receives a string representation of
@@ -178,8 +176,7 @@ public class FileHandler {
 
 
     /**
-     * This method makes it possible for the content of
-     * the RLE file to be visible on the game board.
+     * Takes the string created in the fromRleToSimplified method and creates the pattern on the board.
      *
      * @author Olav Smevoll
      * @param rle Receives a string representation of
@@ -190,13 +187,11 @@ public class FileHandler {
         int xCounter = 5;
 
         dynamicBoard.resetDynamicBoard(loadDynamicBoard);
-        //graphics.clearDynamicBoard();
 
         for (int i = 0; i < rle.length(); i++) {
             if(xCounter == loadDynamicBoard.size() || yCounter == loadDynamicBoard.size()){
                 dynamicBoard.addToArrayEastSouth();
                 loadDynamicBoard = dynamicBoard.getGameBoard();
-             //   addToLoadArray();
                 graphics.setCellHeight(dynamicBoard.cellsWide);
                 graphics.setCellWidth(dynamicBoard.cellsWide);
             }
@@ -204,6 +199,7 @@ public class FileHandler {
                 yCounter++;
                 xCounter = 5;
             }
+
             if (rle.charAt(i) == 'b') {
                loadDynamicBoard.get(xCounter).set(yCounter, false);
                 xCounter++;
