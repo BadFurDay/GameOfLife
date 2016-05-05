@@ -189,6 +189,7 @@ public class DynamicBoard extends Board{
     @SuppressWarnings("unchecked warnings")
     public <T> void setGameBoard(T board){
         dynGameBoard = (List<List<Boolean>>)board;
+
     }
 
 
@@ -373,8 +374,8 @@ public class DynamicBoard extends Board{
      */
     public void clearDynBoard() {
         dynGameBoard.clear();
-        boardSize = 30;
-        super.cellsWide = 30;
+        boardSize = super.initialCells;
+        super.cellsWide = initialCells;
         super.cellsHigh = super.cellsWide;
         for (int x = 0; x < boardSize; x++) {
             dynGameBoard.add(new ArrayList<>());
@@ -390,9 +391,11 @@ public class DynamicBoard extends Board{
      * @author Olav Smevoll
      */
     public void clearByteBoard(){
+        byteBoard.clear();
         for (int x = 0; x < boardSize; x++) {
+            byteBoard.add(new ArrayList<>());
             for(int y = 0; y < boardSize; y++){
-                byteBoard.get(x).set(y, zero);
+                byteBoard.get(x).add(zero);
             }
         }
     }

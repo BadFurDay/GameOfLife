@@ -14,7 +14,8 @@ public abstract class Board {
     //private static Board board;
 
     //Datafield
-    protected int cellsWide = 30;             //40 Number of cells in gameboard's width
+    protected int initialCells = 50;
+    protected int cellsWide = initialCells;             //40 Number of cells in gameboard's width
     protected int cellsHigh = cellsWide;    //Number of cells in gameboard's height
     protected int genCounter;               //Number of generations in integer value
     //protected boolean[][] gameBoard;           //Value of game board in boolean 2D array

@@ -211,6 +211,7 @@ public class Controller implements Initializable {
 
             genCounter.setText(Integer.toString(dynamicBoard.getGenCounter()));
 
+            System.out.println(dynamicBoard.getBoardSize());
         });
         timeline = new Timeline();
         timeline.setCycleCount(Animation.INDEFINITE);
@@ -316,16 +317,17 @@ public class Controller implements Initializable {
         playPause.setText("Play");
         dynamicBoard.resetGenCount();
         dynamicBoard.clearDynBoard();
+        dynamicBoard.clearByteBoard();
 
         //Resets to the original size of the board
-        dynamicBoard.setBoardSize(30);
+        //dynamicBoard.setBoardSize(30);
         graphics.setCellHeight(dynamicBoard.getCellsHigh());
         graphics.setCellWidth(dynamicBoard.getCellsWide());
         graphics.drawDynamic(dynamicBoard.getGameBoard());
 
         //Plays the new cells drawn
-        grid.setCanvasHeight(dynamicBoard.getBoardHeight());
-        grid.setCanvasWidth(dynamicBoard.getBoardWidth());
+      //  grid.setCanvasHeight(dynamicBoard.getBoardHeight());
+      //  grid.setCanvasWidth(dynamicBoard.getBoardWidth());
 
     }
 
