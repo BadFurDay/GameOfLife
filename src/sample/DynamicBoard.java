@@ -9,11 +9,7 @@
 
 package sample;
 
-
-import javafx.scene.canvas.GraphicsContext;
-
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 
@@ -48,8 +44,7 @@ public class DynamicBoard extends Board{
 
 
     /**
-     * The Dynamic Board class receives no arguments
-     * in its constructor.
+     * Private constructor so no other instances can be made
      *
      * @author Olav Smevoll
      */
@@ -59,7 +54,6 @@ public class DynamicBoard extends Board{
 
     /**
      *
-     *
      * @author Rudi André Dahle
      */
     public void setBoardSplit() {
@@ -67,7 +61,7 @@ public class DynamicBoard extends Board{
     }
 
     /**
-     * Fills the dynGameBoard with arrays at the program startup.
+     * Fills the dynGameBoard and byteBoard with arrays at the program startup.
      *
      * @author Olav Smevoll
      *
@@ -87,9 +81,10 @@ public class DynamicBoard extends Board{
 
 
     /**
-     * Increases existing vectors by 2 and adding 2 new vectors.
+     * If a cell reaches the edge of the gameboard this method adds 2 new arrays to the dynGameBoard and increases the existing arrays with 2 as well.
+     * This method is used together with the addToArrayWestNorth if a cell reaches the edge during runtime,
+     * increasing the board by a total of 4 cells.
      *
-     * @author Olav Smevoll
      */
     public void addToArrayEastSouth(){
         int increase = 2;
@@ -116,6 +111,10 @@ public class DynamicBoard extends Board{
         }
     }
 
+    /**
+     * Increases the dynGameBoard by 2 in the west and north direction as well as moving the existing pattern 2 cells into the east/south direction.
+     *
+     */
     public void addToArrayWestNorth(){
         int increase = 2;
         super.cellsWide += increase;
@@ -142,29 +141,6 @@ public class DynamicBoard extends Board{
     }
 
     /**
-     * Sets the value of the board size
-     *
-     * @author Olav Smevoll
-     * @param size Receives a parameter with an integer
-     *             value
-     */
-    public void setBoardSize(int size){
-        boardSize = size;
-    }
-
-
-    /**
-     * Gets the value of the board size
-     *
-     * @author Olav Smevoll
-     * @return boardSize Returns the integer value of the
-     *         board size
-     */
-    public int getBoardSize(){
-        return boardSize;
-    }
-
-    /**
      * Overrides the method getGameBoard inherited from the
      * Board class to adpat with the dynamic board.
      *
@@ -176,9 +152,6 @@ public class DynamicBoard extends Board{
     public List<List<Boolean>> getGameBoard(){
         return dynGameBoard;
     }
-
-
-
 
     /**
      * Sets the value of the dynamic board with
@@ -194,7 +167,6 @@ public class DynamicBoard extends Board{
         dynGameBoard = (List<List<Boolean>>)board;
 
     }
-
 
     /**
      * Overrides the countNeighbors method inherited from
@@ -306,7 +278,10 @@ public class DynamicBoard extends Board{
         index = 0;
     }
 
-
+    /**
+     * Checks if the board size needs to be increased before the next generation.
+     *
+     */
     public void checkForBoardIncrease(){
         int minY = 0;
         int maxY = boardSize-1;
@@ -339,38 +314,8 @@ public class DynamicBoard extends Board{
         }
     }
 
-
     /**
-     * Overrides the setCellState method inherited from the Board
-     * class to adapt with the dynamic board.
-     *
-     * @author Olav Smevoll
-     * @param x integer value of x cell state
-     * @param y integer value of y cell state
-     */
-    /*@Override
-    public void setCellState(int x, int y) {
-
-    }*/
-
-
-    /**
-     * Overrides the getCellState method inherited from the Board
-     * class to adapt with the dynamic board.
-     *
-     * @author Olav Smevoll
-     * @param x integer value of x cell state
-     * @param y integer value of y cell state
-     * @return false Returns the value false
-     */
-   /* @Override
-    public boolean getCellState(int x, int y) {
-        return false;
-    }*/
-
-
-    /**
-     * Method called to kill every cell on the board.
+     * Clears the board and goes back to the original size
      *
      *@author Olav Smevoll
      */
@@ -379,8 +324,10 @@ public class DynamicBoard extends Board{
         boardSize = super.initialCells;
         super.cellsWide = initialCells;
         super.cellsHigh = super.cellsWide;
+
         for (int x = 0; x < boardSize; x++) {
             dynGameBoard.add(new ArrayList<>());
+
             for(int y = 0; y < boardSize; y++){
                 dynGameBoard.get(x).add(false);
             }
@@ -388,7 +335,7 @@ public class DynamicBoard extends Board{
     }
 
     /**
-     * Method call to clear the byte board.
+     * Clears the byte board.
      *
      * @author Olav Smevoll
      */
@@ -420,22 +367,6 @@ public class DynamicBoard extends Board{
         }
     }
 
-    /**
-     * Overrides the resetBoard method inherited from the
-     * Board class to adapt with the dynamic board
-     *
-     * @author Olav Smevoll
-     */
-    /*@Override
-    public void resetBoard() {
-        for (int x = 0; x < boardSize; x++) {
-            for(int y = 0; y < boardSize; y++){
-                dynGameBoard.get(x).set(y, false);
-            }
-        }
-    }*/
-
-
 
     /**
      * Overrides the toString method inherited from the Board
@@ -449,16 +380,4 @@ public class DynamicBoard extends Board{
 
         return str.toString();
     }
-/*
-    boolean test = true;
-    public boolean setForTesting(int sizeX, int sizeY,  boolean test){
-        this.cellsWide = sizeX;
-        this.cellsHigh = sizeY;                     ????????????????????????
-        this.test = test;                           ?????????????????????????
-        return true;
-    }
-
-    public boolean getForTesting(int x, int y){
-            return true;
-    }*/
 }
