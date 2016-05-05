@@ -25,7 +25,7 @@
                 </Menu>
             </menus>
         </MenuBar>
-        <AnchorPane layoutY="32.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="765.0" prefWidth="765.0" style="-fx-background-color: #DCDCDC;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="215.0" AnchorPane.topAnchor="32.0">
+        <AnchorPane layoutY="32.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="765.0" prefWidth="765.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="215.0" AnchorPane.topAnchor="32.0">
             <children>
                 <Canvas fx:id="canvasBG" height="764.0" width="764.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="0.0" />
                 <Canvas fx:id="canvas" height="764.0" width="764.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="0.0" />
@@ -34,9 +34,9 @@
             </children>
         </AnchorPane>
       <Separator layoutX="765.0" layoutY="33.0" orientation="VERTICAL" prefHeight="765.0" prefWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="209.0" AnchorPane.topAnchor="33.0" />
-        <Button fx:id="playPause" layoutX="788.0" layoutY="660.0" mnemonicParsing="false" onAction="#OnStartClick" onMouseClicked="#playPauseEvent" prefHeight="34.0" prefWidth="74.0" text="Play" AnchorPane.bottomAnchor="104.0" AnchorPane.rightAnchor="118.0" />
-        <Button fx:id="clearButton" layoutX="884.0" layoutY="660.0" mnemonicParsing="false" onAction="#clearEvent" prefHeight="34.0" prefWidth="74.0" text="Clear" AnchorPane.bottomAnchor="104.0" AnchorPane.rightAnchor="22.0" />
-        <ToggleButton fx:id="gridToggle" layoutX="836.0" layoutY="604.0" mnemonicParsing="false" onAction="#gridEvent" prefHeight="34.0" prefWidth="74.0" text="Grid" AnchorPane.bottomAnchor="160.0" AnchorPane.rightAnchor="70.0" />
+        <Button fx:id="playPause" layoutX="802.0" layoutY="660.0" mnemonicParsing="false" onAction="#OnStartClick" onMouseClicked="#playPauseEvent" prefHeight="34.0" prefWidth="60.0" text="Play" AnchorPane.bottomAnchor="104.0" AnchorPane.rightAnchor="118.0" />
+        <Button fx:id="clearButton" layoutX="880.0" layoutY="660.0" mnemonicParsing="false" onAction="#clearEvent" prefHeight="34.0" prefWidth="60.0" text="Clear" AnchorPane.bottomAnchor="104.0" AnchorPane.rightAnchor="40.0" />
+        <ToggleButton fx:id="gridToggle" layoutX="841.0" layoutY="593.0" mnemonicParsing="false" onAction="#gridEvent" prefHeight="34.0" prefWidth="60.0" text="Grid" AnchorPane.bottomAnchor="171.0" AnchorPane.rightAnchor="79.0" />
         <!-- <Slider fx:id="zoomSlider" layoutX="801.0" layoutY="583.0" max="50.0" min="1.0" AnchorPane.bottomAnchor="89.0" AnchorPane.leftAnchor="187.0" />
          -->
         <Slider fx:id="speedSlider" layoutX="788.0" layoutY="488.0" max="50.0" min="1.0" prefWidth="169.0" />

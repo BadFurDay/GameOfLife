@@ -1,7 +1,6 @@
 /**
  * This class is responsible for catching exceptions
- * related to the RLE format which makes it possible
- * for the user to upload files containing the pattern.
+ * related to the RLE format.
  *
  * @author Ginelle Ignacio
  */
@@ -29,5 +28,4 @@ public class PatternFormatExceptions extends Exception {
     public PatternFormatExceptions(String message){
         super(message);
     }
-
 }

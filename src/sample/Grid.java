@@ -11,10 +11,6 @@ package sample;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 
-import java.util.ArrayList;
-import java.util.List;
-
-
 public class Grid extends Canvas{
 
     //Data field

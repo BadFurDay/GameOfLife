@@ -38,27 +38,36 @@ public class Graphics {
     }
 
     /**
-     * Draws the board with existing cells for every loop.
+     * Draws the board with existing cells for every loop
+     * in a static board. Currently noo longer in use
+     * because of the dynamic board.
      *
      * @author Rudi André Dahle
      * @param graphicsBoard Receives the value of the graphicBoard
      *                      in boolean 2D array
      */
+    @Deprecated
     public void draw(boolean[][] graphicsBoard) {
         for(int x = 0; x < graphicsBoard.length; x++) {
             for(int y = 0; y < graphicsBoard[0].length; y++) {
                 if (graphicsBoard[x][y]) {
                     gc.fillRect(x * cellWidth, y * cellHeight, cellWidth, cellHeight);
-                   // gc.fillOval(x * cellWidth, y * cellHeight, cellWidth, cellHeight);
                 }
             }
         }
     }
 
 
+    /**
+     * Sets the value of shape
+     *
+     * @author Rudi André Dahle
+     * @param s Parameter receives a boolean value of shape
+     */
     public void setShape(boolean s){
         this.shape = s;
     }
+
     /**
      * Method called to make the cells visible on the
      * dynamic board
@@ -105,11 +114,13 @@ public class Graphics {
 
 
     /**
-     * Clears the old static board before the next generation is drawn
+     * Clears the old static board before the next generation
+     * is drawn. No longer in use because of the dynamic board.
      *
      * @author Rudi André Dahle
      * @param gameBoard
      */
+    @Deprecated
     public void clearBoard(boolean[][] gameBoard) {
 
         for(int x = 0; x < gameBoard.length; x++) {
@@ -123,7 +134,7 @@ public class Graphics {
 
 
     /**
-     * Method called to clear the dynamic board area.
+     * Method called to clear the dynamic board.
      *
      * @author Olav Smevoll
      */
@@ -132,25 +143,12 @@ public class Graphics {
     }
 
 
-    /**
-     * Clears entire board when "Clear" button is pushed
-     *
-     * @author Rudi André Dahle
-     * @param gameBoard
-     */
-   /* public void clearBoard(boolean[][] gameBoard) {
-        for(int x = 0; x < gameBoard.length; x++) {
-            for (int y = 0; y < gameBoard[0].length; y++) {
-                gc.clearRect(x * cellWidth, y * cellHeight, cellWidth, cellHeight);
-            }
-        }
-    }*/
 
     /**
      *
-     * Method called to draw a cell when the user interacts with
-     * the canvas area. This method is used together with the
-     * static board.
+     * Method called to draw a cell in the static board when
+     * the user interacts with the canvas area. No longer in
+     * use because of the dynamic board.
      *
      * @author Rudi André Dahle
      * @param graphicsBoard Receives the value of the graphicBoard
@@ -258,13 +256,5 @@ public class Graphics {
      */
     public void setCellHeight(int cellsHigh) {
          this.cellHeight = (double)gc.getCanvas().heightProperty().intValue()/cellsHigh;
-    }
-
-
-    @Deprecated
-    public void drawCells(List<List<Boolean>> dynamicBoard) {
-        if(dynamicBoard.get(xCell).set(yCell, true)){
-            gc.fillRect(xCell * cellWidth, yCell * cellHeight, cellWidth, cellHeight);
-        }
     }
 }
