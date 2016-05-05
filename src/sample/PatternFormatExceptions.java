@@ -21,7 +21,7 @@ public class PatternFormatExceptions extends Exception {
     }
 
     /**
-     * Constructor receives a string message of the error
+     * Constructor receives a string message of the alerts
      * that occurred
      *
      * @param message String message of the exception

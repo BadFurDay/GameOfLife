@@ -157,10 +157,10 @@ public class StatBoard extends Board {
      * @param x integer value of x cell state
      * @param y integer value of y cell state
      */
-    @Override
+    /*@Override
     public void setCellState(int x, int y) {
         this.statGameBoard[x][y] = statGameBoard[x][y];
-    }
+    }*/
 
     /**
      * Overrides the getCellState method inherited from the Board
@@ -171,10 +171,10 @@ public class StatBoard extends Board {
      * @param y integer value of y cell state
      * @return statGameBoard The value of the game board
      */
-    @Override
+    /*@Override
     public boolean getCellState(int x, int y) {
         return statGameBoard[x][y];
-    }
+    }*/
 
     /**
      * Overrides the setGameBoard method inherited from the
@@ -195,7 +195,7 @@ public class StatBoard extends Board {
      *
      * @return statGameBoard The value of the static game board
      */
-    //@Override
+    @Override
     public boolean[][] getGameBoard() {
         return statGameBoard;
     }
@@ -204,7 +204,7 @@ public class StatBoard extends Board {
      * Overrides the resetBoard method inherited from the Board
      * class to adapt with the static board
      */
-    @Override
+    /*@Override
     public void resetBoard() {
         for (int x = 0; x < statGameBoard.length; x++) {
             for (int y = 0; y < statGameBoard[0].length; y++) {
@@ -213,7 +213,7 @@ public class StatBoard extends Board {
                 }
             }
         }
-    }
+    }*/
 
 
 

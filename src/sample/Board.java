@@ -14,11 +14,10 @@ public abstract class Board {
     //private static Board board;
 
     //Datafield
-    protected int initialCells = 50;
-    protected int cellsWide = initialCells;             //40 Number of cells in gameboard's width
-    protected int cellsHigh = cellsWide;    //Number of cells in gameboard's height
-    protected int genCounter;               //Number of generations in integer value
-    //protected boolean[][] gameBoard;           //Value of game board in boolean 2D array
+    protected int initialCells = 10;
+    protected int cellsWide = initialCells;
+    protected int cellsHigh = cellsWide;
+    protected int genCounter;
 
 
    /**
@@ -28,6 +27,13 @@ public abstract class Board {
     public Board() {
     }
 
+
+    /**
+     * Gameboards height in number of cells
+     *
+     * @author Rudi André Dahle
+     * @return cellsHigh Returns the cell's height
+     */
     public int getCellsHigh() {
         return cellsHigh;
     }
@@ -36,6 +42,12 @@ public abstract class Board {
         this.cellsWide = cellsHigh;
     }
 
+    /**
+     * Gameboard's width in number of cells
+     *
+     * @author Rudi André Dahle
+     * @return cellsWide Returns the cell's width
+     */
     public int getCellsWide() {
         return cellsWide;
     }
@@ -52,7 +64,6 @@ public abstract class Board {
      * @return s Value of generation counter in strings
      */
     public int getGenCounter(){
-        //String s = Integer.toString(genCounter);
         return genCounter;
     }
 
@@ -65,28 +76,6 @@ public abstract class Board {
      */
     public void resetGenCount(){
         genCounter = 0;
-    }
-
-
-    /**
-     * Gameboard's width in number of cells
-     *
-     * @author Rudi André Dahle
-     * @return cellsWide Returns the cell's width
-     */
-    public int getBoardWidth() {
-        return cellsWide;
-    }
-
-
-    /**
-     * Gameboards height in number of cells
-     *
-     * @author Rudi André Dahle
-     * @return cellsHigh Returns the cell's height
-     */
-    public int getBoardHeight() {
-        return cellsHigh;
     }
 
 
@@ -115,7 +104,7 @@ public abstract class Board {
      *
      * @author Olav Smevoll
      */
-    public abstract void resetBoard();
+    //public abstract void resetBoard();
 
     /**
      *
@@ -159,7 +148,7 @@ public abstract class Board {
     * @param x
     * @param y
     */
-    public abstract void setCellState(int x, int y);
+   // public abstract void setCellState(int x, int y);
 
 
    /**
@@ -170,5 +159,5 @@ public abstract class Board {
     * @param y
     * @return
     */
-    public abstract boolean getCellState(int x, int y);
+   // public abstract boolean getCellState(int x, int y);
 }

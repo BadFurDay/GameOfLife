@@ -92,7 +92,7 @@ public class DynamicBoard extends Board{
      * @author Olav Smevoll
      */
     public void addToArrayEastSouth(){
-        int increase = 5;
+        int increase = 2;
         super.cellsWide += increase;
         super.cellsHigh += increase;
         boardSize += increase;
@@ -117,7 +117,7 @@ public class DynamicBoard extends Board{
     }
 
     public void addToArrayWestNorth(){
-        int increase = 5;
+        int increase = 2;
         super.cellsWide += increase;
         super.cellsHigh += increase;
         boardSize += increase;
@@ -176,6 +176,9 @@ public class DynamicBoard extends Board{
     public List<List<Boolean>> getGameBoard(){
         return dynGameBoard;
     }
+
+
+
 
     /**
      * Sets the value of the dynamic board with
@@ -276,7 +279,6 @@ public class DynamicBoard extends Board{
             }
         }
         index++;
-        //System.out.println("Next kjørt");
     }
 
     /**
@@ -346,10 +348,10 @@ public class DynamicBoard extends Board{
      * @param x integer value of x cell state
      * @param y integer value of y cell state
      */
-    @Override
+    /*@Override
     public void setCellState(int x, int y) {
 
-    }
+    }*/
 
 
     /**
@@ -361,10 +363,10 @@ public class DynamicBoard extends Board{
      * @param y integer value of y cell state
      * @return false Returns the value false
      */
-    @Override
+   /* @Override
     public boolean getCellState(int x, int y) {
         return false;
-    }
+    }*/
 
 
     /**
@@ -424,14 +426,15 @@ public class DynamicBoard extends Board{
      *
      * @author Olav Smevoll
      */
-    @Override
+    /*@Override
     public void resetBoard() {
         for (int x = 0; x < boardSize; x++) {
             for(int y = 0; y < boardSize; y++){
                 dynGameBoard.get(x).set(y, false);
             }
         }
-    }
+    }*/
+
 
 
     /**

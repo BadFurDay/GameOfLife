@@ -10,14 +10,12 @@
 
 package sample;
 
-import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import javafx.animation.Animation;
 import javafx.animation.Animation.Status;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -27,8 +25,6 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
 import java.io.FileNotFoundException;
@@ -79,9 +75,8 @@ public class Controller implements Initializable {
     FileHandler reader;
     Stage helpWindow;
     Stage readWeb;
-    Alerts error;
+    Alerts alerts;
     WorkerPool workerPool;
-    //MoveFilePattern moveFilePattern;
     DynamicBoard dynamicBoard;
 
 
@@ -108,12 +103,11 @@ public class Controller implements Initializable {
         gcBG = canvasBG.getGraphicsContext2D();
         graphics = new Graphics(gc);
         grid = new Grid(gcGrid);
-        reader = new FileHandler(graphics, gameBoard, error);
+        reader = new FileHandler(graphics, gameBoard, alerts);
         helpWindow = new Stage();
         readWeb = new Stage();
-        error = new Alerts();
+        alerts = new Alerts();
         workerPool = new WorkerPool();
-     //   moveFilePattern = new MoveFilePattern(gc);
         dynamicBoard = DynamicBoard.getInstance();
 
 //        reader.setLoadBoard(gameBoard.getGameBoard());
@@ -128,7 +122,7 @@ public class Controller implements Initializable {
         grid.setCellHeight(graphics.getCellHeight());
 
 
-        //Combob ox list
+        //Combobox list
         cellShapeBox.getItems().addAll(
                 "Square",
                 "Circle"
@@ -146,6 +140,7 @@ public class Controller implements Initializable {
         //gcBG.setFill(Color.web(String.valueOf(333333)));
         speedSlider.setValue(10.0);
         speedSlider.setShowTickMarks(true);
+        //zoomSlider.setShowTickMarks(true);
         FPS = speedSlider.getValue();
         fpsCount.setText((Integer.toString((int) speedSlider.getValue())+" fps"));
         speedSlider.valueProperty().addListener(new ChangeListener<Number>() {
@@ -156,10 +151,9 @@ public class Controller implements Initializable {
             }
         });
 
-        //reader.createLoadBoard();
         dynamicBoard.createArray();
-        //dynamicBoard.setGlider();
-        //graphics.drawDynamic(dynamicBoard.getGameBoard());
+        //reader.createLoadBoard();
+
 
 
         //Time properties responsible for the animation
@@ -170,7 +164,7 @@ public class Controller implements Initializable {
             dynamicBoard.checkForBoardIncrease();
 
             dynamicBoard.setBoardSplit();
-            long startNext = System.currentTimeMillis();
+
             workerPool.setTask(() -> {dynamicBoard.nextGeneration(); /*System.out.println("Trådid: " + Thread.currentThread().getId());*/});
             try {
                 workerPool.runWorkers();
@@ -178,49 +172,32 @@ public class Controller implements Initializable {
             }catch (InterruptedException ee) {
                 workerPool.clearWorkers();
             }
-            long timeNext = System.currentTimeMillis() - startNext;
-           // System.out.println("NextGen: " + timeNext);
 
-           /* long startNext = System.currentTimeMillis();
-            dynamicBoard.nextGeneration();
-            long timeNext = System.currentTimeMillis() - startNext;
-            System.out.println("NextGen: " + timeNext);
-        */
-            long startClear = System.currentTimeMillis();
             graphics.clearDynamicBoard();
-            long timeClear = System.currentTimeMillis() - startClear;
-            //System.out.println(timeClear);
-
 
             graphics.setCellHeight(dynamicBoard.cellsHigh);
             graphics.setCellWidth(dynamicBoard.cellsWide);
             grid.setCellHeight(graphics.getCellHeight());
             grid.setCellWidth(graphics.getCellWidth());
-            grid.clearGrid();
 
             dynamicBoard.rules();
 
-            if(showGrid){
+            grid.clearGrid();
+            if(showGrid) {
                 grid.draw();
             }
 
-            long startDraw = System.currentTimeMillis();
+
             graphics.drawDynamic(dynamicBoard.getGameBoard());
-            long timeDraw = System.currentTimeMillis() - startDraw;
-           // System.out.println("Draw: " + timeDraw);
+
 
             genCounter.setText(Integer.toString(dynamicBoard.getGenCounter()));
-
-            System.out.println(dynamicBoard.getBoardSize());
         });
         timeline = new Timeline();
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.getKeyFrames().add(keyframe);
         timeline.rateProperty().bind(speedSlider.valueProperty());
     }
-
-
-
 
 
     /**
@@ -318,6 +295,8 @@ public class Controller implements Initializable {
         dynamicBoard.resetGenCount();
         dynamicBoard.clearDynBoard();
         dynamicBoard.clearByteBoard();
+        grid.clearGrid();
+
 
         //Resets to the original size of the board
         //dynamicBoard.setBoardSize(30);
@@ -326,8 +305,11 @@ public class Controller implements Initializable {
         graphics.drawDynamic(dynamicBoard.getGameBoard());
 
         //Plays the new cells drawn
-      //  grid.setCanvasHeight(dynamicBoard.getBoardHeight());
-      //  grid.setCanvasWidth(dynamicBoard.getBoardWidth());
+        grid.setCellHeight(graphics.getCellHeight());
+        grid.setCellWidth(graphics.getCellWidth());
+        if(showGrid) {
+            grid.draw();
+        }
 
     }
 
@@ -340,6 +322,7 @@ public class Controller implements Initializable {
      */
     public void colorChanged(ActionEvent actionEvent){
         graphics.gc.setFill(colorPicker.getValue());
+        graphics.drawDynamic(dynamicBoard.getGameBoard());
     }
 
 
@@ -386,7 +369,7 @@ public class Controller implements Initializable {
      * @author Ginelle Ignacio
      * @param ae represents an Action Event used
      *           when a menu item has been clicked
-     * @throws Exception if an error occurs while opening help window
+     * @throws Exception if an alerts occurs while opening help window
      */
     public void helpEvent (ActionEvent ae) throws Exception {
         try{
@@ -396,9 +379,10 @@ public class Controller implements Initializable {
             helpWindow.setScene(new Scene(helpRoot));
             helpWindow.show();
         } catch (IOException io){
-            error.notLoading();
+            alerts.notLoading();
         }
     }
+
 
     /**
      * "Open File..." menu item set to open FileChooser window
@@ -408,28 +392,53 @@ public class Controller implements Initializable {
      * @author Ginelle Ignacio
      * @param ae represents an Action Event used
      *           when a menu item has been clicked
-     * @throws PatternFormatExceptions if an error occurs while
+     * @throws PatternFormatExceptions if an alerts occurs while
      *         opening file chooser window
      */
     public void openFiles(ActionEvent ae)throws PatternFormatExceptions {
         try {
             reader.chooseFile();
+
+            grid.setCellHeight(graphics.getCellHeight());
+            grid.setCellWidth(graphics.getCellWidth());
+
+            grid.clearGrid();
+
+
+            if(showGrid) {
+                grid.draw();
+            }
+
             dynamicBoard.resetGenCount();
             graphics.drawDynamic(dynamicBoard.getGameBoard());
         } catch (FileNotFoundException fe){
-            error.fileNotFound();
+            alerts.fileNotFound();
             throw new PatternFormatExceptions("File not found");
         } catch (IOException e) {
-            error.errorOpeningfile();
+            alerts.errorOpeningfile();
             throw new PatternFormatExceptions("Error opening file");
         } catch (NoSuchElementException ne){
-            error.incorrectMatch();
+            alerts.incorrectMatch();
             throw new PatternFormatExceptions("Incorrect file format");
         } catch (IllegalStateException ie) {
-            error.errorReading();
+            alerts.errorReading();
             throw new PatternFormatExceptions("Error reading from file");
         }
     }
+
+ /*   public void emptyFile() {
+        boolean error = reader.getError();
+        if (error) {
+            alerts.emptyFile();
+        }
+    }
+
+    public void wrongFormat() {
+        boolean error = reader.getError();
+        if (error) {
+            alerts.errorReading();
+        }
+    }*/
 
 
     /**
@@ -440,7 +449,7 @@ public class Controller implements Initializable {
      * @author Ginelle Ignacio
      * @param ae represents an Action Event used to
      *           when a menu item has been clicked
-     * @throws Exception if an error occurs while opening URL window
+     * @throws Exception if an alerts occurs while opening URL window
      */
 
     public void webFile(ActionEvent ae) throws Exception {
@@ -451,7 +460,7 @@ public class Controller implements Initializable {
             readWeb.setScene(new Scene(webRoot));
             readWeb.show();
         } catch (IOException io){
-            error.notLoading();
+            alerts.notLoading();
         }
         tipField.setText("After submitting a URL, \nClick 'Play' to view the " +
                 "\npattern! ");

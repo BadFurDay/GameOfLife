@@ -32,11 +32,8 @@ public class FileHandler {
     }
 
     /**
-     * The File Handler constructor contains parameters.
-     *
-     * @param gc GraphicsContext's variable
-     * @param statBoard Board's variable
-     * @param alerts Alerts' variable
+     * File Handler class has a default constructor
+     * that receives no arguments.
      */
     public FileHandler(Graphics gc, Board statBoard, Alerts alerts) {
         this.graphics = gc;
@@ -44,29 +41,13 @@ public class FileHandler {
         this.alerts = alerts;
     }
 
-
-    //Objects
+    //Object
     Alerts alerts;
     Board gameBoard;
     Graphics graphics;
     DynamicBoard dynamicBoard = DynamicBoard.getInstance();
 
 
-    /**
-     *
-     *
-     * @author Olav Smevoll
-     */
-    public void createLoadBoard(){
-        int boardSize = dynamicBoard.getBoardSize();
-        for (int x = 0; x < boardSize; x++) {
-            List<Boolean> innerArray = new ArrayList<>();
-            for(int y = 0; y < boardSize; y++){
-                innerArray.add(false);
-            }
-            loadDynamicBoard.add(innerArray);
-        }
-    }
 
     /**
      * Method called to enable the ability of the program to
@@ -74,20 +55,7 @@ public class FileHandler {
      *
      * @author Olav Smevoll
      */
-  /*  public void addToLoadArray(){
-        for(int x = 0; x < 2; x++) {
-            List<Boolean> innerArray = new ArrayList<>();
-            for(int y = 0; y < dynamicBoard.getBoardSize()-2; y++){
-                innerArray.add(false);
-            }
-            loadDynamicBoard.add(innerArray);
-        }
-        for(int x = 0; x < dynamicBoard.getBoardSize(); x++){
-            for(int y = 0; y < 2; y++) {
-                loadDynamicBoard.get(x).add(false);
-            }
-        }
-    }*/
+
 
 
     /**
@@ -100,7 +68,6 @@ public class FileHandler {
      * @throws PatternFormatExceptions Exceptions related to file handling
      */
     public void chooseFile() throws IOException, PatternFormatExceptions {
-        long start = System.currentTimeMillis();
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open file");
         fileChooser.setInitialDirectory(new File(System.getProperty("user.dir")+"/rle"));
@@ -112,10 +79,8 @@ public class FileHandler {
             readGameBoardFromFile(file);
         } else {
             alerts.noFile();
-            //throw new PatternFormatExceptions("No file was chosen");
+            throw new PatternFormatExceptions("No file was chosen");
         }
-        long stop = System.currentTimeMillis();
-      //  System.out.println("chooseFile: " + (stop - start)+"ms");
     }
 
 
@@ -144,6 +109,7 @@ public class FileHandler {
                 rleCode = rleCode.concat(line + "\n");
             }
         }
+
         fromRleToSimplified(rleCode);
         long stop = System.currentTimeMillis();
     }
@@ -162,6 +128,7 @@ public class FileHandler {
 
         Pattern pattern = Pattern.compile("\\d+|[ob]|\\$");
         Matcher matcher = pattern.matcher(rle);
+
 
         while (matcher.find()) {
             int num = 1;
@@ -190,14 +157,15 @@ public class FileHandler {
     private void rleToArray(String rle) {
         int yCounter = 5;
         int xCounter = 5;
-        createLoadBoard();
+
         dynamicBoard.resetDynamicBoard(loadDynamicBoard);
         //graphics.clearDynamicBoard();
 
         for (int i = 0; i < rle.length(); i++) {
             if(xCounter == loadDynamicBoard.size() || yCounter == loadDynamicBoard.size()){
                 dynamicBoard.addToArrayEastSouth();
-               // addToLoadArray();
+                loadDynamicBoard = dynamicBoard.getGameBoard();
+             //   addToLoadArray();
                 graphics.setCellHeight(dynamicBoard.cellsWide);
                 graphics.setCellWidth(dynamicBoard.cellsWide);
             }
@@ -206,8 +174,9 @@ public class FileHandler {
                 xCounter = 5;
             }
             if (rle.charAt(i) == 'b') {
-                loadDynamicBoard.get(xCounter).set(yCounter, false);
+               loadDynamicBoard.get(xCounter).set(yCounter, false);
                 xCounter++;
+
             }
             if (rle.charAt(i) == 'o') {
                 loadDynamicBoard.get(xCounter).set(yCounter, true);

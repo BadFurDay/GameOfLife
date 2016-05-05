@@ -1,6 +1,6 @@
 /**
  * Compilation of Error Windows that will appear when
- * the program catches an error when choosing files
+ * the program catches an alerts when choosing files
  * from disc and web.
  *
  * @author Ginelle Ignacio
@@ -49,7 +49,7 @@ public class Alerts {
         Alert eof = new Alert (Alert.AlertType.ERROR);
         eof.setTitle("Error");
         eof.setHeaderText("Error opening file!");
-        eof.setContentText("There was a error in opening the file." +
+        eof.setContentText("There was a alerts in opening the file." +
                 " Choose another file.\t");
         eof.show();
     }
@@ -65,7 +65,8 @@ public class Alerts {
         empty.setTitle("Error");
         empty.setHeaderText("File is empty!");
         empty.setContentText("The program can not find a cell pattern within the file. " +
-                " Choose anothe file.\t");
+                " Choose another file.\t");
+        empty.show();
     }
 
 
@@ -94,7 +95,7 @@ public class Alerts {
         Alert er = new Alert(Alert.AlertType.ERROR);
         er.setTitle("Error");
         er.setHeaderText("Error reading from file!");
-        er.setContentText("There was an error reading from the file." +
+        er.setContentText("There was an alerts reading from the file." +
                 " Check if file content is correct or choose another file.\t");
         er.show();
     }
@@ -148,7 +149,7 @@ public class Alerts {
 
 
     /**
-     * Error dialog to notify the user that an error occurred
+     * Error dialog to notify the user that an alerts occurred
      * while opening the window.
      *
      * @author Ginelle Ignacio
@@ -156,8 +157,8 @@ public class Alerts {
     public void notLoading(){
         Alert window = new Alert(Alert.AlertType.ERROR);
         window.setTitle("Error");
-        window.setHeaderText("An error just occurred");
-        window.setContentText("An error occurred while opening the window. " +
+        window.setHeaderText("An alerts just occurred");
+        window.setContentText("An alerts occurred while opening the window. " +
                 "Try restarting the program.\t");
         window.show();
     }
