@@ -17,6 +17,7 @@ import javafx.animation.Timeline;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -25,6 +26,8 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
 import java.io.FileNotFoundException;
@@ -33,6 +36,7 @@ import java.net.URL;
 import java.util.NoSuchElementException;
 import java.util.ResourceBundle;
 
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.scene.paint.Color;
@@ -53,6 +57,7 @@ public class Controller implements Initializable {
     @FXML private ToggleButton gridToggle;
     @FXML private TextArea tipField;
     @FXML private ComboBox cellShapeBox;
+    @FXML private TextField boardField;
 
     //Data field
     private GraphicsContext gc;
@@ -123,6 +128,7 @@ public class Controller implements Initializable {
                 "Square",
                 "Circle"
         );
+        cellShapeBox.setValue("Square");
 
         //Initial properties in the GUI
         tipField.setText("Welcome to Game of \nLife! You can draw your \nown pattern, " +
@@ -138,24 +144,20 @@ public class Controller implements Initializable {
             @Override
             public void changed(ObservableValue<? extends Number> observableValue, Number oldValue, Number newValue) {
                 fpsCount.setText(Math.round(newValue.intValue()) + " fps");
-                tipField.setText("FPS is frames per second. \n");
+                tipField.setText("FPS is frames per second. \n" +
+                        "Move along the slider to \nmanipulate the speed!");
             }
         });
-
         dynamicBoard.createArray();
-
 
 
         //Time properties responsible for the animation
         Duration duration = Duration.millis(1000);
         KeyFrame keyframe = new KeyFrame(duration, (ActionEvent e) -> {
-
-
             dynamicBoard.checkForBoardIncrease();
-
             dynamicBoard.setBoardSplit();
 
-            workerPool.setTask(() -> {dynamicBoard.nextGeneration(); /*System.out.println("Trådid: " + Thread.currentThread().getId());*/});
+            workerPool.setTask(() -> {dynamicBoard.nextGeneration();});
             try {
                 workerPool.runWorkers();
                 workerPool.clearWorkers();
@@ -164,7 +166,6 @@ public class Controller implements Initializable {
             }
 
             graphics.clearDynamicBoard();
-
             graphics.setCellHeight(dynamicBoard.cellsHigh);
             graphics.setCellWidth(dynamicBoard.cellsWide);
             grid.setCellHeight(graphics.getCellHeight());
@@ -177,10 +178,7 @@ public class Controller implements Initializable {
                 grid.draw();
             }
 
-
             graphics.drawDynamic(dynamicBoard.getGameBoard());
-
-
             genCounter.setText(Integer.toString(dynamicBoard.getGenCounter()));
 
         });
@@ -219,12 +217,44 @@ public class Controller implements Initializable {
 
 
     /**
+     * Method called when the user enters the board size of
+     * their choice.
+     *
+     * @author Ginelle Ignacio
+     * @param actionEvent Represents an action event used
+     *                    when the user enters an integer
+     *                    value
+     */
+    public void boardFieldEvent(ActionEvent actionEvent){
+       if(boardField.isFocused()){
+            tipField.setText("Remember to enter an \n" +
+                    "integer value only!");
+        }
+
+        grid.clearGrid();
+
+        //Sets the value of the board with the value the user entered
+        graphics.setCellHeight(Integer.parseInt(boardField.getText()));
+        graphics.setCellWidth(Integer.parseInt(boardField.getText()));
+        graphics.drawDynamic(dynamicBoard.getGameBoard());
+
+        //Sets the value of the grid with the value the user entered
+        grid.setCellHeight(graphics.getCellHeight());
+        grid.setCellWidth(graphics.getCellWidth());
+        if(showGrid) {
+            grid.draw();
+        }
+    }
+
+
+    /**
      * Method called when the user selects either "Square"
      * or "Circle" as the shape of the cells.
      *
      * @author Ginelle Ignacio
      * @author Rudi André Dahle
-     * @param actionEvent
+     * @param actionEvent Represents an action event when the
+     *                    user selects their cell shape choice
      */
     public void cellShapeEvent(ActionEvent actionEvent){
          if (cellShapeBox.getValue() == "Square") {
@@ -294,9 +324,7 @@ public class Controller implements Initializable {
         dynamicBoard.clearByteBoard();
         grid.clearGrid();
 
-
         //Resets to the original size of the board
-        //dynamicBoard.setBoardSize(30);
         graphics.setCellHeight(dynamicBoard.getCellsHigh());
         graphics.setCellWidth(dynamicBoard.getCellsWide());
         graphics.drawDynamic(dynamicBoard.getGameBoard());
