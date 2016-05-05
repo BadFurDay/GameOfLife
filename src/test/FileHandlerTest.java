@@ -1,9 +1,11 @@
 /**
- * This class does the JUit Testing to verify the logic
+ * This class does the JUnit Testing to verify the logic
  * and functionality of the File Handler Class when
  * uploading and reading a file from the disk.
  *
  * @author Rudi André Dahle
+ * @author Olav Smevoll
+ * @author Ginelle Ignacio
  */
 
 package test;
@@ -26,6 +28,10 @@ public class FileHandlerTest {
     /**
      * File Handler's constructor receives
      * no arguments
+     *
+     * @author Rudi André Dahle
+     * @coauthor Olav Smevoll
+     * @coauthor Ginelle Ignacio
      */
     public FileHandlerTest(){
 
@@ -41,6 +47,8 @@ public class FileHandlerTest {
      * if the functionality works as it should.
      *
      * @author Rudi André Dahle
+     * @coauthor Olav Smevoll
+     * @coauthor Ginelle Ignacio
      * @throws Exception if an error occurs while testing
      */
     @Before
@@ -66,10 +74,13 @@ public class FileHandlerTest {
      * check if the file prints out the expected output.
      *
      * @author Rudi André Dahle
+     * @coauthor Ginelle Ignacio
+     * @coauthor Olav Smevoll
      * @throws Exception if an error occurs while testing
      */
     @Test
     public void testFromRleToSimplified() throws Exception {
-        assertEquals("bob$bbo$ooo", fileHandler.fromRleToSimplified(rleCode));
+        String expected = "bob$bbo$ooo";
+        assertEquals(expected, fileHandler.fromRleToSimplified(rleCode));
     }
 }

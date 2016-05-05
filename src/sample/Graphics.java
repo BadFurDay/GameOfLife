@@ -4,11 +4,12 @@
  * starts.
  *
  * @author Rudi André Dahle
+ * @author Ginelle Ignacio
+ * @author Olav Smevoll
  */
 package sample;
 
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.shape.ArcType;
 
 import java.util.List;
 
@@ -29,6 +30,8 @@ public class Graphics {
      * draw calls to the canvas area.
      *
      * @author Rudi André Dahle
+     * @coauthor Olav Smevoll
+     * @coauthor Ginelle Ignacio
      * @param gc Receives the content related to
      *           GraphicsContext
      */
@@ -42,6 +45,8 @@ public class Graphics {
      * because of the dynamic board.
      *
      * @author Rudi André Dahle
+     * @coauthor Olav Smevoll
+     * @coauthor Ginelle Ignacio
      * @param graphicsBoard Receives the value of the graphicBoard
      *                      in boolean 2D array
      */
@@ -60,6 +65,8 @@ public class Graphics {
      * Sets the value of shape
      *
      * @author Rudi André Dahle
+     * @coauthor Olav Smevoll
+     * @coauthor Ginelle Ignacio
      * @param s Parameter receives a boolean value of shape
      */
     public void setShape(boolean s){
@@ -71,6 +78,8 @@ public class Graphics {
      * dynamic board
      *
      * @author Olav Smevoll
+     * @coauthor Rudi André Dahle
+     * @coauthor Ginelle Ignacio
      * @param dynamicBoard Parameter receives a list within a list
      *                     and a boolean element of the dynamic board
      */
@@ -94,7 +103,8 @@ public class Graphics {
      * into the canvas area.
      *
      * @author Rudi Andre Dahle
-     * @author Ginelle Ignacio
+     * @coauthor Ginelle Ignacio
+     * @coauthor Olav Smevoll
      * @param dynamicBoard Parameter receives a list within a list
      *                     and a boolean element of the dynamic board
      */
@@ -113,11 +123,12 @@ public class Graphics {
      * is drawn. No longer in use because of the dynamic board.
      *
      * @author Rudi André Dahle
+     * @coauthor Olav Smevoll
+     * @coauthor Ginelle Ignacio
      * @param gameBoard
      */
     @Deprecated
     public void clearBoard(boolean[][] gameBoard) {
-
         for(int x = 0; x < gameBoard.length; x++) {
             for (int y = 0; y < gameBoard[0].length; y++) {
                 if (gameBoard[x][y]) {
@@ -131,6 +142,8 @@ public class Graphics {
      * Method called to clear the dynamic board.
      *
      * @author Olav Smevoll
+     * @coauthor Rudi André Dahle
+     * @coauthor Ginelle Ignacio
      */
     public void clearDynamicBoard(){
         gc.clearRect(0,0,gc.getCanvas().getWidth(),gc.getCanvas().getHeight());
@@ -143,6 +156,8 @@ public class Graphics {
      * static board.
      *
      * @author Rudi André Dahle
+     * @coauthor Olav Smevoll
+     * @coauthor Ginelle Ignacio
      * @param graphicsBoard Receives the value of the graphicBoard
      *                      in boolean 2D array
      */
@@ -162,6 +177,8 @@ public class Graphics {
      * a cell in the canvas area.
      *
      * @author Rudi André Dahle
+     * @coauthor Olav Smevoll
+     * @coauthor Ginelle Ignacio
      * @param xCoord The coordinates in the canvas of the selected x-cell
      */
     public void setXCell(double xCoord){
@@ -173,6 +190,8 @@ public class Graphics {
      * a cell in the canvas area.
      *
      * @author Rudi André Dahle
+     * @coauthor Olav Smevoll
+     * @coauthor Ginelle Ignacio
      * @param yCoord The coordinates in the canvas of the selected y-cell
      */
     public void setYCell(double yCoord){
@@ -183,6 +202,8 @@ public class Graphics {
      * Gets the x value of a cell.
      *
      * @author Rudi André Dahle
+     * @coauthor Olav Smevoll
+     * @coauthor Ginelle Ignacio
      * @return xCell Returns the integer value of  xCell.
      */
     public int getXCell(){
@@ -194,6 +215,8 @@ public class Graphics {
      * Gets the y value of a cell.
      *
      * @author Rudi André Dahle
+     * @coauthor Olav Smevoll
+     * @coauthor Ginelle Ignacio
      * @return yCell Returns the integer value of yCell
      */
     public int getYCell(){
@@ -205,6 +228,8 @@ public class Graphics {
      * Returns the cellWidth.
      *
      * @author Rudi André Dahle
+     * @coauthor Olav Smevoll
+     * @coauthor Ginelle Ignacio
      * @return cellWidth Returns the double value of
      *                   cellWidth.
      */
@@ -216,6 +241,8 @@ public class Graphics {
      * Returns the cellHeight.
      *
      * @author Rudi André Dahle
+     * @coauthor Olav Smevoll
+     * @coauthor Ginelle Ignacio
      * @return cellHeight Returns the double value of
      *                    cellHeight
      */
@@ -227,6 +254,8 @@ public class Graphics {
      * Sets and computes the width of a single cell.
      *
      * @author Rudi André Dahle
+     * @coauthor Olav Smevoll
+     * @coauthor Ginelle Ignacio
      * @param cellsWide Number of cells in the game board's width
      */
     public void setCellWidth(int cellsWide){
@@ -237,6 +266,8 @@ public class Graphics {
      * Calculates the height of a single cell.
      *
      * @author Rudi André Dahle
+     * @coauthor Olav Smevoll
+     * @coauthor Ginelle Ignacio
      * @param cellsHigh Number of cells in the game board's height
      */
     public void setCellHeight(int cellsHigh) {

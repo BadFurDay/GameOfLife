@@ -4,6 +4,8 @@
  * from disc and web.
  *
  * @author Ginelle Ignacio
+ * @author Rudi André Dahle
+ * @author Olav Smevoll
  */
 
 package sample;
@@ -16,7 +18,6 @@ public class Alerts {
     /**
      * Alert's default constructor receives no argument.
      *
-     * @author Ginelle Ignacio
      */
     public Alerts(){
 
@@ -28,6 +29,8 @@ public class Alerts {
      * Error dialog to notify user that the chosen file is not found.
      *
      * @author Ginelle Ignacio
+     * @coauthor Rudi André Dahle
+     * @coauthor Olav Smevoll
      */
     public void fileNotFound(){
         Alert fnf = new Alert(Alert.AlertType.ERROR);
@@ -44,6 +47,8 @@ public class Alerts {
      * opening the file.
      *
      * @author Ginelle Ignacio
+     * @coauthor Rudi André Dahle
+     * @coauthor Olav Smevoll
      */
     public void errorOpeningfile(){
         Alert eof = new Alert (Alert.AlertType.ERROR);
@@ -59,6 +64,8 @@ public class Alerts {
      * is empty.
      *
      * @author Ginelle Ignacio
+     * @coauthor Rudi André Dahle
+     * @coauthor Olav Smevoll
      */
     public void emptyFile(){
         Alert empty = new Alert(Alert.AlertType.ERROR);
@@ -75,6 +82,8 @@ public class Alerts {
      * is not a RLE format.
      *
      * @author Ginelle Ignacio
+     * @coauthor Rudi André Dahle
+     * @coauthor Olav Smevoll
      */
     public void incorrectMatch(){
         Alert incorrect = new Alert(Alert.AlertType.ERROR);
@@ -90,6 +99,8 @@ public class Alerts {
      * from reading the file.
      *
      * @author Ginelle Ignacio
+     * @coauthor Rudi André Dahle
+     * @coauthor Olav Smevoll
      */
     public void errorReading(){
         Alert er = new Alert(Alert.AlertType.ERROR);
@@ -106,6 +117,8 @@ public class Alerts {
      * is invalid.
      *
      * @author Ginelle Ignacio
+     * @coauthor Rudi André Dahle
+     * @coauthor Olav Smevoll
      */
     public void invalidURL(){
         Alert invalid = new Alert(Alert.AlertType.ERROR);
@@ -123,6 +136,8 @@ public class Alerts {
      * no file chosen.
      *
      * @author Ginelle Ignacio
+     * @coauthor Rudi André Dahle
+     * @coauthor Olav Smevoll
      */
     public void noFile(){
         Alert nf = new Alert(Alert.AlertType.ERROR);
@@ -138,6 +153,8 @@ public class Alerts {
      * while opening the window.
      *
      * @author Ginelle Ignacio
+     * @coauthor Rudi André Dahle
+     * @coauthor Olav Smevoll
      */
     public void notLoading(){
         Alert window = new Alert(Alert.AlertType.ERROR);

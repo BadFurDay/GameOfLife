@@ -4,6 +4,7 @@
  *
  * @author Rudi André Dahle
  * @author Olav Smevoll
+ * @author Ginelle Ignacio
  */
 
 package sample;
@@ -31,12 +32,22 @@ public abstract class Board {
      * Gameboards height in number of cells
      *
      * @author Rudi André Dahle
+     * @coauthor Olav Smevoll
+     * @coauthor Ginelle Ignacio
      * @return cellsHigh Returns the cell's height
      */
     public int getCellsHigh() {
         return cellsHigh;
     }
 
+    /**
+     * Sets the value of cell's height
+     *
+     * @author Rudi André Dahle
+     * @coauthor Olav Smevoll
+     * @coauthor Ginelle Ignacio
+     * @param cellsHigh
+     */
     public void setCellsHigh(int cellsHigh) {
         this.cellsWide = cellsHigh;
     }
@@ -45,12 +56,23 @@ public abstract class Board {
      * Gameboard's width in number of cells
      *
      * @author Rudi André Dahle
+     * @coauthor Olav Smevoll
+     * @coauthor Ginelle Ignacio
      * @return cellsWide Returns the cell's width
      */
     public int getCellsWide() {
         return cellsWide;
     }
 
+    /**
+     * Sets the value of cell's wide
+     *
+     * @author Rudi André Dahle
+     * @coauthor Olav Smevoll
+     * @coauthor Ginelle Ignacio
+     * @param cellsWide Parameter receives an integer
+     *                  value of the cell's wide
+     */
     public void setCellsWide(int cellsWide) {
         this.cellsWide = cellsWide;
     }
@@ -59,7 +81,9 @@ public abstract class Board {
      * Returns the generation counter as a string value
      * to show as label.
      *
-     * @author Olav Smevoll
+     * @author Rudi André Dahle
+     * @coauthor Olav Smevoll
+     * @coauthor Ginelle Ignacio
      * @return s Value of generation counter in strings
      */
     public int getGenCounter(){
@@ -72,6 +96,8 @@ public abstract class Board {
      * the clear button is fired
      *
      * @author Olav Smevoll
+     * @coauthor Rudi André Dahle
+     * @coauthor Ginelle Ignacio
      */
     public void resetGenCount(){
         genCounter = 0;
@@ -82,6 +108,8 @@ public abstract class Board {
      * Gets the value of the game board
      *
      * @author Rudi André Dahle
+     * @coauthor Olav Smevoll
+     * @coauthor Ginelle Ignacio
      * @return gameBoard Returns the value of the
      *                   game board
      */
@@ -92,35 +120,27 @@ public abstract class Board {
      * Sets the value of the GameBoard
      *
      * @author Rudi André Dahle
+     * @coauthor Olav Smevoll
+     * @coauthor Ginelle Ignacio
      * @param gameBoard Receives the value of the game
      *                  board in boolean 2D array
      */
     public abstract <T> void setGameBoard(T gameBoard);
 
-    /**
-     * Clears the board when new board is loaded
-     * from rle file
-     *
-     * @author Olav Smevoll
-     */
-    //public abstract void resetBoard();
-
-    /**
-     *
-     * @author Rudi André Dahle
-     */
-   // public abstract void initByteBoard();
 
    /**
     * Verifies the logic of the game by counting
     * the cell neighbors in every direction each
     * cell comes in contact with.
     *
+    *
+    * @author Rudi André Dahle
+    * @coauthor Olav Smevoll
+    * @coauthor Ginelle Ignacio
     * @param x integer value of the first parameter
     * @param y integer value of the second parameter
     * @return counter Returns the value of counter after
     *         checking the rules
-    * @author Olav Smevoll
     */
     protected abstract void countNeighbours(int x, int y);
 
@@ -129,34 +149,18 @@ public abstract class Board {
     *  Sets the new values in the array for the
     *  next generation.
     *
-    *  @author Rudi André Dahle
+    * @author Rudi André Dahle
+    * @coauthor Olav Smevoll
+    * @coauthor Ginelle Ignacio
     */
     public abstract void nextGeneration();
 
     /**
      *
      * @author Rudi André Dahle
+     * @coauthor Olav Smevoll
+     * @coauthor Ginelle Ignacio
      */
     public abstract void rules();
 
-
-   /**
-    * Sets the state of selected cell to true or false
-    *
-    * @author Rudi André Dahle
-    * @param x
-    * @param y
-    */
-   // public abstract void setCellState(int x, int y);
-
-
-   /**
-    * Gets the state of selected cell
-    *
-    * @author Rudi André Dahle
-    * @param x
-    * @param y
-    * @return
-    */
-   // public abstract boolean getCellState(int x, int y);
 }

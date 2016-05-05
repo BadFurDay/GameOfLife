@@ -4,6 +4,7 @@
  *
  * @author Rudi André Dahle
  * @author Ginelle Ignacio
+ * @author Olav Smevoll
  */
 
 package sample;
@@ -26,6 +27,9 @@ public class Grid extends Canvas{
      * argument of the GraphicsContext class
      * to draw calls to the canvas area.
      *
+     * @author Rudi André Dahle
+     * @coauthor Olav Smevoll
+     * @coauthor Ginelle Ignacio
      * @param gcGrid Receives the content related to
      *               GraphicsContext
      */
@@ -39,6 +43,8 @@ public class Grid extends Canvas{
      * Draws the grid lines on the canvas area
      *
      * @author Rudi André Dahle
+     * @coauthor Olav Smevoll
+     * @coauthor Ginelle Ignacio
      */
     public void draw() {
         // vertical lines
@@ -57,6 +63,8 @@ public class Grid extends Canvas{
      * Clears the grid lines on the canvas area
      *
      * @author Ginelle Ignacio
+     * @coauthor Rudi André Dahle
+     * @coauthor Olav Smevoll
      */
     public void clearGrid(){
          gcGrid.clearRect(0, 0, canvasWidth, canvasHeight);
@@ -67,6 +75,8 @@ public class Grid extends Canvas{
      * Gets the value of canvas' height
      *
      * @author Rudi André Dahle
+     * @coauthor Olav Smevoll
+     * @coauthor Ginelle Ignacio
      * @return canvasH Returns the height of the canvas
      */
     public int getCanvasHeight() {
@@ -80,6 +90,8 @@ public class Grid extends Canvas{
      * Sets the value of the cell width
      *
      * @author Rudi André Dahle
+     * @coauthor Olav Smevoll
+     * @coauthor Ginelle Ignacio
      * @param cellWidth Width of a single cell
      */
     public void setCellWidth(double cellWidth) {
@@ -91,6 +103,8 @@ public class Grid extends Canvas{
      * Sets the value of the cell's height
      *
      * @author Rudi André Dahle
+     * @coauthor Olav Smevoll
+     * @coauthor Ginelle Ignacio
      * @param cellHeight Receives the decimal value of
      *                   the cell's height
      */
@@ -103,6 +117,8 @@ public class Grid extends Canvas{
      *  Sets the canvas' height
      *
      *  @author Rudi André Dahle
+     *  @coauthor Olav Smevoll
+     * @coauthor Ginelle Ignacio
      *  @param canvasHeight Receives the decimal value
      *                      of the canvas' height
      */
@@ -115,6 +131,8 @@ public class Grid extends Canvas{
      *  Gets the value of canvas' width
      *
      *  @author Rudi André Dahle
+     *  @coauthor Olav Smevoll
+     *  @coauthor Ginelle Ignacio
      *  @return canvasWidth Returns the integer value
      *          of canvas' width
      */
@@ -127,6 +145,8 @@ public class Grid extends Canvas{
      * Sets the value of canvas' width
      *
      * @author Rudi André Dahle
+     * @coauthor Olav Smevoll
+     * @coauthor Ginelle Ignacio
      * @param canvasWidth Receives the decimal value of
      *                    canvas' width
      */

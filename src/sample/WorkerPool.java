@@ -5,11 +5,12 @@
  * running threads in the computer.
  *
  * @author Rudi André Dahle
+ * @author Olav Smevoll
+ * @author Ginelle Ignacio
  */
 
 package sample;
 
-import org.omg.SendingContext.RunTime;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -26,6 +27,8 @@ public class WorkerPool {
      * arguments.
      *
      * @author Rudie André Dahle
+     * @coauthor Olav Smevoll
+     * @coauthor Ginelle Ignacio
      */
     public WorkerPool(){
         workerPool = new LinkedList<>();
@@ -33,9 +36,13 @@ public class WorkerPool {
     }
 
     /**
+     * Method called to run the thread objects
      *
      * @author Rudie André Dahle
-     * @throws InterruptedException
+     * @coauthor Olav Smevoll
+     * @coauthor Ginelle Ignacio
+     * @throws InterruptedException Throws an exception when an
+     *                              error occurs
      */
     public void runWorkers() throws InterruptedException {
         workerPool.forEach(Thread::start);
@@ -45,22 +52,25 @@ public class WorkerPool {
     }
 
     /**
-     *
+     * Method called to set the task of the threads
      *
      * @author Rudie André Dahle
-     * @param task
+     * @coauthor Olav Smevoll
+     * @coauthor Ginelle Ignacio
+     * @param task Parameters the value for Runnable
      */
     public void setTask(Runnable task){
         for(int i = 0; i < Runtime.getRuntime().availableProcessors(); i++){
             workerPool.add(new Thread(task));
-           // workers.add(new Thread(() ->{nextGen(index);}));
         }
     }
 
     /**
-     *
+     *  Clears the array list of threads
      *
      * @author Rudie André Dahle
+     * @coauthor Olav Smevoll
+     * @coauthor Ginelle Ignacio
      */
     public void clearWorkers(){
         workerPool.clear();

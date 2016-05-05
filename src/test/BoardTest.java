@@ -1,9 +1,11 @@
 /**
- * This class does the JUit Testing to verify the logic
+ * This class does the JUnit Testing to verify the logic
  * and functionality of the cell generations in the Board
  * class.
  *
  * @author Rudi André Dahle
+ * @author Olav Smevoll
+ * @author Ginelle Ignacio
  */
 package test;
 
@@ -21,6 +23,10 @@ public class BoardTest {
     /**
      * Board Test class has a default constructor
      * that receives no arguments.
+     *
+     * @author Rudi André Dahle
+     * @coauthor Olav Smevoll
+     * @coauthor Ginelle Ignacio
      */
     public BoardTest(){
 
@@ -30,10 +36,12 @@ public class BoardTest {
     Board statBoard = new StatBoard();
 
     /**
-     * The initial setup of a game board used for testing the functionality
-     * of the game board.
+     * The initial setup of a game board used for testing the
+     * functionality of the static game board.
      *
      * @author Rudi André Dahle
+     * @coauthor Olav Smevoll
+     * @coauthor Ginelle Ignacio
      * @throws Exception if an error occurs while testing
      */
     @Before
@@ -49,31 +57,19 @@ public class BoardTest {
 
     /**
      * Method called to test the result of the logic test
-     * of the next generation.
+     * of the next generation when using a static board.
      *
      * @author Rudi André Dahle
+     * @coauthor Ginelle Ignacio
+     * @coauthor Olav Smevoll
      * @throws Exception if an error occurs while testing
      */
     @Test
     public void testNextGeneration() throws Exception {
-        assertEquals("010001111", statBoard.toString());
+        String expected = "010001111";
+        assertEquals(expected, statBoard.toString());
     }
 
-
-    //DENNE MÅ UTFØRES VIA GRAPHICS KLASSEN NÅ
-
-    /**
-     * Method called to test if the game board resets
-     * to its initial value.
-     *
-     * @author Rudi André Dahle
-     * @throws Exception if an error occurs while testing
-     */
-  /*  @Test
-    public void testClearBoard() throws Exception {
-        graphics.resetBoard();
-        assertEquals("000000000", statBoard.toString());
-    }*/
 
 
 }

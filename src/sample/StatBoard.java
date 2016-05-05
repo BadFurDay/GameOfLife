@@ -8,6 +8,8 @@
  * board.
  *
  * @author Rudi Andre Dahle
+ * @coauthor Olav Smevoll
+ * @coauthor Ginelle Ignacio
  */
 
 package sample;
@@ -27,18 +29,42 @@ public class StatBoard extends Board {
 
     /**
      * Board class has a default constructor that
-     * receives no arguments..
+     * receives no arguments.
+     *
+     * @author Rudi André Dahle
+     * @coauthor Olav Smevoll
+     * @coauthor Ginelle Ignacio
      */
     public StatBoard() {
         statGameBoard = new boolean[cellsWide][cellsHigh];
         boardSplit = (int)Math.ceil((double)statGameBoard.length / (double)Runtime.getRuntime().availableProcessors());
     }
 
+    /**
+     * Overrides the getCellsWide method inherited from the
+     * Board class to adapt with the static board.
+     *
+     * @author Rudi André Dahle
+     * @coauthor Olav Smevoll
+     * @coauthor Ginelle Ignacio
+     * @return cellsWide Integer value of the cellswide
+     *                   inherited from the super class
+     */
     @Override
     public int getCellsWide() {
         return super.cellsWide;
     }
 
+
+    /**
+     * Overrides the setCellsWide method inherited from the
+     * Board class to adapt with the static board.
+     *
+     * @author Rudi André Dahle
+     * @coauthor Olav Smevoll
+     * @coauthor Ginelle Ignacio
+     * @param cellsWide Parameter receives an integer
+     */
     @Override
     public void setCellsWide(int cellsWide) {
         super.cellsWide = cellsWide;
@@ -49,6 +75,9 @@ public class StatBoard extends Board {
      * Overrides the method countNeighbor inherited from
      * the Board class to adapt with the static board.
      *
+     * @author Rudi André Dahle
+     * @coauthor Olav Smevoll
+     * @coauthor Ginelle Ignacio
      * @param x integer value of the first parameter
      * @param y integer value of the second parameter
      */
@@ -102,7 +131,9 @@ public class StatBoard extends Board {
     /**
      * Initializes the board
      *
-     *@author Rudi André Dahle
+     * @author Rudi André Dahle
+     * @coauthor Olav Smevoll
+     * @coauthor Ginelle Ignacio
      */
     public void initByteBoard(){
         index = 0;
@@ -114,6 +145,8 @@ public class StatBoard extends Board {
      * Board class to adapt with the Static Board.
      *
      * @author Rudi André Dahle
+     * @coauthor Olav Smevoll
+     * @coauthor Ginelle Ignacio
      */
     @Override
     public synchronized void nextGeneration() {
@@ -132,6 +165,8 @@ public class StatBoard extends Board {
      * Board class to adapt with the Static Board.
      *
      * @author Rudi André Dahle
+     * @coauthor Olav Smevoll
+     * @coauthor Ginelle Ignacio
      */
     @Override
     public void rules(){
@@ -153,6 +188,8 @@ public class StatBoard extends Board {
      * Board class to adapat with the static board.
      *
      * @author Rudi André Dahle
+     * @coauthor Olav Smevoll
+     * @coauthor Ginelle Ignacio
      * @param statGameBoard Receives the boolean value of the game
      */
     @Override
@@ -165,6 +202,9 @@ public class StatBoard extends Board {
     /**
      * Method called to get the value the game board
      *
+     * @author Rudi André Dahle
+     * @coauthor Olav Smevoll
+     * @coauthor Ginelle Ignacio
      * @return statGameBoard The value of the static game board
      */
     @Override
@@ -179,6 +219,9 @@ public class StatBoard extends Board {
      * class to adapt with the static board. This method is
      * used for Junit testing.
      *
+     * @author Rudi André Dahle
+     * @coauthor Olav Smevoll
+     * @coauthor Ginelle Ignacio
      * @return str.toString Value of the string builder's
      *                      to string
      */

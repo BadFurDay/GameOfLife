@@ -2,8 +2,9 @@
  * Web Controller is responsible for the controllers in
  * the Web File FXML. This is the "Read Web File" under Menu.
  *
- * @author Olav Smevoll
  * @author Ginelle Ignacio
+ * @author Olav Smevoll
+ * @author Rudi André Dahle
  */
 
 package WebFile;
@@ -45,6 +46,10 @@ public class WebFileController implements Initializable {
     /**
      * Web File Controller has a default constructor
      * that receives no arguments.
+     *
+     * @author Ginelle Ignacio
+     * @author Olav Smevoll
+     * @author Rudi André Dahle
      */
     public WebFileController(){
 
@@ -60,6 +65,16 @@ public class WebFileController implements Initializable {
     }
 
 
+    /**
+     * Gets the value of the field entered when the user
+     * submits a web address.
+     *
+     * @author Ginelle Ignacio
+     * @coauthor Olav Smevoll
+     * @coauthor Rudi André Dahle
+     * @param actionEvent Represents an action event used
+     *                    when a text is entered
+     */
     public void fieldEvent(ActionEvent actionEvent){
         field.getText();
     }
@@ -70,7 +85,8 @@ public class WebFileController implements Initializable {
      * the array range of the static board.
      *
      * @author Olav Smevoll
-     * @author Ginelle Ignacio
+     * @cauthor Ginelle Ignacio
+     * @coauthor Rudi André Dahle
      * @param actionEvent represents an Action Event used to
      *                    when a button has been fired.
      */
@@ -111,6 +127,8 @@ public class WebFileController implements Initializable {
      * and removes the text at the bottom of the text field.
      *
      * @author Ginelle Ignacio
+     * @coauthor Olav Smevoll
+     * @coauthor Rudi André Dahle
      * @param actionEvent represents an Action Event used to
      *                    when a button has been fired.
      */

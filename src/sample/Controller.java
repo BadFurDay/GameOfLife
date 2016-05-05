@@ -17,7 +17,6 @@ import javafx.animation.Timeline;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -26,8 +25,6 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
 import java.io.FileNotFoundException;
@@ -146,9 +143,7 @@ public class Controller implements Initializable {
                         "Move along the slider to \nmanipulate the speed!");
             }
         });
-
         dynamicBoard.createArray();
-
 
 
         //Time properties responsible for the animation
@@ -158,6 +153,7 @@ public class Controller implements Initializable {
             dynamicBoard.checkForBoardIncrease();
             dynamicBoard.setBoardSplit();
 
+            //Threads
             workerPool.setTask(() -> {dynamicBoard.nextGeneration();});
             try {
                 workerPool.runWorkers();
@@ -171,20 +167,13 @@ public class Controller implements Initializable {
             graphics.setCellWidth(dynamicBoard.cellsWide);
             grid.setCellHeight(graphics.getCellHeight());
             grid.setCellWidth(graphics.getCellWidth());
-
             dynamicBoard.rules();
-
             grid.clearGrid();
             if(showGrid) {
                 grid.draw();
             }
-
-
             graphics.drawDynamic(dynamicBoard.getGameBoard());
-
-
             genCounter.setText(Integer.toString(dynamicBoard.getGenCounter()));
-
         });
         timeline = new Timeline();
         timeline.setCycleCount(Animation.INDEFINITE);
@@ -192,12 +181,14 @@ public class Controller implements Initializable {
         timeline.rateProperty().bind(speedSlider.valueProperty());
     }
 
+
     /**
      * Method called when user drags cells to input into
      * the canvas area
      *
      * @author Rudi André Dahle
-     * @author Ginelle Ignacio
+     * @coauthor Ginelle Ignacio
+     * @coauthor Olav Smevoll
      * @param event Represents a mouse event used when
      *              the user interacts with the GUI.
      */
@@ -214,7 +205,6 @@ public class Controller implements Initializable {
             graphics.setXCell(xCoord);
             graphics.drawDynamicCell(dynamicBoard.getGameBoard());
         }
-
         tipField.setText("Draw your own pattern!");
     }
 
@@ -223,7 +213,13 @@ public class Controller implements Initializable {
      * Method called when the user enters the board size of
      * their choice.
      *
+     * Problem: This method can only zoom in the upper left
+     * corner of the screen. To visualize whole window, the
+     * user must select a greater value for board size.
+     *
      * @author Ginelle Ignacio
+     * @coauthor Rudi André Dahle
+     * @coauthor Olav Smevoll
      * @param actionEvent Represents an action event used
      *                    when the user enters an integer
      *                    value
@@ -255,7 +251,8 @@ public class Controller implements Initializable {
      * or "Circle" as the shape of the cells.
      *
      * @author Ginelle Ignacio
-     * @author Rudi André Dahle
+     * @coauthor Rudi André Dahle
+     * @coauthor Olav Smevoll
      * @param actionEvent Represents an action event when the
      *                    user selects their cell shape choice
      */
@@ -278,6 +275,8 @@ public class Controller implements Initializable {
      * for the animation
      *
      * @author Rudi André Dahle
+     * @coauthor Olav Smevoll
+     * @coauthor Ginelle Ignacio
      * @param actionEvent represents an Action Event used to
      *                    when a button has been fired.
      */
@@ -299,6 +298,8 @@ public class Controller implements Initializable {
      * to change the button text.
      *
      * @author Ginelle Ignacio
+     * @coauthor Rudi André Dahle
+     * @coauthor Olav Smevoll
      */
     public void playPauseEvent(){
         if(running){
@@ -308,11 +309,14 @@ public class Controller implements Initializable {
         }
     }
 
+
     /**
      * Method for the clear button
      * Kills every cell on the board and goes back to the original size.
      *
      * @author Ginelle Ignacio
+     * @coauthor Olav Smevoll
+     * @coauthor Rudi André Dahle
      * @param actionEvent represents an Action Event used to
      *                    when a button has been fired.
      */
@@ -324,23 +328,27 @@ public class Controller implements Initializable {
         dynamicBoard.clearByteBoard();
         grid.clearGrid();
 
-
+        //Resets to the original size of the board
         graphics.setCellHeight(dynamicBoard.getCellsHigh());
         graphics.setCellWidth(dynamicBoard.getCellsWide());
         graphics.drawDynamic(dynamicBoard.getGameBoard());
 
-
+        //Plays the new cells drawn
         grid.setCellHeight(graphics.getCellHeight());
         grid.setCellWidth(graphics.getCellWidth());
         if(showGrid) {
             grid.draw();
         }
+
     }
+
 
     /**
      * Color picker changes the colors of the cells
      *
      * @author Ginelle Ignacio
+     * @coauthor Rudi André Dahle
+     * @coauthor Olav Smevoll
      * @param actionEvent represents an Action Event used to
      *                    when a button has been fired.
      */
@@ -351,9 +359,12 @@ public class Controller implements Initializable {
         graphics.drawDynamic(dynamicBoard.getGameBoard());
     }
 
+
     /**
      * Change background color of the game.
-     * @author Rudi André Dahle
+     * @author Ginelle Ignacio
+     * @coauthor Rudi André Dahle
+     * @coauthor Olav Smevoll
      * @param actionEvent represents an Action Event used to
      *                    when a button has been fired.
      */
@@ -366,10 +377,13 @@ public class Controller implements Initializable {
 
     }
 
+
     /**
      * Grid toggle to make the grid visible or invisible
      *
      * @author Rudi André Dahle
+     * @coauthor Olav Smevoll
+     * @coauthor Ginelle Ignacio
      * @param actionEvent Represents an Action Event used
      *                    when a button has been fired.
      */
@@ -391,6 +405,9 @@ public class Controller implements Initializable {
      * and details about the controllers.
      *
      * @author Ginelle Ignacio
+     * @coauthor Rudi André Dahle
+     * @coauthor Olav Smevoll
+
      * @param ae represents an Action Event used
      *           when a menu item has been clicked
      * @throws Exception if an alerts occurs while opening help window
@@ -407,12 +424,14 @@ public class Controller implements Initializable {
         }
     }
 
+
     /**
      * "Open File..." menu item set to open FileChooser window
      * Method also includes exceptions.
      *
-     * @author Rudi Andre Dahle
      * @author Ginelle Ignacio
+     * @coauthor Rudi André Dahle
+     * @coauthor Olav Smevoll
      * @param ae represents an Action Event used
      *           when a menu item has been clicked
      * @throws PatternFormatExceptions if an alerts occurs while
@@ -424,9 +443,7 @@ public class Controller implements Initializable {
 
             grid.setCellHeight(graphics.getCellHeight());
             grid.setCellWidth(graphics.getCellWidth());
-
             grid.clearGrid();
-
 
             if(showGrid) {
                 grid.draw();
@@ -453,6 +470,8 @@ public class Controller implements Initializable {
      * reads a wrong file format
      *
      * @author Rudi André Dahle
+     * @coauthor Ginelle Ignacio
+     * @coauthor Olav Smevoll
      */
     public void errorContent(){
         boolean error = reader.getError();
@@ -467,6 +486,9 @@ public class Controller implements Initializable {
      * a web address and convert it into a pattern.
      *
      * @author Ginelle Ignacio
+     * @coauthor Rudi André Dahle
+     * @coauthor Olav Smevoll
+
      * @param ae represents an Action Event used to
      *           when a menu item has been clicked
      * @throws Exception if an alerts occurs while opening URL window
@@ -491,6 +513,8 @@ public class Controller implements Initializable {
      * item located in Menu under File to close whole window
      *
      * @author Ginelle Ignacio
+     * @coauthor Rudi André Dahle
+     * @coauthor Olav Smevoll
      * @param ae represents an Action Event used to
      *           when a menu item has been clicked
      */

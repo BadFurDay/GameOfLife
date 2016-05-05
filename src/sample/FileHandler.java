@@ -34,6 +34,10 @@ public class FileHandler {
 
     /**
      * File Handler's constructor receives no arguments.
+     *
+     * @author Olav Smevoll
+     * @coauthor Rudi André Dahle
+     * @coauthor Ginelle Igncacio
      */
     public FileHandler(){
     }
@@ -41,6 +45,9 @@ public class FileHandler {
     /**
      * The File Handler constructor contains parameters.
      *
+     * @author Olav Smevoll
+     * @coauthor Rudi André Dahle
+     * @coauthor Ginelle Ignacio
      * @param gc GraphicsContext's variable
      * @param statBoard Board's variable
      */
@@ -54,20 +61,13 @@ public class FileHandler {
      * Gets boolean value of error
      *
      * @author Rudi André Dahle
+     * @coauthor Olav Smevoll
+     * @coauthor Ginelle Ignacio
      * @return error Returns the boolean value of error
      */
     public boolean getError(){
         return error;
     }
-
-
-    /**
-     * Method called to enable the ability of the program to
-     * read a file and add it to the array list.
-     *
-     * @author Olav Smevoll
-     */
-
 
 
     /**
@@ -80,6 +80,8 @@ public class FileHandler {
      * This will avoid errors for wrong file formats.
      *
      * @author Rudi André Dahle
+     * @coauthor Olav Smevoll
+     * @coauthor Ginelle Ignacio
      * @throws IOException if an alerts occurs while opening file
      * @throws PatternFormatExceptions Exceptions related to file handling
      */
@@ -106,8 +108,8 @@ public class FileHandler {
      * by using File Reader and Buffered Reader.
      *
      * @author Olav Smevoll
-     * @author Rudi André Dahle
-     * @author Ginelle Ignacio
+     * @coauthor Rudi André Dahle
+     * @coauthor Ginelle Ignacio
      * @param file Receives a file selected by the user
      *             that the Buffered Reader will read
      * @throws IOException If an alert occurs when reading the file
@@ -147,9 +149,11 @@ public class FileHandler {
 
     /**
      * Transforms the rle code into a string consisting of o, b and $.
-     * 3b from the rle code will turn into bbb etc.     *
+     * 3b from the rle code will turn into bbb etc.
      *
      * @author Olav Smevoll
+     * @coauthor Rudi André Dahle
+     * @coauthor Ginelle Ignacio
      * @param rle Receives a string representation of
      *            a RLE file
      */
@@ -179,6 +183,8 @@ public class FileHandler {
      * Takes the string created in the fromRleToSimplified method and creates the pattern on the board.
      *
      * @author Olav Smevoll
+     * @coauthor Rudi André Dahle
+     * @coauthor Ginelle Ignacio
      * @param rle Receives a string representation of
      *            a RLE file
      */

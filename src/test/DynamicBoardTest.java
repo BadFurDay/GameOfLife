@@ -1,3 +1,13 @@
+/**
+ * This class does the JUnit Testing to verify the logic
+ * and functionality of the cell generations in the Board
+ * class.
+ *
+ * @author Rudi André Dahle
+ * @author Olav Smevoll
+ * @author Ginelle Ignacio
+ */
+
 package test;
 
 import org.junit.Before;
@@ -10,13 +20,18 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
-/**
- * Created by RudiAndre on 05.05.2016.
- */
 public class DynamicBoardTest {
 
     List<List<Boolean>> gameBoard = new ArrayList<>();
 
+    /**
+     * Dynamic Board Test class has a default constructor
+     * that receives no arguments.
+     *
+     * @author Rudi André Dahle
+     * @coauthor Ginelle Ignacio
+     * @coauthor Olav Smevoll
+     */
     public DynamicBoardTest(){
 
     }
@@ -25,6 +40,14 @@ public class DynamicBoardTest {
     DynamicBoard dynBoard = DynamicBoard.getInstance();
 
 
+    /**
+     *   * The initial setup of a game board used for testing the
+     * functionality of the dynamic game board.
+     *
+     * @coauthor Ginelle Ignacio
+     * @coauthor Olav Smevoll
+     * @throws Exception
+     */
     @Before
     public void setUp() throws Exception {
         dynBoard.setBoardSize(5);
@@ -43,8 +66,17 @@ public class DynamicBoardTest {
         dynBoard.setGameBoard(gameBoard);
     }
 
+    /**
+     * Method called to test the result of the logic test
+     * of the next generation when using a dynamic board.
+     *
+     * @coauthor Ginelle Ignacio
+     * @coauthor Olav Smevoll
+     * @throws Exception
+     */
     @Test
     public void testNextGeneration() throws Exception {
-        assertEquals("0000000100001000010000000", dynBoard.toString());
+        String expected  = "0000000100001000010000000";
+        assertEquals(expected, dynBoard.toString());
     }
 }
