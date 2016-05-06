@@ -164,7 +164,6 @@ public class Controller implements Initializable {
             dynamicBoard.setBoardSplit();
 
             //Threads
-            long start = System.currentTimeMillis();
             workerPool.setTask(() -> {dynamicBoard.nextGeneration();});
             try {
                 workerPool.runWorkers();
@@ -172,8 +171,6 @@ public class Controller implements Initializable {
             }catch (InterruptedException ee) {
                 workerPool.clearWorkers();
             }
-            long time = System.currentTimeMillis() - start;
-            System.out.println(time);
 
             graphics.clearDynamicBoard();
             graphics.setCellHeight(dynamicBoard.cellsHigh);

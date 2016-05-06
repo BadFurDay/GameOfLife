@@ -20,7 +20,7 @@ public class Grid extends Canvas{
     private double canvasWidth;
     private double cellWidth;
     private double cellHeight;
-    private boolean showGrid = false;
+    DynamicBoard dynamicBoard = DynamicBoard.getInstance();
 
 
     /**
@@ -47,11 +47,15 @@ public class Grid extends Canvas{
      * @author Ginelle Ignacio
      */
     public void drawGrid() {
-        for (double x = 0; x < canvasWidth; x += cellWidth) {
-            gcGrid.strokeLine((int)x, 0, (int)x, (int)canvasHeight);
-        }
-        for (double y = 0; y < canvasHeight; y += cellHeight) {
-            gcGrid.strokeLine(0, (int)y, (int)canvasWidth, (int)y);
+        if (dynamicBoard.getCellsWide() < 200) {
+            // vertical lines
+            for (double x = 0; x < canvasWidth; x += cellWidth) {
+                gcGrid.strokeLine((int) x, 0, (int) x, (int) canvasHeight);
+            }
+            // horizontal lines
+            for (double y = 0; y < canvasHeight; y += cellHeight) {
+                gcGrid.strokeLine(0, (int) y, (int) canvasWidth, (int) y);
+            }
         }
     }
 
