@@ -1,6 +1,6 @@
 /**
- * Graphics Class contains the logic and functionality
- * of the cell. This class is called when the game
+ * Graphics Class contains the logic related to the
+ * visualisation of the cells. This class is called when the game
  * starts.
  *
  * @author Rudi André Dahle
@@ -24,14 +24,15 @@ public class Graphics {
     private int yCell;
     private boolean shape = true;
 
+
     /**
      * Graphics' default constructor receives an
      * argument of the GraphicsContext's class to
-     * draw calls to the canvas area.
+     * drawGrid calls to the canvas area.
      *
      * @author Rudi André Dahle
-     * @coauthor Olav Smevoll
-     * @coauthor Ginelle Ignacio
+     * @author Olav Smevoll
+     * @author Ginelle Ignacio
      * @param gc Receives the content related to
      *           GraphicsContext
      */
@@ -39,14 +40,15 @@ public class Graphics {
         this.gc = gc;
     }
 
+
     /**
-     * Draws the board with existing cells for every loop
+     * Draws the board with existing live cells for every loop
      * in a static board. Currently noo longer in use
      * because of the dynamic board.
      *
      * @author Rudi André Dahle
-     * @coauthor Olav Smevoll
-     * @coauthor Ginelle Ignacio
+     * @author Olav Smevoll
+     * @author Ginelle Ignacio
      * @param graphicsBoard Receives the value of the graphicBoard
      *                      in boolean 2D array
      */
@@ -61,25 +63,27 @@ public class Graphics {
         }
     }
 
+
     /**
      * Sets the value of shape
      *
      * @author Rudi André Dahle
-     * @coauthor Olav Smevoll
-     * @coauthor Ginelle Ignacio
+     * @author Olav Smevoll
+     * @author Ginelle Ignacio
      * @param s Parameter receives a boolean value of shape
      */
     public void setShape(boolean s){
         this.shape = s;
     }
 
+
     /**
      * Method called to make the cells visible on the
      * dynamic board
      *
      * @author Olav Smevoll
-     * @coauthor Rudi André Dahle
-     * @coauthor Ginelle Ignacio
+     * @author Rudi André Dahle
+     * @author Ginelle Ignacio
      * @param dynamicBoard Parameter receives a list within a list
      *                     and a boolean element of the dynamic board
      */
@@ -98,13 +102,14 @@ public class Graphics {
         }
     }
 
+
     /**
      * Method called to make a living or dead cell when the user draws
      * into the canvas area.
      *
      * @author Rudi Andre Dahle
-     * @coauthor Ginelle Ignacio
-     * @coauthor Olav Smevoll
+     * @author Ginelle Ignacio
+     * @author Olav Smevoll
      * @param dynamicBoard Parameter receives a list within a list
      *                     and a boolean element of the dynamic board
      */
@@ -118,14 +123,16 @@ public class Graphics {
         drawDynamic(dynamicBoard);
     }
 
+
     /**
      * Clears the old static board before the next generation
      * is drawn. No longer in use because of the dynamic board.
      *
      * @author Rudi André Dahle
-     * @coauthor Olav Smevoll
-     * @coauthor Ginelle Ignacio
-     * @param gameBoard
+     * @author Olav Smevoll
+     * @author Ginelle Ignacio
+     * @param gameBoard receives the static game board as boolean
+     *                  2D array.
      */
     @Deprecated
     public void clearBoard(boolean[][] gameBoard) {
@@ -138,26 +145,27 @@ public class Graphics {
         }
     }
 
+
     /**
-     * Method called to clear the dynamic board.
+     * Method called to clear the visuals of the dynamic board.
      *
      * @author Olav Smevoll
-     * @coauthor Rudi André Dahle
-     * @coauthor Ginelle Ignacio
+     * @author Rudi André Dahle
+     * @author Ginelle Ignacio
      */
     public void clearDynamicBoard(){
         gc.clearRect(0,0,gc.getCanvas().getWidth(),gc.getCanvas().getHeight());
     }
 
+
     /**
-     *
-     * Method called to draw a cell when the user interacts with
+     * Method called to drawGrid a cell when the user interacts with
      * the canvas area. This method is used together with the
      * static board.
      *
      * @author Rudi André Dahle
-     * @coauthor Olav Smevoll
-     * @coauthor Ginelle Ignacio
+     * @author Olav Smevoll
+     * @author Ginelle Ignacio
      * @param graphicsBoard Receives the value of the graphicBoard
      *                      in boolean 2D array
      */
@@ -172,38 +180,41 @@ public class Graphics {
         draw(graphicsBoard);
     }
 
+
     /**
-     * Computes the cell's x value when the user inserts
+     * Computes the cell's x value when the user clicks
      * a cell in the canvas area.
      *
      * @author Rudi André Dahle
-     * @coauthor Olav Smevoll
-     * @coauthor Ginelle Ignacio
+     * @author Olav Smevoll
+     * @author Ginelle Ignacio
      * @param xCoord The coordinates in the canvas of the selected x-cell
      */
     public void setXCell(double xCoord){
         xCell = (int)Math.floor(xCoord/cellWidth);
     }
 
+
     /**
-     * Sets and computes the cell's y value when the user inserts
+     * Computes the cell's y value when the user clicks
      * a cell in the canvas area.
      *
      * @author Rudi André Dahle
-     * @coauthor Olav Smevoll
-     * @coauthor Ginelle Ignacio
+     * @author Olav Smevoll
+     * @author Ginelle Ignacio
      * @param yCoord The coordinates in the canvas of the selected y-cell
      */
     public void setYCell(double yCoord){
         yCell = (int)Math.floor(yCoord/cellHeight);
     }
 
+
     /**
      * Gets the x value of a cell.
      *
      * @author Rudi André Dahle
-     * @coauthor Olav Smevoll
-     * @coauthor Ginelle Ignacio
+     * @author Olav Smevoll
+     * @author Ginelle Ignacio
      * @return xCell Returns the integer value of  xCell.
      */
     public int getXCell(){
@@ -215,8 +226,8 @@ public class Graphics {
      * Gets the y value of a cell.
      *
      * @author Rudi André Dahle
-     * @coauthor Olav Smevoll
-     * @coauthor Ginelle Ignacio
+     * @author Olav Smevoll
+     * @author Ginelle Ignacio
      * @return yCell Returns the integer value of yCell
      */
     public int getYCell(){
@@ -228,8 +239,8 @@ public class Graphics {
      * Returns the cellWidth.
      *
      * @author Rudi André Dahle
-     * @coauthor Olav Smevoll
-     * @coauthor Ginelle Ignacio
+     * @author Olav Smevoll
+     * @author Ginelle Ignacio
      * @return cellWidth Returns the double value of
      *                   cellWidth.
      */
@@ -237,12 +248,13 @@ public class Graphics {
         return cellWidth;
     }
 
+
     /**
      * Returns the cellHeight.
      *
      * @author Rudi André Dahle
-     * @coauthor Olav Smevoll
-     * @coauthor Ginelle Ignacio
+     * @author Olav Smevoll
+     * @author Ginelle Ignacio
      * @return cellHeight Returns the double value of
      *                    cellHeight
      */
@@ -250,24 +262,26 @@ public class Graphics {
         return cellHeight;
     }
 
+
     /**
      * Sets and computes the width of a single cell.
      *
      * @author Rudi André Dahle
-     * @coauthor Olav Smevoll
-     * @coauthor Ginelle Ignacio
+     * @author Olav Smevoll
+     * @author Ginelle Ignacio
      * @param cellsWide Number of cells in the game board's width
      */
     public void setCellWidth(int cellsWide){
         this.cellWidth = (double)gc.getCanvas().widthProperty().intValue()/cellsWide;
     }
 
+
     /**
-     * Calculates the height of a single cell.
+     * Sets and computes the height of a single cell.
      *
      * @author Rudi André Dahle
-     * @coauthor Olav Smevoll
-     * @coauthor Ginelle Ignacio
+     * @author Olav Smevoll
+     * @author Ginelle Ignacio
      * @param cellsHigh Number of cells in the game board's height
      */
     public void setCellHeight(int cellsHigh) {

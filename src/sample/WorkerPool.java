@@ -22,25 +22,27 @@ public class WorkerPool {
     private List<Thread> workerPool;
     private final int numWorkers;
 
+
     /**
      * WorkerPool's default constructor receives no
      * arguments.
      *
      * @author Rudie André Dahle
-     * @coauthor Olav Smevoll
-     * @coauthor Ginelle Ignacio
+     * @author Olav Smevoll
+     * @author Ginelle Ignacio
      */
     public WorkerPool(){
         workerPool = new LinkedList<>();
         numWorkers = Runtime.getRuntime().availableProcessors();
     }
 
+
     /**
      * Method called to run the thread objects
      *
      * @author Rudie André Dahle
-     * @coauthor Olav Smevoll
-     * @coauthor Ginelle Ignacio
+     * @author Olav Smevoll
+     * @author Ginelle Ignacio
      * @throws InterruptedException Throws an exception when an
      *                              error occurs
      */
@@ -51,12 +53,13 @@ public class WorkerPool {
         }
     }
 
+
     /**
      * Method called to set the task of the threads
      *
      * @author Rudie André Dahle
-     * @coauthor Olav Smevoll
-     * @coauthor Ginelle Ignacio
+     * @author Olav Smevoll
+     * @author Ginelle Ignacio
      * @param task Parameters the value for Runnable
      */
     public void setTask(Runnable task){
@@ -65,12 +68,13 @@ public class WorkerPool {
         }
     }
 
+
     /**
      *  Clears the array list of threads
      *
      * @author Rudie André Dahle
-     * @coauthor Olav Smevoll
-     * @coauthor Ginelle Ignacio
+     * @author Olav Smevoll
+     * @author Ginelle Ignacio
      */
     public void clearWorkers(){
         workerPool.clear();

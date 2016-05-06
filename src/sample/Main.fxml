@@ -25,41 +25,42 @@
                 </Menu>
             </menus>
         </MenuBar>
-        <AnchorPane layoutY="32.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="765.0" prefWidth="765.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="215.0" AnchorPane.topAnchor="32.0">
+        <AnchorPane layoutY="32.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="765.0" prefWidth="765.0" style="-fx-background-color: #dcdcdc;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="215.0" AnchorPane.topAnchor="32.0">
             <children>
-                <Canvas fx:id="canvasBG" height="764.0" width="764.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="0.0" />
-                <Canvas fx:id="canvas" height="764.0" width="764.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="0.0" />
-                <Canvas fx:id="canvasGrid" height="764.0" onMouseClicked="#selectDragCell" onMouseDragged="#selectDragCell" width="764.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="0.0" />
+                <Canvas fx:id="canvasBG" height="764.0" width="764.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                <Canvas fx:id="canvas" height="764.0" width="764.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                <Canvas fx:id="canvasGrid" height="764.0" onMouseClicked="#selectDragCell" onMouseDragged="#selectDragCell" width="764.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
               <!--style="-fx-background-color: #dcdcdc;"-->
             </children>
         </AnchorPane>
       <Separator layoutX="765.0" layoutY="33.0" orientation="VERTICAL" prefHeight="765.0" prefWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="209.0" AnchorPane.topAnchor="33.0" />
-        <Button fx:id="playPause" layoutX="802.0" layoutY="660.0" mnemonicParsing="false" onAction="#OnStartClick" onMouseClicked="#playPauseEvent" prefHeight="34.0" prefWidth="60.0" text="Play" AnchorPane.bottomAnchor="104.0" AnchorPane.rightAnchor="118.0" />
-        <Button fx:id="clearButton" layoutX="880.0" layoutY="660.0" mnemonicParsing="false" onAction="#clearEvent" prefHeight="34.0" prefWidth="60.0" text="Clear" AnchorPane.bottomAnchor="104.0" AnchorPane.rightAnchor="40.0" />
-        <ToggleButton fx:id="gridToggle" layoutX="841.0" layoutY="593.0" mnemonicParsing="false" onAction="#gridEvent" prefHeight="34.0" prefWidth="60.0" text="Grid" AnchorPane.bottomAnchor="171.0" AnchorPane.rightAnchor="79.0" />
+        <Button fx:id="playPause" layoutX="788.0" layoutY="671.0" mnemonicParsing="false" onAction="#OnStartClick" onMouseClicked="#playPauseEvent" prefHeight="34.0" prefWidth="75.0" text="Play" AnchorPane.bottomAnchor="93.0" AnchorPane.rightAnchor="117.0" />
+        <Button fx:id="clearButton" layoutX="883.0" layoutY="671.0" mnemonicParsing="false" onAction="#clearEvent" prefHeight="34.0" prefWidth="75.0" text="Clear" AnchorPane.bottomAnchor="93.0" AnchorPane.rightAnchor="22.0" />
+        <ToggleButton fx:id="gridToggle" layoutX="835.0" layoutY="619.0" mnemonicParsing="false" onAction="#gridEvent" prefHeight="34.0" prefWidth="75.0" text="Grid" AnchorPane.bottomAnchor="145.0" AnchorPane.rightAnchor="70.0" />
         <!-- <Slider fx:id="zoomSlider" layoutX="801.0" layoutY="583.0" max="50.0" min="1.0" AnchorPane.bottomAnchor="89.0" AnchorPane.leftAnchor="187.0" />
          -->
-        <Slider fx:id="speedSlider" layoutX="788.0" layoutY="488.0" max="50.0" min="1.0" prefWidth="169.0" />
-        <Label layoutX="788.0" layoutY="461.0" text="Speed:" />
+        <Slider fx:id="speedSlider" layoutX="788.0" layoutY="488.0" max="50.0" min="1.0" prefWidth="169.0" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="488.0" />
+        <Label layoutX="788.0" layoutY="461.0" text="Speed:" AnchorPane.rightAnchor="147.0" AnchorPane.topAnchor="461.0" />
         <!--  <Label layoutX="117.0" layoutY="536.0" text="Zoom:" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="135.0" />
           -->
         <Label layoutX="788.0" layoutY="755.0" text="Generations:" AnchorPane.bottomAnchor="22.0" AnchorPane.rightAnchor="109.0" />
-        <Label layoutX="788.0" layoutY="212.0" text="Cell Color:" />
+        <Label layoutX="788.0" layoutY="212.0" text="Cell Color:" AnchorPane.rightAnchor="124.0" AnchorPane.topAnchor="212.0" />
         <Label fx:id="genCounter" layoutX="879.0" layoutY="753.0" prefHeight="27.0" prefWidth="47.0" AnchorPane.bottomAnchor="18.0" AnchorPane.rightAnchor="54.0" />
-        <Label layoutX="788.0" layoutY="293.0" text="Background Color:" />
-        <Label fx:id="fpsCount" layoutX="842.0" layoutY="459.0" prefHeight="27.0" prefWidth="47.0" />
-        <ColorPicker fx:id="colorPicker" layoutX="788.0" layoutY="239.0" onAction="#colorChanged" prefHeight="34.0" prefWidth="169.0" />
-        <ColorPicker fx:id="backgroundColor" layoutX="788.0" layoutY="320.0" onAction="#backgroundChanged" prefHeight="34.0" prefWidth="169.0" />
+        <Label layoutX="788.0" layoutY="293.0" text="Background Color:" AnchorPane.rightAnchor="69.0" AnchorPane.topAnchor="293.0" />
+        <Label fx:id="fpsCount" layoutX="839.0" layoutY="458.0" prefHeight="27.0" prefWidth="47.0" />
+        <ColorPicker fx:id="colorPicker" layoutX="788.0" layoutY="239.0" onAction="#colorChanged" prefHeight="34.0" prefWidth="169.0" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="239.0" />
+        <ColorPicker fx:id="backgroundColor" layoutX="788.0" layoutY="320.0" onAction="#backgroundChanged" prefHeight="34.0" prefWidth="169.0" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="320.0" />
         <Separator layoutY="29.0" prefHeight="0.0" prefWidth="900.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="29.0" />
-      <TextArea fx:id="tipField" editable="false" layoutX="772.0" layoutY="58.0" prefHeight="133.0" prefWidth="202.0" />
-      <Label fx:id="tipLabel" layoutX="773.0" layoutY="32.0" prefHeight="27.0" prefWidth="60.0" text="Tip:">
+      <TextArea fx:id="tipField" editable="false" layoutX="772.0" layoutY="58.0" prefHeight="133.0" prefWidth="202.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="58.0" />
+      <Label fx:id="tipLabel" layoutX="773.0" layoutY="32.0" prefHeight="27.0" prefWidth="60.0" text="Tip:" AnchorPane.rightAnchor="147.0" AnchorPane.topAnchor="32.0">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>
       </Label>
-        <ComboBox fx:id="cellShapeBox" layoutX="788.0" layoutY="407.0" onAction="#cellShapeEvent" prefHeight="34.0" prefWidth="169.0" promptText="Cell shape" />
-      <Label layoutX="788.0" layoutY="374.0" prefHeight="27.0" prefWidth="114.0" text="Cell shape:" />
-      <TextField fx:id="boardField" layoutX="872.0" layoutY="531.0" onAction="#boardFieldEvent" prefHeight="31.0" prefWidth="83.0" />
-      <Label layoutX="786.0" layoutY="536.0" text="Board size:" />
+        <ComboBox fx:id="cellShapeBox" layoutX="788.0" layoutY="407.0" onAction="#cellShapeEvent" prefHeight="34.0" prefWidth="169.0" promptText="Cell shape" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="407.0" />
+      <Label layoutX="788.0" layoutY="374.0" prefHeight="27.0" prefWidth="114.0" text="Cell shape:" AnchorPane.rightAnchor="78.0" AnchorPane.topAnchor="374.0" />
+      <TextField fx:id="boardField" layoutX="867.0" layoutY="526.0" onAction="#boardFieldEvent" prefHeight="31.0" prefWidth="90.0" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="526.0" />
+      <Label layoutX="788.0" layoutY="530.0" text="Board size:" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="530.0" />
+      <Separator layoutX="864.0" layoutY="647.0" prefWidth="22.0" />
     </children>
 </AnchorPane>

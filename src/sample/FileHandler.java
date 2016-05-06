@@ -32,22 +32,24 @@ public class FileHandler {
     Alerts alerts = new Alerts();
     DynamicBoard dynamicBoard = DynamicBoard.getInstance();
 
+
     /**
      * File Handler's constructor receives no arguments.
      *
      * @author Olav Smevoll
-     * @coauthor Rudi André Dahle
-     * @coauthor Ginelle Igncacio
+     * @author Rudi André Dahle
+     * @author Ginelle Igncacio
      */
     public FileHandler(){
     }
 
+
     /**
-     * The File Handler constructor contains parameters.
+     * This File Handler constructor contains parameters.
      *
      * @author Olav Smevoll
-     * @coauthor Rudi André Dahle
-     * @coauthor Ginelle Ignacio
+     * @author Rudi André Dahle
+     * @author Ginelle Ignacio
      * @param gc GraphicsContext's variable
      * @param statBoard Board's variable
      */
@@ -61,8 +63,8 @@ public class FileHandler {
      * Gets boolean value of error
      *
      * @author Rudi André Dahle
-     * @coauthor Olav Smevoll
-     * @coauthor Ginelle Ignacio
+     * @author Olav Smevoll
+     * @author Ginelle Ignacio
      * @return error Returns the boolean value of error
      */
     public boolean getError(){
@@ -71,7 +73,7 @@ public class FileHandler {
 
 
     /**
-     * Method called to read an RLE file stored in the
+     * Method called to read an RLE file stored on the
      * computer's disk. Program will show a dialog box
      * containing RLE files which the user can choose.
      *
@@ -80,13 +82,12 @@ public class FileHandler {
      * This will avoid errors for wrong file formats.
      *
      * @author Rudi André Dahle
-     * @coauthor Olav Smevoll
-     * @coauthor Ginelle Ignacio
+     * @author Olav Smevoll
+     * @author Ginelle Ignacio
      * @throws IOException if an alerts occurs while opening file
      * @throws PatternFormatExceptions Exceptions related to file handling
      */
     public void chooseFile() throws IOException, PatternFormatExceptions {
-        long start = System.currentTimeMillis();
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open file");
         fileChooser.setInitialDirectory(new File(System.getProperty("user.dir")+"/rle"));
@@ -99,17 +100,16 @@ public class FileHandler {
        } else {
            alerts.noFile();
        }
-
-        long stop = System.currentTimeMillis();
     }
+
 
     /**
      * Method called to read the content of file
      * by using File Reader and Buffered Reader.
      *
      * @author Olav Smevoll
-     * @coauthor Rudi André Dahle
-     * @coauthor Ginelle Ignacio
+     * @author Rudi André Dahle
+     * @author Ginelle Ignacio
      * @param file Receives a file selected by the user
      *             that the Buffered Reader will read
      * @throws IOException If an alert occurs when reading the file
@@ -126,7 +126,6 @@ public class FileHandler {
         //Checks if file content is empty
         if (br.readLine() == null){
             alerts.emptyFile();
-            //throw new PatternFormatExceptions("File is empty");
         }
 
         //Checks and reads wrong file content
@@ -152,10 +151,11 @@ public class FileHandler {
      * 3b from the rle code will turn into bbb etc.
      *
      * @author Olav Smevoll
-     * @coauthor Rudi André Dahle
-     * @coauthor Ginelle Ignacio
+     * @author Rudi André Dahle
+     * @author Ginelle Ignacio
      * @param rle Receives a string representation of
      *            a RLE file
+     * @return Returns StringBuilders value as toString().
      */
     public String fromRleToSimplified(String rle) {
         StringBuilder finalRle = new StringBuilder();
@@ -180,11 +180,12 @@ public class FileHandler {
 
 
     /**
-     * Takes the string created in the fromRleToSimplified method and creates the pattern on the board.
+     * Takes the string created in the fromRleToSimplified method
+     * and creates the pattern on the board.
      *
      * @author Olav Smevoll
-     * @coauthor Rudi André Dahle
-     * @coauthor Ginelle Ignacio
+     * @author Rudi André Dahle
+     * @author Ginelle Ignacio
      * @param rle Receives a string representation of
      *            a RLE file
      */

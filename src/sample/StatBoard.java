@@ -1,5 +1,5 @@
 /**
- * This class board represents a static board inherited
+ * This class represents a static board inherited
  * from the Board class. This class has no ability to read
  * a file that contains a pattern with a greater value than
  * the predefined 2D array.
@@ -8,8 +8,8 @@
  * board.
  *
  * @author Rudi Andre Dahle
- * @coauthor Olav Smevoll
- * @coauthor Ginelle Ignacio
+ * @author Olav Smevoll
+ * @author Ginelle Ignacio
  */
 
 package sample;
@@ -32,21 +32,22 @@ public class StatBoard extends Board {
      * receives no arguments.
      *
      * @author Rudi André Dahle
-     * @coauthor Olav Smevoll
-     * @coauthor Ginelle Ignacio
+     * @author Olav Smevoll
+     * @author Ginelle Ignacio
      */
     public StatBoard() {
         statGameBoard = new boolean[cellsWide][cellsHigh];
         boardSplit = (int)Math.ceil((double)statGameBoard.length / (double)Runtime.getRuntime().availableProcessors());
     }
 
+
     /**
      * Overrides the getCellsWide method inherited from the
      * Board class to adapt with the static board.
      *
      * @author Rudi André Dahle
-     * @coauthor Olav Smevoll
-     * @coauthor Ginelle Ignacio
+     * @author Olav Smevoll
+     * @author Ginelle Ignacio
      * @return cellsWide Integer value of the cellswide
      *                   inherited from the super class
      */
@@ -61,8 +62,8 @@ public class StatBoard extends Board {
      * Board class to adapt with the static board.
      *
      * @author Rudi André Dahle
-     * @coauthor Olav Smevoll
-     * @coauthor Ginelle Ignacio
+     * @author Olav Smevoll
+     * @author Ginelle Ignacio
      * @param cellsWide Parameter receives an integer
      */
     @Override
@@ -76,8 +77,8 @@ public class StatBoard extends Board {
      * the Board class to adapt with the static board.
      *
      * @author Rudi André Dahle
-     * @coauthor Olav Smevoll
-     * @coauthor Ginelle Ignacio
+     * @author Olav Smevoll
+     * @author Ginelle Ignacio
      * @param x integer value of the first parameter
      * @param y integer value of the second parameter
      */
@@ -128,25 +129,27 @@ public class StatBoard extends Board {
 
     }
 
+
     /**
-     * Initializes the board
+     * Initializes the byte board used to keep count of a cells neighbour.
      *
      * @author Rudi André Dahle
-     * @coauthor Olav Smevoll
-     * @coauthor Ginelle Ignacio
+     * @author Olav Smevoll
+     * @author Ginelle Ignacio
      */
     public void initByteBoard(){
         index = 0;
         byteBoard = new byte[cellsWide][cellsHigh];
     }
 
+
     /**
      * Overrides the nextGeneration method inherited from the
      * Board class to adapt with the Static Board.
      *
      * @author Rudi André Dahle
-     * @coauthor Olav Smevoll
-     * @coauthor Ginelle Ignacio
+     * @author Olav Smevoll
+     * @author Ginelle Ignacio
      */
     @Override
     public synchronized void nextGeneration() {
@@ -160,13 +163,14 @@ public class StatBoard extends Board {
         index++;
     }
 
+
     /**
      * Overrides the rules method inherited from the
      * Board class to adapt with the Static Board.
      *
      * @author Rudi André Dahle
-     * @coauthor Olav Smevoll
-     * @coauthor Ginelle Ignacio
+     * @author Olav Smevoll
+     * @author Ginelle Ignacio
      */
     @Override
     public void rules(){
@@ -183,13 +187,14 @@ public class StatBoard extends Board {
         genCounter++;
     }
 
+
     /**
      * Overrides the setGameBoard method inherited from the
      * Board class to adapat with the static board.
      *
      * @author Rudi André Dahle
-     * @coauthor Olav Smevoll
-     * @coauthor Ginelle Ignacio
+     * @author Olav Smevoll
+     * @author Ginelle Ignacio
      * @param statGameBoard Receives the boolean value of the game
      */
     @Override
@@ -199,12 +204,13 @@ public class StatBoard extends Board {
         this.statGameBoard = ((boolean[][])statGameBoard);
     }
 
+
     /**
      * Method called to get the value the game board
      *
      * @author Rudi André Dahle
-     * @coauthor Olav Smevoll
-     * @coauthor Ginelle Ignacio
+     * @author Olav Smevoll
+     * @author Ginelle Ignacio
      * @return statGameBoard The value of the static game board
      */
     @Override
@@ -213,15 +219,13 @@ public class StatBoard extends Board {
     }
 
 
-
     /**
-     * Overrides the toString method inherited from the Board
-     * class to adapt with the static board. This method is
-     * used for Junit testing.
+     * Method used for testing. Converts the given
+     * array into a string of "1" and "0".
      *
      * @author Rudi André Dahle
-     * @coauthor Olav Smevoll
-     * @coauthor Ginelle Ignacio
+     * @author Olav Smevoll
+     * @author Ginelle Ignacio
      * @return str.toString Value of the string builder's
      *                      to string
      */

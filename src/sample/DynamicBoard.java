@@ -1,7 +1,7 @@
 /**
  * The Dynamic Board class enables the ability of the
  * program to read files or create cells that are
- * greater than the value given in the beginning of
+ * greater than the value given in the initialization of
  * the game.
  *
  * @author Olav Smevoll
@@ -22,8 +22,8 @@ public class DynamicBoard extends Board{
      *  a static reference to the lone singleton instance.
      *
      * @author Olav Smevoll
-     * @coauthor Rudi André Dahle
-     * @coauthor Ginelle Ignacio
+     * @author Rudi André Dahle
+     * @author Ginelle Ignacio
      * @return dynamicSingleton Returns the reference from
      *          the static getInstance() method
      */
@@ -51,32 +51,32 @@ public class DynamicBoard extends Board{
      * Private constructor so no other instances can be made
      *
      * @author Olav Smevoll
-     * @coauthor Rudi André Dahle
-     * @coauthor Ginelle Ignacio
+     * @author Rudi André Dahle
+     * @author Ginelle Ignacio
      */
     private DynamicBoard(){
-
     }
+
 
     /**
      * Method called to calculate the the number of cells
-     * designated to each thread
+     * designated to each thread.
      *
      * @author Rudi André Dahle
-     * @coauthor Olav Smevoll
-     * @coauthor Ginelle Ignacio
+     * @author Olav Smevoll
+     * @author Ginelle Ignacio
      */
     public void setBoardSplit() {
         this.boardSplit = (int)Math.ceil((double)dynGameBoard.size() / (double)Runtime.getRuntime().availableProcessors());
     }
 
+
     /**
      * Fills the dynGameBoard and byteBoard with arrays at the program startup.
      *
      * @author Olav Smevoll
-     * @coauthor Rudi André Dahle
-     * @coauthor Ginelle Ignacio
-     *
+     * @author Rudi André Dahle
+     * @author Ginelle Ignacio
      */
     public void createArray() {
         for (int x = 0; x < boardSize; x++) {
@@ -100,8 +100,8 @@ public class DynamicBoard extends Board{
      * during runtime, increasing the board by a total of 4 cells.
      *
      * @author Olav Smevoll
-     * @coauthor Rudi André Dahle
-     * @coauthor Ginelle Ignacio
+     * @author Rudi André Dahle
+     * @author Ginelle Ignacio
      */
     public void addToArrayEastSouth(){
         int increase = 2;
@@ -128,21 +128,21 @@ public class DynamicBoard extends Board{
         }
     }
 
+
     /**
      * Increases the dynGameBoard by 2 in the west and north direction
      * as well as moving the existing pattern 2 cells into the east/south
      * direction.
      *
      * @author Olav Smevoll
-     * @coauthor Rudi André Dahle
-     * @coauthor Ginelle Ignacio
+     * @author Rudi André Dahle
+     * @author Ginelle Ignacio
      */
     public void addToArrayWestNorth(){
         int increase = 2;
         super.cellsWide += increase;
         super.cellsHigh += increase;
         boardSize += increase;
-
 
         for(int x = 0; x < increase; x++) {
             List<Boolean> innerArray = new ArrayList<>();
@@ -162,12 +162,13 @@ public class DynamicBoard extends Board{
         }
     }
 
+
     /**
      * Sets the value of the board size
      *
      * @author Olav Smevoll
-     * @coauthor Rudi André Dahle
-     * @coauthor Ginelle Ignacio
+     * @author Rudi André Dahle
+     * @author Ginelle Ignacio
      * @param size Receives a parameter with an integer
      *             value
      */
@@ -175,13 +176,14 @@ public class DynamicBoard extends Board{
         boardSize = size;
     }
 
+
     /**
      * Overrides the method getGameBoard inherited from the
      * Board class to adpat with the dynamic board.
      *
      * @author Rudi André Dahle
-     * @coauthor Olav Smevoll
-     * @coauthor Ginelle Ignacio
+     * @author Olav Smevoll
+     * @author Ginelle Ignacio
      * @return dynGameBoard Returns the list value of
      *         dynGameBoard
      */
@@ -193,11 +195,11 @@ public class DynamicBoard extends Board{
 
     /**
      * Sets the value of the dynamic board with
-     * a list within a list and a boolean element
+     * a list within a list containing boolean elements.
      *
      * @author Rudi André Dahle
-     * @coauthor Olav Smevoll
-     * @coauthor Ginelle Ignacio
+     * @author Olav Smevoll
+     * @author Ginelle Ignacio
      * @param board Receives a parameter with the value
      *              of the dynamic game board
      */
@@ -207,14 +209,15 @@ public class DynamicBoard extends Board{
         dynGameBoard = (List<List<Boolean>>)board;
     }
 
+
     /**
      * Overrides the countNeighbors method inherited from
      * the Board class to adapt the method called with the
      * dynamic board.
      *
      * @author Rudi André Dahle
-     * @coauthor Olav Smevoll
-     * @coauthor Ginelle Ignacio
+     * @author Olav Smevoll
+     * @author Ginelle Ignacio
      * @param x integer value of the first parameter
      * @param y integer value of the second parameter
      */
@@ -222,7 +225,6 @@ public class DynamicBoard extends Board{
     protected void countNeighbours(int x, int y) {
         int blx = boardSize - 1;
         int bly = boardSize - 1;
-
 
         //Check cell neighbor North-West
         if (x > 0 && y > 0) {
@@ -273,21 +275,21 @@ public class DynamicBoard extends Board{
         }
     }
 
+
     /**
      * Overrides the nextGeneration method inherited from the
      * Board class to adapt the method called with the dynamic
      * board.
      *
      * @author Rudi André Dahle
-     * @coauthor Olav Smevoll
-     * @coauthor Ginelle Ignacio
+     * @author Olav Smevoll
+     * @author Ginelle Ignacio
      */
     @Override
     public synchronized void nextGeneration() {
         for (int x = index*boardSplit; x < (index+1)*boardSplit && x < boardSize; x++) {
-            //List<Boolean> innerArrayStore = new ArrayList<>();
-            for(int y = 0; y < boardSize; y++){
-                if(dynGameBoard.get(x).get(y)){
+            for (int y = 0; y < boardSize; y++){
+                if (dynGameBoard.get(x).get(y)){
                     countNeighbours(x,y);
                 }
             }
@@ -295,14 +297,15 @@ public class DynamicBoard extends Board{
         index++;
     }
 
+
     /**
      * Overrides the rules method inherited from the Board
      * class to adapt the method called with the dynamic
      * board.
      *
      * @author Rudi André Dahle
-     * @coauthor Olav Smevoll
-     * @coauthor Ginelle Ignacio
+     * @author Olav Smevoll
+     * @author Ginelle Ignacio
      */
     @Override
     public void rules(){
@@ -321,14 +324,15 @@ public class DynamicBoard extends Board{
         index = 0;
     }
 
+
     /**
      * Method called to check if it's necessary for the
      * board to increase it's size when a cell reaches
      * the edges of the game board.
      *
      * @author Olav Smevoll
-     * @coauthor Rudi André Dahle
-     * @coauthor Ginelle Ignacio
+     * @author Rudi André Dahle
+     * @author Ginelle Ignacio
      */
     public void checkForBoardIncrease(){
         int minY = 0;
@@ -362,12 +366,13 @@ public class DynamicBoard extends Board{
         }
     }
 
+
     /**
      * Clears the board and goes back to the original size
      *
      * @author Olav Smevoll
-     * @coauthor Rudi Andre Dahlé
-     * @coauthor Ginelle Ignacio
+     * @author Rudi Andre Dahlé
+     * @author Ginelle Ignacio
      */
     public void clearDynBoard() {
         dynGameBoard.clear();
@@ -384,12 +389,13 @@ public class DynamicBoard extends Board{
         }
     }
 
+
     /**
      * Method call to clear the byte board.
      *
      * @author Olav Smevoll
-     * @coauthor Rudi André Dahle
-     * @coauthor Ginelle Ignacio
+     * @author Rudi André Dahle
+     * @author Ginelle Ignacio
      */
     public void clearByteBoard(){
         byteBoard.clear();
@@ -406,8 +412,8 @@ public class DynamicBoard extends Board{
      * Method called to reset the Dynamic Board
      *
      * @author Olav Smevoll
-     * @coauthor Rudi André Dahle
-     * @coauthor Ginelle Ignacio
+     * @author Rudi André Dahle
+     * @author Ginelle Ignacio
      * @param board Parameter receives a list within a list
      *              and a boolean element of the board
      */
@@ -422,16 +428,15 @@ public class DynamicBoard extends Board{
     }
 
 
-
     /**
-     * Overrides the toString method inherited from the Board
-     * class to adapt with the dynamic board.
+     * Method used for testing. Converts the given
+     * array into a string of "1" and "0".
      *
      * @author Rudi André Dahle
-     * @coauthor Olav Smevoll
-     * @coauthor Ginelle Ignacio
+     * @author Olav Smevoll
+     * @author Ginelle Ignacio
      * @return str.toString Returns the value of the string
-     *                      builder's to string
+     *                      builder.
      */
     @Override
     public String toString() {
@@ -441,7 +446,6 @@ public class DynamicBoard extends Board{
                 str.append(gameCell ? "1" : "0");
             }
         }
-
         return str.toString();
     }
 }

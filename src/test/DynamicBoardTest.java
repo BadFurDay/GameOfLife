@@ -24,13 +24,14 @@ public class DynamicBoardTest {
 
     List<List<Boolean>> gameBoard = new ArrayList<>();
 
+
     /**
      * Dynamic Board Test class has a default constructor
      * that receives no arguments.
      *
      * @author Rudi André Dahle
-     * @coauthor Ginelle Ignacio
-     * @coauthor Olav Smevoll
+     * @author Ginelle Ignacio
+     * @author Olav Smevoll
      */
     public DynamicBoardTest(){
 
@@ -41,12 +42,13 @@ public class DynamicBoardTest {
 
 
     /**
-     *   * The initial setup of a game board used for testing the
+     * The initial setup of a game board used for testing the
      * functionality of the dynamic game board.
      *
-     * @coauthor Ginelle Ignacio
-     * @coauthor Olav Smevoll
-     * @throws Exception
+     * @author Rudi André Dahle
+     * @author Ginelle Ignacio
+     * @author Olav Smevoll
+     * @throws Exception if an error occurs while testing
      */
     @Before
     public void setUp() throws Exception {
@@ -58,7 +60,6 @@ public class DynamicBoardTest {
             }
             gameBoard.add(innerArray);
         }
-
         gameBoard.get(1).set(2, true);
         gameBoard.get(2).set(2, true);
         gameBoard.get(3).set(2, true);
@@ -66,13 +67,15 @@ public class DynamicBoardTest {
         dynBoard.setGameBoard(gameBoard);
     }
 
+
     /**
      * Method called to test the result of the logic test
      * of the next generation when using a dynamic board.
      *
-     * @coauthor Ginelle Ignacio
-     * @coauthor Olav Smevoll
-     * @throws Exception
+     * @author Rudi André Dahle
+     * @author Ginelle Ignacio
+     * @author Olav Smevoll
+     * @throws Exception if an error occurs while testing
      */
     @Test
     public void testNextGeneration() throws Exception {

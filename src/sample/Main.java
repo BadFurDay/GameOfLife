@@ -27,7 +27,6 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
         primaryStage.setTitle("Game of Life");
         primaryStage.setScene(new Scene(root));
-        //primaryStage.setResizable(false);
         primaryStage.show();
 
     }
@@ -35,5 +34,4 @@ public class Main extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-
 }

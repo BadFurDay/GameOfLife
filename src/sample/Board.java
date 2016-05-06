@@ -12,7 +12,6 @@ package sample;
 
 public abstract class Board {
 
-
     //Datafield
     protected int initialCells = 10;
     protected int cellsWide = initialCells;
@@ -32,44 +31,48 @@ public abstract class Board {
      * Gameboards height in number of cells
      *
      * @author Rudi André Dahle
-     * @coauthor Olav Smevoll
-     * @coauthor Ginelle Ignacio
+     * @author Olav Smevoll
+     * @author Ginelle Ignacio
      * @return cellsHigh Returns the cell's height
      */
     public int getCellsHigh() {
         return cellsHigh;
     }
 
+
     /**
-     * Sets the value of cell's height
+     * Sets the number of cells in the gameboard's height
      *
      * @author Rudi André Dahle
-     * @coauthor Olav Smevoll
-     * @coauthor Ginelle Ignacio
-     * @param cellsHigh
+     * @author Olav Smevoll
+     * @author Ginelle Ignacio
+     * @param cellsHigh Parameter receives an integer
+     *                  value of the cell's height.
      */
     public void setCellsHigh(int cellsHigh) {
         this.cellsWide = cellsHigh;
     }
 
+
     /**
      * Gameboard's width in number of cells
      *
      * @author Rudi André Dahle
-     * @coauthor Olav Smevoll
-     * @coauthor Ginelle Ignacio
+     * @author Olav Smevoll
+     * @author Ginelle Ignacio
      * @return cellsWide Returns the cell's width
      */
     public int getCellsWide() {
         return cellsWide;
     }
 
+
     /**
-     * Sets the value of cell's wide
+     * Sets the number of cell's in the gameboard's width
      *
      * @author Rudi André Dahle
-     * @coauthor Olav Smevoll
-     * @coauthor Ginelle Ignacio
+     * @author Olav Smevoll
+     * @author Ginelle Ignacio
      * @param cellsWide Parameter receives an integer
      *                  value of the cell's wide
      */
@@ -77,13 +80,14 @@ public abstract class Board {
         this.cellsWide = cellsWide;
     }
 
+
     /**
      * Returns the generation counter as a string value
      * to show as label.
      *
      * @author Rudi André Dahle
-     * @coauthor Olav Smevoll
-     * @coauthor Ginelle Ignacio
+     * @author Olav Smevoll
+     * @author Ginelle Ignacio
      * @return s Value of generation counter in strings
      */
     public int getGenCounter(){
@@ -96,8 +100,8 @@ public abstract class Board {
      * the clear button is fired
      *
      * @author Olav Smevoll
-     * @coauthor Rudi André Dahle
-     * @coauthor Ginelle Ignacio
+     * @author Rudi André Dahle
+     * @author Ginelle Ignacio
      */
     public void resetGenCount(){
         genCounter = 0;
@@ -108,10 +112,11 @@ public abstract class Board {
      * Gets the value of the game board
      *
      * @author Rudi André Dahle
-     * @coauthor Olav Smevoll
-     * @coauthor Ginelle Ignacio
-     * @return gameBoard Returns the value of the
-     *                   game board
+     * @author Olav Smevoll
+     * @author Ginelle Ignacio
+     * @return gameBoard Returns the value of the game board
+     * @param <T> A variable for types (int, boolean, boolean[][] etc.).
+     *           We use boolean[][] and Boolean Lists in this program.
      */
     public abstract <T> T getGameBoard();
 
@@ -120,46 +125,45 @@ public abstract class Board {
      * Sets the value of the GameBoard
      *
      * @author Rudi André Dahle
-     * @coauthor Olav Smevoll
-     * @coauthor Ginelle Ignacio
-     * @param gameBoard Receives the value of the game
-     *                  board in boolean 2D array
+     * @author Olav Smevoll
+     * @author Ginelle Ignacio
+     * @param gameBoard Receives the value of the game board in boolean 2D array
+     * @param <T> A variable for types (int, boolean, boolean[][] etc.).
+     *           We use boolean[][] and Boolean Lists in this program.
      */
     public abstract <T> void setGameBoard(T gameBoard);
 
 
    /**
-    * Verifies the logic of the game by counting
-    * the cell neighbors in every direction each
-    * cell comes in contact with.
-    *
+    * Verifies the logic of the game by notifying each
+    * neighbour of a live cell about its state.
     *
     * @author Rudi André Dahle
-    * @coauthor Olav Smevoll
-    * @coauthor Ginelle Ignacio
+    * @author Olav Smevoll
+    * @author Ginelle Ignacio
     * @param x integer value of the first parameter
     * @param y integer value of the second parameter
-    * @return counter Returns the value of counter after
-    *         checking the rules
     */
     protected abstract void countNeighbours(int x, int y);
 
 
    /**
-    *  Sets the new values in the array for the
-    *  next generation.
+    * Scans the array for live cells.
     *
     * @author Rudi André Dahle
-    * @coauthor Olav Smevoll
-    * @coauthor Ginelle Ignacio
+    * @author Olav Smevoll
+    * @author Ginelle Ignacio
     */
     public abstract void nextGeneration();
 
+
     /**
+     * Sets the new values for the cells in the array for the
+     * next generation.
      *
      * @author Rudi André Dahle
-     * @coauthor Olav Smevoll
-     * @coauthor Ginelle Ignacio
+     * @author Olav Smevoll
+     * @author Ginelle Ignacio
      */
     public abstract void rules();
 

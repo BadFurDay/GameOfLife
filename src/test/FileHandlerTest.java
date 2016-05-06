@@ -30,8 +30,8 @@ public class FileHandlerTest {
      * no arguments
      *
      * @author Rudi André Dahle
-     * @coauthor Olav Smevoll
-     * @coauthor Ginelle Ignacio
+     * @author Ginelle Ignacio
+     * @author Olav Smevoll
      */
     public FileHandlerTest(){
 
@@ -47,8 +47,8 @@ public class FileHandlerTest {
      * if the functionality works as it should.
      *
      * @author Rudi André Dahle
-     * @coauthor Olav Smevoll
-     * @coauthor Ginelle Ignacio
+     * @author Ginelle Ignacio
+     * @author Olav Smevoll
      * @throws Exception if an error occurs while testing
      */
     @Before
@@ -74,8 +74,8 @@ public class FileHandlerTest {
      * check if the file prints out the expected output.
      *
      * @author Rudi André Dahle
-     * @coauthor Ginelle Ignacio
-     * @coauthor Olav Smevoll
+     * @author Ginelle Ignacio
+     * @author Olav Smevoll
      * @throws Exception if an error occurs while testing
      */
     @Test

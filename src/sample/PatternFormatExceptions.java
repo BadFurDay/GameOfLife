@@ -18,20 +18,20 @@ public class PatternFormatExceptions extends Exception {
      * that receives no arguments.
      *
      * @author Ginelle Ignacio
-     * @coauthor Rudi André Dahle
-     * @coauthor Olav Smevoll
+     * @author Rudi André Dahle
+     * @author Olav Smevoll
      */
     public PatternFormatExceptions(){
-
     }
+
 
     /**
      * Constructor receives a string message of the alerts
      * that occurred
      *
      * @author Ginelle Ignacio
-     * @coauthor Rudi André Dahle
-     * @coauthor Olav Smevoll
+     * @author Rudi André Dahle
+     * @author Olav Smevoll
      * @param message String message of the exception
      */
     public PatternFormatExceptions(String message){

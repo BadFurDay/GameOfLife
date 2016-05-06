@@ -25,8 +25,8 @@ public class BoardTest {
      * that receives no arguments.
      *
      * @author Rudi André Dahle
-     * @coauthor Olav Smevoll
-     * @coauthor Ginelle Ignacio
+     * @author Olav Smevoll
+     * @author Ginelle Ignacio
      */
     public BoardTest(){
 
@@ -35,13 +35,14 @@ public class BoardTest {
     //Object
     Board statBoard = new StatBoard();
 
+
     /**
      * The initial setup of a game board used for testing the
      * functionality of the static game board.
      *
      * @author Rudi André Dahle
-     * @coauthor Olav Smevoll
-     * @coauthor Ginelle Ignacio
+     * @author Olav Smevoll
+     * @author Ginelle Ignacio
      * @throws Exception if an error occurs while testing
      */
     @Before
@@ -60,8 +61,8 @@ public class BoardTest {
      * of the next generation when using a static board.
      *
      * @author Rudi André Dahle
-     * @coauthor Ginelle Ignacio
-     * @coauthor Olav Smevoll
+     * @author Ginelle Ignacio
+     * @author Olav Smevoll
      * @throws Exception if an error occurs while testing
      */
     @Test
@@ -69,7 +70,4 @@ public class BoardTest {
         String expected = "010001111";
         assertEquals(expected, statBoard.toString());
     }
-
-
-
 }
