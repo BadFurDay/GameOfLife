@@ -52,7 +52,7 @@
                      <children>
                         <Label text="Plays the animation. Play button appears when the game is not running.  " GridPane.columnIndex="2" GridPane.rowIndex="1" />
                         <Label text="Pauses the animation. Pause button appears when the game is running.  " GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                        <Label text="Clears all the cells where the animation is played. " GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                        <Label text="Clears all the cells and resizes the game board to its initial state. " GridPane.columnIndex="2" GridPane.rowIndex="3" />
                         <Label text="Manipulates the speed animation of the cells by sliding it to the left or right." GridPane.columnIndex="2" GridPane.rowIndex="4" />
                         <Label text="Toggle button that allows you to make the grid visible or invisible." GridPane.columnIndex="2" GridPane.rowIndex="5" />
                         <Label text="Changes the color of the cell according to your color choice." GridPane.columnIndex="2" GridPane.rowIndex="6" />
