@@ -13,7 +13,7 @@ package sample;
 public abstract class Board {
 
     //Datafield
-    protected int initialCells = 10;
+    protected int initialCells = 25;
     protected int cellsWide = initialCells;
     protected int cellsHigh = cellsWide;
     protected int genCounter;
