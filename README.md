@@ -13,6 +13,8 @@ Ginelle Zapanta Ignacio
 Olav Magne Smevoll
 
 ----------------------------------------------------------
+Sluttrapport
+----------------------------------------------------------
 
 - Tip vindu gir brukeren kort info om hva som kan gjøres avhengig 
   av hvor i programmet man trykker.
